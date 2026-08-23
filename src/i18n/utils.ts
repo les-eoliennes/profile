@@ -11,8 +11,15 @@ export function getLangFromUrl(url: URL): Lang {
  * been translated yet renders in English rather than as a blank.
  */
 export function useTranslations(lang: Lang) {
-  return function t(key: UIKey): string {
-    return UI[lang][key] ?? UI[DEFAULT_LANG][key];
+  return function t(key: UIKey, vars?: Record<string, string | number>): string {
+    const raw = UI[lang][key] ?? UI[DEFAULT_LANG][key];
+    if (!vars) return raw;
+    // Counts and the like are substituted rather than written into the copy,
+    // so adding an entry to the data cannot leave the prose stating a stale
+    // number in one or both editions.
+    return raw.replace(/\{(\w+)\}/g, (_, name: string) =>
+      name in vars ? String(vars[name]) : `{${name}}`,
+    );
   };
 }
 

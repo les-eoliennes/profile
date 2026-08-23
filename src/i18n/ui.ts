@@ -55,7 +55,7 @@ export const UI = {
 
     'trailer.heading': 'What I use, and what I think of it',
     'trailer.body':
-      'Seventeen marks, each one something I run in production. Open any of them and it becomes a short piece on what the tool solves, what it costs, and where it has caught me out.',
+      '{n} marks, each one something I run in production. Open any of them and it becomes a short piece on what the tool solves, what it costs, and where it has caught me out.',
     'trailer.cta.stack': 'Open the Stack',
     'trailer.cta.education': 'Education',
 
@@ -131,7 +131,7 @@ export const UI = {
 
   zh: {
     'site.role': '软件工程师',
-    'site.city': '高雄',
+    'site.city': '高雄 台湾',
     'site.edition': '第一卷',
     'site.description': '后端与基础设施工程师。分布式系统、数据库内核、编译与运行时。',
 
@@ -169,7 +169,7 @@ export const UI = {
 
     'trailer.heading': '我用什么，以及怎么看它们',
     'trailer.body':
-      '十七个标记，每一个都跑在我的生产环境里。点开任意一个，会展开一篇短文：这件工具解决什么问题、代价在哪，以及它在哪里坑过我。',
+      '{n} 个标记，每一个都跑在我的生产环境里。点开任意一个，会展开一篇短文：这件工具解决什么问题、代价在哪，以及它在哪里坑过我。',
     'trailer.cta.stack': '打开技术栈',
     'trailer.cta.education': '教育背景',
 

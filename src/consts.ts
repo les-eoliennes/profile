@@ -32,6 +32,7 @@ export const SOCIAL = [
 export const EDUCATION = [
   {
     period: '2018 — 2022', // TODO: replace with your actual dates
+    crest: 'szu',
     school: 'Shenzhen University',
     degree: 'B.Eng., Computer Science and Technology',
     detail:
@@ -67,6 +68,7 @@ export const COURSEWORK = [
 export const OPEN_COURSES = [
   {
     school: 'MIT',
+    crest: 'mit',
     code: '6.824',
     title: 'Distributed Systems',
     year: '2023',
@@ -78,6 +80,7 @@ export const OPEN_COURSES = [
   },
   {
     school: 'CMU',
+    crest: 'cmu',
     code: '15-445',
     title: 'Database Systems',
     year: '2023',
@@ -89,6 +92,7 @@ export const OPEN_COURSES = [
   },
   {
     school: 'CMU',
+    crest: 'cmu',
     code: '15-213',
     title: 'Introduction to Computer Systems',
     year: '2022',
@@ -100,6 +104,7 @@ export const OPEN_COURSES = [
   },
   {
     school: 'MIT',
+    crest: 'mit',
     code: '6.828',
     title: 'Operating System Engineering',
     year: '2022',
@@ -111,6 +116,7 @@ export const OPEN_COURSES = [
   },
   {
     school: 'Stanford',
+    crest: 'stanford',
     code: 'CS144',
     title: 'Computer Networking',
     year: '2022',
@@ -122,6 +128,7 @@ export const OPEN_COURSES = [
   },
   {
     school: 'MIT',
+    crest: 'mit',
     code: '6.006',
     title: 'Introduction to Algorithms',
     year: '2021',

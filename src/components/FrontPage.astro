@@ -4,6 +4,7 @@ import TechMark from './TechMark.astro';
 import { SITE, STATS } from '../consts';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
 import { getReports } from '../lib/reports';
+import { TECH } from '../data/tech';
 
 /*
   The front page in both editions. Everything visible comes through t(), so the
@@ -88,7 +89,7 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
   <div class="grid gap-6 py-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
     <div>
       <h2 class="deck-md text-balance">{t('trailer.heading')}</h2>
-      <p class="mt-3 max-w-xl text-sm leading-relaxed text-pretty">{t('trailer.body')}</p>
+      <p class="mt-3 max-w-xl text-sm leading-relaxed text-pretty">{t('trailer.body', { n: TECH.length })}</p>
       <div class="mt-5 flex flex-wrap gap-3">
         <a href={localizePath('/stack', lang)} class="btn-oval">{t('trailer.cta.stack')}</a>
         <a href={localizePath('/education', lang)} class="btn-oval">

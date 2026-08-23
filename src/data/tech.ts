@@ -254,6 +254,35 @@ export const TECH: Tech[] = [
     },
   },
   {
+    slug: 'sqlite',
+    name: 'SQLite',
+    category: 'Data',
+    years: '4 years',
+    tagline: 'An entire database in one file, and the most widely deployed engine in the world.',
+    understanding: [
+      'SQLite is not a smaller Postgres — it is a different shape entirely. There is no server and no socket; the library runs inside your process and reads a file. That removes a whole class of operational concern, and with it any ability to spread writes across machines.',
+      'It is the right default far more often than people assume: local tooling, test fixtures, on-device storage, and increasingly single-node services whose working set fits on one disk. The moment you need concurrent writers across processes it becomes the wrong tool, and it is honest about saying so.',
+    ],
+    points: [
+      'Turn on WAL mode for anything concurrent — the default rollback journal blocks readers for the duration of a write',
+      'Type affinity is not type checking: a column declared INTEGER will happily store a string unless you add a CHECK or use a STRICT table',
+      'One writer at a time, full stop. `busy_timeout` turns "database is locked" from an error into a wait',
+    ],
+    zh: {
+      years: '4 年',
+      tagline: '一整个数据库就是一个文件，也是这个世界上部署量最大的引擎。',
+      understanding: [
+        'SQLite 不是一个小号的 Postgres，它根本是另一种形态。没有服务端，也没有 socket；这个库就跑在你的进程里，读一个文件。这消掉了一整类运维上的顾虑，同时也消掉了把写入摊到多台机器上的可能。',
+        '它适合做默认选择的场合，比大多数人以为的多得多：本地工具、测试数据、端上存储，以及越来越多工作集装得下一块磁盘的单机服务。一旦你需要跨进程并发写入，它就是错的工具 —— 而且它会诚实地告诉你。',
+      ],
+      points: [
+        '任何有并发的场景都要打开 WAL 模式 —— 默认的回滚日志会在整个写入期间挡住读取',
+        '类型亲和不等于类型检查：声明成 INTEGER 的列照样会存进字符串，除非你加 CHECK 或者用 STRICT 表',
+        '同一时刻只能有一个写入者，没有例外。`busy_timeout` 能把「database is locked」从一个错误变成一次等待',
+      ],
+    },
+  },
+  {
     slug: 'apachekafka',
     name: 'Apache Kafka',
     category: 'Infrastructure',

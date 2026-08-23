@@ -38,6 +38,13 @@ English at the root, Chinese under `/zh/`. **Every page exists in both.**
 - Internal links must go through `localizePath()` or the reader falls out of
   their edition.
 
+## Crests
+
+`src/assets/crests/<slug>.{svg,png,webp}` is globbed at build time by
+`Crest.astro`; slugs come from `src/data/schools.ts`. Missing file falls back to
+a monogram badge. Do not vendor university crests without checking the school's
+trademark policy.
+
 ## Things that will bite
 
 - Tailwind v4 `@apply` only accepts classes declared with `@utility`, not ones
@@ -54,6 +61,9 @@ English at the root, Chinese under `/zh/`. **Every page exists in both.**
 - Scroll-driven animation must stay "visible by default, animation layered on",
   or Firefox renders nothing.
 - `z.string().url()` is deprecated in zod 4; use `z.url()`.
+- Never write a count into the copy. `t()` takes `{n}`-style placeholders —
+  hardcoding "seventeen" left the front page stale the moment an entry was
+  added, in both editions at once.
 - Chinese needs its own typography: the deck scale (0.86 line-height, negative
   tracking) is set for a didone and mangles CJK. See `:lang(zh)` in global.css.
   Never use `<em>`/italic for Chinese — browsers synthesise a broken oblique.

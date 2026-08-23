@@ -84,6 +84,21 @@ scale is set for a didone at 0.86 line-height with negative tracking, which
 collides badly with full-width CJK glyphs, so decks are loosened and tracking
 zeroed. Drop caps and synthesised italics are switched off — Chinese has neither.
 
+## Crests
+
+Drop a school's crest into `src/assets/crests/<slug>.svg` (or `.png`/`.webp`)
+and the education page picks it up automatically — `Crest.astro` globs that
+directory at build time, so no code change is needed. Slugs are defined in
+`src/data/schools.ts`: `szu`, `mit`, `stanford`, `cmu`.
+
+Until a file is present the component renders a monogram badge in the school's
+colour instead. That fallback is deliberately typographic: it stands in for a
+crest without imitating one.
+
+University crests are trademarked institutional marks, which is why none are
+vendored here. Add only the crests of schools you actually attended or took
+courses from, and check each school's trademark policy first.
+
 ## Editing
 
 - **Text** (degree, coursework, open courses, fundamentals, career): `src/consts.ts`
