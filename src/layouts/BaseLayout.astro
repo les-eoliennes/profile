@@ -72,27 +72,16 @@ const ogUrl = new URL(ogImage, Astro.site);
     <Font cssVariable="--font-body" preload />
 
     <!--
-      Must be inline and run before the body paints: read the preference first,
-      or dark-mode readers get a flash of the light theme.
+      Must be inline and run before the body paints. Marking that scripting is
+      available is what lets the front-page heading stay hidden until it types
+      itself in; done here so there is no flash of the finished text.
+
+      The timeout is insurance: if the behaviours bundle never arrives, the
+      heading reveals itself anyway rather than staying invisible.
     -->
     <script is:inline>
       (() => {
         const root = document.documentElement;
-
-        const saved = localStorage.getItem('theme');
-        const dark =
-          saved === 'dark' ||
-          (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
-        root.classList.toggle('dark', dark);
-
-        /*
-          Marks that scripting is available, which is what lets the front-page
-          heading be hidden before it types itself in. Set here, before first
-          paint, so there is no flash of the finished text.
-
-          The timeout is insurance: if the behaviours bundle never arrives, the
-          heading reveals itself anyway rather than staying invisible.
-        */
         root.classList.add('js');
         setTimeout(() => root.classList.add('typed'), 4000);
       })();

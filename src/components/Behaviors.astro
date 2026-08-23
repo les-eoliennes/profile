@@ -1,7 +1,7 @@
 ---
-// The only client-side script on the site: the edition toggle and the
-// zoom-in/zoom-out of the tech articles. Everything is event-delegated, so
-// nothing needs rebinding after a ClientRouter navigation.
+// The only client-side script on the site: the front-page typewriter and the
+// zoom-in/zoom-out of the tech articles. Clicks are event-delegated, so nothing
+// needs rebinding after a ClientRouter navigation.
 ---
 
 <script>
@@ -140,19 +140,11 @@
         letters.push(span);
       }
 
-      const caret = document.createElement('span');
-      caret.className = 'tw-caret';
-      caret.setAttribute('aria-hidden', 'true');
-
-      fragment.insertBefore(caret, fragment.firstChild);
       heading.appendChild(fragment);
 
       let i = 0;
       const step = () => {
-        const span = letters[i];
-        span.style.visibility = 'visible';
-        // Keep the caret just ahead of what has been typed.
-        heading.insertBefore(caret, letters[i + 1] ?? null);
+        letters[i].style.visibility = 'visible';
         i += 1;
 
         if (i < letters.length) {
@@ -160,9 +152,7 @@
           return;
         }
 
-        // Lift the blanket rule, then let the caret blink a moment and go.
         root.classList.add('typed');
-        setTimeout(() => caret.remove(), 1100);
       };
 
       setTimeout(step, 260);
@@ -196,13 +186,6 @@
     document.addEventListener('click', (event) => {
       const target = event.target as HTMLElement | null;
       if (!target) return;
-
-      // ---------- Day / night edition ----------
-      if (target.closest('[data-theme-toggle]')) {
-        const dark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', dark ? 'dark' : 'light');
-        return;
-      }
 
       // ---------- Open a tech article ----------
       const opener = target.closest<HTMLElement>('[data-tech-open]');

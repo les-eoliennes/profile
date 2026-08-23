@@ -43,14 +43,7 @@ const match = Object.entries(files).find(
 
 {
   match ? (
-    /*
-      Every crest is a dark red on transparency, which disappears against the
-      night edition's near-black paper. Rather than filter the brand colours
-      into something they are not, the mark sits on a light plate — a logo
-      printed on paper, which is what the rest of the design is pretending to
-      be anyway. In the day edition the plate matches the page and vanishes.
-    */
-    <span class:list={['crest inline-flex items-center', className]}>
+    <span class:list={['inline-flex items-center', className]}>
       {/*
         Only the height is given. Passing a width as well makes the image
         pipeline resize raster sources to exactly those dimensions and crop

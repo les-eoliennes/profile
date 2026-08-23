@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
 import LangToggle from './LangToggle.astro';
 import { SITE, NAV } from '../consts';
 import { getLangFromUrl, useTranslations, localizePath, stripLang } from '../i18n/utils';
@@ -43,7 +42,6 @@ const sections = NAV.map((item) => ({
     <div class="flex items-center gap-2 sm:gap-3">
       <p class="byline hidden sm:block">{t('site.edition')}</p>
       <LangToggle />
-      <ThemeToggle />
     </div>
   </div>
 

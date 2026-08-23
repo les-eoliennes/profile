@@ -14,10 +14,11 @@ pin the absolute path to v22.
   career) and `src/data/tech.ts` (the stack).
 - Reports are `src/content/work/*.mdx` with covers in the same directory; the
   schema is in `src/content.config.ts`.
-- Tokens and newspaper primitives are in `src/styles/global.css`. Dark mode is a
-  "night edition" that swaps ink and paper, driven by a `.dark` class.
-- The only client script is `src/components/Behaviors.astro` — theme toggle and
-  the tech dialogs, entirely event-delegated.
+- Tokens and newspaper primitives are in `src/styles/global.css`. The site is
+  light only — no theme toggle, no `.dark` class, no `prefers-color-scheme`.
+  That was removed deliberately; do not reintroduce it without asking.
+- The only client script is `src/components/Behaviors.astro` — the front-page
+  typewriter and the tech dialogs; clicks are event-delegated.
 - Marks resolve through `src/lib/icons.ts`: the Iconify `logos` set (official
   full-colour artwork) first, simple-icons as fallback. Returns `body` plus the
   per-icon `width`/`height`, since that set has no single viewBox.
@@ -50,9 +51,8 @@ Size crests by HEIGHT (`height` prop), never `size-*`. Pass only a height to
 silently sliced two crests down to one word each (SVGs pass through, so it hid
 until the first PNG). `scale` in schools.ts equalises visual area, since a
 three-line stack and a wide wordmark cannot share a height and both stay
-readable. The marks are dark reds on transparency and
-would vanish in the night edition, so `.crest` puts them on a fixed light
-plate rather than filtering the brand colours.
+readable. The marks are dark reds on transparency, which sit
+directly on the paper now that there is no night edition.
 
 ## Front-page typewriter
 

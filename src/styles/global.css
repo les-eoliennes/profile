@@ -1,9 +1,6 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-/* Class-based dark mode so the manual toggle can override the system setting. */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* ---------- Design tokens ---------- */
 :root {
   color-scheme: light;
@@ -15,22 +12,6 @@
   --ink-soft: #4a473c;
   --ink-faint: #7c7768;
   --rule: #16150f;
-}
-
-/*
-  Dark mode reads as a "night edition": the ink and paper swap rather than the
-  design becoming a different design. Everything else stays identical.
-*/
-.dark {
-  color-scheme: dark;
-
-  --desk: #0a0a07;
-  --paper: #17170f;
-  --paper-2: #201f16;
-  --ink: #ece7d8;
-  --ink-soft: #b3ad9b;
-  --ink-faint: #837d6d;
-  --rule: #ece7d8;
 }
 
 @theme inline {
@@ -211,18 +192,6 @@
     background-color: var(--paper-2);
   }
 
-  /*
-    Crest plate. The marks are dark reds on transparency and would vanish
-    against the night edition's paper, so they sit on a fixed light plate
-    rather than being filtered into colours the schools do not use. In the day
-    edition the plate is the page colour and disappears.
-  */
-  .crest {
-    background-color: #f3f0e6;
-    padding: 0.25rem 0.4rem;
-    border-radius: 2px;
-  }
-
   /* A bordered cell, used for stats, pull quotes and course entries. */
   .cell {
     border: 1px solid var(--rule);
@@ -339,46 +308,6 @@
 */
 .js:not(.typed) [data-typewriter] {
   visibility: hidden;
-}
-
-/*
-  Zero-width caret. The bar is drawn by an absolutely positioned pseudo-element
-  so moving the caret between characters costs no layout — the line width is
-  identical whether the caret sits at the start, the middle or the end.
-*/
-.tw-caret {
-  position: relative;
-  display: inline-block;
-  width: 0;
-  visibility: visible;
-}
-
-.tw-caret::after {
-  content: '';
-  position: absolute;
-  left: 0.04em;
-  top: 0.1em;
-  width: 0.06em;
-  height: 0.78em;
-  background-color: currentColor;
-  animation: caret-blink 1.05s steps(1, end) infinite;
-}
-
-@keyframes caret-blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  50.01%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tw-caret::after {
-    animation: none;
-  }
 }
 
 /* ---------- Motion ---------- */

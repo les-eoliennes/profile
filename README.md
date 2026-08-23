@@ -176,8 +176,10 @@ The output is static files. On Cloudflare Pages:
   behave identically. All 17 dialogs are rendered at build time, so opening one
   costs no request.
 - **Marks are inlined at build time** — no external requests, nothing shipped to
-  the client. Rust and Kafka have near-black brand colours that disappear in the
-  night edition, so those follow the ink colour even in the article.
+  the client.
+- **The site is light only.** There is no theme toggle and no `prefers-color-scheme`
+  handling: it is a sheet of newsprint, and a dark newspaper is a different
+  object. The one dark surface is the desk the sheet sits on.
 - **Scroll animation is native CSS** (`animation-timeline: view()`), written as
   progressive enhancement: unsupported browsers (Firefox still needs a flag) get
   no entrance animation rather than content that never appears.

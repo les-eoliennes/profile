@@ -28,10 +28,7 @@ export const UI = {
 
     'a11y.skip': 'Skip to content',
     'a11y.sections': 'Sections',
-    'a11y.theme': 'Switch between the day and night edition',
     'a11y.lang': 'Read this page in Chinese',
-    'theme.toDark': 'Night',
-    'theme.toLight': 'Day',
     'lang.other': '中文',
 
     'front.kicker': 'Backend · Distributed Systems · Databases',
@@ -142,10 +139,7 @@ export const UI = {
 
     'a11y.skip': '跳到正文',
     'a11y.sections': '版面导航',
-    'a11y.theme': '切换日间 / 夜间版',
     'a11y.lang': '以英文阅读本页',
-    'theme.toDark': '夜间版',
-    'theme.toLight': '日间版',
     'lang.other': 'English',
 
     'front.kicker': '后端 · 分布式系统 · 数据库',
