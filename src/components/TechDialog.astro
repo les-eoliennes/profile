@@ -1,6 +1,6 @@
 ---
-import { getIcon } from '../lib/icons';
 import RichText from './RichText.astro';
+import TechMark from './TechMark.astro';
 import type { Tech } from '../data/tech';
 
 interface Props {
@@ -8,10 +8,6 @@ interface Props {
 }
 
 const { tech } = Astro.props;
-const icon = getIcon(tech.slug);
-
-const DARK_BRANDS = ['000000', '231F20'];
-const color = DARK_BRANDS.includes(icon.hex) ? 'currentColor' : `#${icon.hex}`;
 ---
 
 <!--
@@ -39,16 +35,9 @@ const color = DARK_BRANDS.includes(icon.hex) ? 'currentColor' : `#${icon.hex}`;
     </div>
 
     <div class="mt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
-      <svg
-        data-tech-logo
-        viewBox="0 0 24 24"
-        class="size-20 shrink-0 sm:size-28"
-        style={`color: ${color}`}
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d={icon.path}></path>
-      </svg>
+      <!-- Full colour appears here and nowhere else: in the article the mark
+           reads as the photograph, which is also what makes the zoom land. -->
+      <TechMark slug={tech.slug} target class="h-16 w-auto shrink-0 sm:h-24" />
 
       <h2 id={`tech-${tech.slug}-title`} class="deck-lg">{tech.name}</h2>
     </div>

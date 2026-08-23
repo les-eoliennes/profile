@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getIcon } from '../lib/icons';
+import TechMark from '../components/TechMark.astro';
 import { SITE, STATS } from '../consts';
 
 const projects = (await getCollection('work', ({ data }) => !data.draft)).sort(
@@ -11,9 +11,8 @@ const projects = (await getCollection('work', ({ data }) => !data.draft)).sort(
 
 const [lead, ...rest] = projects;
 
-// A handful of marks as a trailer for the stack page.
+// A handful of marks as a trailer for the stack page, struck in ink.
 const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
-const DARK_BRANDS = ['000000', '231F20'];
 ---
 
 <BaseLayout>
@@ -116,24 +115,7 @@ const DARK_BRANDS = ['000000', '231F20'];
       </div>
 
       <div class="flex flex-wrap items-center gap-6 lg:justify-end">
-        {
-          trailer.map((slug) => {
-            const icon = getIcon(slug);
-            const color = DARK_BRANDS.includes(icon.hex) ? 'currentColor' : `#${icon.hex}`;
-            return (
-              <svg
-                viewBox="0 0 24 24"
-                class="size-9 sm:size-11"
-                style={`color: ${color}`}
-                fill="currentColor"
-                role="img"
-                aria-label={icon.title}
-              >
-                <path d={icon.path} />
-              </svg>
-            );
-          })
-        }
+        {trailer.map((slug) => <TechMark slug={slug} class="h-8 w-auto sm:h-10" />)}
       </div>
     </div>
   </section>

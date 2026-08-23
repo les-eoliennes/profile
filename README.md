@@ -29,7 +29,7 @@ absolute path to v22 for the dev and preview servers.
 | --- | --- |
 | `/` | Nameplate, lead story, figures, selected work, stack trailer |
 | `/education` | Shenzhen University, coursework, open courseware, fundamentals |
-| `/stack` | Scattered unlabelled logos; click one to zoom into a piece on it |
+| `/stack` | A ruled listing of every tool; open a row to zoom into a piece on it |
 | `/about` | Biography, record of service, contact |
 | `/work/[slug]` | Full project reports |
 
@@ -39,11 +39,11 @@ absolute path to v22 for the dev and preview servers.
 src/
   consts.ts            Site details, degree, coursework, open courses, fundamentals
   data/tech.ts         The stack: what each tool is for and what I think of it
-  lib/icons.ts         Pulls official logo paths and brand colours from simple-icons
+  lib/icons.ts         Resolves a mark by slug: official logos first, simple-icons as fallback
   content.config.ts    Frontmatter schema for the work reports
   content/work/        One .mdx per report, with its cover image alongside
   layouts/BaseLayout   Head, fonts, no-flash theme script, view transitions, the sheet
-  components/          Masthead · Colophon · ProjectCard · TechLogo · TechDialog · RichText · Behaviors
+  components/          Masthead · Colophon · ProjectCard · TechMark · TechDialog · RichText · Behaviors
   pages/               index · education · stack · about · work/[...slug] · 404
   styles/global.css    Tokens and newspaper primitives
 ```
@@ -52,9 +52,13 @@ src/
 
 - **Text** (degree, coursework, open courses, fundamentals, career): `src/consts.ts`
 - **The stack**: `src/data/tech.ts`. Adding a tool is one more record; set `slug`
-  to its name on [simpleicons.org](https://simpleicons.org) and the logo and
-  brand colour come through automatically. A slug that does not exist fails the
-  build rather than rendering blank.
+  to its name in the Iconify [`logos`](https://icon-sets.iconify.design/logos/)
+  set and the official artwork comes through automatically. A slug that resolves
+  in neither source fails the build rather than rendering blank.
+- **If a mark looks wrong**, check `ALIASES` in `src/lib/icons.ts`. Several
+  entries in the `logos` set are full lockups including the wordmark, which
+  reduces the symbol to a few pixels at listing size; those are aliased to their
+  `-icon` variant.
 - **Reports**: add `xxx.mdx` under `src/content/work/`, with the cover image in
   the same directory, referenced as `cover: ./xxx.jpg`.
 - **Palette and type**: the tokens at the top of `src/styles/global.css`.
@@ -87,8 +91,17 @@ The output is static files. On Cloudflare Pages:
   Moda is the display face — a true didone, the closest free equivalent to the
   commercial faces the reference design uses. Source Serif 4 sets the body,
   because it holds up in narrow columns.
-- **The zoom on the stack page is the View Transitions API.** The small floating
-  logo and the large one inside the dialog briefly share a
+- **Marks are the official brand artwork**, from the Iconify `logos` set, drawn
+  at build time and inlined. They are deliberately not redrawn or recoloured.
+- **Marks are normalised by height, not fitted into a square.** The set mixes
+  aspect ratios from 0.62 to 2.67; sizing them into a square box letterboxes the
+  wide ones down to nothing. A fixed height with `w-auto` gives every mark the
+  same optical weight.
+- **The listing row tints on hover and on focus** rather than reversing to solid
+  ink. Full inversion looked stronger but buried the marks, which are artwork
+  rather than glyphs.
+- **The zoom on the stack page is the View Transitions API.** The mark in the
+  listing row and the large one inside the dialog briefly share a
   `view-transition-name`, so the browser morphs one into the other. Only one
   element may carry a given name at a time, so the name is handed over *inside*
   the transition callback: the old snapshot is taken before the callback runs,
@@ -98,12 +111,9 @@ The output is static files. On Cloudflare Pages:
   browser. Escape is routed through the same zoom-out path so keyboard and mouse
   behave identically. All 17 dialogs are rendered at build time, so opening one
   costs no request.
-- **Logos are inlined from simple-icons at build time** — no external requests,
-  nothing shipped to the client. Rust and Kafka have near-black brand colours
-  that disappear in the night edition, so those follow the ink colour instead.
-- **The scatter is a jittered grid, not random.** A coarse grid guarantees the
-  logos never overlap; the per-cell jitter stops it reading as a grid. Being
-  derived from the index, it is stable across builds.
+- **Marks are inlined at build time** — no external requests, nothing shipped to
+  the client. Rust and Kafka have near-black brand colours that disappear in the
+  night edition, so those follow the ink colour even in the article.
 - **Scroll animation is native CSS** (`animation-timeline: view()`), written as
   progressive enhancement: unsupported browsers (Firefox still needs a flag) get
   no entrance animation rather than content that never appears.

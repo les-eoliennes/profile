@@ -1,0 +1,27 @@
+---
+import { getIcon } from '../lib/icons';
+
+interface Props {
+  slug: string;
+  class?: string;
+  /** Marks the element the zoom morphs into. */
+  target?: boolean;
+}
+
+const { slug, class: className, target = false } = Astro.props;
+const icon = getIcon(slug);
+---
+
+<!--
+  The official artwork carries its own colours, so nothing is tinted here.
+  Where a mark needs to sit quietly (the listing, the ornament strip) it is
+  desaturated in CSS rather than redrawn — see `.mark-mono` in global.css.
+-->
+<svg
+  viewBox={`0 0 ${icon.width} ${icon.height}`}
+  class={className}
+  data-tech-logo={target ? '' : undefined}
+  aria-hidden="true"
+>
+  <Fragment set:html={icon.body} />
+</svg>

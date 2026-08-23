@@ -18,14 +18,21 @@ pin the absolute path to v22.
   "night edition" that swaps ink and paper, driven by a `.dark` class.
 - The only client script is `src/components/Behaviors.astro` — theme toggle and
   the tech dialogs, entirely event-delegated.
-- Logos come from `simple-icons` via `src/lib/icons.ts`, resolved at build time.
+- Marks resolve through `src/lib/icons.ts`: the Iconify `logos` set (official
+  full-colour artwork) first, simple-icons as fallback. Returns `body` plus the
+  per-icon `width`/`height`, since that set has no single viewBox.
+- Do not redraw brand marks by hand. If one looks wrong, alias it to its
+  `-icon` variant in `ALIASES`.
+- The stack page is a ruled listing, not a scatter.
 
 ## Things that will bite
 
 - Tailwind v4 `@apply` only accepts classes declared with `@utility`, not ones
   inside `@layer components`. The display scale is declared with `@utility`.
 - `aspect-*` combined with `max-h-*` shrinks the element's WIDTH to preserve the
-  ratio. This silently narrowed the logo scatter field; set the ratio alone.
+  ratio — set the ratio alone.
+- Size marks by height (`h-7 w-auto`), never `size-*`; the logos set mixes
+  aspect ratios and a square box letterboxes the wide ones into nothing.
 - Two elements must never carry the same `view-transition-name` simultaneously.
   The zoom hands the name over inside the transition callback — see `morph()`
   in `Behaviors.astro`.

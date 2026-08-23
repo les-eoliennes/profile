@@ -1,3 +1,4 @@
+import logos from '@iconify-json/logos/icons.json';
 import * as simpleIcons from 'simple-icons';
 
 interface SimpleIcon {
@@ -6,17 +7,63 @@ interface SimpleIcon {
   hex: string;
 }
 
-/**
- * 按 slug 取 simple-icons 的官方图标路径与品牌色。
- * 只在构建期调用，图标数据不会进客户端产物。
- */
-export function getIcon(slug: string): SimpleIcon {
-  const key = 'si' + slug.charAt(0).toUpperCase() + slug.slice(1);
-  const icon = (simpleIcons as unknown as Record<string, SimpleIcon>)[key];
+export interface Icon {
+  /** Raw SVG markup, with the official brand colours baked in. */
+  body: string;
+  width: number;
+  height: number;
+}
 
-  if (!icon) {
-    throw new Error(`simple-icons 中不存在图标 "${slug}"（查找的导出名：${key}）`);
+/**
+ * Our slugs mostly match the `logos` set. These are the ones that do not.
+ *
+ * Several entries in that set are full lockups including the wordmark, which
+ * at listing size reduces the actual symbol to a few pixels. Where an
+ * icon-only variant exists, it is used instead.
+ */
+const ALIASES: Record<string, string> = {
+  apachekafka: 'kafka-icon',
+  linux: 'linux-tux',
+  nodedotjs: 'nodejs',
+  typescript: 'typescript-icon',
+  mysql: 'mysql-icon',
+  docker: 'docker-icon',
+  astro: 'astro-icon',
+};
+
+/**
+ * Resolve a mark by slug.
+ *
+ * Primary source is the Iconify `logos` set — the official, full-colour brand
+ * artwork. Anything it does not carry (ClickHouse, currently) falls back to the
+ * monochrome simple-icons path, tinted with that brand's colour so the two
+ * sources sit together. Build-time only; none of this reaches the client.
+ */
+export function getIcon(slug: string): Icon {
+  const key = ALIASES[slug] ?? slug;
+  const icon = (logos.icons as Record<string, { body: string; width?: number; height?: number }>)[key];
+
+  if (icon) {
+    return {
+      body: icon.body,
+      width: icon.width ?? logos.width,
+      height: icon.height ?? logos.height,
+    };
   }
 
-  return icon;
+  const siKey = 'si' + slug.charAt(0).toUpperCase() + slug.slice(1);
+  const fallback = (simpleIcons as unknown as Record<string, SimpleIcon>)[siKey];
+
+  if (!fallback) {
+    throw new Error(
+      `No mark for "${slug}" — not in the logos set (looked for "${key}") ` +
+        `and not in simple-icons (looked for "${siKey}")`,
+    );
+  }
+
+  return {
+    body: `<path fill="#${fallback.hex}" d="${fallback.path}"/>`,
+    width: 24,
+    height: 24,
+  };
 }

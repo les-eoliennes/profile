@@ -193,6 +193,24 @@
     color: var(--paper);
   }
 
+  /*
+    A row in the listing. The tint is deliberately quiet: reversing the row to
+    solid ink would bury the marks, which are artwork rather than glyphs.
+  */
+  .listing-row {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    border-top: 1px solid var(--rule);
+    transition: background-color 0.18s ease;
+  }
+
+  .listing-row:hover,
+  .listing-row:focus-visible {
+    background-color: var(--paper-2);
+  }
+
   /* A bordered cell, used for stats, pull quotes and course entries. */
   .cell {
     border: 1px solid var(--rule);
@@ -250,17 +268,6 @@
   }
 }
 
-/* Slow drift for the floating logos on the stack page. */
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(var(--rot, 0deg));
-  }
-  50% {
-    transform: translate(var(--dx, 0), var(--dy, -12px)) rotate(var(--rot2, 0deg));
-  }
-}
-
 /*
   The default state is always VISIBLE. Animation is layered on only when the
   reader tolerates motion and the browser supports scroll-driven timelines.
@@ -279,11 +286,6 @@
   [data-enter] {
     animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     animation-delay: calc(var(--enter, 0) * 80ms);
-  }
-
-  [data-drift] {
-    animation: drift var(--dur, 9s) ease-in-out infinite;
-    animation-delay: calc(var(--enter, 0) * -1.7s);
   }
 }
 
