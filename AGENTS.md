@@ -54,6 +54,22 @@ readable. The marks are dark reds on transparency and
 would vanish in the night edition, so `.crest` puts them on a fixed light
 plate rather than filtering the brand colours.
 
+## Front-page typewriter
+
+The name types itself in on the front page. The full string is in the markup so
+no-JS and crawlers get a heading; `Behaviors.astro` splits it into spans at
+runtime and reveals them.
+
+Hiding is `.js:not(.typed) [data-typewriter]`. The `js` class is set by the
+inline head script before first paint (no flash of finished text), and that
+script also sets `typed` after 4s as a failsafe so a heading can never be left
+invisible if the bundle fails to load. Any page without the heading sets
+`typed` immediately.
+
+Use `visibility`, not `opacity` or `display`: the character boxes must stay in
+flow or the line reflows as letters land. Visibility inherits, so each span
+opts itself back in.
+
 ## Things that will bite
 
 - Tailwind v4 `@apply` only accepts classes declared with `@utility`, not ones

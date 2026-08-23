@@ -80,6 +80,119 @@
       morph(large, small, () => dialog.close());
     }
 
+    // ---------- Front-page typewriter ----------
+
+    /**
+     * Delay before the NEXT character lands, given that character and the one
+     * before it.
+     *
+     * A fixed interval reads as a machine, so the jitter is not the only thing
+     * varying here. Real typing has structure: a beat after a comma, a moment
+     * lost reaching for shift, wider gaps between words, and the occasional
+     * hesitation that breaks up the rhythm entirely. Those account for most of
+     * why this sounds human rather than the random component.
+     */
+    function keystrokeDelay(ch: string, prev: string | undefined): number {
+      let d = 42 + Math.random() * 76;
+
+      // Punctuation is where a typist actually pauses.
+      if (prev === ',') d += 200 + Math.random() * 130;
+      else if (prev === ':') d += 70;
+      else if (prev === "'") d += 30;
+
+      // Shift costs something, and so do the awkward reaches.
+      if (/[A-Z]/.test(ch)) d += 30 + Math.random() * 40;
+      if (ch === ':' || ch === "'") d += 45;
+
+      // Word gap.
+      if (ch === ' ') d += 25;
+
+      // The thing that stops it feeling metronomic.
+      if (Math.random() < 0.08) d += 130 + Math.random() * 200;
+
+      return d;
+    }
+
+    function typewrite(heading: HTMLElement) {
+      const root = document.documentElement;
+      const text = (heading.textContent ?? '').trim();
+      if (!text) {
+        root.classList.add('typed');
+        return;
+      }
+
+      // The whole string goes on the element as a label and each character is
+      // hidden from assistive tech, so a screen reader announces the heading
+      // once rather than re-announcing it on every keystroke.
+      heading.setAttribute('aria-label', text);
+      heading.textContent = '';
+
+      const fragment = document.createDocumentFragment();
+      const letters: HTMLElement[] = [];
+
+      for (const ch of text) {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        span.setAttribute('aria-hidden', 'true');
+        // A lone space between inline elements is collapsible; pre keeps it.
+        if (ch === ' ') span.style.whiteSpace = 'pre';
+        fragment.appendChild(span);
+        letters.push(span);
+      }
+
+      const caret = document.createElement('span');
+      caret.className = 'tw-caret';
+      caret.setAttribute('aria-hidden', 'true');
+
+      fragment.insertBefore(caret, fragment.firstChild);
+      heading.appendChild(fragment);
+
+      let i = 0;
+      const step = () => {
+        const span = letters[i];
+        span.style.visibility = 'visible';
+        // Keep the caret just ahead of what has been typed.
+        heading.insertBefore(caret, letters[i + 1] ?? null);
+        i += 1;
+
+        if (i < letters.length) {
+          setTimeout(step, keystrokeDelay(text[i], text[i - 1]));
+          return;
+        }
+
+        // Lift the blanket rule, then let the caret blink a moment and go.
+        root.classList.add('typed');
+        setTimeout(() => caret.remove(), 1100);
+      };
+
+      setTimeout(step, 260);
+    }
+
+    function initTypewriter() {
+      const root = document.documentElement;
+      const heading = document.querySelector<HTMLElement>('[data-typewriter]');
+
+      // Every other page has nothing to type; make sure the rule cannot leave
+      // anything hidden there.
+      if (!heading) {
+        root.classList.add('typed');
+        return;
+      }
+
+      // ClientRouter re-renders the heading from markup on each navigation, so
+      // the flag has to be cleared for the effect to run again.
+      root.classList.remove('typed');
+
+      if (reduced.matches) {
+        root.classList.add('typed');
+        return;
+      }
+
+      typewrite(heading);
+    }
+
+    document.addEventListener('astro:page-load', initTypewriter);
+
     document.addEventListener('click', (event) => {
       const target = event.target as HTMLElement | null;
       if (!target) return;

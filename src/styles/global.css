@@ -327,6 +327,60 @@
   letter-spacing: 0;
 }
 
+/* ---------- Typewriter ---------- */
+/*
+  Hidden only while scripting is available and the effect has not finished, so
+  a reader without JavaScript still sees the heading.
+
+  `visibility` rather than `opacity` or `display`: the characters keep their
+  boxes, so the final line box is reserved from the first paint and nothing
+  reflows as letters land. Visibility inherits, so each character span can opt
+  itself back in as it is typed.
+*/
+.js:not(.typed) [data-typewriter] {
+  visibility: hidden;
+}
+
+/*
+  Zero-width caret. The bar is drawn by an absolutely positioned pseudo-element
+  so moving the caret between characters costs no layout — the line width is
+  identical whether the caret sits at the start, the middle or the end.
+*/
+.tw-caret {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  visibility: visible;
+}
+
+.tw-caret::after {
+  content: '';
+  position: absolute;
+  left: 0.04em;
+  top: 0.1em;
+  width: 0.06em;
+  height: 0.78em;
+  background-color: currentColor;
+  animation: caret-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-caret::after {
+    animation: none;
+  }
+}
+
 /* ---------- Motion ---------- */
 @keyframes rise {
   from {

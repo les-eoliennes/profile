@@ -24,9 +24,12 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
 <section class="px-5 pt-8 sm:px-8">
   <p class="kicker text-center" data-enter style="--enter: 0">{t('front.kicker')}</p>
 
-  <h1 class="deck-xl mt-4 text-center" data-enter style="--enter: 1">
-    {SITE.name}
-  </h1>
+  <!--
+    The name types itself in. The full string stays here in the markup so a
+    reader without JavaScript still gets a heading; the script splits it up at
+    runtime. No data-enter: the typing is its entrance.
+  -->
+  <h1 class="deck-xl mt-4 text-center" data-typewriter>{SITE.name}</h1>
 
   <div class="rule-double mt-6"></div>
 </section>
