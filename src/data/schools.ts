@@ -19,6 +19,12 @@ export interface School {
   /** Shown when no crest image has been supplied. */
   monogram: string;
   color: string;
+  /**
+   * Optical correction. Equal height flatters wide wordmarks and starves tall
+   * narrow marks, so a tall crest gets scaled up to carry comparable weight in
+   * a mixed row. 1 means "use the given height as-is".
+   */
+  scale?: number;
 }
 
 export const SCHOOLS: Record<string, School> = {
@@ -43,6 +49,9 @@ export const SCHOOLS: Record<string, School> = {
     nameZh: '斯坦福大学',
     monogram: 'SU',
     color: '#8C1515',
+    // The tree-and-S mark is taller than it is wide (0.65:1); at the shared
+    // height it reads far lighter than the wordmarks beside it.
+    scale: 1.5,
   },
   cmu: {
     slug: 'cmu',

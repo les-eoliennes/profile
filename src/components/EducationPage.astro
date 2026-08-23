@@ -37,7 +37,7 @@ const t = useTranslations(lang);
       return (
         <div class="mt-7 grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12" data-reveal>
           <div class="flex items-start gap-5">
-            <Crest slug={item.crest} size={76} class="mt-1" />
+            <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
 
             <div>
               <p class="kicker">{item.period}</p>
@@ -77,10 +77,10 @@ const t = useTranslations(lang);
       OPEN_COURSES.map((raw) => {
         const course = localize(raw, lang);
         return (
-          <article class="rule-thin flex gap-4 pt-5" data-reveal>
-            <Crest slug={course.crest} size={44} class="mt-1" />
+          <article class="rule-thin pt-5" data-reveal>
+            <Crest slug={course.crest} height={26} />
 
-            <div class="min-w-0">
+            <div class="mt-3 min-w-0">
               <div class="flex items-baseline justify-between gap-4">
                 <p class="kicker">
                   {course.school} · {course.code}

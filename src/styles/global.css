@@ -211,6 +211,18 @@
     background-color: var(--paper-2);
   }
 
+  /*
+    Crest plate. The marks are dark reds on transparency and would vanish
+    against the night edition's paper, so they sit on a fixed light plate
+    rather than being filtered into colours the schools do not use. In the day
+    edition the plate is the page colour and disappears.
+  */
+  .crest {
+    background-color: #f3f0e6;
+    padding: 0.25rem 0.4rem;
+    border-radius: 2px;
+  }
+
   /* A bordered cell, used for stats, pull quotes and course entries. */
   .cell {
     border: 1px solid var(--rule);

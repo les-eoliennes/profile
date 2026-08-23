@@ -42,8 +42,14 @@ English at the root, Chinese under `/zh/`. **Every page exists in both.**
 
 `src/assets/crests/<slug>.{svg,png,webp}` is globbed at build time by
 `Crest.astro`; slugs come from `src/data/schools.ts`. Missing file falls back to
-a monogram badge. Do not vendor university crests without checking the school's
-trademark policy.
+a monogram badge. Sources and licences are recorded in that directory's README —
+`szu.svg` is fair-use, not freely licensed.
+
+Size crests by HEIGHT (`height` prop), never `size-*`: the artwork ranges from
+0.65:1 to 5.71:1 and a square box destroys the wide wordmarks. `scale` in
+schools.ts corrects tall marks. The marks are dark reds on transparency and
+would vanish in the night edition, so `.crest` puts them on a fixed light
+plate rather than filtering the brand colours.
 
 ## Things that will bite
 

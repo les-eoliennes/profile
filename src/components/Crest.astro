@@ -5,25 +5,31 @@ import { getLangFromUrl } from '../i18n/utils';
 
 interface Props {
   slug: string;
-  /** Rendered box size in pixels. */
-  size?: number;
+  /**
+   * Height in pixels. Crests are normalised by HEIGHT, never fitted into a
+   * square: the real artwork ranges from 0.65:1 (Stanford's tree) to 5.71:1
+   * (the Carnegie Mellon wordmark), and a square box shrinks the wide ones to
+   * nothing. Equal height is the standard treatment for a mixed logo row.
+   */
+  height?: number;
   class?: string;
 }
 
-const { slug, size = 48, class: className } = Astro.props;
+const { slug, height: baseHeight = 32, class: className } = Astro.props;
 
 const school = SCHOOLS[slug];
 if (!school) {
   throw new Error(`No school registered under "${slug}" — see src/data/schools.ts`);
 }
 
+const height = Math.round(baseHeight * (school.scale ?? 1));
+
 const lang = getLangFromUrl(Astro.url);
-const alt = `${lang === 'zh' ? school.nameZh : school.name} crest`;
+const alt = lang === 'zh' ? `${school.nameZh}校徽` : `${school.name} logo`;
 
 /*
-  Anything dropped into src/assets/crests/ is picked up here, so adding the real
-  artwork is a matter of saving a file — no code change. Eager so the lookup
-  happens at build time and nothing ships to the client.
+  Anything dropped into src/assets/crests/ is picked up here, so replacing a
+  crest is a matter of saving a file. Eager so it resolves at build time.
 */
 const files = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/crests/*.{png,jpg,jpeg,webp,svg}',
@@ -37,25 +43,33 @@ const match = Object.entries(files).find(
 
 {
   match ? (
-    <Image
-      src={match[1].default}
-      alt={alt}
-      width={size}
-      height={size}
-      class:list={['shrink-0 object-contain', className]}
-    />
+    /*
+      Every crest is a dark red on transparency, which disappears against the
+      night edition's near-black paper. Rather than filter the brand colours
+      into something they are not, the mark sits on a light plate — a logo
+      printed on paper, which is what the rest of the design is pretending to
+      be anyway. In the day edition the plate matches the page and vanishes.
+    */
+    <span class:list={['crest inline-flex items-center', className]}>
+      <Image
+        src={match[1].default}
+        alt={alt}
+        height={height}
+        width={Math.round(height * 6)}
+        class="w-auto"
+        style={`height:${height}px`}
+      />
+    </span>
   ) : (
-    /* Placeholder until the real crest is supplied. Deliberately typographic:
-       it stands in for the crest without imitating it. */
     <span
       class:list={['grid shrink-0 place-items-center rounded-full', className]}
-      style={`width:${size}px;height:${size}px;background:${school.color}`}
+      style={`width:${height}px;height:${height}px;background:${school.color}`}
       role="img"
       aria-label={alt}
     >
       <span
         class="font-semibold text-paper"
-        style={`font-family: var(--font-display); font-size:${Math.round(size * (school.monogram.length > 2 ? 0.26 : 0.34))}px; letter-spacing:0.02em`}
+        style={`font-family: var(--font-display); font-size:${Math.round(height * (school.monogram.length > 2 ? 0.26 : 0.34))}px`}
       >
         {school.monogram}
       </span>

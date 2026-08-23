@@ -91,13 +91,20 @@ and the education page picks it up automatically — `Crest.astro` globs that
 directory at build time, so no code change is needed. Slugs are defined in
 `src/data/schools.ts`: `szu`, `mit`, `stanford`, `cmu`.
 
-Until a file is present the component renders a monogram badge in the school's
-colour instead. That fallback is deliberately typographic: it stands in for a
-crest without imitating one.
+The four crests currently in place came from Wikimedia Commons and zh.wikipedia;
+`src/assets/crests/README.md` records the exact source file and stated licence
+for each. Three are public domain. **`szu.svg` is hosted under a fair-use claim,
+not a free licence** — check Shenzhen University's trademark policy before this
+site goes anywhere public.
 
-University crests are trademarked institutional marks, which is why none are
-vendored here. Add only the crests of schools you actually attended or took
-courses from, and check each school's trademark policy first.
+Public domain as a file is not the same as free of trademark: these marks still
+identify their institutions. Show only the crests of schools you actually
+attended or took courses from, and do not arrange them so as to imply
+endorsement.
+
+Crests are normalised by height, not fitted into a square — the artwork ranges
+from 0.65:1 to 5.71:1. If a file is missing the component falls back to a
+monogram badge in the school's colour.
 
 ## Editing
 
