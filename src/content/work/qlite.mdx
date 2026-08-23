@@ -1,0 +1,47 @@
+---
+title: qlite, a Query Engine
+summary: A SQL engine written from scratch — lexer through to a volcano-model executor — to make the database textbook run.
+year: 2024
+role: Personal project
+stack: ['Rust', 'SQL', 'Compilers', 'B+ Tree']
+cover: ./qlite.jpg
+coverAlt: Abstract cover in deep violet tones
+repo: https://github.com/
+order: 3
+---
+
+## Why
+
+I had used databases for years, but *why the query plan looks like that* stayed
+one layer out of reach. The only reliable fix is to write one — not to build a
+better wheel, but to turn the abstractions in the textbook into code that runs.
+
+## What is in it
+
+The full query path, every layer written by hand:
+
+- **Lexing and parsing.** A hand-written recursive descent parser producing an
+  AST. No parser generator, because operator precedence is precisely the detail
+  I wanted to work through.
+- **Logical planning and rewriting.** Predicate pushdown, constant folding,
+  subquery flattening.
+- **Cost-based optimisation.** Join ordering chosen from table row counts and
+  column cardinality estimates, which beat a fixed left-deep tree by an order of
+  magnitude on multi-table joins.
+- **Execution.** A volcano model with `next()` iterators, implementing hash join,
+  nested loop join, sort aggregation and streaming aggregation.
+- **Storage.** A B+ tree index over a heap table, 4KB pages, with a simple buffer
+  pool and LRU eviction.
+- **Transactions.** Snapshot isolation via MVCC, backed by undo version chains.
+
+## What it changed
+
+Reading `EXPLAIN ANALYZE` in production is a different activity now. I know where
+each operator's cost comes from, and I know the conditions under which the
+planner will estimate badly. This project did more for my day-to-day debugging of
+slow queries than any amount of tuning advice.
+
+## Status
+
+Roughly 12,000 lines of Rust, passing 15 of the TPC-H queries. Educational and
+for my own use — not something to put in production.

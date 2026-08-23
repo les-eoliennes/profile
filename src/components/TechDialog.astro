@@ -1,0 +1,89 @@
+---
+import { getIcon } from '../lib/icons';
+import RichText from './RichText.astro';
+import type { Tech } from '../data/tech';
+
+interface Props {
+  tech: Tech;
+}
+
+const { tech } = Astro.props;
+const icon = getIcon(tech.slug);
+
+const DARK_BRANDS = ['000000', '231F20'];
+const color = DARK_BRANDS.includes(icon.hex) ? 'currentColor' : `#${icon.hex}`;
+---
+
+<!--
+  Native <dialog> opened with showModal(): the focus trap, Escape handling,
+  inertness of the page behind and the ::backdrop all come from the browser.
+  Every dialog is rendered at build time, so opening one costs no request.
+-->
+<dialog
+  id={`tech-${tech.slug}`}
+  aria-labelledby={`tech-${tech.slug}-title`}
+  class="sheet m-auto w-[min(52rem,calc(100vw-1.5rem))] border border-rule p-0"
+>
+  <article class="max-h-[85vh] overflow-y-auto px-6 py-7 sm:px-10 sm:py-9">
+    <div class="flex items-start justify-between gap-6">
+      <p class="kicker">{tech.category} · {tech.years}</p>
+
+      <button
+        type="button"
+        data-tech-close
+        aria-label="Close"
+        class="kicker shrink-0 cursor-pointer border border-rule px-2.5 py-1 transition-colors hover:bg-ink hover:text-paper"
+      >
+        Close
+      </button>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+      <svg
+        data-tech-logo
+        viewBox="0 0 24 24"
+        class="size-20 shrink-0 sm:size-28"
+        style={`color: ${color}`}
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d={icon.path}></path>
+      </svg>
+
+      <h2 id={`tech-${tech.slug}-title`} class="deck-lg">{tech.name}</h2>
+    </div>
+
+    <div class="rule-double mt-6"></div>
+
+    <p class="standfirst mt-5">
+      <RichText text={tech.tagline} />
+    </p>
+
+    <div class="columns-news mt-6 space-y-4 sm:columns-2">
+      {
+        tech.understanding.map((paragraph, i) => (
+          <p class:list={[i === 0 && 'dropcap']}>
+            <RichText text={paragraph} />
+          </p>
+        ))
+      }
+    </div>
+
+    <div class="rule-thin mt-8 pt-5">
+      <p class="kicker">What I've learned</p>
+
+      <ul class="mt-4 space-y-3">
+        {
+          tech.points.map((point) => (
+            <li class="flex gap-3 text-sm leading-relaxed">
+              <span class="mt-2 h-px w-4 shrink-0 bg-ink" aria-hidden="true" />
+              <span>
+                <RichText text={point} />
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </article>
+</dialog>

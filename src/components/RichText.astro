@@ -1,0 +1,23 @@
+---
+/**
+ * Renders paired backticks in a plain string as inline code. The tech data
+ * lives in a .ts file rather than markdown, so without this the backticks
+ * would render as literal characters.
+ */
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const parts = text.split('`');
+---
+
+{
+  parts.map((part, index) =>
+    index % 2 === 1 ? (
+      <code class="bg-paper-2 px-1 italic">{part}</code>
+    ) : (
+      <Fragment>{part}</Fragment>
+    ),
+  )
+}

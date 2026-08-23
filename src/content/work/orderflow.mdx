@@ -1,0 +1,51 @@
+---
+title: Sharding the Order Pipeline
+summary: Moving a single-table order system handling 20 million orders a day onto a sharded architecture, with no downtime and no data loss.
+year: 2025
+role: Technical lead
+client: Trading Platform
+stack: ['Go', 'PostgreSQL', 'Kafka', 'Kubernetes']
+cover: ./orderflow.jpg
+coverAlt: Abstract cover in warm amber tones
+repo: https://github.com/
+order: 1
+---
+
+## The problem
+
+The orders table had reached 1.8 billion rows. Write latency at P99 had gone from
+20ms to 400ms, a single `VACUUM` took six hours, and replication lag ran to
+minutes during peak sales. Adding indexes was no longer going to help — the
+bottleneck was single-machine IOPS and write-ahead log bandwidth.
+
+## What we did
+
+Sixty-four shards, hashed on `user_id`. The sharding itself was never the hard
+part; cutting over without downtime was.
+
+1. **Dual write with shadow reads.** The new path took writes but served no
+   reads at first, while shadow reads compared old and new results. Three weeks
+   of that brought the mismatch rate to zero.
+2. **Ramp by user.** Traffic moved in buckets of `user_id % 1000`, so any bucket
+   showing trouble could be rolled back to the old path within seconds.
+3. **Cross-shard queries.** Back-office queries that span users read from a wide
+   table in ClickHouse, fed by Kafka, so analytical work never touches the
+   serving path.
+4. **Distributed transactions.** Orders and inventory live in separate
+   databases, so we compensate with sagas rather than two-phase commit. A 2PC
+   coordinator failure holds locks on both sides, which is not survivable during
+   a peak sale.
+
+## The outcome
+
+- Write P99 back from 400ms to 15ms, with no wobble at peak
+- Per-shard row counts down to 30 million, `VACUUM` back to minutes
+- Zero downtime and zero data loss through the migration; the rollback switch
+  stayed in place for two months before we removed it
+
+## In hindsight
+
+The work that consumed the schedule was not the sharding logic, it was
+reconciliation. Given the chance to do it again, I would build shadow reads as a
+permanent capability from the start rather than as migration scaffolding — we
+ended up wanting it repeatedly on later projects.

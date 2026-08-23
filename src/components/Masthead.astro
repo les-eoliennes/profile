@@ -1,0 +1,64 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { SITE, NAV } from '../consts';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+
+// Papers print a publication date in the masthead. This one is the build date.
+const published = new Date().toLocaleDateString('en-GB', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<header class="px-5 pt-5 sm:px-8 sm:pt-7">
+  <!-- Top line: place of publication, nameplate, edition. -->
+  <div class="flex items-center justify-between gap-4">
+    <p class="byline hidden sm:block">{SITE.city}</p>
+
+    <a href="/" class="flex-1 text-center sm:flex-none">
+      <span
+        class="text-3xl leading-none sm:text-4xl"
+        style="font-family: var(--font-gothic)"
+      >
+        The {SITE.name} Gazette
+      </span>
+    </a>
+
+    <div class="flex items-center gap-4">
+      <p class="byline hidden sm:block">{SITE.edition}</p>
+      <ThemeToggle />
+    </div>
+  </div>
+
+  <p class="byline mt-3 text-center">{published}</p>
+
+  <div class="rule-double mt-4"></div>
+
+  <!-- Section navigation, set like a paper's section index. -->
+  <nav
+    class="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 py-2.5"
+    aria-label="Sections"
+  >
+    {
+      NAV.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'kicker transition-opacity hover:opacity-60',
+            isActive(item.href) && 'underline underline-offset-4',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="rule-thin"></div>
+</header>

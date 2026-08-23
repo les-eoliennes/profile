@@ -1,0 +1,44 @@
+---
+import { SITE, SOCIAL, NAV } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<!-- The colophon: where a paper prints its imprint and contact details. -->
+<footer class="mt-14 px-5 pb-6 sm:px-8 sm:pb-8">
+  <div class="rule-double"></div>
+
+  <div class="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+    <p class="deck-sm">
+      Reach the desk —
+      <a href={`mailto:${SITE.email}`} class="link-ink">{SITE.email}</a>
+    </p>
+
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class="kicker transition-opacity hover:opacity-60">
+            {item.label}
+          </a>
+        ))
+      }
+      {
+        SOCIAL.map((s) => (
+          <a
+            href={s.href}
+            target="_blank"
+            rel="me noopener"
+            class="kicker transition-opacity hover:opacity-60"
+          >
+            {s.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="rule-thin"></div>
+
+  <p class="byline pt-4">
+    © {year} {SITE.name} · Set in Bodoni Moda and Source Serif · Printed with Astro
+  </p>
+</footer>

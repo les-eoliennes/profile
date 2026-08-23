@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  index: number;
+  /** The lead story runs wider, with the image alongside the copy. */
+  lead?: boolean;
+}
+
+const { entry, index, lead = false } = Astro.props;
+const { title, summary, year, role, stack, cover, coverAlt } = entry.data;
+---
+
+<article data-reveal class="h-full">
+  <a href={`/work/${entry.id}`} class="group flex h-full flex-col">
+    <p class="kicker">{year} · {role}</p>
+
+    <h3
+      class:list={[
+        'mt-2 text-balance group-hover:underline group-hover:underline-offset-4',
+        lead ? 'deck-lg' : 'deck-md',
+      ]}
+    >
+      {title}
+    </h3>
+
+    {
+      lead ? (
+        <Fragment>
+          <Image
+            src={cover}
+            alt={coverAlt}
+            widths={[640, 1024, 1600]}
+            sizes="(min-width: 1180px) 1116px, 92vw"
+            loading="eager"
+            class="mt-5 aspect-21/9 w-full border border-rule object-cover"
+          />
+
+          <div class="columns-news mt-5 space-y-3 text-sm sm:columns-2">
+            <p class="text-pretty">{summary}</p>
+            <p class="byline">{stack.join(' · ')}</p>
+            <p class="kicker underline underline-offset-4">Read the full report</p>
+          </div>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Image
+            src={cover}
+            alt={coverAlt}
+            widths={[400, 700, 1100]}
+            sizes="(min-width: 640px) 45vw, 92vw"
+            loading={index < 2 ? 'eager' : 'lazy'}
+            class="mt-4 aspect-16/10 w-full border border-rule object-cover"
+          />
+
+          <div class="mt-4 flex-1">
+            <p class="text-sm leading-relaxed text-pretty">{summary}</p>
+            <p class="byline mt-3">{stack.join(' · ')}</p>
+            <p class="kicker mt-4 underline underline-offset-4">Read the full report</p>
+          </div>
+        </Fragment>
+      )
+    }
+  </a>
+</article>

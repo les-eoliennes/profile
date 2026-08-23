@@ -1,0 +1,19 @@
+---
+interface Props {
+  /** 章节编号，如 "01" */
+  index: string;
+  title: string;
+  /** 右侧补充信息，如数量 */
+  note?: string;
+  id?: string;
+}
+
+const { index, title, note, id } = Astro.props;
+---
+
+<div class="flex items-center gap-4">
+  <span class="eyebrow text-accent">{index}</span>
+  <h2 id={id} class="eyebrow text-ink">{title}</h2>
+  <span class="h-px flex-1 bg-line" aria-hidden="true"></span>
+  {note && <span class="eyebrow">{note}</span>}
+</div>

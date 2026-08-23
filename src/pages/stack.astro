@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TechLogo from '../components/TechLogo.astro';
+import TechDialog from '../components/TechDialog.astro';
+import { SITE } from '../consts';
+import { TECH } from '../data/tech';
+
+const categories = ['Languages', 'Data', 'Infrastructure', 'Observability', 'Web'] as const;
+---
+
+<BaseLayout
+  title={`The Stack — ${SITE.name}`}
+  description="The tools I use in production, and what I actually think about each one."
+>
+  <section class="px-5 pt-9 sm:px-8">
+    <p class="kicker text-center" data-enter style="--enter: 0">Section III</p>
+
+    <h1 class="deck-xl mt-3 text-center text-balance" data-enter style="--enter: 1">
+      The Stack
+    </h1>
+
+    <div class="rule-double mt-6"></div>
+
+    <p
+      class="standfirst mx-auto mt-6 max-w-2xl text-center text-pretty"
+      data-enter
+      style="--enter: 2"
+    >
+      Every mark below is something I run in production. Click one and it opens
+      into a piece on what the tool is for, what it costs, and where I have been
+      caught out by it.
+    </p>
+
+    <p class="byline mt-4 text-center" data-enter style="--enter: 3">
+      {TECH.length} entries · no labels · click to read
+    </p>
+  </section>
+
+  <!--
+    The scatter field. On phones this is a plain wrapped row; from the small
+    breakpoint up the logos take absolute positions (see TechLogo.astro).
+  -->
+  <section class="px-5 py-10 sm:px-8">
+    <div
+      class="relative mx-auto flex flex-wrap items-center justify-center gap-8 sm:block sm:aspect-3/2 sm:gap-0"
+    >
+      {TECH.map((tech, index) => <TechLogo tech={tech} index={index} total={TECH.length} />)}
+    </div>
+  </section>
+
+  <!-- A plain index, for readers who would rather scan a list than hunt a mark. -->
+  <section class="px-5 pb-6 sm:px-8">
+    <div class="rule-double"></div>
+
+    <h2 class="deck-md mt-6">Index of marks</h2>
+    <p class="mt-2 text-sm text-ink-soft italic">
+      The same entries, named and grouped.
+    </p>
+
+    <dl class="mt-7">
+      {
+        categories.map((category) => {
+          const items = TECH.filter((t) => t.category === category);
+          if (items.length === 0) return null;
+
+          return (
+            <div class="rule-thin grid gap-2 py-4 sm:grid-cols-[180px_1fr]" data-reveal>
+              <dt class="kicker pt-1">{category}</dt>
+              <dd class="flex flex-wrap gap-x-5 gap-y-2">
+                {items.map((tech) => (
+                  <button
+                    type="button"
+                    data-tech-open={tech.slug}
+                    aria-haspopup="dialog"
+                    class="link-ink cursor-pointer text-left"
+                  >
+                    {tech.name}
+                  </button>
+                ))}
+              </dd>
+            </div>
+          );
+        })
+      }
+    </dl>
+  </section>
+
+  {TECH.map((tech) => <TechDialog tech={tech} />)}
+</BaseLayout>

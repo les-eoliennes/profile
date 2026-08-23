@@ -1,0 +1,92 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { Font } from 'astro:assets';
+import Masthead from '../components/Masthead.astro';
+import Colophon from '../components/Colophon.astro';
+import Behaviors from '../components/Behaviors.astro';
+import { SITE } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Absolute path to the OG image, e.g. /og.png */
+  ogImage?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogImage = '/og.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogUrl = new URL(ogImage, Astro.site);
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      The display and body faces are both above the fold on every page, so both
+      are preloaded. The blackletter face is masthead-only and small, but it is
+      the first thing a reader sees, so it is preloaded too.
+    -->
+    <Font cssVariable="--font-gothic" preload />
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-body" preload />
+
+    <!--
+      Must be inline and run before the body paints: read the preference first,
+      or dark-mode readers get a flash of the light theme.
+    -->
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const dark =
+          saved === 'dark' ||
+          (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
+
+    <ClientRouter />
+  </head>
+
+  <body class="min-h-dvh sm:py-8">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+    >
+      Skip to content
+    </a>
+
+    <!-- The sheet of newsprint, centred on the dark desk. -->
+    <div class="sheet mx-auto flex min-h-dvh max-w-[1180px] flex-col sm:min-h-0">
+      <Masthead />
+
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+
+      <Colophon />
+    </div>
+
+    <Behaviors />
+  </body>
+</html>

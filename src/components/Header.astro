@@ -1,0 +1,41 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { SITE, NAV } from '../consts';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<!--
+  对标 Apple 的全局导航：44px 高、半透明毛玻璃、极小字号、
+  发丝分隔线。它不抢内容，只是一直在那儿。
+-->
+<header
+  class="sticky top-0 z-50 border-b border-line/60 backdrop-blur-xl backdrop-saturate-180"
+  style="background-color: var(--nav-bg)"
+>
+  <nav class="mx-auto flex h-11 max-w-[980px] items-center justify-between px-6" aria-label="主导航">
+    <a href="/" class="text-sm font-medium tracking-tight transition-opacity hover:opacity-70">
+      {SITE.name}
+    </a>
+
+    <div class="flex items-center gap-6 sm:gap-8">
+      {
+        NAV.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'text-xs transition-opacity hover:opacity-70',
+              isActive(item.href) ? 'text-ink' : 'text-muted',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>

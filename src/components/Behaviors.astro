@@ -1,0 +1,113 @@
+---
+// The only client-side script on the site: the edition toggle and the
+// zoom-in/zoom-out of the tech articles. Everything is event-delegated, so
+// nothing needs rebinding after a ClientRouter navigation.
+---
+
+<script>
+  if (!window.__behaviorsBound) {
+    window.__behaviorsBound = true;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    /** Remembers which floating logo opened which dialog, so it can zoom back. */
+    const openedFrom = new WeakMap<HTMLDialogElement, HTMLElement>();
+
+    const supportsZoom = () =>
+      typeof document.startViewTransition === 'function' && !reduced.matches;
+
+    /**
+     * Morph the small floating logo into the large one inside the dialog.
+     *
+     * Both elements briefly carry the same view-transition-name, but only one
+     * of them may be rendered at any single moment or the transition aborts.
+     * The old snapshot is taken *before* the callback runs, so naming the
+     * small logo first and handing the name over inside the callback puts
+     * exactly one named element in each snapshot.
+     */
+    function morph(from: Element, to: Element, mutate: () => void) {
+      (from as HTMLElement).style.viewTransitionName = 'tech-zoom';
+
+      const transition = document.startViewTransition(() => {
+        (from as HTMLElement).style.viewTransitionName = '';
+        (to as HTMLElement).style.viewTransitionName = 'tech-zoom';
+        mutate();
+      });
+
+      transition.finished.finally(() => {
+        (to as HTMLElement).style.viewTransitionName = '';
+      });
+    }
+
+    function openTech(slug: string, trigger: HTMLElement) {
+      const dialog = document.getElementById(`tech-${slug}`);
+      if (!(dialog instanceof HTMLDialogElement)) return;
+
+      openedFrom.set(dialog, trigger);
+
+      // Escape fires `cancel`; route it through the same zoom-out path so the
+      // keyboard and the mouse behave identically.
+      dialog.addEventListener(
+        'cancel',
+        (event) => {
+          event.preventDefault();
+          closeTech(dialog);
+        },
+        { once: true },
+      );
+
+      const small = trigger.querySelector('svg');
+      const large = dialog.querySelector('[data-tech-logo]');
+
+      if (!supportsZoom() || !small || !large) {
+        dialog.showModal();
+        return;
+      }
+
+      morph(small, large, () => dialog.showModal());
+    }
+
+    function closeTech(dialog: HTMLDialogElement) {
+      const trigger = openedFrom.get(dialog);
+      const small = trigger?.querySelector('svg');
+      const large = dialog.querySelector('[data-tech-logo]');
+
+      if (!supportsZoom() || !small || !large) {
+        dialog.close();
+        return;
+      }
+
+      morph(large, small, () => dialog.close());
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      // ---------- Day / night edition ----------
+      if (target.closest('[data-theme-toggle]')) {
+        const dark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        return;
+      }
+
+      // ---------- Open a tech article ----------
+      const opener = target.closest<HTMLElement>('[data-tech-open]');
+      if (opener?.dataset.techOpen) {
+        openTech(opener.dataset.techOpen, opener);
+        return;
+      }
+
+      // ---------- Close ----------
+      const closer = target.closest('[data-tech-close]');
+      if (closer) {
+        const dialog = closer.closest('dialog');
+        if (dialog instanceof HTMLDialogElement) closeTech(dialog);
+        return;
+      }
+
+      // Clicking the backdrop resolves to the dialog element itself.
+      if (target instanceof HTMLDialogElement) closeTech(target);
+    });
+  }
+</script>

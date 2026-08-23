@@ -1,0 +1,45 @@
+---
+title: Chronos, a Distributed Scheduler
+summary: A scheduler built in-house — Raft for leader election, second-level precision, and no duplicate or missed runs through a failover.
+year: 2024
+role: Principal author
+stack: ['Go', 'Raft', 'etcd', 'gRPC']
+cover: ./chronos.jpg
+coverAlt: Abstract cover in cool teal tones
+repo: https://github.com/
+order: 2
+---
+
+## The problem
+
+Several hundred scheduled jobs ran on Kubernetes CronJobs, with two failures we
+could not live with. Restarting a scheduling node fired jobs a second time, and
+jobs had no dependency relationships, so downstream work started reading dirty
+data before upstream had finished.
+
+## What we did
+
+A scheduler is stateful, so leader election has to be strongly consistent. There
+is no shortcut available at that point.
+
+- **Election** uses Raft (`hashicorp/raft`). Only the leader triggers work;
+  followers just replicate state.
+- **No duplicates** comes from writing an execution record, keyed on job plus
+  trigger timestamp, into the Raft log. After a failover the new leader replays
+  the log and knows exactly what has already fired.
+- **No misses** comes from the leader rescanning, on startup, every job that
+  should have fired within the window but has no record, then applying a
+  catch-up policy to decide between running it late and skipping it.
+- **Dependencies** are expressed as a DAG, topologically sorted and scheduled in
+  layers. Cycles are rejected at submission time.
+
+On timing, we avoided polling the whole table with a `time.Ticker` in favour of a
+min-heap with a single timer set against the earliest job. CPU use barely moved
+as the job count went from hundreds to tens of thousands.
+
+## The outcome
+
+- Failover completes in 1.2 seconds with no duplicate triggers — verified by a
+  fortnight of chaos testing that killed the leader at random
+- Scheduling precision holds at ±200ms
+- Job count grew from 300 to 12,000 with scheduler CPU still under 5%

@@ -1,0 +1,121 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../consts';
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+
+  return entries.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: { entry, index, next: entries[(index + 1) % entries.length] },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  index: number;
+  next: CollectionEntry<'work'>;
+}
+
+const { entry, index, next } = Astro.props;
+const { title, summary, year, role, client, stack, cover, coverAlt, link, repo } =
+  entry.data;
+const { Content } = await render(entry);
+
+const facts = [
+  { label: 'Year', value: String(year) },
+  { label: 'Role', value: role },
+  ...(client ? [{ label: 'Team', value: client }] : []),
+  { label: 'Stack', value: stack.join(' · ') },
+];
+---
+
+<BaseLayout title={`${title} — ${SITE.name}`} description={summary}>
+  <article>
+    <section class="px-5 pt-9 sm:px-8">
+      <p class="kicker text-center">
+        Report No. {String(index + 1).padStart(2, '0')} · {year}
+      </p>
+
+      <h1 class="deck-xl mt-4 text-center text-balance">{title}</h1>
+
+      <p class="standfirst mx-auto mt-6 max-w-3xl text-center text-pretty">
+        {summary}
+      </p>
+
+      <div class="rule-double mt-7"></div>
+    </section>
+
+    <div class="px-5 pt-7 sm:px-8">
+      <Image
+        src={cover}
+        alt={coverAlt}
+        widths={[640, 1024, 1600]}
+        sizes="(min-width: 1180px) 1116px, 92vw"
+        loading="eager"
+        class="aspect-21/9 w-full border border-rule object-cover"
+      />
+      <p class="byline mt-2">{coverAlt}</p>
+    </div>
+
+    <div class="grid gap-8 px-5 pt-10 sm:px-8 lg:grid-cols-[210px_1fr] lg:gap-12">
+      <!-- Fact box, as a paper would set alongside a long report. -->
+      <aside class="h-max lg:sticky lg:top-6" data-reveal>
+        <div class="cell p-5">
+          <p class="kicker">The facts</p>
+
+          <dl class="mt-4 space-y-3.5">
+            {
+              facts.map((row) => (
+                <div>
+                  <dt class="byline">{row.label}</dt>
+                  <dd class="mt-0.5 text-sm">{row.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          {
+            (link || repo) && (
+              <div class="rule-thin mt-5 flex flex-col gap-2 pt-4">
+                {link && (
+                  <a class="link-ink text-sm" href={link} target="_blank" rel="noopener">
+                    Visit the site
+                  </a>
+                )}
+                {repo && (
+                  <a class="link-ink text-sm" href={repo} target="_blank" rel="noopener">
+                    Read the source
+                  </a>
+                )}
+              </div>
+            )
+          }
+        </div>
+      </aside>
+
+      <div class="prose-news max-w-[68ch]" data-reveal>
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <!-- Next report -->
+  <section class="mt-14 px-5 sm:px-8">
+    <div class="rule-double"></div>
+
+    <a href={`/work/${next.id}`} class="group flex flex-wrap items-center justify-between gap-5 py-8">
+      <div>
+        <p class="kicker">Next report</p>
+        <p class="deck-md mt-2 group-hover:underline group-hover:underline-offset-4">
+          {next.data.title}
+        </p>
+      </div>
+      <span class="btn-oval">Continue</span>
+    </a>
+  </section>
+</BaseLayout>

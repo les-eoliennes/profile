@@ -1,0 +1,318 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* Class-based dark mode so the manual toggle can override the system setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Design tokens ---------- */
+:root {
+  color-scheme: light;
+
+  --desk: #17170f; /* the dark surface the paper sheet sits on */
+  --paper: #f3f0e6;
+  --paper-2: #e9e5d7; /* tinted cells, pull quotes, table stripes */
+  --ink: #16150f;
+  --ink-soft: #4a473c;
+  --ink-faint: #7c7768;
+  --rule: #16150f;
+}
+
+/*
+  Dark mode reads as a "night edition": the ink and paper swap rather than the
+  design becoming a different design. Everything else stays identical.
+*/
+.dark {
+  color-scheme: dark;
+
+  --desk: #0a0a07;
+  --paper: #17170f;
+  --paper-2: #201f16;
+  --ink: #ece7d8;
+  --ink-soft: #b3ad9b;
+  --ink-faint: #837d6d;
+  --rule: #ece7d8;
+}
+
+@theme inline {
+  --color-desk: var(--desk);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+
+  --font-gothic: var(--font-gothic);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-body);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+    background-color: var(--desk);
+  }
+
+  body {
+    background-color: var(--desk);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- Newspaper primitives ---------- */
+
+/* Headlines: didone, uppercase, set very tight the way broadsheet decks are. */
+@utility deck-xl {
+  @apply text-6xl leading-[0.86] font-black uppercase sm:text-8xl;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+@utility deck-lg {
+  @apply text-4xl leading-[0.9] font-black uppercase sm:text-6xl;
+  font-family: var(--font-display);
+  letter-spacing: -0.018em;
+}
+
+@utility deck-md {
+  @apply text-3xl leading-[0.95] font-bold uppercase sm:text-4xl;
+  font-family: var(--font-display);
+  letter-spacing: -0.012em;
+}
+
+@utility deck-sm {
+  @apply text-xl leading-tight font-bold sm:text-2xl;
+  font-family: var(--font-display);
+  letter-spacing: -0.008em;
+}
+
+/* The tiny all-caps label that sits above a headline. */
+@utility kicker {
+  @apply text-[0.68rem] font-bold uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* Standfirst / lede paragraph under a headline. */
+@utility standfirst {
+  @apply text-lg leading-snug italic sm:text-xl;
+  color: var(--ink-soft);
+}
+
+@utility byline {
+  @apply text-[0.7rem] uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+@layer components {
+  /* The sheet of paper itself, centred on the dark desk. */
+  .sheet {
+    background-color: var(--paper);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.35), 0 24px 60px -20px rgb(0 0 0 / 0.6);
+  }
+
+  /*
+    Thick-over-thin double rule. This single detail does more to signal
+    "newspaper" than any amount of styling elsewhere.
+  */
+  .rule-double {
+    border-top: 3px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    height: 5px;
+  }
+
+  .rule-thin {
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Reversed headline block: white type knocked out of solid ink. */
+  .reversed {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Body copy set in columns with a hairline gutter rule, as in print. */
+  .columns-news {
+    column-gap: 2rem;
+    column-rule: 1px solid var(--rule);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* Drop cap on the opening paragraph of an article. */
+  .dropcap::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 3.6em;
+    line-height: 0.78;
+    padding-right: 0.08em;
+    margin-top: 0.06em;
+  }
+
+  /* Inline link: underline is always present, as in print typography. */
+  .link-ink {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: background-color 0.2s ease;
+  }
+  .link-ink:hover {
+    background-color: var(--ink);
+    color: var(--paper);
+    text-decoration-color: transparent;
+  }
+
+  /* Oval outline button, matching the reference site's "ALL WORK" pill. */
+  .btn-oval {
+    @apply inline-flex items-center justify-center px-7 py-3 text-sm font-bold uppercase;
+    border: 1px solid var(--rule);
+    border-radius: 100vw;
+    letter-spacing: 0.14em;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .btn-oval:hover {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  /* A bordered cell, used for stats, pull quotes and course entries. */
+  .cell {
+    border: 1px solid var(--rule);
+    background-color: var(--paper);
+  }
+
+  /* Article body */
+  .prose-news {
+    @apply prose max-w-none;
+    font-family: var(--font-body);
+    --tw-prose-body: var(--ink);
+    --tw-prose-headings: var(--ink);
+    --tw-prose-bold: var(--ink);
+    --tw-prose-links: var(--ink);
+    --tw-prose-quotes: var(--ink);
+    --tw-prose-quote-borders: var(--rule);
+    --tw-prose-code: var(--ink);
+    --tw-prose-hr: var(--rule);
+    --tw-prose-counters: var(--ink-soft);
+    --tw-prose-bullets: var(--ink-soft);
+  }
+
+  .prose-news :where(h2) {
+    @apply deck-md;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+
+  .prose-news :where(a) {
+    text-underline-offset: 3px;
+  }
+
+  .prose-news :where(code)::before,
+  .prose-news :where(code)::after {
+    content: '';
+  }
+
+  .prose-news :where(code) {
+    background-color: var(--paper-2);
+    @apply rounded-none px-1.5 py-0.5 font-normal;
+    font-family: var(--font-body);
+    font-style: italic;
+  }
+}
+
+/* ---------- Motion ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Slow drift for the floating logos on the stack page. */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translate(var(--dx, 0), var(--dy, -12px)) rotate(var(--rot2, 0deg));
+  }
+}
+
+/*
+  The default state is always VISIBLE. Animation is layered on only when the
+  reader tolerates motion and the browser supports scroll-driven timelines.
+  Firefox (still behind a flag) simply gets no entrance animation rather than
+  content that never appears.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 16%;
+    }
+  }
+
+  [data-enter] {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--enter, 0) * 80ms);
+  }
+
+  [data-drift] {
+    animation: drift var(--dur, 9s) ease-in-out infinite;
+    animation-delay: calc(var(--enter, 0) * -1.7s);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Tech article dialog ---------- */
+dialog::backdrop {
+  background-color: rgb(10 10 7 / 0.72);
+}
+
+dialog {
+  color: var(--ink);
+}
+
+/*
+  The zoom is done with the View Transitions API: the floating logo and the
+  large logo inside the dialog briefly share a view-transition-name, so the
+  browser morphs one into the other. Tuned slower than the default for weight.
+*/
+::view-transition-group(tech-zoom) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

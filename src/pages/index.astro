@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getIcon } from '../lib/icons';
+import { SITE, STATS } from '../consts';
+
+const projects = (await getCollection('work', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const [lead, ...rest] = projects;
+
+// A handful of marks as a trailer for the stack page.
+const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
+const DARK_BRANDS = ['000000', '231F20'];
+---
+
+<BaseLayout>
+  <!-- Nameplate story -->
+  <section class="px-5 pt-8 sm:px-8">
+    <p class="kicker text-center" data-enter style="--enter: 0">
+      Backend · Distributed Systems · Databases
+    </p>
+
+    <h1 class="deck-xl mt-4 text-center" data-enter style="--enter: 1">
+      {SITE.name}
+    </h1>
+
+    <div class="rule-double mt-6"></div>
+  </section>
+
+  <!-- Lead: statement type on the left, opening copy on the right -->
+  <section class="grid gap-7 px-5 py-8 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+    <div data-enter style="--enter: 2">
+      <h2 class="deck-lg text-balance">
+        I write the layer underneath, and I can read the layer under that.
+      </h2>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#work" class="btn-oval">The Work</a>
+        <a href="/stack" class="btn-oval">The Stack</a>
+      </div>
+    </div>
+
+    <div data-enter style="--enter: 3">
+      <p class="standfirst">
+        Software engineer working on backend systems and the infrastructure they
+        sit on — distributed systems, database internals, and the runtimes in
+        between.
+      </p>
+
+      <div class="columns-news mt-5 space-y-4 text-sm sm:columns-2">
+        <p class="dropcap">
+          Most of the hard production problems I have worked on were never a
+          matter of business logic being written incorrectly. They came from
+          holding a wrong assumption about how the operating system, the network
+          or the storage engine actually behaves.
+        </p>
+        <p>
+          So I spend my time on two things: keeping the fundamentals sharp, and
+          genuinely understanding the root cause after an incident rather than
+          adding a retry and moving on. That is the whole of my method, and the
+          rest of this paper is evidence for it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Figures -->
+  <section class="px-5 sm:px-8">
+    <div class="rule-thin grid grid-cols-2 sm:grid-cols-4">
+      {
+        STATS.map((stat) => (
+          <div class="border-b border-rule px-2 py-5 text-center sm:border-b-0">
+            <p class="deck-lg leading-none">{stat.value}</p>
+            <p class="kicker mt-2">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="rule-thin"></div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="px-5 pt-10 sm:px-8">
+    <div class="reversed px-4 py-2.5">
+      <h2 class="deck-md">Selected Work</h2>
+    </div>
+
+    <div class="mt-8">
+      {lead && <ProjectCard entry={lead} index={0} lead />}
+    </div>
+
+    <div class="rule-thin mt-9 grid gap-8 pt-8 sm:grid-cols-2 sm:gap-10">
+      {rest.map((entry, i) => <ProjectCard entry={entry} index={i + 1} />)}
+    </div>
+  </section>
+
+  <!-- Stack trailer -->
+  <section class="mt-12 px-5 sm:px-8">
+    <div class="rule-double"></div>
+
+    <div class="grid gap-6 py-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
+      <div>
+        <h2 class="deck-md text-balance">What I use, and what I think of it</h2>
+        <p class="mt-3 max-w-xl text-sm leading-relaxed text-pretty">
+          Seventeen marks, no labels. Click any one of them and it opens into a
+          short piece on what the tool solves, what it costs, and where it has
+          caught me out.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="/stack" class="btn-oval">Open the Stack</a>
+          <a href="/education" class="btn-oval">Education</a>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-6 lg:justify-end">
+        {
+          trailer.map((slug) => {
+            const icon = getIcon(slug);
+            const color = DARK_BRANDS.includes(icon.hex) ? 'currentColor' : `#${icon.hex}`;
+            return (
+              <svg
+                viewBox="0 0 24 24"
+                class="size-9 sm:size-11"
+                style={`color: ${color}`}
+                fill="currentColor"
+                role="img"
+                aria-label={icon.title}
+              >
+                <path d={icon.path} />
+              </svg>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

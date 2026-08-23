@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, SOCIAL, TIMELINE } from '../consts';
+---
+
+<BaseLayout title={`About — ${SITE.name}`} description={SITE.description}>
+  <section class="px-5 pt-9 sm:px-8">
+    <p class="kicker text-center" data-enter style="--enter: 0">Section IV</p>
+
+    <h1 class="deck-xl mt-3 text-center text-balance" data-enter style="--enter: 1">
+      About
+    </h1>
+
+    <div class="rule-double mt-6"></div>
+  </section>
+
+  <section class="grid gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+    <div data-enter style="--enter: 2">
+      <h2 class="deck-lg text-balance">
+        The ceiling on your engineering is how deep you can read.
+      </h2>
+    </div>
+
+    <div class="columns-news space-y-4 text-sm sm:columns-2" data-enter style="--enter: 3">
+      <p class="dropcap">
+        I am {SITE.name}, a {SITE.role.toLowerCase()} working mainly on backend
+        systems and infrastructure. The hard production problems I have dealt
+        with were rarely a matter of business logic being wrong; they came from
+        a wrong assumption about the operating system, the network or the
+        storage engine.
+      </p>
+      <p>
+        That is why I keep going back to the fundamentals, and why after an
+        incident I want the actual root cause rather than a retry that makes the
+        symptom disappear.
+      </p>
+      <p>
+        I read Computer Science at Shenzhen University and have kept working
+        through open courseware since — the distributed systems and database
+        internals courses in particular changed how I work.
+      </p>
+      <p>
+        Currently open to conversations about backend and infrastructure roles,
+        and always happy to talk about database internals with anyone who will
+        sit still for it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Career -->
+  <section class="px-5 pt-6 sm:px-8">
+    <div class="reversed px-4 py-2.5">
+      <h2 class="deck-md">Record of Service</h2>
+    </div>
+
+    <div class="mt-7">
+      {
+        TIMELINE.map((item) => (
+          <div class="rule-thin grid gap-3 py-6 sm:grid-cols-[200px_1fr] sm:gap-8" data-reveal>
+            <p class="kicker pt-1">{item.period}</p>
+            <div>
+              <h3 class="deck-sm">{item.title}</h3>
+              <p class="byline mt-1.5">{item.org}</p>
+              <p class="mt-3 max-w-2xl text-sm leading-relaxed text-pretty">
+                {item.detail}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="px-5 pt-10 sm:px-8">
+    <div class="rule-double"></div>
+    <div class="flex flex-wrap items-center justify-between gap-5 py-8">
+      <h2 class="deck-md text-balance">Write to the desk</h2>
+      <div class="flex flex-wrap gap-3">
+        <a href={`mailto:${SITE.email}`} class="btn-oval">Email</a>
+        {
+          SOCIAL.map((s) => (
+            <a href={s.href} target="_blank" rel="me noopener" class="btn-oval">
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
