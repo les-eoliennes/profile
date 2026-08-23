@@ -20,9 +20,14 @@ export interface School {
   monogram: string;
   color: string;
   /**
-   * Optical correction. Equal height flatters wide wordmarks and starves tall
-   * narrow marks, so a tall crest gets scaled up to carry comparable weight in
-   * a mixed row. 1 means "use the given height as-is".
+   * Optical correction, applied to the requested height.
+   *
+   * Setting a shared height across marks of different proportions equalises the
+   * wrong thing. MIT's wordmark is 3.5:1 and spreads wide; Carnegie Mellon's is
+   * a three-line stack at 1.5:1, so at the same height each of its lines is a
+   * third as tall and stops being readable. These factors roughly equalise
+   * area instead — sqrt(widest ratio / this ratio) — so every mark carries
+   * comparable weight in a row. 1 leaves the height as given.
    */
   scale?: number;
 }
@@ -49,9 +54,8 @@ export const SCHOOLS: Record<string, School> = {
     nameZh: '斯坦福大学',
     monogram: 'SU',
     color: '#8C1515',
-    // The tree-and-S mark is taller than it is wide (0.65:1); at the shared
-    // height it reads far lighter than the wordmarks beside it.
-    scale: 1.5,
+    // Block-and-wordmark lockup at 2.38:1.
+    scale: 1.2,
   },
   cmu: {
     slug: 'cmu',
@@ -59,5 +63,7 @@ export const SCHOOLS: Record<string, School> = {
     nameZh: '卡内基梅隆大学',
     monogram: 'CMU',
     color: '#C41230',
+    // Three-line stack, 1.54:1 — the tightest mark here, so the largest boost.
+    scale: 1.5,
   },
 };

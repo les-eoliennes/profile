@@ -131,7 +131,7 @@ export const UI = {
 
   zh: {
     'site.role': '软件工程师',
-    'site.city': '高雄 台湾',
+    'site.city': '高雄 | 台湾',
     'site.edition': '第一卷',
     'site.description': '后端与基础设施工程师。分布式系统、数据库内核、编译与运行时。',
 

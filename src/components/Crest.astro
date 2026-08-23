@@ -51,11 +51,17 @@ const match = Object.entries(files).find(
       be anyway. In the day edition the plate matches the page and vanishes.
     */
     <span class:list={['crest inline-flex items-center', className]}>
+      {/*
+        Only the height is given. Passing a width as well makes the image
+        pipeline resize raster sources to exactly those dimensions and crop
+        the overflow — which silently sliced the Carnegie Mellon and Stanford
+        marks down to one word each. SVGs pass through untouched, so the bug
+        was invisible until the first PNG crest arrived.
+      */}
       <Image
         src={match[1].default}
         alt={alt}
         height={height}
-        width={Math.round(height * 6)}
         class="w-auto"
         style={`height:${height}px`}
       />

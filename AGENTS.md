@@ -45,9 +45,12 @@ English at the root, Chinese under `/zh/`. **Every page exists in both.**
 a monogram badge. Sources and licences are recorded in that directory's README —
 `szu.svg` is fair-use, not freely licensed.
 
-Size crests by HEIGHT (`height` prop), never `size-*`: the artwork ranges from
-0.65:1 to 5.71:1 and a square box destroys the wide wordmarks. `scale` in
-schools.ts corrects tall marks. The marks are dark reds on transparency and
+Size crests by HEIGHT (`height` prop), never `size-*`. Pass only a height to
+`<Image>` — adding a width crops raster sources to those exact dimensions, which
+silently sliced two crests down to one word each (SVGs pass through, so it hid
+until the first PNG). `scale` in schools.ts equalises visual area, since a
+three-line stack and a wide wordmark cannot share a height and both stay
+readable. The marks are dark reds on transparency and
 would vanish in the night edition, so `.crest` puts them on a fixed light
 plate rather than filtering the brand colours.
 
