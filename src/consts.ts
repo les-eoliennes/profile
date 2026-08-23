@@ -8,7 +8,7 @@
   - a record with a `zh` block of overrides, merged with `localize(item, lang)`
 */
 export const SITE = {
-  name: 'Ace',
+  name: 'Hello, I\'m Ace :D',
   role: 'Software Engineer',
   title: 'Ace — Software Engineer',
   description:
