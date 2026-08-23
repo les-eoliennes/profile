@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 import TechMark from './TechMark.astro';
 import { SITE, STATS } from '../consts';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
+import { getReports } from '../lib/reports';
 
 /*
   The front page in both editions. Everything visible comes through t(), so the
@@ -12,11 +12,8 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const projects = (await getCollection('work', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
-
-const [lead, ...rest] = projects;
+const reports = await getReports(lang);
+const [lead, ...rest] = reports;
 
 // A handful of marks as a trailer for the stack page.
 const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
@@ -40,7 +37,7 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
 
     <div class="mt-6 flex flex-wrap gap-3">
       <a href="#work" class="btn-oval">{t('front.cta.work')}</a>
-      <a href="/stack" class="btn-oval">{t('front.cta.stack')}</a>
+      <a href={localizePath('/stack', lang)} class="btn-oval">{t('front.cta.stack')}</a>
     </div>
   </div>
 
@@ -76,11 +73,11 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
   </div>
 
   <div class="mt-8">
-    {lead && <ProjectCard entry={lead} index={0} lead />}
+    {lead && <ProjectCard report={lead} index={0} lead />}
   </div>
 
   <div class="rule-thin mt-9 grid gap-8 pt-8 sm:grid-cols-2 sm:gap-10">
-    {rest.map((entry, i) => <ProjectCard entry={entry} index={i + 1} />)}
+    {rest.map((report, i) => <ProjectCard report={report} index={i + 1} />)}
   </div>
 </section>
 
@@ -93,8 +90,10 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
       <h2 class="deck-md text-balance">{t('trailer.heading')}</h2>
       <p class="mt-3 max-w-xl text-sm leading-relaxed text-pretty">{t('trailer.body')}</p>
       <div class="mt-5 flex flex-wrap gap-3">
-        <a href="/stack" class="btn-oval">{t('trailer.cta.stack')}</a>
-        <a href="/education" class="btn-oval">{t('trailer.cta.education')}</a>
+        <a href={localizePath('/stack', lang)} class="btn-oval">{t('trailer.cta.stack')}</a>
+        <a href={localizePath('/education', lang)} class="btn-oval">
+          {t('trailer.cta.education')}
+        </a>
       </div>
     </div>
 

@@ -28,7 +28,7 @@ absolute path to v22 for the dev and preview servers.
 | Path | Contents |
 | --- | --- |
 | `/` | Nameplate, lead story, figures, selected work, stack trailer |
-| `/zh/` | The same front page, Chinese edition |
+| `/zh/…` | Every one of the above, Chinese edition |
 | `/education` | Shenzhen University, coursework, open courseware, fundamentals |
 | `/stack` | A ruled listing of every tool; open a row to zoom into a piece on it |
 | `/about` | Biography, record of service, contact |
@@ -53,23 +53,31 @@ src/
 
 ## The Chinese edition
 
-English is the default and stays at the root; Chinese lives under `/zh/`.
-**Only the front page is translated so far.** The other three sections are
-English-only, so:
+English is the default and stays at the root; Chinese lives under `/zh/`. **Every
+page exists in both editions**, so the language toggle is always offered and
+always lands on the same page in the other language.
 
-- the language toggle appears only on routes listed in `TRANSLATED_ROUTES`
-  (`src/i18n/ui.ts`) — a toggle that drops the reader onto an untranslated page
-  is worse than no toggle at all;
-- in the Chinese edition, section links to untranslated pages carry a small
-  `EN` marker.
+Where the wording lives:
 
-Both routes render the same `FrontPage.astro`, so the layouts cannot drift
-apart — only the wording differs. To translate another page: add its route to
-`TRANSLATED_ROUTES`, extract the page body into a component the way
-`FrontPage.astro` is, and add a thin wrapper under `src/pages/zh/`.
+- **Page furniture and prose** — `src/i18n/ui.ts`, one key per string, in both
+  maps. `useTranslations(lang)` returns a `t()` that falls back to English, so a
+  key you forget to translate renders in English rather than blank.
+- **Structured content** (degree, courses, fundamentals, career, the stack) —
+  alongside the English in `src/consts.ts` and `src/data/tech.ts`, in one of two
+  shapes: `{ en, zh }` for a bare string, read as `value[lang]`; or a `zh` block
+  of overrides merged by `localize(item, lang)`.
+- **Report bodies** — `src/content/work/zh/<slug>.mdx`, sharing the schema and
+  the cover image one directory up. A report with no Chinese file falls back to
+  the English one rather than vanishing.
 
-Reports carry an optional `zh` block in their frontmatter for the teaser fields
-(title, summary, role) shown on the front page; the report bodies stay English.
+Each page's markup lives in a single component under `src/components/`
+(`FrontPage`, `EducationPage`, `StackPage`, `AboutPage`, `ReportPage`,
+`NotFoundPage`) that both routes render, so the editions cannot drift apart —
+only the strings differ. The files under `src/pages/` and `src/pages/zh/` are
+thin wrappers.
+
+Internal links go through `localizePath()` so a reader stays inside their
+edition. The only deliberate crossover is the language toggle itself.
 
 Typography for Chinese is handled in `global.css` under `:lang(zh)`: the display
 scale is set for a didone at 0.86 line-height with negative tracking, which
@@ -99,12 +107,16 @@ zeroed. Drop caps and synthesised italics are switched off — Chinese has neith
 3. Degree dates, the `TIMELINE` entries and the `STATS` figures are placeholders.
 4. The open course numbers are the well-known public ones — MIT renumbered
    several of them in 2022, so check them against the current catalogue.
-5. The Chinese front-page copy in `src/i18n/ui.ts` is a translation of my
-   English draft — read it as your own voice, not just as accurate Chinese.
-6. **`src/data/tech.ts` is a draft written from general engineering experience.**
+5. All Chinese copy — `src/i18n/ui.ts`, the `zh` blocks in `src/consts.ts` and
+   `src/data/tech.ts`, and the reports under `src/content/work/zh/` — is a
+   translation of my English draft. Read it as your own voice, not merely as
+   accurate Chinese.
+6. `site.city` currently reads `Kaohsiung, TW` / `高雄` while the degree entry
+   says Shenzhen University. Reconcile the two.
+7. **`src/data/tech.ts` is a draft written from general engineering experience.**
    It is presented as your personal opinion, so go through it and make it yours.
-7. The three reports under `src/content/work/` are examples.
-8. The email is an unobfuscated `mailto:` and will be scraped.
+8. The three reports under `src/content/work/` are examples.
+9. The email is an unobfuscated `mailto:` and will be scraped.
 
 ## Deploying
 

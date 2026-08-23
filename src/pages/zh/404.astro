@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NotFoundPage from '../../components/NotFoundPage.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('zh');
+---
+
+<BaseLayout title={t('nf.title')} description={t('nf.description')}>
+  <NotFoundPage />
+</BaseLayout>

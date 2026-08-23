@@ -1,4 +1,4 @@
-import { DEFAULT_LANG, TRANSLATED_ROUTES, UI, type Lang, type UIKey } from './ui';
+import { DEFAULT_LANG, UI, type Lang, type UIKey } from './ui';
 
 /** Read the edition out of a URL: /zh/... is Chinese, everything else English. */
 export function getLangFromUrl(url: URL): Lang {
@@ -28,10 +28,20 @@ export function stripLang(pathname: string): string {
   return withoutPrefix === '' ? '/' : withoutPrefix;
 }
 
-/** Does this route exist in both editions? */
-export function hasTranslation(pathname: string): boolean {
-  const base = stripLang(pathname).replace(/\/$/, '') || '/';
-  return (TRANSLATED_ROUTES as readonly string[]).includes(base);
+/**
+ * Merge an item's `zh` overrides over its English fields. Data files keep the
+ * English shape and carry the translation alongside it, so an untranslated
+ * field falls back rather than rendering blank.
+ */
+export function localize<T extends { zh?: Record<string, unknown> }>(
+  item: T,
+  lang: Lang,
+): T {
+  // The constraint stays deliberately loose: the data files use `as const`, so
+  // their fields are readonly literal types that will not unify with a
+  // Partial<T> parameter. The spread is checked by the shape of the data, not
+  // by this signature.
+  return lang === 'zh' && item.zh ? ({ ...item, ...item.zh } as T) : item;
 }
 
 /** The same page in the other edition. */

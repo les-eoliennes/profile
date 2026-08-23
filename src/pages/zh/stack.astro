@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StackPage from '../../components/StackPage.astro';
+import { SITE } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('zh');
+---
+
+<BaseLayout title={`${t('stack.title')} — ${SITE.name}`} description={t('stack.description')}>
+  <StackPage />
+</BaseLayout>

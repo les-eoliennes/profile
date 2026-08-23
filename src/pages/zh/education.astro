@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EducationPage from '../../components/EducationPage.astro';
+import { SITE } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('zh');
+---
+
+<BaseLayout title={`${t('edu.title')} — ${SITE.name}`} description={t('edu.description')}>
+  <EducationPage />
+</BaseLayout>

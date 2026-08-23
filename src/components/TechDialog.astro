@@ -2,12 +2,15 @@
 import RichText from './RichText.astro';
 import TechMark from './TechMark.astro';
 import type { Tech } from '../data/tech';
+import { getLangFromUrl, useTranslations, localize } from '../i18n/utils';
 
 interface Props {
   tech: Tech;
 }
 
-const { tech } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const tech = localize(Astro.props.tech, lang);
 ---
 
 <!--
@@ -22,15 +25,15 @@ const { tech } = Astro.props;
 >
   <article class="max-h-[85vh] overflow-y-auto px-6 py-7 sm:px-10 sm:py-9">
     <div class="flex items-start justify-between gap-6">
-      <p class="kicker">{tech.category} · {tech.years}</p>
+      <p class="kicker">{t(`cat.${tech.category}`)} · {tech.years}</p>
 
       <button
         type="button"
         data-tech-close
-        aria-label="Close"
+        aria-label={t('stack.close')}
         class="kicker shrink-0 cursor-pointer border border-rule px-2.5 py-1 transition-colors hover:bg-ink hover:text-paper"
       >
-        Close
+        {t('stack.close')}
       </button>
     </div>
 
@@ -59,7 +62,7 @@ const { tech } = Astro.props;
     </div>
 
     <div class="rule-thin mt-8 pt-5">
-      <p class="kicker">What I've learned</p>
+      <p class="kicker">{t('stack.learned')}</p>
 
       <ul class="mt-4 space-y-3">
         {

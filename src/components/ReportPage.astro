@@ -1,0 +1,113 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  index: number;
+  next: { slug: string; entry: CollectionEntry<'work'> };
+}
+
+const { entry, index, next } = Astro.props;
+const { title, summary, year, role, client, stack, cover, coverAlt, link, repo } =
+  entry.data;
+const { Content } = await render(entry);
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const facts = [
+  { label: t('report.year'), value: String(year) },
+  { label: t('report.role'), value: role },
+  ...(client ? [{ label: t('report.team'), value: client }] : []),
+  { label: t('report.stack'), value: stack.join(' · ') },
+];
+
+const number = String(index + 1).padStart(2, '0');
+---
+
+<article>
+  <section class="px-5 pt-9 sm:px-8">
+    <p class="kicker text-center">
+      {t('report.no')} {number} · {year}
+    </p>
+
+    <h1 class="deck-xl mt-4 text-center text-balance">{title}</h1>
+
+    <p class="standfirst mx-auto mt-6 max-w-3xl text-center text-pretty">{summary}</p>
+
+    {
+      (link || repo) && (
+        <div class="mt-8 flex flex-wrap justify-center gap-6 text-sm">
+          {link && (
+            <a class="link-ink" href={link} target="_blank" rel="noopener">
+              {t('report.visit')} ›
+            </a>
+          )}
+          {repo && (
+            <a class="link-ink" href={repo} target="_blank" rel="noopener">
+              {t('report.source')} ›
+            </a>
+          )}
+        </div>
+      )
+    }
+
+    <div class="rule-double mt-7"></div>
+  </section>
+
+  <div class="px-5 pt-7 sm:px-8">
+    <Image
+      src={cover}
+      alt={coverAlt}
+      widths={[640, 1024, 1600]}
+      sizes="(min-width: 1180px) 1116px, 92vw"
+      loading="eager"
+      class="aspect-21/9 w-full border border-rule object-cover"
+    />
+    <p class="byline mt-2">{coverAlt}</p>
+  </div>
+
+  <div class="grid gap-8 px-5 pt-10 sm:px-8 lg:grid-cols-[210px_1fr] lg:gap-12">
+    <!-- Fact box, as a paper would set alongside a long report. -->
+    <aside class="h-max lg:sticky lg:top-6" data-reveal>
+      <div class="cell p-5">
+        <p class="kicker">{t('report.facts')}</p>
+
+        <dl class="mt-4 space-y-3.5">
+          {
+            facts.map((row) => (
+              <div>
+                <dt class="byline">{row.label}</dt>
+                <dd class="mt-0.5 text-sm">{row.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </aside>
+
+    <div class="prose-news max-w-[68ch]" data-reveal>
+      <Content />
+    </div>
+  </div>
+</article>
+
+<!-- Next report -->
+<section class="mt-14 px-5 sm:px-8">
+  <div class="rule-double"></div>
+
+  <a
+    href={localizePath(`/work/${next.slug}`, lang)}
+    class="group flex flex-wrap items-center justify-between gap-5 py-8"
+  >
+    <div>
+      <p class="kicker">{t('report.next')}</p>
+      <p class="deck-md mt-2 group-hover:underline group-hover:underline-offset-4">
+        {next.entry.data.title}
+      </p>
+    </div>
+    <span class="btn-oval">{t('report.continue')}</span>
+  </a>
+</section>

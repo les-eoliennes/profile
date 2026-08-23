@@ -1,0 +1,20 @@
+---
+import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="px-5 py-24 text-center sm:px-8">
+  <p class="kicker" data-enter style="--enter: 0">{t('nf.error')}</p>
+
+  <h1 class="deck-xl mt-4 text-balance" data-enter style="--enter: 1">{t('nf.headline')}</h1>
+
+  <p class="standfirst mx-auto mt-6 max-w-md text-pretty" data-enter style="--enter: 2">
+    {t('nf.body')}
+  </p>
+
+  <div class="mt-9" data-enter style="--enter: 3">
+    <a href={localizePath('/', lang)} class="btn-oval">{t('nf.cta')}</a>
+  </div>
+</section>

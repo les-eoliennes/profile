@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ReportPage from '../../components/ReportPage.astro';
-import { SITE } from '../../consts';
-import { getReports, type Report } from '../../lib/reports';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ReportPage from '../../../components/ReportPage.astro';
+import { SITE } from '../../../consts';
+import { getReports, type Report } from '../../../lib/reports';
 
 export async function getStaticPaths() {
-  const reports = await getReports('en');
+  const reports = await getReports('zh');
 
   return reports.map((report, index) => ({
     params: { slug: report.slug },

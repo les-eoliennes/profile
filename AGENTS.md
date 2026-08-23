@@ -27,13 +27,16 @@ pin the absolute path to v22.
 
 ## Editions
 
-English at the root, Chinese under `/zh/`. **Only the front page is translated.**
-Wording lives in `src/i18n/ui.ts` (both maps); `src/i18n/utils.ts` has the
-translator and path helpers. Both routes render `FrontPage.astro`, so the
-markup is shared and only strings differ.
+English at the root, Chinese under `/zh/`. **Every page exists in both.**
 
-The language toggle only renders for routes in `TRANSLATED_ROUTES`. Add a route
-there only once it actually has a `/zh/` counterpart.
+- Prose and page furniture: `src/i18n/ui.ts`, keyed, both maps.
+- Structured content: `{ en, zh }` string pairs read as `value[lang]`, or a `zh`
+  override block merged by `localize(item, lang)`.
+- Report bodies: `src/content/work/zh/<slug>.mdx`, cover image one level up.
+- Each page's markup is one component both routes render; `src/pages/` and
+  `src/pages/zh/` hold thin wrappers only. Never fork a page's markup.
+- Internal links must go through `localizePath()` or the reader falls out of
+  their edition.
 
 ## Things that will bite
 
@@ -54,6 +57,9 @@ there only once it actually has a `/zh/` counterpart.
 - Chinese needs its own typography: the deck scale (0.86 line-height, negative
   tracking) is set for a didone and mangles CJK. See `:lang(zh)` in global.css.
   Never use `<em>`/italic for Chinese — browsers synthesise a broken oblique.
+- Content collection ids strip dots, so `chronos.zh.mdx` became `chronoszh` and
+  published itself as a separate English report. Chinese reports therefore live
+  in a `zh/` subdirectory, not behind a dotted suffix.
 - CJK fonts come from the system via the `fallbacks` arrays in astro.config.
   Keep `optimizedFallbacks: false` there; the metric-adjusted fallbacks Astro
   generates distort CJK glyphs.

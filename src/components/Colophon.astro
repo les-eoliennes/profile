@@ -21,7 +21,7 @@ const year = new Date().getFullYear();
       {
         NAV.map((item) => (
           <a
-            href={item.href === '/' ? localizePath('/', lang) : item.href}
+            href={localizePath(item.href, lang)}
             class="kicker transition-opacity hover:opacity-60"
           >
             {t(item.key)}

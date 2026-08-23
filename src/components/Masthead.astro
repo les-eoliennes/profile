@@ -19,14 +19,10 @@ const published = new Date().toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-GB
   year: 'numeric',
 });
 
-/*
-  Only the front page is translated, so every other section link leads to an
-  English page. Rather than pretend otherwise, the Chinese edition marks them.
-*/
+// Every section exists in both editions; keep the reader inside theirs.
 const sections = NAV.map((item) => ({
-  href: item.href === '/' ? localizePath('/', lang) : item.href,
+  href: localizePath(item.href, lang),
   label: t(item.key),
-  englishOnly: lang === 'zh' && item.href !== '/',
 }));
 ---
 
@@ -71,11 +67,6 @@ const sections = NAV.map((item) => ({
           ]}
         >
           {item.label}
-          {item.englishOnly && (
-            <sup class="ml-0.5 opacity-50" title={t('lang.englishOnly')}>
-              EN
-            </sup>
-          )}
         </a>
       ))
     }

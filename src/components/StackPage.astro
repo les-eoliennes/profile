@@ -1,0 +1,95 @@
+---
+import TechMark from './TechMark.astro';
+import TechDialog from './TechDialog.astro';
+import { TECH } from '../data/tech';
+import { getLangFromUrl, useTranslations, localize } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const categories = ['Languages', 'Data', 'Infrastructure', 'Observability', 'Web'] as const;
+---
+
+<section class="px-5 pt-9 sm:px-8">
+  <p class="kicker text-center" data-enter style="--enter: 0">{t('stack.section')}</p>
+
+  <h1 class="deck-xl mt-3 text-center text-balance" data-enter style="--enter: 1">
+    {t('stack.title')}
+  </h1>
+
+  <div class="rule-double mt-6"></div>
+
+  <p
+    class="standfirst mx-auto mt-6 max-w-2xl text-center text-pretty"
+    data-enter
+    style="--enter: 2"
+  >
+    {t('stack.standfirst')}
+  </p>
+
+  <!--
+    A printer's ornament: the full set of marks struck across the page.
+    Decorative only — the listing underneath is the interface.
+  -->
+  <div
+    class="rule-thin mt-8 flex flex-wrap items-center justify-between gap-x-3 gap-y-4 py-6"
+    aria-hidden="true"
+  >
+    {TECH.map((tech) => <TechMark slug={tech.slug} class="h-6 w-auto max-w-full sm:h-7" />)}
+  </div>
+</section>
+
+<!-- The listing, set as a paper sets its markets table. -->
+<section class="px-5 pb-4 sm:px-8">
+  {
+    categories.map((category) => {
+      const items = TECH.filter((tech) => tech.category === category);
+      if (items.length === 0) return null;
+
+      return (
+        <div class="mt-10 first:mt-0">
+          <div class="reversed flex items-baseline justify-between px-4 py-2">
+            <h2 class="deck-sm">{t(`cat.${category}`)}</h2>
+            <span class="kicker">
+              {items.length} {t('stack.entries')}
+            </span>
+          </div>
+
+          <ul>
+            {items.map((raw) => {
+              const tech = localize(raw, lang);
+              return (
+                <li data-reveal>
+                  <button
+                    type="button"
+                    data-tech-open={tech.slug}
+                    aria-haspopup="dialog"
+                    class="listing-row cursor-pointer grid-cols-[4rem_1fr] gap-x-4 gap-y-1.5 px-3 py-4 sm:grid-cols-[5rem_13rem_5rem_1fr_1rem]"
+                  >
+                    <TechMark slug={tech.slug} class="h-7 w-auto max-w-full" />
+
+                    <span class="deck-sm">{tech.name}</span>
+
+                    <span class="byline hidden sm:block">{tech.years}</span>
+
+                    <span class="col-start-2 text-sm leading-snug text-pretty sm:col-start-4">
+                      {tech.tagline}
+                    </span>
+
+                    <span class="hidden text-right text-lg sm:block" aria-hidden="true">
+                      ›
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div class="rule-thin" />
+        </div>
+      );
+    })
+  }
+</section>
+
+{TECH.map((tech) => <TechDialog tech={tech} />)}

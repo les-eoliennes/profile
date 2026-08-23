@@ -1,22 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NotFoundPage from '../components/NotFoundPage.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('en');
 ---
 
-<BaseLayout title="Page not found — 404" description="No content at this address.">
-  <section class="px-5 py-24 text-center sm:px-8">
-    <p class="kicker" data-enter style="--enter: 0">Error 404</p>
-
-    <h1 class="deck-xl mt-4 text-balance" data-enter style="--enter: 1">
-      Off the press
-    </h1>
-
-    <p class="standfirst mx-auto mt-6 max-w-md text-pretty" data-enter style="--enter: 2">
-      No edition was ever printed at this address. The link may be mistyped, or
-      the page has been pulled.
-    </p>
-
-    <div class="mt-9" data-enter style="--enter: 3">
-      <a href="/" class="btn-oval">Back to the front page</a>
-    </div>
-  </section>
+<BaseLayout title={t('nf.title')} description={t('nf.description')}>
+  <NotFoundPage />
 </BaseLayout>

@@ -5,7 +5,7 @@ import Masthead from '../components/Masthead.astro';
 import Colophon from '../components/Colophon.astro';
 import Behaviors from '../components/Behaviors.astro';
 import { SITE } from '../consts';
-import { getLangFromUrl, useTranslations, alternatePath, hasTranslation } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, alternatePath } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -43,15 +43,17 @@ const ogUrl = new URL(ogImage, Astro.site);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    {
-      /* Tell search engines the two editions are the same page. */
-      hasTranslation(Astro.url.pathname) && (
-        <>
-          <link rel="alternate" hreflang="en" href={new URL(lang === 'zh' ? alternatePath(Astro.url.pathname, lang) : Astro.url.pathname, Astro.site)} />
-          <link rel="alternate" hreflang="zh-Hans" href={new URL(lang === 'zh' ? Astro.url.pathname : alternatePath(Astro.url.pathname, lang), Astro.site)} />
-        </>
-      )
-    }
+    {/* Tell search engines the two editions are the same page. */}
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(lang === 'zh' ? alternatePath(Astro.url.pathname, lang) : Astro.url.pathname, Astro.site)}
+    />
+    <link
+      rel="alternate"
+      hreflang="zh-Hans"
+      href={new URL(lang === 'zh' ? Astro.url.pathname : alternatePath(Astro.url.pathname, lang), Astro.site)}
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

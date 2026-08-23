@@ -1,24 +1,19 @@
 ---
-import { getLangFromUrl, useTranslations, alternatePath, hasTranslation } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, alternatePath } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Only offer the switch where the other edition actually exists; a toggle that
-// silently drops the reader onto an untranslated page is worse than no toggle.
-const available = hasTranslation(Astro.url.pathname);
+// Every route exists in both editions, so the switch is always offered and
+// always lands on the same page in the other language.
 const href = alternatePath(Astro.url.pathname, lang);
 ---
 
-{
-  available && (
-    <a
-      href={href}
-      hreflang={lang === 'zh' ? 'en' : 'zh-Hans'}
-      aria-label={t('a11y.lang')}
-      class="kicker border border-rule px-2.5 py-1 transition-colors hover:bg-ink hover:text-paper"
-    >
-      {t('lang.other')}
-    </a>
-  )
-}
+<a
+  href={href}
+  hreflang={lang === 'zh' ? 'en' : 'zh-Hans'}
+  aria-label={t('a11y.lang')}
+  class="kicker border border-rule px-2.5 py-1 transition-colors hover:bg-ink hover:text-paper"
+>
+  {t('lang.other')}
+</a>
