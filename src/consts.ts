@@ -9,6 +9,13 @@
 */
 export const SITE = {
   name: 'Hello, I\'m Ace :D',
+  /*
+    The masthead wordmark, kept separate from `name` so the display name can
+    change without rewriting the nameplate. Not translated: it is set in
+    blackletter, which carries no CJK glyphs, so a Chinese string here would
+    drop to a fallback face and lose the whole effect.
+  */
+  nameplate: 'The Résumé of Ace',
   role: 'Software Engineer',
   title: 'Ace — Software Engineer',
   description:
@@ -31,7 +38,7 @@ export const SOCIAL = [
 /** Formal degree. */
 export const EDUCATION = [
   {
-    period: '2018 — 2022', // TODO: replace with your actual dates
+    period: '2020 — 2024',
     crest: 'szu',
     school: 'Shenzhen University',
     degree: 'B.Eng., Computer Science and Technology',
