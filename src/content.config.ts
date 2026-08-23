@@ -22,6 +22,18 @@ const work = defineCollection({
       coverAlt: z.string(),
       link: z.url().optional(),
       repo: z.url().optional(),
+      /*
+        Only the front page is translated, so a report needs Chinese for its
+        teaser fields alone; the body stays English. Optional, so an untranslated
+        report simply falls back.
+      */
+      zh: z
+        .object({
+          title: z.string(),
+          summary: z.string(),
+          role: z.string(),
+        })
+        .optional(),
       order: z.number().default(99),
       draft: z.boolean().default(false),
     }),

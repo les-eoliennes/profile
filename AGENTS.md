@@ -25,6 +25,16 @@ pin the absolute path to v22.
   `-icon` variant in `ALIASES`.
 - The stack page is a ruled listing, not a scatter.
 
+## Editions
+
+English at the root, Chinese under `/zh/`. **Only the front page is translated.**
+Wording lives in `src/i18n/ui.ts` (both maps); `src/i18n/utils.ts` has the
+translator and path helpers. Both routes render `FrontPage.astro`, so the
+markup is shared and only strings differ.
+
+The language toggle only renders for routes in `TRANSLATED_ROUTES`. Add a route
+there only once it actually has a `/zh/` counterpart.
+
 ## Things that will bite
 
 - Tailwind v4 `@apply` only accepts classes declared with `@utility`, not ones
@@ -41,5 +51,11 @@ pin the absolute path to v22.
 - Scroll-driven animation must stay "visible by default, animation layered on",
   or Firefox renders nothing.
 - `z.string().url()` is deprecated in zod 4; use `z.url()`.
+- Chinese needs its own typography: the deck scale (0.86 line-height, negative
+  tracking) is set for a didone and mangles CJK. See `:lang(zh)` in global.css.
+  Never use `<em>`/italic for Chinese — browsers synthesise a broken oblique.
+- CJK fonts come from the system via the `fallbacks` arrays in astro.config.
+  Keep `optimizedFallbacks: false` there; the metric-adjusted fallbacks Astro
+  generates distort CJK glyphs.
 
 Full docs at https://docs.astro.build

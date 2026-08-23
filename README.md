@@ -28,6 +28,7 @@ absolute path to v22 for the dev and preview servers.
 | Path | Contents |
 | --- | --- |
 | `/` | Nameplate, lead story, figures, selected work, stack trailer |
+| `/zh/` | The same front page, Chinese edition |
 | `/education` | Shenzhen University, coursework, open courseware, fundamentals |
 | `/stack` | A ruled listing of every tool; open a row to zoom into a piece on it |
 | `/about` | Biography, record of service, contact |
@@ -37,16 +38,43 @@ absolute path to v22 for the dev and preview servers.
 
 ```
 src/
-  consts.ts            Site details, degree, coursework, open courses, fundamentals
+  consts.ts            Language-independent facts: name, email, degree, courses, career
+  i18n/ui.ts           Both editions' wording, keyed; add a key to both maps
+  i18n/utils.ts        Edition detection, translator, path helpers
   data/tech.ts         The stack: what each tool is for and what I think of it
   lib/icons.ts         Resolves a mark by slug: official logos first, simple-icons as fallback
   content.config.ts    Frontmatter schema for the work reports
   content/work/        One .mdx per report, with its cover image alongside
   layouts/BaseLayout   Head, fonts, no-flash theme script, view transitions, the sheet
-  components/          Masthead · Colophon · ProjectCard · TechMark · TechDialog · RichText · Behaviors
+  components/          Masthead · Colophon · FrontPage · ProjectCard · TechMark · TechDialog · LangToggle · RichText · Behaviors
   pages/               index · education · stack · about · work/[...slug] · 404
   styles/global.css    Tokens and newspaper primitives
 ```
+
+## The Chinese edition
+
+English is the default and stays at the root; Chinese lives under `/zh/`.
+**Only the front page is translated so far.** The other three sections are
+English-only, so:
+
+- the language toggle appears only on routes listed in `TRANSLATED_ROUTES`
+  (`src/i18n/ui.ts`) — a toggle that drops the reader onto an untranslated page
+  is worse than no toggle at all;
+- in the Chinese edition, section links to untranslated pages carry a small
+  `EN` marker.
+
+Both routes render the same `FrontPage.astro`, so the layouts cannot drift
+apart — only the wording differs. To translate another page: add its route to
+`TRANSLATED_ROUTES`, extract the page body into a component the way
+`FrontPage.astro` is, and add a thin wrapper under `src/pages/zh/`.
+
+Reports carry an optional `zh` block in their frontmatter for the teaser fields
+(title, summary, role) shown on the front page; the report bodies stay English.
+
+Typography for Chinese is handled in `global.css` under `:lang(zh)`: the display
+scale is set for a didone at 0.86 line-height with negative tracking, which
+collides badly with full-width CJK glyphs, so decks are loosened and tracking
+zeroed. Drop caps and synthesised italics are switched off — Chinese has neither.
 
 ## Editing
 
@@ -71,10 +99,12 @@ src/
 3. Degree dates, the `TIMELINE` entries and the `STATS` figures are placeholders.
 4. The open course numbers are the well-known public ones — MIT renumbered
    several of them in 2022, so check them against the current catalogue.
-5. **`src/data/tech.ts` is a draft written from general engineering experience.**
+5. The Chinese front-page copy in `src/i18n/ui.ts` is a translation of my
+   English draft — read it as your own voice, not just as accurate Chinese.
+6. **`src/data/tech.ts` is a draft written from general engineering experience.**
    It is presented as your personal opinion, so go through it and make it yours.
-6. The three reports under `src/content/work/` are examples.
-7. The email is an unobfuscated `mailto:` and will be scraped.
+7. The three reports under `src/content/work/` are examples.
+8. The email is an unobfuscated `mailto:` and will be scraped.
 
 ## Deploying
 

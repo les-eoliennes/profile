@@ -256,6 +256,65 @@
   }
 }
 
+/* ---------- Chinese edition ---------- */
+/*
+  The display scale is set for a didone: 0.86 line-height and negative
+  tracking. Chinese glyphs are full-width and full-height, so those settings
+  collide badly — headlines overlap and read as cramped. Loosen them, and drop
+  the tracking, for the Chinese edition only.
+
+  :lang(zh) matches the zh-CN on <html>, since the selector matches a language
+  subtag followed by a hyphen.
+*/
+:lang(zh) .deck-xl,
+:lang(zh) .deck-lg {
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+:lang(zh) .deck-md,
+:lang(zh) .deck-sm {
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+:lang(zh) .standfirst {
+  line-height: 1.7;
+}
+
+/*
+  Chinese has no true italic — browsers synthesise an oblique that looks
+  broken. The standfirst and captions lean on italic in the English edition,
+  so it is turned off here.
+*/
+:lang(zh) .standfirst,
+:lang(zh) em,
+:lang(zh) i {
+  font-style: normal;
+}
+
+/* Chinese newspapers do not set drop caps, and a floated full-width glyph
+   collides with the lines beside it. */
+:lang(zh) .dropcap::first-letter {
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  padding-right: 0;
+  margin-top: 0;
+  font-weight: inherit;
+}
+
+/* Hyphenation is meaningless for Chinese; justification alone sets it well. */
+:lang(zh) .columns-news {
+  hyphens: none;
+}
+
+/* The body face carries a slight negative tracking that crowds CJK. */
+:lang(zh) body,
+:lang(zh) {
+  letter-spacing: 0;
+}
+
 /* ---------- Motion ---------- */
 @keyframes rise {
   from {

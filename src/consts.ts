@@ -1,3 +1,8 @@
+/*
+  Language-independent facts only. Anything with wording lives in src/i18n/ui.ts
+  so the two editions cannot drift apart — city, edition line, role and
+  description all moved there.
+*/
 export const SITE = {
   name: 'Ace',
   role: 'Software Engineer',
@@ -5,17 +10,13 @@ export const SITE = {
   description:
     'Backend and infrastructure engineer. Distributed systems, database internals, compilers and runtimes.',
   email: 'wow.itsme.ace@gmail.com',
-  locale: 'en',
-  /* Printed in the masthead, the way a paper prints its city of publication. */
-  city: 'Shenzhen, CN',
-  edition: 'Vol. I',
 } as const;
 
 export const NAV = [
-  { href: '/', label: 'Front Page' },
-  { href: '/education', label: 'Education' },
-  { href: '/stack', label: 'Stack' },
-  { href: '/about', label: 'About' },
+  { href: '/', key: 'nav.home' },
+  { href: '/education', key: 'nav.education' },
+  { href: '/stack', key: 'nav.stack' },
+  { href: '/about', key: 'nav.about' },
 ] as const;
 
 export const SOCIAL = [
@@ -179,10 +180,10 @@ export const TIMELINE = [
   },
 ] as const;
 
-/** Numbers for the masthead stats strip. */
+/** Figures for the front-page strip. Labels are translated; values are not. */
 export const STATS = [
-  { label: 'Years shipping', value: '5' },
-  { label: 'Languages in prod', value: '4' },
-  { label: 'Open courses', value: '6' },
-  { label: 'Incidents owned', value: '40+' },
+  { key: 'stats.years', value: '5' },
+  { key: 'stats.languages', value: '4' },
+  { key: 'stats.courses', value: '6' },
+  { key: 'stats.incidents', value: '40+' },
 ] as const;

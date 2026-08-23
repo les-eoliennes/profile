@@ -1,5 +1,9 @@
 ---
 import { SITE, SOCIAL, NAV } from '../consts';
+import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
@@ -9,15 +13,18 @@ const year = new Date().getFullYear();
 
   <div class="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
     <p class="deck-sm">
-      Reach the desk —
+      {t('colophon.reach')}
       <a href={`mailto:${SITE.email}`} class="link-ink">{SITE.email}</a>
     </p>
 
     <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
       {
         NAV.map((item) => (
-          <a href={item.href} class="kicker transition-opacity hover:opacity-60">
-            {item.label}
+          <a
+            href={item.href === '/' ? localizePath('/', lang) : item.href}
+            class="kicker transition-opacity hover:opacity-60"
+          >
+            {t(item.key)}
           </a>
         ))
       }
@@ -38,7 +45,5 @@ const year = new Date().getFullYear();
 
   <div class="rule-thin"></div>
 
-  <p class="byline pt-4">
-    © {year} {SITE.name} · Set in Bodoni Moda and Source Serif · Printed with Astro
-  </p>
+  <p class="byline pt-4">© {year} {SITE.name} · {t('colophon.imprint')}</p>
 </footer>

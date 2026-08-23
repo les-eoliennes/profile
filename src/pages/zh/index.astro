@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FrontPage from '../../components/FrontPage.astro';
+import { SITE } from '../../consts';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('zh');
+---
+
+<BaseLayout title={`${SITE.name} — ${t('site.role')}`}>
+  <FrontPage />
+</BaseLayout>

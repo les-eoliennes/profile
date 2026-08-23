@@ -1,26 +1,41 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import LangToggle from './LangToggle.astro';
 import { SITE, NAV } from '../consts';
+import { getLangFromUrl, useTranslations, localizePath, stripLang } from '../i18n/utils';
 
-const path = Astro.url.pathname;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const here = stripLang(Astro.url.pathname);
 const isActive = (href: string) =>
-  href === '/' ? path === '/' : path.startsWith(href);
+  href === '/' ? here === '/' : here.startsWith(href);
 
 // Papers print a publication date in the masthead. This one is the build date.
-const published = new Date().toLocaleDateString('en-GB', {
+const published = new Date().toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-GB', {
   weekday: 'long',
   day: 'numeric',
   month: 'long',
   year: 'numeric',
 });
+
+/*
+  Only the front page is translated, so every other section link leads to an
+  English page. Rather than pretend otherwise, the Chinese edition marks them.
+*/
+const sections = NAV.map((item) => ({
+  href: item.href === '/' ? localizePath('/', lang) : item.href,
+  label: t(item.key),
+  englishOnly: lang === 'zh' && item.href !== '/',
+}));
 ---
 
 <header class="px-5 pt-5 sm:px-8 sm:pt-7">
   <!-- Top line: place of publication, nameplate, edition. -->
   <div class="flex items-center justify-between gap-4">
-    <p class="byline hidden sm:block">{SITE.city}</p>
+    <p class="byline hidden sm:block">{t('site.city')}</p>
 
-    <a href="/" class="flex-1 text-center sm:flex-none">
+    <a href={localizePath('/', lang)} class="flex-1 text-center sm:flex-none">
       <span
         class="text-3xl leading-none sm:text-4xl"
         style="font-family: var(--font-gothic)"
@@ -29,8 +44,9 @@ const published = new Date().toLocaleDateString('en-GB', {
       </span>
     </a>
 
-    <div class="flex items-center gap-4">
-      <p class="byline hidden sm:block">{SITE.edition}</p>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <p class="byline hidden sm:block">{t('site.edition')}</p>
+      <LangToggle />
       <ThemeToggle />
     </div>
   </div>
@@ -42,19 +58,24 @@ const published = new Date().toLocaleDateString('en-GB', {
   <!-- Section navigation, set like a paper's section index. -->
   <nav
     class="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 py-2.5"
-    aria-label="Sections"
+    aria-label={t('a11y.sections')}
   >
     {
-      NAV.map((item) => (
+      sections.map((item) => (
         <a
           href={item.href}
-          aria-current={isActive(item.href) ? 'page' : undefined}
+          aria-current={isActive(stripLang(item.href)) ? 'page' : undefined}
           class:list={[
             'kicker transition-opacity hover:opacity-60',
-            isActive(item.href) && 'underline underline-offset-4',
+            isActive(stripLang(item.href)) && 'underline underline-offset-4',
           ]}
         >
           {item.label}
+          {item.englishOnly && (
+            <sup class="ml-0.5 opacity-50" title={t('lang.englishOnly')}>
+              EN
+            </sup>
+          )}
         </a>
       ))
     }

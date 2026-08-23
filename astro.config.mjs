@@ -11,6 +11,16 @@ export default defineConfig({
 
   integrations: [mdx(), sitemap()],
 
+  /*
+    English is the default and stays at the root; the Chinese edition lives
+    under /zh/. Only the front page is translated so far — see README.
+  */
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    routing: { prefixDefaultLocale: false },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -47,6 +57,8 @@ export default defineConfig({
       weights: ['400 900'],
       styles: ['normal', 'italic'],
       subsets: ['latin'],
+      optimizedFallbacks: false,
+      fallbacks: ['Songti SC', 'STSong', 'Noto Serif CJK SC', 'Source Han Serif SC', 'serif'],
     },
     {
       provider: fontProviders.google(),
@@ -55,6 +67,8 @@ export default defineConfig({
       weights: ['400 700'],
       styles: ['normal', 'italic'],
       subsets: ['latin'],
+      optimizedFallbacks: false,
+      fallbacks: ['Songti SC', 'STSong', 'Noto Serif CJK SC', 'Source Han Serif SC', 'serif'],
     },
   ],
 });

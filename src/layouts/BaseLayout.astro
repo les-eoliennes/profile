@@ -5,6 +5,7 @@ import Masthead from '../components/Masthead.astro';
 import Colophon from '../components/Colophon.astro';
 import Behaviors from '../components/Behaviors.astro';
 import { SITE } from '../consts';
+import { getLangFromUrl, useTranslations, alternatePath, hasTranslation } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -14,18 +15,25 @@ interface Props {
   ogImage?: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const {
   title = SITE.title,
-  description = SITE.description,
+  description = t('site.description'),
   ogImage = '/og.png',
 } = Astro.props;
+
+// zh-CN rather than bare zh: it selects Simplified glyph forms in fonts that
+// carry more than one regional variant.
+const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogUrl = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
-<html lang={SITE.locale}>
+<html lang={htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,6 +42,16 @@ const ogUrl = new URL(ogImage, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {
+      /* Tell search engines the two editions are the same page. */
+      hasTranslation(Astro.url.pathname) && (
+        <>
+          <link rel="alternate" hreflang="en" href={new URL(lang === 'zh' ? alternatePath(Astro.url.pathname, lang) : Astro.url.pathname, Astro.site)} />
+          <link rel="alternate" hreflang="zh-Hans" href={new URL(lang === 'zh' ? Astro.url.pathname : alternatePath(Astro.url.pathname, lang), Astro.site)} />
+        </>
+      )
+    }
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -73,7 +91,7 @@ const ogUrl = new URL(ogImage, Astro.site);
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
     >
-      Skip to content
+      {t('a11y.skip')}
     </a>
 
     <!-- The sheet of newsprint, centred on the dark desk. -->

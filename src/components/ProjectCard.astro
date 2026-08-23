@@ -1,16 +1,26 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 interface Props {
   entry: CollectionEntry<'work'>;
   index: number;
-  /** The lead story runs wider, with the image alongside the copy. */
+  /** The lead story runs wider, with the plate above the copy. */
   lead?: boolean;
 }
 
 const { entry, index, lead = false } = Astro.props;
-const { title, summary, year, role, stack, cover, coverAlt } = entry.data;
+const { year, cover, coverAlt, stack } = entry.data;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Fall back to English when a report has not been given Chinese teaser copy.
+const zh = lang === 'zh' ? entry.data.zh : undefined;
+const title = zh?.title ?? entry.data.title;
+const summary = zh?.summary ?? entry.data.summary;
+const role = zh?.role ?? entry.data.role;
 ---
 
 <article data-reveal class="h-full">
@@ -41,7 +51,7 @@ const { title, summary, year, role, stack, cover, coverAlt } = entry.data;
           <div class="columns-news mt-5 space-y-3 text-sm sm:columns-2">
             <p class="text-pretty">{summary}</p>
             <p class="byline">{stack.join(' · ')}</p>
-            <p class="kicker underline underline-offset-4">Read the full report</p>
+            <p class="kicker underline underline-offset-4">{t('work.readMore')}</p>
           </div>
         </Fragment>
       ) : (
@@ -58,7 +68,7 @@ const { title, summary, year, role, stack, cover, coverAlt } = entry.data;
           <div class="mt-4 flex-1">
             <p class="text-sm leading-relaxed text-pretty">{summary}</p>
             <p class="byline mt-3">{stack.join(' · ')}</p>
-            <p class="kicker mt-4 underline underline-offset-4">Read the full report</p>
+            <p class="kicker mt-4 underline underline-offset-4">{t('work.readMore')}</p>
           </div>
         </Fragment>
       )
