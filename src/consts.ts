@@ -27,7 +27,7 @@ export const NAV = [
   { href: '/', key: 'nav.home' },
   { href: '/education', key: 'nav.education' },
   { href: '/stack', key: 'nav.stack' },
-  { href: '/about', key: 'nav.about' },
+  { href: '/experience', key: 'nav.experience' },
 ] as const;
 
 export const SOCIAL = [

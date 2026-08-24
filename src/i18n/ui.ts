@@ -24,7 +24,7 @@ export const UI = {
     'nav.home': 'Front Page',
     'nav.education': 'Education',
     'nav.stack': 'Stack',
-    'nav.about': 'About',
+    'nav.experience': 'Experience',
 
     'a11y.skip': 'Skip to content',
     'a11y.sections': 'Sections',
@@ -91,20 +91,20 @@ export const UI = {
     'stack.close': 'Close',
     'stack.learned': "What I've learned",
 
-    'about.section': 'Section IV',
-    'about.title': 'About',
-    'about.headline': 'The ceiling on your engineering is how deep you can read.',
-    'about.body1':
+    'experience.section': 'Section IV',
+    'experience.title': 'Experience',
+    'experience.headline': 'The ceiling on your engineering is how deep you can read.',
+    'experience.body1':
       'I am Ace, a software engineer working mainly on backend systems and infrastructure. The hard production problems I have dealt with were rarely a matter of business logic being wrong; they came from a wrong assumption about the operating system, the network or the storage engine.',
-    'about.body2':
+    'experience.body2':
       'That is why I keep going back to the fundamentals, and why after an incident I want the actual root cause rather than a retry that makes the symptom disappear.',
-    'about.body3':
+    'experience.body3':
       'I read Computer Science at Shenzhen University and have kept working through open courseware since — the distributed systems and database internals courses in particular changed how I work.',
-    'about.body4':
+    'experience.body4':
       'Currently open to conversations about backend and infrastructure roles, and always happy to talk about database internals with anyone who will sit still for it.',
-    'about.record': 'Record of Service',
-    'about.contact': 'Write to the desk',
-    'about.email': 'Email',
+    'experience.record': 'Record of Service',
+    'experience.contact': 'Write to the desk',
+    'experience.email': 'Email',
 
     'report.no': 'Report No.',
     'report.facts': 'The facts',
@@ -135,7 +135,7 @@ export const UI = {
     'nav.home': '头版',
     'nav.education': '教育',
     'nav.stack': '技术栈',
-    'nav.about': '关于',
+    'nav.experience': '经历',
 
     'a11y.skip': '跳到正文',
     'a11y.sections': '版面导航',
@@ -200,20 +200,20 @@ export const UI = {
     'stack.close': '关闭',
     'stack.learned': '关键认识',
 
-    'about.section': '第四版',
-    'about.title': '关于',
-    'about.headline': '工程能力的上限，取决于你能读懂多深。',
-    'about.body1':
+    'experience.section': '第四版',
+    'experience.title': '经历',
+    'experience.headline': '工程能力的上限，取决于你能读懂多深。',
+    'experience.body1':
       '我是 Ace，软件工程师，主要做后端系统和基础设施。我处理过的棘手线上问题，很少真的是业务逻辑写错了；根源往往是对操作系统、网络或者存储引擎，抱着一个错误的假设。',
-    'about.body2':
+    'experience.body2':
       '所以我才会不断回到基础，也才会在故障之后要一个真正的根因，而不是加一个让症状消失的重试。',
-    'about.body3':
+    'experience.body3':
       '我在深圳大学读的计算机科学，之后一直在啃公开课程 —— 其中分布式系统和数据库内核那几门，实实在在改变了我的工作方式。',
-    'about.body4':
+    'experience.body4':
       '目前愿意聊后端与基础设施方向的机会，也随时乐意和任何坐得住的人聊数据库内核。',
-    'about.record': '履历',
-    'about.contact': '联系本报',
-    'about.email': '邮件',
+    'experience.record': '履历',
+    'experience.contact': '联系本报',
+    'experience.email': '邮件',
 
     'report.no': '第',
     'report.facts': '概要',

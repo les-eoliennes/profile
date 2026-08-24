@@ -7,10 +7,10 @@ const t = useTranslations(lang);
 ---
 
 <section class="px-5 pt-9 sm:px-8">
-  <p class="kicker text-center" data-enter style="--enter: 0">{t('about.section')}</p>
+  <p class="kicker text-center" data-enter style="--enter: 0">{t('experience.section')}</p>
 
   <h1 class="deck-xl mt-3 text-center text-balance" data-enter style="--enter: 1">
-    {t('about.title')}
+    {t('experience.title')}
   </h1>
 
   <div class="rule-double mt-6"></div>
@@ -18,21 +18,21 @@ const t = useTranslations(lang);
 
 <section class="grid gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
   <div data-enter style="--enter: 2">
-    <h2 class="deck-lg text-balance">{t('about.headline')}</h2>
+    <h2 class="deck-lg text-balance">{t('experience.headline')}</h2>
   </div>
 
   <div class="columns-news space-y-4 text-sm sm:columns-2" data-enter style="--enter: 3">
-    <p class="dropcap">{t('about.body1')}</p>
-    <p>{t('about.body2')}</p>
-    <p>{t('about.body3')}</p>
-    <p>{t('about.body4')}</p>
+    <p class="dropcap">{t('experience.body1')}</p>
+    <p>{t('experience.body2')}</p>
+    <p>{t('experience.body3')}</p>
+    <p>{t('experience.body4')}</p>
   </div>
 </section>
 
 <!-- Career -->
 <section class="px-5 pt-6 sm:px-8">
   <div class="reversed px-4 py-2.5">
-    <h2 class="deck-md">{t('about.record')}</h2>
+    <h2 class="deck-md">{t('experience.record')}</h2>
   </div>
 
   <div class="mt-7">
@@ -58,9 +58,9 @@ const t = useTranslations(lang);
 <section class="px-5 pt-10 sm:px-8">
   <div class="rule-double"></div>
   <div class="flex flex-wrap items-center justify-between gap-5 py-8">
-    <h2 class="deck-md text-balance">{t('about.contact')}</h2>
+    <h2 class="deck-md text-balance">{t('experience.contact')}</h2>
     <div class="flex flex-wrap gap-3">
-      <a href={`mailto:${SITE.email}`} class="btn-oval">{t('about.email')}</a>
+      <a href={`mailto:${SITE.email}`} class="btn-oval">{t('experience.email')}</a>
       {
         SOCIAL.map((s) => (
           <a href={s.href} target="_blank" rel="me noopener" class="btn-oval">

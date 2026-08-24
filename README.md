@@ -31,7 +31,7 @@ absolute path to v22 for the dev and preview servers.
 | `/zh/…` | Every one of the above, Chinese edition |
 | `/education` | Shenzhen University, coursework, open courseware, fundamentals |
 | `/stack` | A ruled listing of every tool; open a row to zoom into a piece on it |
-| `/about` | Biography, record of service, contact |
+| `/experience` | Biography, record of service, contact |
 | `/work/[slug]` | Full project reports |
 
 ## Layout
@@ -47,7 +47,7 @@ src/
   content/work/        One .mdx per report, with its cover image alongside
   layouts/BaseLayout   Head, fonts, no-flash theme script, view transitions, the sheet
   components/          Masthead · Colophon · FrontPage · ProjectCard · TechMark · TechDialog · LangToggle · RichText · Behaviors
-  pages/               index · education · stack · about · work/[...slug] · 404
+  pages/               index · education · stack · experience · work/[...slug] · 404
   styles/global.css    Tokens and newspaper primitives
 ```
 
@@ -71,7 +71,7 @@ Where the wording lives:
   the English one rather than vanishing.
 
 Each page's markup lives in a single component under `src/components/`
-(`FrontPage`, `EducationPage`, `StackPage`, `AboutPage`, `ReportPage`,
+(`FrontPage`, `EducationPage`, `StackPage`, `ExperiencePage`, `ReportPage`,
 `NotFoundPage`) that both routes render, so the editions cannot drift apart —
 only the strings differ. The files under `src/pages/` and `src/pages/zh/` are
 thin wrappers.

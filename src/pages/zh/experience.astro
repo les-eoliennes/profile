@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import AboutPage from '../../components/AboutPage.astro';
+import ExperiencePage from '../../components/ExperiencePage.astro';
 import { SITE } from '../../consts';
 import { useTranslations } from '../../i18n/utils';
 
 const t = useTranslations('zh');
 ---
 
-<BaseLayout title={`${t('about.title')} — ${SITE.name}`} description={t('site.description')}>
-  <AboutPage />
+<BaseLayout title={`${t('experience.title')} — ${SITE.name}`} description={t('site.description')}>
+  <ExperiencePage />
 </BaseLayout>
