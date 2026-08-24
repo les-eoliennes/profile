@@ -35,40 +35,43 @@ const t = useTranslations(lang);
     EDUCATION.map((raw) => {
       const item = localize(raw, lang);
       return (
-        <div class="mt-7 grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12" data-reveal>
-          <div class="flex items-start gap-5">
-            <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
+        <div class="mt-7" data-reveal>
+          <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12">
+            <div class="flex items-start gap-5">
+              <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
+
+              <div>
+                <p class="kicker">{item.period}</p>
+                <h3 class="deck-lg mt-2">{item.school}</h3>
+                <p class="standfirst mt-3">{item.degree}</p>
+              </div>
+            </div>
 
             <div>
-              <p class="kicker">{item.period}</p>
-              <h3 class="deck-lg mt-2">{item.school}</h3>
-              <p class="standfirst mt-3">{item.degree}</p>
+              <p class="dropcap text-sm leading-relaxed text-pretty">{item.detail}</p>
             </div>
           </div>
 
-          <div>
-            <p class="dropcap text-sm leading-relaxed text-pretty">{item.detail}</p>
-
-            {item.rankings && (
-              <div class="mt-8">
-                <p class="kicker">{t('edu.rankings')}</p>
-
-                <dl class="rule-thin mt-3">
-                  {item.rankings.map((r) => (
-                    <div class="flex items-baseline justify-between gap-4 border-b border-line py-2.5">
-                      <dt class="text-sm">{r.body[lang]}</dt>
-                      <dd class="shrink-0 text-right whitespace-nowrap">
-                        <span class="font-semibold">{r.rank}</span>
-                        <span class="byline ml-2">
-                          {r.scope[lang]} · {r.year}
-                        </span>
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            )}
-          </div>
+          {/*
+            Full width, not confined to the right-hand column above: at
+            deck-lg size (60px) a range like "351–400" does not fit a
+            quarter of that column and overflows into its neighbours. The
+            whole page width is what the front-page stat strip already uses
+            successfully at this size.
+          */}
+          {item.rankings && (
+            <dl class="rule-thin mt-8 grid grid-cols-2 sm:grid-cols-4">
+              {item.rankings.map((r) => (
+                <div
+                  class="border-b border-rule px-2 py-5 text-center sm:border-b-0"
+                  title={`${r.body[lang]} · ${r.year}`}
+                >
+                  <dd class="deck-lg leading-none">{r.rank}</dd>
+                  <dt class="kicker mt-2">{r.short}</dt>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
       );
     })

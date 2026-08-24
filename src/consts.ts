@@ -50,41 +50,36 @@ export const EDUCATION = [
     degree: 'B.Eng., Computer Science and Technology',
     detail:
       'Four years of systematic training in the fundamentals. Data structures, operating systems, networking, database systems and compilers — the courses that felt abstract at the time and turned out to explain almost every hard production incident since.',
+    // World rankings only — domestic (ShanghaiRanking's Best Chinese
+    // Universities Ranking) dropped at request. `short` is the label shown
+    // under the number; QS/THE/ARWU are used as-is in Chinese higher-ed
+    // writing too, so it is not translated. `body` and `year` are kept for
+    // the hover title even though neither renders directly, so the source
+    // stays one click away without cluttering the row.
     rankings: [
       {
-        // shanghairanking.com/institution/shenzhen-university, fetched directly
-        body: { en: 'ShanghaiRanking — Best Chinese Universities', zh: '软科中国大学排名' },
-        scope: { en: 'National', zh: '全国' },
-        rank: '#66',
-        year: '2026',
-      },
-      {
-        // mastersportal.com aggregation of topuniversities.com, cross-checked against a second search
+        short: 'QS',
         body: { en: 'QS World University Rankings', zh: 'QS 世界大学排名' },
-        scope: { en: 'World', zh: '全球' },
         rank: '#452',
-        year: '2026',
+        year: '2026', // mastersportal.com aggregation of topuniversities.com, cross-checked
       },
       {
-        // timeshighereducation.com/world-university-rankings/shenzhen-university, fetched directly
+        short: 'THE',
         body: { en: 'Times Higher Education World University Rankings', zh: '泰晤士高等教育世界大学排名' },
-        scope: { en: 'World', zh: '全球' },
-        rank: '351–400',
-        year: '2026',
+        rank: '#351',
+        year: '2026', // timeshighereducation.com, fetched directly
       },
       {
-        // usnews.com Best Global Universities, cross-checked against a second search
+        short: 'U.S. News',
         body: { en: 'U.S. News Best Global Universities', zh: 'U.S. News 全球最佳大学排名' },
-        scope: { en: 'World', zh: '全球' },
         rank: '#156',
-        year: '2026',
+        year: '2026', // usnews.com, cross-checked against a second search
       },
       {
-        // ARWU — Shenzhen's first year in the global top 500; 2025 is the latest edition
-        body: { en: 'ARWU — Academic Ranking of World Universities', zh: '软科世界大学学术排名（ARWU）' },
-        scope: { en: 'World', zh: '全球' },
-        rank: '201–300',
-        year: '2025',
+        short: 'ARWU',
+        body: { en: 'Academic Ranking of World Universities', zh: '软科世界大学学术排名（ARWU）' },
+        rank: '#201',
+        year: '2025', // Shenzhen's first year in the global top 500; 2025 is the latest edition
       },
     ],
     zh: {
