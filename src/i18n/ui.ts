@@ -90,8 +90,13 @@ export const UI = {
     'stack.title': 'The Stack',
     'stack.description':
       'The tools I use in production, and what I actually think about each one.',
+    'stack.headline': "Every tool has a cost. If you can't name it, you just haven't hit it yet.",
     'stack.standfirst':
-      'Every entry below is something I run in production. Open one and it becomes a piece on what the tool is for, what it costs, and where it has caught me out.',
+      "None of these are hearsay. Everything below runs in a system I actually maintain.",
+    'stack.body1':
+      'Open any mark and it expands into a short piece: what problem the tool solves, what it costs to use, and the one time it burned me worst at two in the morning.',
+    'stack.body2':
+      'None of it is written to sell you on anything, and none of it is written to take a shot at anything either. It is only what comes from living with a tool long enough to know where it is comfortable and where it is quietly waiting to bite.',
     'stack.entries': 'entries',
     'stack.close': 'Close',
     'stack.learned': "What I've learned",
@@ -203,8 +208,12 @@ export const UI = {
     'stack.section': '第三版',
     'stack.title': '技术栈',
     'stack.description': '我在生产环境里真正用的工具，还有我对每一件的实话实说。',
-    'stack.standfirst':
-      '下面每一样都在我的生产环境里跑着。点开哪个都行，会跳出一篇短文，聊聊这工具解决什么问题、代价是什么，还有它怎么坑过我。',
+    'stack.headline': '每样工具都有代价，说不出代价的人，只是还没被坑过。',
+    'stack.standfirst': '这里没有一个是道听途说来的，全都跑在我真正维护的系统里。',
+    'stack.body1':
+      '点开任意一个标记，会展开一篇短文：这工具解决什么问题、用它要付出什么代价，还有它在哪个深夜把我坑得最惨。',
+    'stack.body2':
+      '写这些不是为了安利，也不是为了吐槽，是真正用透了才写得出来的东西，用久了才知道哪里顺手，哪里在等着挖坑给你跳。',
     'stack.entries': '项',
     'stack.close': '关闭',
     'stack.learned': '关键认识',

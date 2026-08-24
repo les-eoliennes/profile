@@ -18,21 +18,31 @@ const categories = ['Languages', 'Data', 'Infrastructure', 'Observability', 'Web
   </h1>
 
   <div class="rule-double mt-6"></div>
+</section>
 
-  <p
-    class="standfirst mx-auto mt-6 max-w-2xl text-center text-pretty"
-    data-enter
-    style="--enter: 2"
-  >
-    {t('stack.standfirst')}
-  </p>
+<!-- Lead: statement on the left, subtitle and short essay on the right — same format as the front page and Education. -->
+<section class="grid gap-7 px-5 py-8 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+  <div data-enter style="--enter: 2">
+    <h2 class="deck-lg text-balance">{t('stack.headline')}</h2>
+  </div>
 
+  <div data-enter style="--enter: 3">
+    <p class="standfirst">{t('stack.standfirst')}</p>
+
+    <div class="columns-news mt-5 space-y-4 text-sm sm:columns-2">
+      <p class="dropcap">{t('stack.body1')}</p>
+      <p>{t('stack.body2')}</p>
+    </div>
+  </div>
+</section>
+
+<section class="px-5 sm:px-8">
   <!--
     A printer's ornament: the full set of marks struck across the page.
     Decorative only — the listing underneath is the interface.
   -->
   <div
-    class="rule-thin mt-8 flex flex-wrap items-center justify-between gap-x-3 gap-y-4 py-6"
+    class="rule-thin flex flex-wrap items-center justify-between gap-x-3 gap-y-4 py-6"
     aria-hidden="true"
   >
     {TECH.map((tech) => <TechMark slug={tech.slug} class="h-6 w-auto max-w-full sm:h-7" />)}
