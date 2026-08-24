@@ -35,7 +35,13 @@ export const SOCIAL = [
   { href: 'https://x.com/', label: 'X' },
 ] as const;
 
-/** Formal degree. */
+/**
+ * Formal degree. `rankings` are the school's standing on the mainstream
+ * lists — domestic (ShanghaiRanking's Best Chinese Universities Ranking) and
+ * the four world rankings usually cited together. Cross-checked against each
+ * ranker's own site rather than a single aggregator; sources noted inline.
+ * Recheck before reuse — these move every year.
+ */
 export const EDUCATION = [
   {
     period: '2020 — 2024',
@@ -44,6 +50,43 @@ export const EDUCATION = [
     degree: 'B.Eng., Computer Science and Technology',
     detail:
       'Four years of systematic training in the fundamentals. Data structures, operating systems, networking, database systems and compilers — the courses that felt abstract at the time and turned out to explain almost every hard production incident since.',
+    rankings: [
+      {
+        // shanghairanking.com/institution/shenzhen-university, fetched directly
+        body: { en: 'ShanghaiRanking — Best Chinese Universities', zh: '软科中国大学排名' },
+        scope: { en: 'National', zh: '全国' },
+        rank: '#66',
+        year: '2026',
+      },
+      {
+        // mastersportal.com aggregation of topuniversities.com, cross-checked against a second search
+        body: { en: 'QS World University Rankings', zh: 'QS 世界大学排名' },
+        scope: { en: 'World', zh: '全球' },
+        rank: '#452',
+        year: '2026',
+      },
+      {
+        // timeshighereducation.com/world-university-rankings/shenzhen-university, fetched directly
+        body: { en: 'Times Higher Education World University Rankings', zh: '泰晤士高等教育世界大学排名' },
+        scope: { en: 'World', zh: '全球' },
+        rank: '351–400',
+        year: '2026',
+      },
+      {
+        // usnews.com Best Global Universities, cross-checked against a second search
+        body: { en: 'U.S. News Best Global Universities', zh: 'U.S. News 全球最佳大学排名' },
+        scope: { en: 'World', zh: '全球' },
+        rank: '#156',
+        year: '2026',
+      },
+      {
+        // ARWU — Shenzhen's first year in the global top 500; 2025 is the latest edition
+        body: { en: 'ARWU — Academic Ranking of World Universities', zh: '软科世界大学学术排名（ARWU）' },
+        scope: { en: 'World', zh: '全球' },
+        rank: '201–300',
+        year: '2025',
+      },
+    ],
     zh: {
       school: '深圳大学',
       degree: '工学学士 · 计算机科学与技术',

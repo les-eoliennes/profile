@@ -73,6 +73,7 @@ export const UI = {
       'A degree, then a habit of going back to the source material. The courses below are the ones that keep proving useful.',
     'edu.degree': 'The Degree',
     'edu.coursework': 'Coursework',
+    'edu.rankings': 'Standing',
     'edu.open': 'Open Courseware',
     'edu.openStandfirst':
       'Worked through outside of work, in evenings and weekends. Lecture videos on their own do not stick — every course here was done with its problem sets and labs.',
@@ -183,6 +184,7 @@ export const UI = {
       '先是一个学位，然后是一个不断回到源头材料的习惯。下面这些课程，是至今仍在反复发挥作用的那些。',
     'edu.degree': '学历',
     'edu.coursework': '主修课程',
+    'edu.rankings': '主流榜单',
     'edu.open': '公开课程',
     'edu.openStandfirst':
       '都是在工作之外、晚上和周末啃完的。只看课程视频是留不下东西的 —— 这里每一门都做了配套的习题和实验。',

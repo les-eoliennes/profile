@@ -48,6 +48,26 @@ const t = useTranslations(lang);
 
           <div>
             <p class="dropcap text-sm leading-relaxed text-pretty">{item.detail}</p>
+
+            {item.rankings && (
+              <div class="mt-8">
+                <p class="kicker">{t('edu.rankings')}</p>
+
+                <dl class="rule-thin mt-3">
+                  {item.rankings.map((r) => (
+                    <div class="flex items-baseline justify-between gap-4 border-b border-line py-2.5">
+                      <dt class="text-sm">{r.body[lang]}</dt>
+                      <dd class="shrink-0 text-right whitespace-nowrap">
+                        <span class="font-semibold">{r.rank}</span>
+                        <span class="byline ml-2">
+                          {r.scope[lang]} · {r.year}
+                        </span>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
           </div>
         </div>
       );
