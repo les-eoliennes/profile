@@ -36,31 +36,25 @@ const t = useTranslations(lang);
       const item = localize(raw, lang);
       return (
         <div class="mt-7" data-reveal>
-          <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12">
-            <div class="flex items-start gap-5">
-              <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
-
-              <div>
-                <p class="kicker">{item.period}</p>
-                <h3 class="deck-lg mt-2">{item.school}</h3>
-                <p class="standfirst mt-3">{item.degree}</p>
-              </div>
-            </div>
+          <div class="flex items-start gap-5">
+            <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
 
             <div>
-              <p class="dropcap text-sm leading-relaxed text-pretty">{item.detail}</p>
+              <p class="kicker">{item.period}</p>
+              <h3 class="deck-lg mt-2">{item.school}</h3>
+              <p class="standfirst mt-3">{item.degree}</p>
             </div>
           </div>
 
           {/*
-            Full width, not confined to the right-hand column above: at
-            deck-lg size (60px) a range like "351–400" does not fit a
-            quarter of that column and overflows into its neighbours. The
-            whole page width is what the front-page stat strip already uses
-            successfully at this size.
+            Full width: at deck-lg size (60px) a range like "351–400" does
+            not fit a quarter of a half-width column and overflows into its
+            neighbours. No rule above it (removed at request) — it now reads
+            as a continuation of the school block rather than a separate
+            section.
           */}
           {item.rankings && (
-            <dl class="rule-thin mt-8 grid grid-cols-2 sm:grid-cols-4">
+            <dl class="mt-8 grid grid-cols-2 sm:grid-cols-4">
               {item.rankings.map((r) => (
                 <div
                   class="border-b border-rule px-2 py-5 text-center sm:border-b-0"
@@ -72,6 +66,10 @@ const t = useTranslations(lang);
               ))}
             </dl>
           )}
+
+          <p class="dropcap mt-8 max-w-3xl text-sm leading-relaxed text-pretty">
+            {item.detail}
+          </p>
         </div>
       );
     })

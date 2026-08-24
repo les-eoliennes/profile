@@ -308,8 +308,8 @@ export const TIMELINE = [
 
 /** Figures for the front-page strip. Labels are translated; values are not. */
 export const STATS = [
-  { key: 'stats.years', value: '5' },
+  { key: 'stats.years', value: '3' },
   { key: 'stats.languages', value: '4' },
-  { key: 'stats.courses', value: '6' },
+  { key: 'stats.courses', value: '7' },
   { key: 'stats.incidents', value: '40+' },
 ] as const;
