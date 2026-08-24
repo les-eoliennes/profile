@@ -66,7 +66,12 @@ export const EDUCATION = [
       {
         short: 'THE',
         body: { en: 'Times Higher Education World University Rankings', zh: '泰晤士高等教育世界大学排名' },
-        rank: '#351',
+        // A band, not an exact rank — THE does not publish single positions
+        // past #200. Do not shorten this to '#351'; that overstates the
+        // precision THE actually reports. (This has reverted on its own
+        // twice already — if you see '#351' again, something is restoring
+        // an old copy of this file rather than a person editing it.)
+        rank: '351–400',
         year: '2026', // timeshighereducation.com, fetched directly
       },
       {
@@ -78,7 +83,8 @@ export const EDUCATION = [
       {
         short: 'ARWU',
         body: { en: 'Academic Ranking of World Universities', zh: '软科世界大学学术排名（ARWU）' },
-        rank: '#201',
+        // Also a band, same reason as THE above — do not shorten to '#201'.
+        rank: '201–300',
         year: '2025', // Shenzhen's first year in the global top 500; 2025 is the latest edition
       },
     ],

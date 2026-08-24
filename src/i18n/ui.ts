@@ -69,8 +69,13 @@ export const UI = {
     'edu.title': 'Education',
     'edu.description':
       'Shenzhen University, open courseware from MIT, Stanford and CMU, and the fundamentals behind the engineering.',
+    'edu.headline': 'Learning for life runs on curiosity, not on being handed a syllabus.',
     'edu.standfirst':
-      'A degree, then a habit of going back to the source material. The courses below are the ones that keep proving useful.',
+      'A degree is where it starts. What actually determines how far you get is whether you keep teaching yourself things after it ends.',
+    'edu.body1':
+      'A school hands you a framework, and a set of professors who make sure the homework gets done. What it cannot hand you is the willingness to open a course on a Saturday, ten years after graduating, and relearn something you already thought you knew.',
+    'edu.body2':
+      'That kind of curiosity is not something you are born with, and nobody can install it for you. It gets built one incident at a time — a course picked up after a production failure, a textbook worked through because a paper made no sense on its own. Everything below is what that adds up to.',
     'edu.degree': 'The Degree',
     'edu.coursework': 'Coursework',
     'edu.open': 'Open Courseware',
@@ -135,7 +140,7 @@ export const UI = {
     'nav.home': '头版',
     'nav.education': '教育',
     'nav.stack': '技术栈',
-    'nav.experience': '经历',
+    'nav.experience': '职涯',
 
     'a11y.skip': '跳到正文',
     'a11y.sections': '版面导航',
@@ -179,8 +184,12 @@ export const UI = {
     'edu.section': '第二版',
     'edu.title': '教育背景',
     'edu.description': '深圳大学的学位，MIT、斯坦福和 CMU 的公开课，还有撑起这些工程判断的理论基础。',
-    'edu.standfirst':
-      '先是拿到一个学位，后来又养成一个习惯：什么都想刨根问底，找源头材料重学一遍。下面这些课，到现在都还在起作用。',
+    'edu.headline': '终生学习驱动力来自于内部的好奇心与热情，而非被动的知识灌输。',
+    'edu.standfirst': '文凭只是个开始。真正决定你能走多远的，是毕业以后还愿不愿意自己找东西学。',
+    'edu.body1':
+      '学校能给你的，是一套完整的知识框架，和一群逼着你交作业的教授。学校给不了的，是毕业十年之后，你还愿不愿意在某个周末打开一门公开课，重新学一遍自己早就以为学过的东西。',
+    'edu.body2':
+      '这份好奇心不是天生自带的，也不是谁能塞给你的。它是每次线上故障之后自己去补一门课、每次读不懂一篇论文之后自己去啃一本教材，一点一点攒出来的。下面这些，就是这么攒出来的。',
     'edu.degree': '学历',
     'edu.coursework': '主修课程',
     'edu.open': '公开课程',
@@ -201,7 +210,7 @@ export const UI = {
     'stack.learned': '关键认识',
 
     'experience.section': '第四版',
-    'experience.title': '经历',
+    'experience.title': '职涯',
     'experience.headline': '工程能力这东西，说到底比的是你肯往下挖多深。',
     'experience.body1':
       '我是 Ace，软件工程师，平时主要写后端和基础设施相关的东西。干这行时间长了会发现，线上真正难缠的问题很少是代码逻辑写错，多半是自己对系统、网络或者存储引擎的脾气摸得不够透。',

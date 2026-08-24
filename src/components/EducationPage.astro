@@ -15,14 +15,22 @@ const t = useTranslations(lang);
   </h1>
 
   <div class="rule-double mt-6"></div>
+</section>
 
-  <p
-    class="standfirst mx-auto mt-6 max-w-2xl text-center text-pretty"
-    data-enter
-    style="--enter: 2"
-  >
-    {t('edu.standfirst')}
-  </p>
+<!-- Lead: statement on the left, subtitle and short essay on the right — same format as the front page's lead. -->
+<section class="grid gap-7 px-5 py-8 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+  <div data-enter style="--enter: 2">
+    <h2 class="deck-lg text-balance">{t('edu.headline')}</h2>
+  </div>
+
+  <div data-enter style="--enter: 3">
+    <p class="standfirst">{t('edu.standfirst')}</p>
+
+    <div class="columns-news mt-5 space-y-4 text-sm sm:columns-2">
+      <p class="dropcap">{t('edu.body1')}</p>
+      <p>{t('edu.body2')}</p>
+    </div>
+  </div>
 </section>
 
 <!-- The degree -->
