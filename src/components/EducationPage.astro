@@ -36,36 +36,44 @@ const t = useTranslations(lang);
       const item = localize(raw, lang);
       return (
         <div class="mt-7" data-reveal>
-          <div class="flex items-start gap-5">
-            <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
+          <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12">
+            <div class="flex items-start gap-5">
+              <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
 
-            <div>
-              <p class="kicker">{item.period}</p>
-              <h3 class="deck-lg mt-2">{item.school}</h3>
-              <p class="standfirst mt-3">{item.degree}</p>
+              <div>
+                <p class="kicker">{item.period}</p>
+                <h3 class="deck-lg mt-2">{item.school}</h3>
+                <p class="standfirst mt-3">{item.degree}</p>
+              </div>
             </div>
-          </div>
 
-          {/*
-            Full width: at deck-lg size (60px) a range like "351–400" does
-            not fit a quarter of a half-width column and overflows into its
-            neighbours. No rule above it (removed at request) — it now reads
-            as a continuation of the school block rather than a separate
-            section.
-          */}
-          {item.rankings && (
-            <dl class="mt-8 grid grid-cols-2 sm:grid-cols-4">
-              {item.rankings.map((r) => (
-                <div
-                  class="border-b border-rule px-2 py-5 text-center sm:border-b-0"
-                  title={`${r.body[lang]} · ${r.year}`}
-                >
-                  <dd class="deck-lg leading-none">{r.rank}</dd>
-                  <dt class="kicker mt-2">{r.short}</dt>
-                </div>
-              ))}
-            </dl>
-          )}
+            {/*
+              Always four in one row, never wrapping to a second row. This
+              column is squeezed to half the page width from the lg
+              breakpoint up, so the number size cannot stay at deck-lg (60px)
+              the way the front-page stat strip uses it — that overflowed a
+              quarter of this narrower column before. Sized down at each
+              breakpoint instead of dropping to fewer columns: small on a
+              stacked mobile column, largest in the mid-width range where the
+              block still has the full page to itself (below the lg split),
+              back down again once it is squeezed beside the school info.
+            */}
+            {item.rankings && (
+              <dl class="grid grid-cols-4">
+                {item.rankings.map((r) => (
+                  <div class="px-1 py-5 text-center sm:px-2" title={`${r.body[lang]} · ${r.year}`}>
+                    <dd
+                      class="text-xl leading-none font-black sm:text-4xl lg:text-3xl"
+                      style="font-family: var(--font-display); letter-spacing: -0.018em"
+                    >
+                      {r.rank}
+                    </dd>
+                    <dt class="kicker mt-2">{r.short}</dt>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </div>
 
           <p class="dropcap mt-8 max-w-3xl text-sm leading-relaxed text-pretty">
             {item.detail}
