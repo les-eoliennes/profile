@@ -90,13 +90,14 @@ export const UI = {
     'stack.title': 'The Stack',
     'stack.description':
       'The tools I use in production, and what I actually think about each one.',
-    'stack.headline': "Every tool has a cost. If you can't name it, you just haven't hit it yet.",
+    'stack.headline':
+      'No tool is neutral. What you reach for decides how you end up thinking about the problem.',
     'stack.standfirst':
-      "None of these are hearsay. Everything below runs in a system I actually maintain.",
+      "This isn't a list of recommendations. It's a record of trade-offs made while choosing, over several years.",
     'stack.body1':
-      'Open any mark and it expands into a short piece: what problem the tool solves, what it costs to use, and the one time it burned me worst at two in the morning.',
+      "Open any mark and it expands into a short piece — not about how good the tool is, but about why I chose it in the first place: what problem it solved, and what it asked me to give up.",
     'stack.body2':
-      'None of it is written to sell you on anything, and none of it is written to take a shot at anything either. It is only what comes from living with a tool long enough to know where it is comfortable and where it is quietly waiting to bite.',
+      "Choosing a tool was never about picking the 'best' one. It's about deciding what certainty is worth buying, and at what cost, for the problem in front of you right now. Everything on this list got here that way.",
     'stack.entries': 'entries',
     'stack.close': 'Close',
     'stack.learned': "What I've learned",
@@ -208,12 +209,12 @@ export const UI = {
     'stack.section': '第三版',
     'stack.title': '技术栈',
     'stack.description': '我在生产环境里真正用的工具，还有我对每一件的实话实说。',
-    'stack.headline': '每样工具都有代价，说不出代价的人，只是还没被坑过。',
-    'stack.standfirst': '这里没有一个是道听途说来的，全都跑在我真正维护的系统里。',
+    'stack.headline': '没有一件工具是中立的，用什么，决定了你怎么想问题。',
+    'stack.standfirst': '下面这些不是推荐榜单，是这些年做技术选型时，权衡取舍的记录。',
     'stack.body1':
-      '点开任意一个标记，会展开一篇短文：这工具解决什么问题、用它要付出什么代价，还有它在哪个深夜把我坑得最惨。',
+      '点开任意一个标记，会展开一篇短文，说的不是这工具有多好，而是我当初为什么选它：它解决了什么问题，又要求你放弃什么。',
     'stack.body2':
-      '写这些不是为了安利，也不是为了吐槽，是真正用透了才写得出来的东西，用久了才知道哪里顺手，哪里在等着挖坑给你跳。',
+      '技术选型从来不是选「最好的」，是选在现在这个问题上，用什么样的代价去换什么样的确定性。这份清单里的每一件，都是这么权衡出来的。',
     'stack.entries': '项',
     'stack.close': '关闭',
     'stack.learned': '关键认识',
