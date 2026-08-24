@@ -222,33 +222,48 @@ export const FOUNDATIONS = [
   },
 ] as const;
 
-/** Employment history. */
+/**
+ * Employment history, most recent first. `detail` is optional — the
+ * internship entry has none, since there is nothing on record beyond the
+ * fact of it, and a filler sentence would be worse than leaving it out.
+ */
 export const TIMELINE = [
   {
-    period: '2023 — Present',
-    title: 'Senior Backend Engineer',
-    org: 'Trading Platform',
-    detail:
-      'Own the availability and performance of the order pipeline. Led the migration from a single-database monolith to a sharded architecture with no downtime.',
+    period: 'Aug 2026 — Present',
+    title: 'R&D Engineer',
+    org: 'Hydrogen Valley Power Co., Ltd.',
+    detail: 'Research and development of hydrogen-powered vehicles.',
     zh: {
-      period: '2023 — 至今',
-      title: '高级后端工程师',
-      org: '交易平台',
-      detail:
-        '负责订单链路的可用性与性能。主导了从单库单体架构到分片架构的迁移，全程不停机。',
+      period: '2026年8月 — 至今',
+      title: '研发工程师',
+      org: '氢谷动能股份有限公司',
+      detail: '研发氢能载具。',
     },
   },
   {
-    period: '2021 — 2023',
-    title: 'Backend Engineer',
-    org: 'Data Platform',
-    detail:
-      'Maintained the real-time warehouse pipeline handling billions of events per day.',
+    period: 'Jul 2024 — May 2025',
+    title: 'Game Developer',
+    org: 'Knowhow Technology Ltd.',
+    detail: 'Developed online games.',
     zh: {
-      period: '2021 — 2023',
-      title: '后端工程师',
-      org: '数据平台',
-      detail: '维护每天处理数十亿条事件的实时数仓链路。',
+      period: '2024年7月 — 2025年5月',
+      title: '游戏开发工程师',
+      org: '代码科技有限公司',
+      detail: '开发线上游戏。',
+    },
+  },
+  {
+    period: 'Feb 2024 — Jun 2024',
+    title: 'Intern',
+    org: 'Shekou International School',
+    // Explicit undefined, not an omitted key: without it TypeScript infers
+    // this entry's type without a `detail` property at all, and the union
+    // across all three entries then rejects `item.detail` everywhere.
+    detail: undefined,
+    zh: {
+      period: '2024年2月 — 2024年6月',
+      title: '实习生',
+      org: '深圳蛇口国际学校',
     },
   },
 ] as const;
