@@ -57,7 +57,7 @@ export const EDUCATION = [
 export const COURSEWORK = [
   { en: 'Data Structures & Algorithms', zh: '数据结构与算法' },
   { en: 'Operating Systems', zh: '操作系统' },
-  { en: 'Computer Networks', zh: '计算机网络' },
+  { en: 'Computer Networking', zh: '计算机网络' },
   { en: 'Database Systems', zh: '数据库系统' },
   { en: 'Compilers', zh: '编译原理' },
   { en: 'Computer Organization', zh: '计算机组成原理' },
@@ -145,6 +145,18 @@ export const OPEN_COURSES = [
       note: '认真重走了一遍，而不是靠面试题的套路匹配。摊还分析是在这里才真正想通的。',
     },
   },
+  {
+    school: 'MIT',
+    crest: 'mit',
+    code: '6.064J',
+    title: 'Design and Analysis of Algorithms',
+    year: '2021',
+    note: 'Went back through it properly rather than relying on interview-prep pattern matching. Amortised analysis finally clicked here.',
+    zh: {
+      title: '算法设计与分析',
+      note: '认真重走了一遍，而不是靠面试题的套路匹配。摊还分析是在这里才真正想通的。',
+    },
+  },
 ] as const;
 
 /**
@@ -171,7 +183,7 @@ export const FOUNDATIONS = [
     ],
   },
   {
-    area: { en: 'Computer Networks', zh: '计算机网络' },
+    area: { en: 'Computer Networking', zh: '计算机网络' },
     items: [
       { en: 'TCP congestion control, head-of-line blocking, RTT effects', zh: 'TCP 拥塞控制、队头阻塞、RTT 的影响' },
       { en: 'HTTP/1.1, HTTP/2, HTTP/3 and QUIC', zh: 'HTTP/1.1、HTTP/2、HTTP/3 与 QUIC' },

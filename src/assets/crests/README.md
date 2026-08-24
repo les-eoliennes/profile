@@ -5,35 +5,47 @@
 from `src/data/schools.ts`. If a file is missing, the component falls back to a
 monogram badge in the school's colour.
 
+All four crests here are SVG.
+
 ## What is here, and where it came from
 
-| File | Source | Licence as stated by the host | Processing |
+| File | Source | Licence as stated by the host | Vector origin |
 | --- | --- | --- | --- |
-| `mit.svg` | Wikimedia Commons — *MIT Logo and Wordmark.svg* | Public domain | none |
-| `szu.svg` | zh.wikipedia — *Shenzhen University Logo.svg* | **Fair use** | none |
-| `cmu.png` | Wikimedia Commons — *CMU logo stack cmyk red.jpg* | Public domain | white ground keyed to transparency |
-| `stanford.png` | Wikimedia Commons — *Stanford Cardinal logo.svg* + *Stanford logo.png* | Public domain | **composed lockup**, tree recoloured |
+| `mit.svg` | Wikimedia Commons — *MIT Logo and Wordmark.svg* | Public domain | native vector |
+| `szu.svg` | zh.wikipedia — *Shenzhen University Logo.svg* | **Fair use** | native vector |
+| `cmu.svg` | Wikimedia Commons — *CMU logo stack cmyk red.jpg* | Public domain | traced from official raster |
+| `stanford.svg` | Wikimedia Commons — *Stanford Cardinal logo.svg* + *Stanford logo.png* | Public domain | composite: one native vector part, one traced part |
 
-Everything is transparent; corner alpha is 0 on both rasters.
+Everything is transparent.
 
-### Two of these were not simply downloaded
+### Two of these are not simply downloaded
 
-**`cmu.png`** started as the official three-line stack, which is published as red
-type on a *white* ground rather than white on red. Alpha was derived from each
-pixel's distance from white — the green channel carries almost the whole swing —
-so the antialiased edges survive instead of being hard-keyed. The type is the
-brand red as published; nothing was recoloured.
+**Carnegie Mellon's three-line stack has no vector source anywhere.** The only
+version Wikimedia (or Carnegie Mellon's own usage) publishes is a JPEG, red type
+on a white ground. `cmu.svg` was produced by keying that white ground to
+transparency, then tracing the resulting clean bitmap with potrace to recover
+real vector paths, then filling those paths with the brand red. It is genuine
+scalable vector — the outlines came from tracing, not from hand-drawing — and
+holds up sharp at any size, unlike the source JPEG would.
 
-**`stanford.png` is a composite, not an official single file.** Wikimedia holds
-the block-S-and-tree and the two-line "Stanford University" wordmark as separate
-assets and no combined lockup, so the two were set side by side to match the
-standard arrangement. The available block is Stanford's *monochrome cardinal*
-version, whose tree is white; it was recoloured to Stanford green. The tree and
-the thin keyline are a single path, so the keyline greened with it — invisible at
-the sizes this renders at, but it is a departure from the published mark.
+**Stanford publishes no combined lockup file.** Wikimedia holds the
+block-S-and-tree and the two-line "Stanford University" wordmark as separate
+assets. `stanford.svg` is a composite of both, set side by side to match the
+standard arrangement:
 
-If exact fidelity matters, replace this file with an official lockup from
-Stanford's own brand portal.
+- The block-S-and-tree is the official vector file (Stanford's monochrome
+  cardinal version), embedded directly. Its tree is published white; it was
+  recoloured to Stanford green. The tree and its thin keyline are a single
+  path, so the keyline greened with it — invisible at the sizes this renders
+  at, but a departure from the published mark.
+- The wordmark has no vector source, so it went through the same trace as the
+  Carnegie Mellon mark: the official PNG (already alpha-isolated, no JPEG
+  noise to clean up) traced with potrace, then filled with Stanford's cardinal
+  red (`#8C1515`, confirmed by sampling the source PNG rather than guessed).
+
+If exact fidelity matters more than this gets you, replace either file with an
+official asset from the school's own brand portal — the component will pick it
+up with no code change.
 
 ## Licensing
 
@@ -56,6 +68,5 @@ stops being readable, so `scale` in `schools.ts` roughly equalises area instead.
 
 Pass **only** a height to `<Image>`. Supplying a width as well makes the image
 pipeline resize raster sources to exactly those dimensions and crop the
-overflow, which silently sliced the Carnegie Mellon and Stanford marks down to a
-single word each. SVGs pass through untouched, so the bug hid until the first
-PNG crest arrived.
+overflow, which silently sliced the Carnegie Mellon and Stanford marks down to
+a single word each when they were still raster. SVGs pass through untouched.
