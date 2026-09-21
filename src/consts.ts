@@ -276,12 +276,14 @@ export const TIMELINE = [
     period: 'Aug 2026 — Present',
     title: 'R&D Engineer',
     org: 'Hydrogen Valley Power Co., Ltd.',
-    detail: 'Research and development of hydrogen-powered vehicles.',
+    detail:
+      'Embedded development on STM32 for hydrogen-powered vehicles, and the backend those vehicles report to: a monitoring service for live vehicle state, and a fault-traceback system that reconstructs the run-up to a failure from what was recorded.',
     zh: {
       period: '2026年8月 — 至今',
       title: '研发工程师',
       org: '氢谷动能股份有限公司',
-      detail: '研发氢能载具。',
+      detail:
+        '用 STM32 做氢能载具的嵌入式开发，以及车辆上报的后端：实时监控整车状态，并由故障回溯系统还原故障发生前的那一段记录。',
     },
   },
   {
