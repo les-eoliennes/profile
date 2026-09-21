@@ -37,7 +37,10 @@ English at the root, Chinese under `/zh/`. **Every page exists in both.**
 - Each page's markup is one component both routes render; `src/pages/` and
   `src/pages/zh/` hold thin wrappers only. Never fork a page's markup.
 - Internal links must go through `localizePath()` or the reader falls out of
-  their edition.
+  their edition. It also applies the deployment `base`; a path that is not a
+  page (favicon, sitemap, OG image) goes through `withBase()` instead. The
+  site is published to GitHub Pages under `/profile/`, so a hardcoded `/foo`
+  href 404s.
 
 ## Crests
 

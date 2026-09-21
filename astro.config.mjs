@@ -6,8 +6,15 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Replace with the real domain: sitemap, canonical URLs and OG images all depend on it.
-  site: 'https://example.com',
+  /*
+    Published to GitHub Pages as a project site, so the pages live under
+    /<repo>/ rather than at a root. `site` feeds the sitemap, canonical URLs
+    and OG images; `base` is prefixed onto every emitted asset URL, and onto
+    every internal link via `withBase()` in src/i18n/utils.ts. Point both at
+    the real domain (and drop `base`) if this ever moves to one.
+  */
+  site: 'https://quasong.github.io',
+  base: '/profile',
 
   integrations: [mdx(), sitemap()],
 

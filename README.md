@@ -142,11 +142,26 @@ monogram badge in the school's colour.
 
 ## Deploying
 
-The output is static files. On Cloudflare Pages:
+The output is static files, published to GitHub Pages by
+`.github/workflows/deploy.yml` on every push to `master`.
 
-- Build command: `npm run build`
-- Output directory: `dist`
-- Environment: `NODE_VERSION = 22.14.0`
+One manual step, once: **Settings -> Pages -> Build and deployment -> Source =
+GitHub Actions**. Without it the workflow builds and then fails at the deploy
+step.
+
+Because this is a project repository rather than `<user>.github.io`, the site
+is served from a sub-path. `astro.config.mjs` carries both halves of that:
+
+- `site: 'https://quasong.github.io'` — canonical URLs, sitemap, OG image.
+- `base: '/profile'` — prefixed onto every asset URL by Astro, and onto every
+  internal link by `withBase()` in `src/i18n/utils.ts`.
+
+Moving to a custom domain later means setting `site` to it, deleting `base`,
+and adding `public/CNAME`. Nothing else has to change — every path already
+goes through `localizePath()` or `withBase()`.
+
+Any other static host works the same way: build command `npm run build`,
+output directory `dist`, Node 22.14.0.
 
 ## Notes on the build
 

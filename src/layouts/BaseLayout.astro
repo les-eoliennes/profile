@@ -5,7 +5,7 @@ import Masthead from '../components/Masthead.astro';
 import Colophon from '../components/Colophon.astro';
 import Behaviors from '../components/Behaviors.astro';
 import { SITE } from '../consts';
-import { getLangFromUrl, useTranslations, alternatePath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, alternatePath, withBase } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -29,7 +29,7 @@ const {
 const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogUrl = new URL(ogImage, Astro.site);
+const ogUrl = new URL(withBase(ogImage), Astro.site);
 ---
 
 <!doctype html>
@@ -40,8 +40,8 @@ const ogUrl = new URL(ogImage, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
 
     {/* Tell search engines the two editions are the same page. */}
     <link

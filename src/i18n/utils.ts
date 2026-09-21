@@ -1,8 +1,29 @@
 import { DEFAULT_LANG, UI, type Lang, type UIKey } from './ui';
 
+/*
+  GitHub Pages serves a project site from /<repo>/, so every path a reader
+  follows carries that prefix while the routing below reasons about paths
+  without it. The prefix is normalised once here (BASE_URL is '/' when the
+  site sits at a root, and may or may not carry a trailing slash) so no call
+  site has to think about it.
+*/
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+/** Prefix a root-relative path with the deployment base. */
+export function withBase(path: string): string {
+  return BASE ? `${BASE}${path}` : path;
+}
+
+/** Take the deployment base back off a pathname read from `Astro.url`. */
+function stripBase(pathname: string): string {
+  if (!BASE || !pathname.startsWith(BASE)) return pathname;
+  const rest = pathname.slice(BASE.length);
+  return rest.startsWith('/') ? rest : `/${rest}`;
+}
+
 /** Read the edition out of a URL: /zh/... is Chinese, everything else English. */
 export function getLangFromUrl(url: URL): Lang {
-  const [, first] = url.pathname.split('/');
+  const [, first] = stripBase(url.pathname).split('/');
   return first === 'zh' ? 'zh' : DEFAULT_LANG;
 }
 
@@ -23,15 +44,18 @@ export function useTranslations(lang: Lang) {
   };
 }
 
-/** Prefix a root-relative path with the edition, e.g. '/' -> '/zh/'. */
+/**
+ * Turn a root-relative path into an href: edition prefix, then deployment
+ * base. Everything a reader can click goes through here.
+ */
 export function localizePath(path: string, lang: Lang): string {
-  if (lang === DEFAULT_LANG) return path;
-  return path === '/' ? '/zh/' : `/zh${path}`;
+  if (lang === DEFAULT_LANG) return withBase(path);
+  return withBase(path === '/' ? '/zh/' : `/zh${path}`);
 }
 
-/** Strip the edition prefix back off a path. */
+/** Strip the deployment base and the edition prefix back off a path. */
 export function stripLang(pathname: string): string {
-  const withoutPrefix = pathname.replace(/^\/zh(?=\/|$)/, '');
+  const withoutPrefix = stripBase(pathname).replace(/^\/zh(?=\/|$)/, '');
   return withoutPrefix === '' ? '/' : withoutPrefix;
 }
 
@@ -53,6 +77,6 @@ export function localize<T extends { zh?: Record<string, unknown> }>(
 
 /** The same page in the other edition. */
 export function alternatePath(pathname: string, lang: Lang): string {
-  const base = stripLang(pathname);
-  return lang === 'zh' ? base : localizePath(base, 'zh');
+  const path = stripLang(pathname);
+  return lang === 'zh' ? withBase(path) : localizePath(path, 'zh');
 }
