@@ -104,15 +104,15 @@ export const UI = {
 
     'experience.section': 'Section IV',
     'experience.title': 'Experience',
-    'experience.headline': 'The ceiling on your engineering is how deep you can read.',
+    'experience.headline': "The measure of an engineer isn't what they know. It's what they refuse to fudge.",
     'experience.body1':
-      'I am Ace, a software engineer working mainly on backend systems and infrastructure. The hard production problems I have dealt with were rarely a matter of business logic being wrong; they came from a wrong assumption about the operating system, the network or the storage engine.',
+      'I am Ace, a software engineer. The domain has turned over more than once, and so have the languages and the platforms. What carries across all of them is knowing where to start reading when the system in front of me is one I have never seen.',
     'experience.body2':
-      'That is why I keep going back to the fundamentals, and why after an incident I want the actual root cause rather than a retry that makes the symptom disappear.',
+      'So when something breaks I want the actual root cause, not a retry layered on top until the symptom goes quiet. A symptom disappearing and a problem being solved are different events, and the one that got papered over always comes back with interest.',
     'experience.body3':
-      'I read Computer Science at Shenzhen University and have kept working through open courseware since — the distributed systems and database internals courses in particular changed how I work.',
+      "When I don't know, I say so, and then I go and measure. A guess and a measurement read identically on the page; only one of them is safe to decide on. That is the standard I have never let slip.",
     'experience.body4':
-      'Currently open to conversations about backend and infrastructure roles, and always happy to talk about database internals with anyone who will sit still for it.',
+      "There is more worth talking about than job titles — why a system was shaped the way it was, whether a trade-off ever paid for itself, the bug you spent a week inside. I'll sit through all of it for as long as you will.",
     'experience.record': 'Record of Service',
     'experience.contact': 'Write to the desk',
     'experience.email': 'Email',
@@ -221,15 +221,15 @@ export const UI = {
 
     'experience.section': '第四版',
     'experience.title': '职涯',
-    'experience.headline': '工程能力这东西，说到底比的是你肯往下挖多深。',
+    'experience.headline': '工程师的水准，不在他会什么，而在他不肯糊弄什么。',
     'experience.body1':
-      '我是 Ace，软件工程师，平时主要写后端和基础设施相关的东西。干这行时间长了会发现，线上真正难缠的问题很少是代码逻辑写错，多半是自己对系统、网络或者存储引擎的脾气摸得不够透。',
+      '我是 Ace，软件工程师。做过的领域换过好几轮，语言和平台也换过，真正一路带着走的只有一件事：面对一个从没见过的系统，我知道该从哪儿开始往里看。',
     'experience.body2':
-      '所以我才总是回去啃基础，也才会在出故障之后非要挖到真正的根因，而不是加个重试把症状糊弄过去。',
+      '所以出了故障，我一定要挖到真正的根因，而不是加一层重试把症状盖过去。症状消失和问题解决是两回事，糊过去的那一次，迟早连本带利再来一遍。',
     'experience.body3':
-      '计算机科学是在深圳大学读的，毕业之后也一直在啃各种公开课，里面分布式系统和数据库内核那几门，是真的改变了我做事的方式。',
+      '不懂就说不懂，然后去量。猜出来的结论和量出来的结论写在纸上长得一样，但只有后者敢拿去下判断——这大概是这些年我唯一没松过口的标准。',
     'experience.body4':
-      '目前对后端和基础设施方向的机会都愿意聊聊。数据库内核这个话题，只要你坐得住，我随时奉陪。',
+      '愿意聊的东西比职位多得多：这个系统当初为什么设计成这样、那个取舍到底值不值、你陷进去一整周的那个坑是怎么回事。只要你坐得住，我随时奉陪。',
     'experience.record': '履历',
     'experience.contact': '联系本报',
     'experience.email': '邮件',
