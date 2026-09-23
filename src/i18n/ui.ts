@@ -91,13 +91,13 @@ export const UI = {
     'stack.description':
       'The tools I use in production, and what I actually think about each one.',
     'stack.headline':
-      'No tool is neutral. What you reach for decides how you end up thinking about the problem.',
+      'Every tool is a finite thing. The boundless was built entirely out of finite things.',
     'stack.standfirst':
-      "This isn't a list of recommendations. It's a record of trade-offs made while choosing, over several years.",
+      'An instrument has a shape; what you are reaching for does not. What you can hold is never quite the thing you were after.',
     'stack.body1':
-      "Open any mark and it expands into a short piece — not about how good the tool is, but about why I chose it in the first place: what problem it solved, and what it asked me to give up.",
+      'A tool is a worldly object, and a bounded one: you can hold it, it wears out, it gets replaced, and not one of them does everything. What is strange is that nothing large has ever been built out of anything else. Databases, compilers, schedulers — each was stacked up by someone out of whatever limited instruments were on the bench at the time.',
     'stack.body2':
-      "Choosing a tool was never about picking the 'best' one. It's about deciding what certainty is worth buying, and at what cost, for the problem in front of you right now. Everything on this list got here that way.",
+      'So choosing was never a matter of finding the best one. It is a matter of deciding which set of limits you are willing to live inside. Every instrument has already made part of the judgement on your behalf: whatever it renders easy, it also renders easy to stop questioning. What matters is not landing on the one that fits the hand, but keeping track of what you signed away — at what price, and for which kind of certainty.',
     'stack.entries': 'entries',
     'stack.close': 'Close',
     'stack.learned': "What I've learned",
@@ -209,12 +209,12 @@ export const UI = {
     'stack.section': '第三版',
     'stack.title': '技术栈',
     'stack.description': '我在生产环境里真正用的工具，还有我对每一件的实话实说。',
-    'stack.headline': '没有一件工具是中立的，用什么，决定了你怎么想问题。',
-    'stack.standfirst': '下面这些不是推荐榜单，是这些年做技术选型时，权衡取舍的记录。',
+    'stack.headline': '器以载道：以有限之工具，构无涯之世界。',
+    'stack.standfirst': '器有形，道无形。人手里能握住的永远是前者，想抵达的却始终是后者。',
     'stack.body1':
-      '点开任意一个标记，会展开一篇短文，说的不是这工具有多好，而是我当初为什么选它：它解决了什么问题，又要求你放弃什么。',
+      '形而下者谓之器。工具都是器：摸得着、有边界、会老、会被替掉，没有哪一件是万能的。可人能造出多大的东西，偏偏就是靠这些有限的器一层层垒起来的——数据库、编译器、调度器，哪一样不是前人拿当时手上那点工具凑出来的。',
     'stack.body2':
-      '技术选型从来不是选「最好的」，是选在现在这个问题上，用什么样的代价去换什么样的确定性。这份清单里的每一件，都是这么权衡出来的。',
+      '所以选器从来不是挑最好的那件，而是选自己愿意活在哪一重限制里。每一件工具都替你预先做掉了一部分判断：它让某些事变得顺手，也就让另一些事变得几乎想不起来。要紧的不是找到那件称手的家伙，而是始终知道自己让渡了什么——用多大的代价，换来了哪一种确定。',
     'stack.entries': '项',
     'stack.close': '关闭',
     'stack.learned': '关键认识',
