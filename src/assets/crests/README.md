@@ -5,7 +5,7 @@
 from `src/data/schools.ts`. If a file is missing, the component falls back to a
 monogram badge in the school's colour.
 
-All five crests here are SVG.
+All seven crests here are SVG.
 
 ## What is here, and where it came from
 
@@ -16,8 +16,11 @@ All five crests here are SVG.
 | `cmu.svg` | Wikimedia Commons — *CMU logo stack cmyk red.jpg* | Public domain | traced from official raster |
 | `stanford.svg` | Stanford's own identity site + Wikimedia Commons | Stanford Trademark Licensing | composite: one native vector part, one traced part |
 | `yale.svg` | yale.edu — the site header's sprite, `sites/all/themes/yale_blue/images/icons.svg` | Yale trademark, not licensed | native vector |
+| `harvard.svg` | harvard.edu — the header logo, a data URI in the theme's `master.min.css` | Harvard trademark, not licensed | native vector |
+| `oxford.svg` | ox.ac.uk — the header logo, `themes/custom/numiko/dist/oxford-logo-DzIWfeXH.svg` | Oxford trademark, not licensed | native vector |
 
-Everything is transparent.
+Everything is transparent except `oxford.svg`, whose mark *is* a filled
+Oxford Blue square.
 
 ### Two of these are not simply downloaded
 
@@ -59,6 +62,22 @@ this file is the large Yale Blue (`#00356B`) path, which the header shows at
 its bounds already run exactly 0,0 to 168.889×76, so the viewBox is those
 bounds and nothing was cropped or rescaled.
 
+**`harvard.svg` is harvard.edu's header logo**, byte for byte. The site
+inlines it as a data URI in its theme stylesheet, in two variants that differ
+only in which class is white: one for the header over a photo (white
+wordmark) and the default `.logo__wrap` one, with the wordmark in `#1e1e1e`
+beside the Crimson (`#a51c30`) VE RI TAS shield. This is the default, dark
+wordmark variant, URL-decoded and otherwise untouched; its content fills
+the 280.3×70.4 viewBox.
+
+**`oxford.svg` is ox.ac.uk's header logo**, byte for byte (25,007 bytes,
+SHA-256 `51da7e95ed0a4dd7120d8494f9370a9fc6e1f321bdad4db859ed302f2d02f74a`).
+ox.ac.uk answers non-browser clients with a bot challenge, so it was not
+fetched with curl: the file was read from the page as the browser had loaded
+it, and the saved copy checked against that hash. The mark is the belted
+arms and UNIVERSITY OF OXFORD in white on an Oxford Blue (`#002147`) square;
+its viewBox is 81×80 with the square inset half a unit either side.
+
 ## Licensing
 
 **`szu.svg` is fair-use, not freely licensed** — normal for a Chinese
@@ -73,8 +92,9 @@ and wordmark here are unmodified in intent (same colours, same relative
 arrangement) but assembled into a file Stanford did not publish as such — check
 their trademark policy before this goes anywhere public, same as SZU.
 
-**`yale.svg` is Yale's trademark**, taken from yale.edu, which publishes no
-licence for it. Yale's identity guidelines govern its use; check them before
+**`yale.svg`, `harvard.svg` and `oxford.svg` are trademarks**, each taken
+from the university's own home page, none of which publishes a licence for
+the mark. Each school's identity guidelines govern its use; check them before
 this goes anywhere public, same as SZU and Stanford.
 
 Public domain as a *file* is not the same as free of trademark: these marks
@@ -84,10 +104,11 @@ endorsement or affiliation.
 
 ## Shapes
 
-Ratios run 1.0:1 (Shenzhen) to 3.5:1 (MIT). Crests are normalised by **height**,
-never fitted into a square. A shared height alone is not enough either: Carnegie
-Mellon's three-line stack at MIT's height gives each line a third the size and
-stops being readable, so `scale` in `schools.ts` roughly equalises area instead.
+Ratios run 1.0:1 (Shenzhen, Oxford) to 3.98:1 (Harvard). Crests are
+normalised by **height**, never fitted into a square. A shared height alone is
+not enough either: Carnegie Mellon's three-line stack at MIT's height gives each
+line a third the size and stops being readable, so `scale` in `schools.ts`
+roughly equalises area instead.
 
 Pass **only** a height to `<Image>`. Supplying a width as well makes the image
 pipeline resize raster sources to exactly those dimensions and crop the

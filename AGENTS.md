@@ -54,10 +54,11 @@ Size crests by HEIGHT (`height` prop), never `size-*`. Pass only a height to
 silently sliced two crests down to one word each (SVGs pass through, so it hid
 until the first PNG). `scale` in schools.ts equalises visual area, since a
 three-line stack and a wide wordmark cannot share a height and both stay
-readable. The marks are dark reds (Yale's is its blue) on transparency, which
-sit directly on the paper now that there is no night edition.
+readable. Most marks are dark reds or blues on transparency, which sit
+directly on the paper now that there is no night edition; Oxford's is a solid
+blue square by design.
 
-All five crests are SVG. Two of them (`cmu.svg`, the wordmark half of
+All seven crests are SVG. Two of them (`cmu.svg`, the wordmark half of
 `stanford.svg`) have no official vector source and were produced by tracing the
 official raster art with potrace, not by redrawing — see the sourcing table in
 `src/assets/crests/README.md` before touching either file.

@@ -76,4 +76,26 @@ export const SCHOOLS: Record<string, School> = {
     // Wordmark at 2.22:1.
     scale: 1.25,
   },
+  harvard: {
+    slug: 'harvard',
+    name: 'Harvard University',
+    nameZh: '哈佛大学',
+    monogram: 'H',
+    // Harvard Crimson, the shield's fill on harvard.edu.
+    color: '#A51C30',
+    // Shield-and-wordmark lockup at 3.98:1, wider than MIT's, so it drops
+    // below 1 — which also keeps it inside the 7rem crest column.
+    scale: 0.9,
+  },
+  oxford: {
+    slug: 'oxford',
+    name: 'University of Oxford',
+    nameZh: '牛津大学',
+    monogram: 'Ox',
+    // Oxford Blue, the ground of the square on ox.ac.uk.
+    color: '#002147',
+    // A solid square, 1:1. The area rule alone would give ~1.85, but a filled
+    // block reads far heavier than open letterforms, so it is held back.
+    scale: 1.4,
+  },
 };

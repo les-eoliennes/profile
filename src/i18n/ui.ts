@@ -68,7 +68,7 @@ export const UI = {
     'edu.section': 'Section II',
     'edu.title': 'Education',
     'edu.description':
-      'Shenzhen University and open courseware from MIT, Stanford, CMU and Yale.',
+      'Shenzhen University and open courseware from MIT, Stanford, Harvard, Yale, Oxford and CMU.',
     'edu.headline': 'Learning for life runs on curiosity, not on being handed a syllabus.',
     'edu.standfirst':
       'A degree is where it starts. What actually determines how far you get is whether you keep teaching yourself things after it ends.',
@@ -85,6 +85,7 @@ export const UI = {
     'edu.category.physics': 'Physics',
     'edu.category.econ': 'Economics',
     'edu.category.psych': 'Psychology',
+    'edu.category.philo': 'Philosophy',
     'edu.openStandfirst':
       'Worked through outside of work, in evenings and weekends. Lecture videos on their own do not stick — every course here was done with its problem sets and labs.',
     'edu.cta': 'See where the theory lands',
@@ -192,7 +193,7 @@ export const UI = {
 
     'edu.section': '第二版',
     'edu.title': '教育背景',
-    'edu.description': '深圳大学的学位，以及 MIT、斯坦福、CMU 和耶鲁的公开课。',
+    'edu.description': '深圳大学的学位，以及 MIT、斯坦福、哈佛、耶鲁、牛津和 CMU 的公开课。',
     'edu.headline': '终生学习驱动力来自于内部的好奇心与热情，而非被动的知识灌输。',
     'edu.standfirst': '文凭只是个开始。真正决定你能走多远的，是毕业以后还愿不愿意自己找东西学。',
     'edu.body1':
@@ -208,6 +209,7 @@ export const UI = {
     'edu.category.physics': '物理学',
     'edu.category.econ': '经济学',
     'edu.category.psych': '心理学',
+    'edu.category.philo': '哲学',
     'edu.openStandfirst':
       '都是工作之外、晚上周末啃下来的。光看视频是记不住东西的，所以每一门都跟着做了配套的习题和实验。',
     'edu.cta': '看这些理论落在哪儿',

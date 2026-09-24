@@ -5,7 +5,7 @@ import { getLangFromUrl, useTranslations, localizePath, localize } from '../i18n
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych'] as const;
+const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych', 'philo'] as const;
 ---
 
 <section class="px-5 pt-9 sm:px-8">
@@ -146,7 +146,7 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych'] as con
 
                   <div class="min-w-0">
                     <p class="course-meta kicker">
-                      {course.school} · {course.code}
+                      {course.code ? `${course.school} · ${course.code}` : course.school}
                     </p>
 
                     <h4 class="deck-sm mt-1.5">{course.title}</h4>

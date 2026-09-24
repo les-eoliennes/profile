@@ -477,6 +477,43 @@ export const OPEN_COURSES = [
       note: '知觉、学习、记忆、情绪、发展、人格与社会行为，结合其生物学基础和支撑每个结论的实验来理解。',
     },
   },
+  {
+    category: 'philo',
+    school: 'Harvard',
+    crest: 'harvard',
+    code: 'ER 22',
+    title: 'Justice',
+    note: 'What is the right thing to do? Utilitarianism, libertarianism, Kant, Rawls and Aristotle, each tested against hard cases from markets, war, affirmative action and the law.',
+    zh: {
+      title: '公正',
+      note: '什么才是正确的做法？功利主义、自由至上主义、康德、罗尔斯与亚里士多德，逐一放到市场、战争、平权法案与法律中的疑难案例里检验。',
+    },
+  },
+  {
+    category: 'philo',
+    school: 'Yale',
+    crest: 'yale',
+    code: 'PHIL 176',
+    title: 'Death',
+    note: 'What death is and whether it is bad: soul against physicalism, personal identity, whether immortality would be desirable, the fear of death, and the ethics of suicide.',
+    zh: {
+      title: '死亡',
+      note: '死亡是什么、它是否是坏事：灵魂与物理主义之争、人格同一性、永生是否值得向往、对死亡的恐惧，以及自杀的伦理。',
+    },
+  },
+  {
+    category: 'philo',
+    school: 'Oxford',
+    crest: 'oxford',
+    // Oxford's first-year course runs under its title alone, with no number.
+    code: null,
+    title: 'General Philosophy',
+    note: "Oxford's first-year introduction: knowledge and scepticism, induction, free will, personal identity, mind and body, and the existence of God, read through Descartes, Locke, Berkeley and Hume.",
+    zh: {
+      title: '哲学概论',
+      note: '牛津一年级的哲学入门：知识与怀疑论、归纳问题、自由意志、人格同一性、心身问题与上帝存在，围绕笛卡尔、洛克、贝克莱和休谟展开。',
+    },
+  },
 ] as const;
 
 /**

@@ -384,10 +384,10 @@
   .school-rankings .kicker { font-size: 0.5625rem; letter-spacing: 0.04em; }
 
   /*
-    Three to a row, growing to fill it, so neither edition strands one tab
+    Four to a row, growing to fill it, so neither edition strands one tab
     across a row of its own. Long labels wrap inside their tab.
   */
-  .course-tab { flex: 1 1 30%; min-height: 44px; padding: 0.65rem 0.75rem; font-size: 0.75rem; line-height: 1.3; }
+  .course-tab { flex: 1 1 22%; min-height: 44px; padding: 0.65rem 0.4rem; font-size: 0.75rem; line-height: 1.3; }
   .course-card { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; }
   .course-crest { grid-column: 2; grid-row: 1; padding-top: 0.15rem; }
   .course-card > div { grid-column: 1; grid-row: 1; }
