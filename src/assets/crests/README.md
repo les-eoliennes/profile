@@ -5,7 +5,7 @@
 from `src/data/schools.ts`. If a file is missing, the component falls back to a
 monogram badge in the school's colour.
 
-All four crests here are SVG.
+All five crests here are SVG.
 
 ## What is here, and where it came from
 
@@ -15,6 +15,7 @@ All four crests here are SVG.
 | `szu.svg` | zh.wikipedia — *Shenzhen University Logo.svg* | **Fair use** | native vector |
 | `cmu.svg` | Wikimedia Commons — *CMU logo stack cmyk red.jpg* | Public domain | traced from official raster |
 | `stanford.svg` | Stanford's own identity site + Wikimedia Commons | Stanford Trademark Licensing | composite: one native vector part, one traced part |
+| `yale.svg` | yale.edu — the site header's sprite, `sites/all/themes/yale_blue/images/icons.svg` | Yale trademark, not licensed | native vector |
 
 Everything is transparent.
 
@@ -50,6 +51,14 @@ If exact fidelity matters more than this gets you, replace either file with an
 official asset from the school's own brand portal — the component will pick it
 up with no code change.
 
+**`yale.svg` is the wordmark from Yale's own home page**, not a
+redrawing. yale.edu draws its header logo from a single SVG sprite
+(`icons.svg`, 317×192) holding the wordmark at two sizes and in two colours;
+this file is the large Yale Blue (`#00356B`) path, which the header shows at
+`background-position: 0 0` in a 169×76 box. The path is copied unchanged and
+its bounds already run exactly 0,0 to 168.889×76, so the viewBox is those
+bounds and nothing was cropped or rescaled.
+
 ## Licensing
 
 **`szu.svg` is fair-use, not freely licensed** — normal for a Chinese
@@ -63,6 +72,10 @@ outside those be routed through `trademark_licensing@stanford.edu`. The block
 and wordmark here are unmodified in intent (same colours, same relative
 arrangement) but assembled into a file Stanford did not publish as such — check
 their trademark policy before this goes anywhere public, same as SZU.
+
+**`yale.svg` is Yale's trademark**, taken from yale.edu, which publishes no
+licence for it. Yale's identity guidelines govern its use; check them before
+this goes anywhere public, same as SZU and Stanford.
 
 Public domain as a *file* is not the same as free of trademark: these marks
 still identify their institutions. Show only the crests of schools you actually

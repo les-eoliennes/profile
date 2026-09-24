@@ -66,4 +66,14 @@ export const SCHOOLS: Record<string, School> = {
     // Three-line stack, 1.54:1 — the tightest mark here, so the largest boost.
     scale: 1.5,
   },
+  yale: {
+    slug: 'yale',
+    name: 'Yale University',
+    nameZh: '耶鲁大学',
+    monogram: 'Yale',
+    // Yale Blue, the fill of the wordmark on yale.edu.
+    color: '#00356B',
+    // Wordmark at 2.22:1.
+    scale: 1.25,
+  },
 };
