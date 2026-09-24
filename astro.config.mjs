@@ -13,7 +13,7 @@ export default defineConfig({
     every internal link via `withBase()` in src/i18n/utils.ts. Point both at
     the real domain (and drop `base`) if this ever moves to one.
   */
-  site: 'https://quasong.github.io',
+  site: 'https://les-eoliennes.github.io',
   base: '/profile',
 
   integrations: [mdx(), sitemap()],

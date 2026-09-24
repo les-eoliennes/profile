@@ -152,7 +152,7 @@ step.
 Because this is a project repository rather than `<user>.github.io`, the site
 is served from a sub-path. `astro.config.mjs` carries both halves of that:
 
-- `site: 'https://quasong.github.io'` — canonical URLs, sitemap, OG image.
+- `site: 'https://les-eoliennes.github.io'` — canonical URLs, sitemap, OG image.
 - `base: '/profile'` — prefixed onto every asset URL by Astro, and onto every
   internal link by `withBase()` in `src/i18n/utils.ts`.
 
