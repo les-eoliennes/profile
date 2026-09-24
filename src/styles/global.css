@@ -101,28 +101,32 @@
 }
 
 @layer components {
+  /*
+    The strip wraps rather than scrolls, so no category is ever out of sight.
+    The left rule sits on the strip and each tab draws only its top and right,
+    so a tab that wraps to the start of a second row still has a left edge.
+  */
   .course-tabs {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    border-left: 1px solid var(--rule);
     border-bottom: 2px solid var(--rule);
   }
 
   .course-tab {
     display: inline-flex;
-    flex-shrink: 0;
-    min-width: 0;
+    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
     padding: 0.75rem 1rem;
-    border: 1px solid var(--rule);
-    border-bottom: 0;
+    border-top: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
     font-size: 0.875rem;
     font-weight: 700;
     text-align: center;
   }
 
-  .course-tab + .course-tab { border-left: 0; }
   .course-tab:hover { background: var(--paper-2); }
   .course-tab[aria-selected='true'] {
     background: var(--ink);
@@ -381,15 +385,14 @@
   }
   .school-rankings .kicker { font-size: 0.5625rem; letter-spacing: 0.04em; }
 
-  .course-tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); overflow: visible; }
-  .course-tab { flex-direction: column; gap: 0.2rem; padding: 0.65rem 0.25rem; font-size: 0.75rem; line-height: 1.3; }
+  /* Tabs grow to fill each row, so a wrapped row never ends in a gap. */
+  .course-tab { flex: 1 1 auto; flex-direction: column; gap: 0.2rem; padding: 0.65rem 0.75rem; font-size: 0.75rem; line-height: 1.3; }
   .course-tab-count { font-size: 0.625rem; }
   .course-card { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; }
   .course-crest { grid-column: 2; grid-row: 1; padding-top: 0.15rem; }
   .course-card > div { grid-column: 1; grid-row: 1; }
   .course-note { grid-column: 1 / -1; }
-  .course-meta { justify-content: flex-start; }
-  .course-meta .kicker { letter-spacing: 0.06em; }
+  .course-meta { letter-spacing: 0.06em; }
 
   .prose-news { min-width: 0; overflow-wrap: anywhere; }
   footer .deck-sm { font-size: 1.125rem; line-height: 1.6; }

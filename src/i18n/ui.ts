@@ -82,6 +82,7 @@ export const UI = {
     'edu.category.cs': 'Computer Science',
     'edu.category.ai': 'Artificial Intelligence',
     'edu.category.math': 'Mathematics',
+    'edu.category.physics': 'Physics',
     'edu.category.psych': 'Psychology',
     'edu.openStandfirst':
       'Worked through outside of work, in evenings and weekends. Lecture videos on their own do not stick — every course here was done with its problem sets and labs.',
@@ -206,6 +207,7 @@ export const UI = {
     'edu.category.cs': '计算机科学',
     'edu.category.ai': '人工智能',
     'edu.category.math': '数学',
+    'edu.category.physics': '物理学',
     'edu.category.psych': '心理学',
     'edu.openStandfirst':
       '都是工作之外、晚上周末啃下来的。光看视频是记不住东西的，所以每一门都跟着做了配套的习题和实验。',

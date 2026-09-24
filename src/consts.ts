@@ -123,7 +123,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.824',
     title: 'Distributed Systems',
-    year: '2023',
     note: 'The lab series is the real content: build a MapReduce, then Raft, then a sharded fault-tolerant key-value store on top of it. Nothing else I have done taught me as much about what "consensus" actually costs.',
     zh: {
       title: '分布式系统',
@@ -136,7 +135,6 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-445',
     title: 'Database Systems',
-    year: '2023',
     note: 'Writing a buffer pool manager, a B+ tree index and a query executor by hand is what turned EXPLAIN output from a wall of jargon into something I can read.',
     zh: {
       title: '数据库系统',
@@ -149,7 +147,6 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-213',
     title: 'Introduction to Computer Systems',
-    year: '2022',
     note: 'The CSAPP labs. Bomb lab and malloc lab in particular changed how I read a stack trace and how I think about memory layout.',
     zh: {
       title: '计算机系统导论',
@@ -162,7 +159,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.828',
     title: 'Operating System Engineering',
-    year: '2022',
     note: 'Implementing xv6 pieces made system calls, page tables and context switches concrete rather than diagrams in a slide deck.',
     zh: {
       title: '操作系统工程',
@@ -175,7 +171,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS144',
     title: 'Computer Networking',
-    year: '2022',
     note: 'Building a working TCP implementation from the socket layer down. Retransmission and flow control stop being trivia once you have had to make them correct.',
     zh: {
       title: '计算机网络',
@@ -188,7 +183,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.006',
     title: 'Introduction to Algorithms',
-    year: '2021',
     note: 'Went back through it properly rather than relying on interview-prep pattern matching. Amortised analysis finally clicked here.',
     zh: {
       title: '算法导论',
@@ -201,7 +195,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.064J',
     title: 'Design and Analysis of Algorithms',
-    year: '2021',
     note: 'Went back through it properly rather than relying on interview-prep pattern matching. Amortised analysis finally clicked here.',
     zh: {
       title: '算法设计与分析',
@@ -214,7 +207,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS221',
     title: "Artificial Intelligence: Principles and Techniques",
-    year: null,
     note: "Search, constraint satisfaction, Markov decision processes and probabilistic models: the foundations of reasoning and decision-making in AI.",
     zh: {
       title: "人工智能：原理与技术",
@@ -227,7 +219,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS229',
     title: "Machine Learning",
-    year: null,
     note: "Supervised and unsupervised learning, statistical learning theory and optimisation, with an emphasis on the mathematics behind the algorithms.",
     zh: {
       title: "机器学习",
@@ -240,7 +231,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS230',
     title: "Deep Learning",
-    year: null,
     note: "Neural network foundations, optimisation and practical strategies for building and evaluating deep learning systems.",
     zh: {
       title: "深度学习",
@@ -253,7 +243,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS231N',
     title: "Deep Learning for Computer Vision",
-    year: null,
     note: "Visual recognition through convolutional networks, attention and modern vision architectures, connecting model design with training and evaluation.",
     zh: {
       title: "计算机视觉中的深度学习",
@@ -266,7 +255,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS224N',
     title: "Natural Language Processing with Deep Learning",
-    year: null,
     note: "Word representations, sequence models and transformers, leading into language model pretraining and applications in natural language processing.",
     zh: {
       title: "自然语言处理与深度学习",
@@ -279,7 +267,6 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS336',
     title: "Language Modeling from Scratch",
-    year: null,
     note: "The full language model pipeline: tokenisation, transformer implementation, training efficiency, data curation and evaluation.",
     zh: {
       title: "从零构建语言模型",
@@ -292,7 +279,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.100B',
     title: 'Real Analysis',
-    year: null,
     note: 'Real numbers, sequences, continuity, differentiation and integration, developed through rigorous proofs and the language of metric spaces.',
     zh: {
       title: '实分析',
@@ -305,7 +291,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.102',
     title: 'Introduction to Functional Analysis',
-    year: null,
     note: 'Normed spaces, Banach and Hilbert spaces, and linear operators: extending the ideas of linear algebra and analysis to infinite dimensions.',
     zh: {
       title: '泛函分析导论',
@@ -318,7 +303,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: 'RES.6-012',
     title: 'Introduction to Probability',
-    year: null,
     note: 'Probability models, conditioning, random variables, limit theorems and inference, building a mathematical framework for reasoning under uncertainty.',
     zh: {
       title: '概率论导论',
@@ -331,7 +315,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.404J',
     title: 'Theory of Computation',
-    year: null,
     note: 'Automata, formal languages, computability and computational complexity: understanding what can be computed and the resources computation requires.',
     zh: {
       title: '计算理论',
@@ -344,11 +327,70 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.200',
     title: 'Principles of Discrete Applied Mathematics',
-    year: null,
     note: 'Counting, generating functions, probability, linear optimisation, number theory and coding theory, connecting discrete structures with practical problems.',
     zh: {
       title: '离散应用数学原理',
       note: '从计数、生成函数、概率和线性优化，到数论与编码理论，将离散结构与实际问题联系起来。',
+    },
+  },
+  {
+    category: 'physics',
+    school: 'MIT',
+    crest: 'mit',
+    code: '8.04',
+    title: 'Quantum Physics I',
+    note: 'The experiments that broke classical physics, then wavefunctions, the Schrödinger equation, one-dimensional potentials, the harmonic oscillator and the hydrogen atom.',
+    zh: {
+      title: '量子物理 I',
+      note: '从动摇经典物理的实验出发，到波函数、薛定谔方程、一维势、谐振子与氢原子。',
+    },
+  },
+  {
+    category: 'physics',
+    school: 'MIT',
+    crest: 'mit',
+    code: '8.05',
+    title: 'Quantum Physics II',
+    note: 'Quantum mechanics rebuilt on linear algebra: Dirac notation, spin, operator methods, time evolution, and the addition of angular momentum.',
+    zh: {
+      title: '量子物理 II',
+      note: '以线性代数重建量子力学：狄拉克符号、自旋、算符方法、时间演化与角动量耦合。',
+    },
+  },
+  {
+    category: 'physics',
+    school: 'MIT',
+    crest: 'mit',
+    code: '8.06',
+    title: 'Quantum Physics III',
+    note: 'Approximation methods for problems with no exact solution — perturbation theory, WKB, the variational and adiabatic methods — and scattering.',
+    zh: {
+      title: '量子物理 III',
+      note: '处理没有精确解的问题的近似方法：微扰论、WKB、变分法与绝热近似，以及散射理论。',
+    },
+  },
+  {
+    category: 'physics',
+    school: 'MIT',
+    crest: 'mit',
+    code: '8.323',
+    title: 'Relativistic Quantum Field Theory I',
+    note: 'Where quantum mechanics meets special relativity: classical fields and symmetries, quantising free scalar, Dirac and gauge fields, then interactions, Feynman diagrams and tree-level QED.',
+    zh: {
+      title: '相对论性量子场论 I',
+      note: '量子力学与狭义相对论的结合：经典场与对称性，标量场、狄拉克场与规范场的量子化，再到相互作用、费曼图与树图阶的量子电动力学。',
+    },
+  },
+  {
+    category: 'physics',
+    school: 'MIT',
+    crest: 'mit',
+    code: '8.962',
+    title: 'General Relativity',
+    note: 'Gravity as the curvature of spacetime: tensors and differential geometry, the Einstein field equations, black holes, gravitational waves and cosmology.',
+    zh: {
+      title: '广义相对论',
+      note: '把引力理解为时空的弯曲：张量与微分几何、爱因斯坦场方程、黑洞、引力波与宇宙学。',
     },
   },
   {
@@ -357,7 +399,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.13',
     title: 'The Human Brain',
-    year: null,
     note: 'How the brain divides its work into specialised regions for faces, places, language, music and other minds, and the methods — fMRI, lesions, recording — used to find them.',
     zh: {
       title: '人类大脑',
@@ -370,7 +411,6 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.00SC',
     title: 'Introduction to Psychology',
-    year: null,
     note: 'Perception, learning, memory, emotion, development, personality and social behaviour, read against their biological basis and the experiments behind each claim.',
     zh: {
       title: '心理学导论',
