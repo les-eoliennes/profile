@@ -13,7 +13,7 @@ const href = alternatePath(Astro.url.pathname, lang);
   href={href}
   hreflang={lang === 'zh' ? 'en' : 'zh-Hans'}
   aria-label={t('a11y.lang')}
-  class="kicker border border-rule px-2.5 py-1 transition-colors hover:bg-ink hover:text-paper"
+  class="language-toggle kicker border border-rule px-2.5 py-1 transition-colors hover:bg-ink hover:text-paper"
 >
   {t('lang.other')}
 </a>

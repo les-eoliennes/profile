@@ -46,13 +46,13 @@ const courseCategories = ['cs', 'ai', 'math'] as const;
       return (
         <div class="mt-7" data-reveal>
           <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-12">
-            <div class="flex items-start gap-5">
-              <Crest slug={item.crest} height={78} class="mt-1 shrink-0" />
+            <div class="degree-heading flex items-start gap-5">
+              <Crest slug={item.crest} height={78} class="degree-crest mt-1 shrink-0" />
 
               <div>
                 <p class="kicker">{item.period}</p>
                 <h3 class="deck-lg mt-2">{item.school}</h3>
-                <p class="standfirst mt-3">{item.degree}</p>
+                <p class="standfirst mt-3 text-pretty">{item.degree}</p>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ const courseCategories = ['cs', 'ai', 'math'] as const;
               back down again once it is squeezed beside the school info.
             */}
             {item.rankings && (
-              <dl class="grid grid-cols-4">
+              <dl class="school-rankings grid grid-cols-4">
                 {item.rankings.map((r) => (
                   <div class="px-1 py-5 text-center sm:px-2" title={`${r.body[lang]} · ${r.year}`}>
                     <dd
@@ -128,13 +128,13 @@ const courseCategories = ['cs', 'ai', 'math'] as const;
     {courseCategories.map((category) => (
       <section id={`courses-${category}`} class="mt-6" data-course-panel={category}>
         <h3 class="deck-sm mb-5" data-course-heading>{t(`edu.category.${category}`)}</h3>
-        <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+        <div class="grid gap-x-10 gap-y-8 lg:grid-cols-2">
           {
             OPEN_COURSES.filter((course) => course.category === category).map((raw) => {
               const course = localize(raw, lang);
               return (
                 <article
-                  class="rule-thin grid gap-x-5 gap-y-3 pt-5 sm:grid-cols-[7rem_1fr]"
+                  class="course-card rule-thin grid gap-x-5 gap-y-3 pt-5 sm:grid-cols-[7rem_1fr]"
                   data-reveal
                 >
                   {/*
@@ -143,10 +143,10 @@ const courseCategories = ['cs', 'ai', 'math'] as const;
                     every card's type at a different x and the grid would read as
                     misaligned. 7rem clears the widest of them.
                   */}
-                  <Crest slug={course.crest} height={30} class="self-start" />
+                  <Crest slug={course.crest} height={30} class="course-crest self-start" />
 
                   <div class="min-w-0">
-                    <div class="flex items-baseline justify-between gap-4">
+                    <div class="course-meta flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                       <p class="kicker">
                         {course.school} · {course.code}
                       </p>
@@ -154,9 +154,8 @@ const courseCategories = ['cs', 'ai', 'math'] as const;
                     </div>
 
                     <h4 class="deck-sm mt-1.5">{course.title}</h4>
-
-                    <p class="mt-3 text-sm leading-relaxed text-pretty">{course.note}</p>
                   </div>
+                  <p class="course-note text-sm leading-relaxed text-pretty sm:col-start-2">{course.note}</p>
                 </article>
               );
             })

@@ -134,8 +134,8 @@
         const span = document.createElement('span');
         span.textContent = ch;
         span.setAttribute('aria-hidden', 'true');
-        // A lone space between inline elements is collapsible; pre keeps it.
-        if (ch === ' ') span.style.whiteSpace = 'pre';
+        // Preserve spaces while allowing the heading to wrap on small screens.
+        if (ch === ' ') span.style.whiteSpace = 'break-spaces';
         fragment.appendChild(span);
         letters.push(span);
       }
