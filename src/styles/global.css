@@ -103,11 +103,13 @@
 @layer components {
   .course-tabs {
     display: flex;
+    overflow-x: auto;
     border-bottom: 2px solid var(--rule);
   }
 
   .course-tab {
     display: inline-flex;
+    flex-shrink: 0;
     min-width: 0;
     align-items: center;
     justify-content: center;

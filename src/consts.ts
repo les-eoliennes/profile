@@ -286,6 +286,71 @@ export const OPEN_COURSES = [
       note: "从分词、Transformer 实现到训练效率、数据整理与评估，完整走过语言模型的构建流程。",
     },
   },
+  {
+    category: 'math',
+    school: 'MIT',
+    crest: 'mit',
+    code: '18.100B',
+    title: 'Real Analysis',
+    year: null,
+    note: 'Real numbers, sequences, continuity, differentiation and integration, developed through rigorous proofs and the language of metric spaces.',
+    zh: {
+      title: '实分析',
+      note: '从实数、数列到连续性、微分与积分，通过严格证明和度量空间的语言建立分析学基础。',
+    },
+  },
+  {
+    category: 'math',
+    school: 'MIT',
+    crest: 'mit',
+    code: '18.102',
+    title: 'Introduction to Functional Analysis',
+    year: null,
+    note: 'Normed spaces, Banach and Hilbert spaces, and linear operators: extending the ideas of linear algebra and analysis to infinite dimensions.',
+    zh: {
+      title: '泛函分析导论',
+      note: '从赋范空间、巴拿赫空间和希尔伯特空间到线性算子，将线性代数与分析学的思想推广到无穷维。',
+    },
+  },
+  {
+    category: 'math',
+    school: 'MIT',
+    crest: 'mit',
+    code: 'RES.6-012',
+    title: 'Introduction to Probability',
+    year: null,
+    note: 'Probability models, conditioning, random variables, limit theorems and inference, building a mathematical framework for reasoning under uncertainty.',
+    zh: {
+      title: '概率论导论',
+      note: '概率模型、条件概率、随机变量、极限定理与统计推断，为不确定性下的推理建立数学框架。',
+    },
+  },
+  {
+    category: 'math',
+    school: 'MIT',
+    crest: 'mit',
+    code: '18.404J',
+    title: 'Theory of Computation',
+    year: null,
+    note: 'Automata, formal languages, computability and computational complexity: understanding what can be computed and the resources computation requires.',
+    zh: {
+      title: '计算理论',
+      note: '自动机、形式语言、可计算性与计算复杂性，理解哪些问题可以计算，以及计算所需的资源。',
+    },
+  },
+  {
+    category: 'math',
+    school: 'MIT',
+    crest: 'mit',
+    code: '18.200',
+    title: 'Principles of Discrete Applied Mathematics',
+    year: null,
+    note: 'Counting, generating functions, probability, linear optimisation, number theory and coding theory, connecting discrete structures with practical problems.',
+    zh: {
+      title: '离散应用数学原理',
+      note: '从计数、生成函数、概率和线性优化，到数论与编码理论，将离散结构与实际问题联系起来。',
+    },
+  },
 ] as const;
 
 /**
