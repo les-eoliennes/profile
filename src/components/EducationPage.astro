@@ -5,6 +5,7 @@ import { getLangFromUrl, useTranslations, localizePath, localize } from '../i18n
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const courseCategories = ['cs', 'ai'] as const;
 ---
 
 <section class="px-5 pt-9 sm:px-8">
@@ -109,39 +110,60 @@ const t = useTranslations(lang);
     {t('edu.openStandfirst')}
   </p>
 
-  <div class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-    {
-      OPEN_COURSES.map((raw) => {
-        const course = localize(raw, lang);
-        return (
-          <article
-            class="rule-thin grid gap-x-5 gap-y-3 pt-5 sm:grid-cols-[7rem_1fr]"
-            data-reveal
-          >
-            {/*
-              Fixed 7rem column rather than an inline flex row: the marks run
-              from 69px to 106px wide, so a shrink-to-fit column would start
-              every card's type at a different x and the grid would read as
-              misaligned. 7rem clears the widest of them.
-            */}
-            <Crest slug={course.crest} height={30} class="self-start" />
+  <div class="mt-7" data-course-tabs>
+    <div class="course-tabs" data-course-tablist aria-label={t('edu.open')}>
+      {courseCategories.map((category) => (
+        <a
+          id={`course-tab-${category}`}
+          href={`#courses-${category}`}
+          class="course-tab"
+          data-course-tab={category}
+          data-astro-reload
+        >
+          {t(`edu.category.${category}`)}
+          <span class="course-tab-count">{OPEN_COURSES.filter((course) => course.category === category).length}</span>
+        </a>
+      ))}
+    </div>
+    {courseCategories.map((category) => (
+      <section id={`courses-${category}`} class="mt-6" data-course-panel={category}>
+        <h3 class="deck-sm mb-5" data-course-heading>{t(`edu.category.${category}`)}</h3>
+        <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+          {
+            OPEN_COURSES.filter((course) => course.category === category).map((raw) => {
+              const course = localize(raw, lang);
+              return (
+                <article
+                  class="rule-thin grid gap-x-5 gap-y-3 pt-5 sm:grid-cols-[7rem_1fr]"
+                  data-reveal
+                >
+                  {/*
+                    Fixed 7rem column rather than an inline flex row: the marks run
+                    from 69px to 106px wide, so a shrink-to-fit column would start
+                    every card's type at a different x and the grid would read as
+                    misaligned. 7rem clears the widest of them.
+                  */}
+                  <Crest slug={course.crest} height={30} class="self-start" />
 
-            <div class="min-w-0">
-              <div class="flex items-baseline justify-between gap-4">
-                <p class="kicker">
-                  {course.school} · {course.code}
-                </p>
-                <p class="byline">{course.year}</p>
-              </div>
+                  <div class="min-w-0">
+                    <div class="flex items-baseline justify-between gap-4">
+                      <p class="kicker">
+                        {course.school} · {course.code}
+                      </p>
+                      {course.year && <p class="byline">{course.year}</p>}
+                    </div>
 
-              <h3 class="deck-sm mt-1.5">{course.title}</h3>
+                    <h4 class="deck-sm mt-1.5">{course.title}</h4>
 
-              <p class="mt-3 text-sm leading-relaxed text-pretty">{course.note}</p>
-            </div>
-          </article>
-        );
-      })
-    }
+                    <p class="mt-3 text-sm leading-relaxed text-pretty">{course.note}</p>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+      </section>
+    ))}
   </div>
 </section>
 

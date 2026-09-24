@@ -101,6 +101,36 @@
 }
 
 @layer components {
+  .course-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .course-tab {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--rule);
+    border-bottom: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .course-tab + .course-tab { border-left: 0; }
+  .course-tab:hover { background: var(--paper-2); }
+  .course-tab[aria-selected='true'] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .course-tab-count { font-size: 0.75rem; font-variant-numeric: tabular-nums; }
+  [data-tabs-ready] [data-course-heading] { @apply sr-only; }
+  [data-course-panel][hidden] { display: none; }
+
   /* The sheet of paper itself, centred on the dark desk. */
   .sheet {
     background-color: var(--paper);

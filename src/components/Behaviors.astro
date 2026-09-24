@@ -1,6 +1,6 @@
 ---
 // The only client-side script on the site: the front-page typewriter and the
-// zoom-in/zoom-out of the tech articles. Clicks are event-delegated, so nothing
+// zoom-in/zoom-out of the tech articles, plus the course tabs. Clicks are event-delegated, so nothing
 // needs rebinding after a ClientRouter navigation.
 ---
 
@@ -181,11 +181,74 @@
       typewrite(heading);
     }
 
-    document.addEventListener('astro:page-load', initTypewriter);
+    // Enhance the course sections only once the controls are working. Without
+    // JavaScript, the links jump to headings and both categories stay readable.
+    function selectCourseTab(tab: HTMLElement) {
+      const group = tab.closest<HTMLElement>('[data-course-tabs]');
+      if (!group) return;
+      group.querySelectorAll<HTMLElement>('[data-course-tab]').forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+      });
+      group.querySelectorAll<HTMLElement>('[data-course-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.coursePanel !== tab.dataset.courseTab;
+      });
+    }
+
+    function initCourseTabs() {
+      document.querySelectorAll<HTMLElement>('[data-course-tabs]').forEach((group) => {
+        const tabs = Array.from(group.querySelectorAll<HTMLElement>('[data-course-tab]'));
+        group.querySelector('[data-course-tablist]')?.setAttribute('role', 'tablist');
+        tabs.forEach((tab) => {
+          tab.setAttribute('role', 'tab');
+          tab.setAttribute('aria-controls', `courses-${tab.dataset.courseTab}`);
+        });
+        group.querySelectorAll<HTMLElement>('[data-course-panel]').forEach((panel) => {
+          panel.setAttribute('role', 'tabpanel');
+          panel.setAttribute('aria-labelledby', `course-tab-${panel.dataset.coursePanel}`);
+          panel.tabIndex = 0;
+        });
+        const active = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true')
+          ?? tabs.find((tab) => tab.getAttribute('href') === window.location.hash)
+          ?? tabs[0];
+        if (active) selectCourseTab(active);
+        group.dataset.tabsReady = '';
+      });
+    }
+
+    document.addEventListener('astro:page-load', () => {
+      initTypewriter();
+      initCourseTabs();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      const tab = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-course-tab]');
+      if (!tab) return;
+      const tabs = Array.from(tab.closest('[data-course-tabs]')!.querySelectorAll<HTMLElement>('[data-course-tab]'));
+      const index = tabs.indexOf(tab);
+      let next: HTMLElement | undefined;
+      if (event.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
+      else if (event.key === 'ArrowLeft') next = tabs[(index - 1 + tabs.length) % tabs.length];
+      else if (event.key === 'Home') next = tabs[0];
+      else if (event.key === 'End') next = tabs[tabs.length - 1];
+      else if (event.key === ' ') next = tab;
+      if (!next) return;
+      event.preventDefault();
+      selectCourseTab(next);
+      next.focus();
+    });
 
     document.addEventListener('click', (event) => {
       const target = event.target as HTMLElement | null;
       if (!target) return;
+
+      const tab = target.closest<HTMLElement>('[data-course-tab]');
+      if (tab) {
+        event.preventDefault();
+        selectCourseTab(tab);
+        return;
+      }
 
       // ---------- Open a tech article ----------
       const opener = target.closest<HTMLElement>('[data-tech-open]');

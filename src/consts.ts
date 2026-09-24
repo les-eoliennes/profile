@@ -118,6 +118,7 @@ export const COURSEWORK = [
  */
 export const OPEN_COURSES = [
   {
+    category: 'cs',
     school: 'MIT',
     crest: 'mit',
     code: '6.824',
@@ -130,6 +131,7 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'cs',
     school: 'CMU',
     crest: 'cmu',
     code: '15-445',
@@ -142,6 +144,7 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'cs',
     school: 'CMU',
     crest: 'cmu',
     code: '15-213',
@@ -154,6 +157,7 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'cs',
     school: 'MIT',
     crest: 'mit',
     code: '6.828',
@@ -166,6 +170,7 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'cs',
     school: 'Stanford',
     crest: 'stanford',
     code: 'CS144',
@@ -178,6 +183,7 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'cs',
     school: 'MIT',
     crest: 'mit',
     code: '6.006',
@@ -190,6 +196,7 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'cs',
     school: 'MIT',
     crest: 'mit',
     code: '6.064J',
@@ -199,6 +206,84 @@ export const OPEN_COURSES = [
     zh: {
       title: '算法设计与分析',
       note: '认真重走了一遍，而不是靠面试题的套路匹配。摊还分析是在这里才真正想通的。',
+    },
+  },
+  {
+    category: 'ai',
+    school: 'Stanford',
+    crest: 'stanford',
+    code: 'CS221',
+    title: "Artificial Intelligence: Principles and Techniques",
+    year: null,
+    note: "Search, constraint satisfaction, Markov decision processes and probabilistic models: the foundations of reasoning and decision-making in AI.",
+    zh: {
+      title: "人工智能：原理与技术",
+      note: "搜索、约束满足、马尔可夫决策过程与概率模型，串起人工智能中推理与决策的基础。",
+    },
+  },
+  {
+    category: 'ai',
+    school: 'Stanford',
+    crest: 'stanford',
+    code: 'CS229',
+    title: "Machine Learning",
+    year: null,
+    note: "Supervised and unsupervised learning, statistical learning theory and optimisation, with an emphasis on the mathematics behind the algorithms.",
+    zh: {
+      title: "机器学习",
+      note: "从监督学习与无监督学习，到统计学习理论和优化，理解算法背后的数学原理。",
+    },
+  },
+  {
+    category: 'ai',
+    school: 'Stanford',
+    crest: 'stanford',
+    code: 'CS230',
+    title: "Deep Learning",
+    year: null,
+    note: "Neural network foundations, optimisation and practical strategies for building and evaluating deep learning systems.",
+    zh: {
+      title: "深度学习",
+      note: "神经网络基础、优化方法，以及构建和评估深度学习系统的实践策略。",
+    },
+  },
+  {
+    category: 'ai',
+    school: 'Stanford',
+    crest: 'stanford',
+    code: 'CS231N',
+    title: "Deep Learning for Computer Vision",
+    year: null,
+    note: "Visual recognition through convolutional networks, attention and modern vision architectures, connecting model design with training and evaluation.",
+    zh: {
+      title: "计算机视觉中的深度学习",
+      note: "从卷积网络、注意力机制到现代视觉架构，将模型设计、训练与评估串联起来，理解视觉识别。",
+    },
+  },
+  {
+    category: 'ai',
+    school: 'Stanford',
+    crest: 'stanford',
+    code: 'CS224N',
+    title: "Natural Language Processing with Deep Learning",
+    year: null,
+    note: "Word representations, sequence models and transformers, leading into language model pretraining and applications in natural language processing.",
+    zh: {
+      title: "自然语言处理与深度学习",
+      note: "从词表示、序列模型到 Transformer，进一步理解语言模型预训练及其在自然语言处理中的应用。",
+    },
+  },
+  {
+    category: 'ai',
+    school: 'Stanford',
+    crest: 'stanford',
+    code: 'CS336',
+    title: "Language Modeling from Scratch",
+    year: null,
+    note: "The full language model pipeline: tokenisation, transformer implementation, training efficiency, data curation and evaluation.",
+    zh: {
+      title: "从零构建语言模型",
+      note: "从分词、Transformer 实现到训练效率、数据整理与评估，完整走过语言模型的构建流程。",
     },
   },
 ] as const;
@@ -318,6 +403,6 @@ export const TIMELINE = [
 export const STATS = [
   { key: 'stats.years', value: '3' },
   { key: 'stats.languages', value: '4' },
-  { key: 'stats.courses', value: '7' },
+  { key: 'stats.courses', value: String(OPEN_COURSES.length) },
   { key: 'stats.incidents', value: '40+' },
 ] as const;

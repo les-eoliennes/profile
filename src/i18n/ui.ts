@@ -79,6 +79,8 @@ export const UI = {
     'edu.degree': 'The Degree',
     'edu.coursework': 'Coursework',
     'edu.open': 'Open Courseware',
+    'edu.category.cs': 'Computer Science',
+    'edu.category.ai': 'Artificial Intelligence',
     'edu.openStandfirst':
       'Worked through outside of work, in evenings and weekends. Lecture videos on their own do not stick — every course here was done with its problem sets and labs.',
     'edu.fundamentals': 'Fundamentals',
@@ -199,6 +201,8 @@ export const UI = {
     'edu.degree': '学历',
     'edu.coursework': '主修课程',
     'edu.open': '公开课程',
+    'edu.category.cs': '计算机科学',
+    'edu.category.ai': '人工智能',
     'edu.openStandfirst':
       '都是工作之外、晚上周末啃下来的。光看视频是记不住东西的，所以每一门都跟着做了配套的习题和实验。',
     'edu.fundamentals': '理论基础',
