@@ -86,8 +86,7 @@ export const UI = {
     'edu.category.econ': 'Economics',
     'edu.category.psych': 'Psychology',
     'edu.category.philo': 'Philosophy',
-    'edu.openStandfirst':
-      'Worked through outside of work, in evenings and weekends. Lecture videos on their own do not stick — every course here was done with its problem sets and labs.',
+    'edu.openStandfirst': 'Best universities but free, what can I say?',
     'edu.cta': 'See where the theory lands',
 
     'stack.section': 'Section III',
@@ -210,8 +209,7 @@ export const UI = {
     'edu.category.econ': '经济学',
     'edu.category.psych': '心理学',
     'edu.category.philo': '哲学',
-    'edu.openStandfirst':
-      '都是工作之外、晚上周末啃下来的。光看视频是记不住东西的，所以每一门都跟着做了配套的习题和实验。',
+    'edu.openStandfirst': '好的大学没有围墙',
     'edu.cta': '看这些理论落在哪儿',
 
     'stack.section': '第三版',
