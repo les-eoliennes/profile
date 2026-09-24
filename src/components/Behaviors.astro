@@ -181,51 +181,57 @@
       typewrite(heading);
     }
 
-    // Enhance the course sections only once the controls are working. Without
-    // JavaScript, the links jump to headings and both categories stay readable.
-    function selectCourseTab(tab: HTMLElement) {
-      const group = tab.closest<HTMLElement>('[data-course-tabs]');
+    // Tab groups (open courseware, the stack) are enhanced only once the
+    // controls are working. Without JavaScript, each tab is a link that jumps
+    // to its section's heading and every section stays readable.
+    //
+    // A group is [data-tabs] holding a [data-tablist] of [data-tab] links, each
+    // pointing by href at the [data-tab-panel] with the same value.
+    function selectTab(tab: HTMLElement) {
+      const group = tab.closest<HTMLElement>('[data-tabs]');
       if (!group) return;
-      group.querySelectorAll<HTMLElement>('[data-course-tab]').forEach((item) => {
+      group.querySelectorAll<HTMLElement>('[data-tab]').forEach((item) => {
         const selected = item === tab;
         item.setAttribute('aria-selected', String(selected));
         item.tabIndex = selected ? 0 : -1;
       });
-      group.querySelectorAll<HTMLElement>('[data-course-panel]').forEach((panel) => {
-        panel.hidden = panel.dataset.coursePanel !== tab.dataset.courseTab;
+      group.querySelectorAll<HTMLElement>('[data-tab-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.tabPanel !== tab.dataset.tab;
       });
     }
 
-    function initCourseTabs() {
-      document.querySelectorAll<HTMLElement>('[data-course-tabs]').forEach((group) => {
-        const tabs = Array.from(group.querySelectorAll<HTMLElement>('[data-course-tab]'));
-        group.querySelector('[data-course-tablist]')?.setAttribute('role', 'tablist');
+    function initTabs() {
+      document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((group) => {
+        const tabs = Array.from(group.querySelectorAll<HTMLElement>('[data-tab]'));
+        group.querySelector('[data-tablist]')?.setAttribute('role', 'tablist');
         tabs.forEach((tab) => {
           tab.setAttribute('role', 'tab');
-          tab.setAttribute('aria-controls', `courses-${tab.dataset.courseTab}`);
+          const panelId = tab.getAttribute('href')?.slice(1);
+          if (panelId) tab.setAttribute('aria-controls', panelId);
         });
-        group.querySelectorAll<HTMLElement>('[data-course-panel]').forEach((panel) => {
+        group.querySelectorAll<HTMLElement>('[data-tab-panel]').forEach((panel) => {
           panel.setAttribute('role', 'tabpanel');
-          panel.setAttribute('aria-labelledby', `course-tab-${panel.dataset.coursePanel}`);
+          const owner = tabs.find((tab) => tab.dataset.tab === panel.dataset.tabPanel);
+          if (owner?.id) panel.setAttribute('aria-labelledby', owner.id);
           panel.tabIndex = 0;
         });
         const active = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true')
           ?? tabs.find((tab) => tab.getAttribute('href') === window.location.hash)
           ?? tabs[0];
-        if (active) selectCourseTab(active);
+        if (active) selectTab(active);
         group.dataset.tabsReady = '';
       });
     }
 
     document.addEventListener('astro:page-load', () => {
       initTypewriter();
-      initCourseTabs();
+      initTabs();
     });
 
     document.addEventListener('keydown', (event) => {
-      const tab = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-course-tab]');
+      const tab = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-tab]');
       if (!tab) return;
-      const tabs = Array.from(tab.closest('[data-course-tabs]')!.querySelectorAll<HTMLElement>('[data-course-tab]'));
+      const tabs = Array.from(tab.closest('[data-tabs]')!.querySelectorAll<HTMLElement>('[data-tab]'));
       const index = tabs.indexOf(tab);
       let next: HTMLElement | undefined;
       if (event.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
@@ -235,7 +241,7 @@
       else if (event.key === ' ') next = tab;
       if (!next) return;
       event.preventDefault();
-      selectCourseTab(next);
+      selectTab(next);
       next.focus();
     });
 
@@ -243,10 +249,10 @@
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
-      const tab = target.closest<HTMLElement>('[data-course-tab]');
+      const tab = target.closest<HTMLElement>('[data-tab]');
       if (tab) {
         event.preventDefault();
-        selectCourseTab(tab);
+        selectTab(tab);
         return;
       }
 

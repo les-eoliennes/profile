@@ -106,14 +106,14 @@
     The left rule sits on the strip and each tab draws only its top and right,
     so a tab that wraps to the start of a second row still has a left edge.
   */
-  .course-tabs {
+  .tabs {
     display: flex;
     flex-wrap: wrap;
     border-left: 1px solid var(--rule);
     border-bottom: 2px solid var(--rule);
   }
 
-  .course-tab {
+  .tab {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
@@ -126,14 +126,14 @@
     text-align: center;
   }
 
-  .course-tab:hover { background: var(--paper-2); }
-  .course-tab[aria-selected='true'] {
+  .tab:hover { background: var(--paper-2); }
+  .tab[aria-selected='true'] {
     background: var(--ink);
     color: var(--paper);
   }
 
-  [data-tabs-ready] [data-course-heading] { @apply sr-only; }
-  [data-course-panel][hidden] { display: none; }
+  [data-tabs-ready] [data-tab-heading] { @apply sr-only; }
+  [data-tab-panel][hidden] { display: none; }
 
   /* The sheet of paper itself, centred on the dark desk. */
   .sheet {
@@ -384,10 +384,19 @@
   .school-rankings .kicker { font-size: 0.5625rem; letter-spacing: 0.04em; }
 
   /*
-    Four to a row, growing to fill it, so neither edition strands one tab
-    across a row of its own. Long labels wrap inside their tab.
+    --tabs-per-row comes from tabsPerRow() in src/lib/tabs.ts, which balances
+    the rows. The basis is a shade over one slot more than that, so no more
+    than that many short labels can share a row; a long label's own width can
+    still push the count down. Tabs then grow to fill their row, and long
+    labels wrap inside the tab.
   */
-  .course-tab { flex: 1 1 22%; min-height: 44px; padding: 0.65rem 0.4rem; font-size: 0.75rem; line-height: 1.3; }
+  .tab {
+    flex: 1 1 calc(100% / (var(--tabs-per-row, 4) + 1) + 1px);
+    min-height: 44px;
+    padding: 0.65rem 0.4rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
   .course-card { grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; }
   .course-crest { grid-column: 2; grid-row: 1; padding-top: 0.15rem; }
   .course-card > div { grid-column: 1; grid-row: 1; }

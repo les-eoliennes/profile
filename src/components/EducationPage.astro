@@ -2,6 +2,7 @@
 import Crest from './Crest.astro';
 import { EDUCATION, COURSEWORK, OPEN_COURSES } from '../consts';
 import { getLangFromUrl, useTranslations, localizePath, localize } from '../i18n/utils';
+import { tabsPerRow } from '../lib/tabs';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -110,14 +111,19 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych', 'philo
     {t('edu.openStandfirst')}
   </p>
 
-  <div class="mt-7" data-course-tabs>
-    <div class="course-tabs" data-course-tablist aria-label={t('edu.open')}>
+  <div class="mt-7" data-tabs>
+    <div
+      class="tabs"
+      data-tablist
+      aria-label={t('edu.open')}
+      style={`--tabs-per-row: ${tabsPerRow(courseCategories.length)}`}
+    >
       {courseCategories.map((category) => (
         <a
           id={`course-tab-${category}`}
           href={`#courses-${category}`}
-          class="course-tab"
-          data-course-tab={category}
+          class="tab"
+          data-tab={category}
           data-astro-reload
         >
           {t(`edu.category.${category}`)}
@@ -125,8 +131,8 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych', 'philo
       ))}
     </div>
     {courseCategories.map((category) => (
-      <section id={`courses-${category}`} class="mt-6" data-course-panel={category}>
-        <h3 class="deck-sm mb-5" data-course-heading>{t(`edu.category.${category}`)}</h3>
+      <section id={`courses-${category}`} class="mt-6" data-tab-panel={category}>
+        <h3 class="deck-sm mb-5" data-tab-heading>{t(`edu.category.${category}`)}</h3>
         <div class="grid gap-x-10 gap-y-8 lg:grid-cols-2">
           {
             OPEN_COURSES.filter((course) => course.category === category).map((raw) => {
