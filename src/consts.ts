@@ -351,6 +351,32 @@ export const OPEN_COURSES = [
       note: '从计数、生成函数、概率和线性优化，到数论与编码理论，将离散结构与实际问题联系起来。',
     },
   },
+  {
+    category: 'psych',
+    school: 'MIT',
+    crest: 'mit',
+    code: '9.13',
+    title: 'The Human Brain',
+    year: null,
+    note: 'How the brain divides its work into specialised regions for faces, places, language, music and other minds, and the methods — fMRI, lesions, recording — used to find them.',
+    zh: {
+      title: '人类大脑',
+      note: '大脑如何分工出专门处理面孔、场景、语言、音乐和他人心智的区域，以及用来发现它们的方法：fMRI、脑损伤研究与神经记录。',
+    },
+  },
+  {
+    category: 'psych',
+    school: 'MIT',
+    crest: 'mit',
+    code: '9.00SC',
+    title: 'Introduction to Psychology',
+    year: null,
+    note: 'Perception, learning, memory, emotion, development, personality and social behaviour, read against their biological basis and the experiments behind each claim.',
+    zh: {
+      title: '心理学导论',
+      note: '知觉、学习、记忆、情绪、发展、人格与社会行为，结合其生物学基础和支撑每个结论的实验来理解。',
+    },
+  },
 ] as const;
 
 /**
