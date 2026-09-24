@@ -121,7 +121,6 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'psych'] as const;
           data-astro-reload
         >
           {t(`edu.category.${category}`)}
-          <span class="course-tab-count">{OPEN_COURSES.filter((course) => course.category === category).length}</span>
         </a>
       ))}
     </div>
