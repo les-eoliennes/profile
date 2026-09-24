@@ -68,7 +68,7 @@ export const UI = {
     'edu.section': 'Section II',
     'edu.title': 'Education',
     'edu.description':
-      'Shenzhen University, open courseware from MIT, Stanford and CMU, and the fundamentals behind the engineering.',
+      'Shenzhen University and open courseware from MIT, Stanford and CMU.',
     'edu.headline': 'Learning for life runs on curiosity, not on being handed a syllabus.',
     'edu.standfirst':
       'A degree is where it starts. What actually determines how far you get is whether you keep teaching yourself things after it ends.',
@@ -86,9 +86,6 @@ export const UI = {
     'edu.category.psych': 'Psychology',
     'edu.openStandfirst':
       'Worked through outside of work, in evenings and weekends. Lecture videos on their own do not stick — every course here was done with its problem sets and labs.',
-    'edu.fundamentals': 'Fundamentals',
-    'edu.fundamentalsStandfirst':
-      'Textbook knowledge only counts once it explains something you have seen in production. These are the parts that genuinely come up.',
     'edu.cta': 'See where the theory lands',
 
     'stack.section': 'Section III',
@@ -194,7 +191,7 @@ export const UI = {
 
     'edu.section': '第二版',
     'edu.title': '教育背景',
-    'edu.description': '深圳大学的学位，MIT、斯坦福和 CMU 的公开课，还有撑起这些工程判断的理论基础。',
+    'edu.description': '深圳大学的学位，以及 MIT、斯坦福和 CMU 的公开课。',
     'edu.headline': '终生学习驱动力来自于内部的好奇心与热情，而非被动的知识灌输。',
     'edu.standfirst': '文凭只是个开始。真正决定你能走多远的，是毕业以后还愿不愿意自己找东西学。',
     'edu.body1':
@@ -211,9 +208,6 @@ export const UI = {
     'edu.category.psych': '心理学',
     'edu.openStandfirst':
       '都是工作之外、晚上周末啃下来的。光看视频是记不住东西的，所以每一门都跟着做了配套的习题和实验。',
-    'edu.fundamentals': '理论基础',
-    'edu.fundamentalsStandfirst':
-      '书上学的东西，得真能解释你在生产环境里见过的怪现象，才算数。下面这些是我确实反复用得上的部分。',
     'edu.cta': '看这些理论落在哪儿',
 
     'stack.section': '第三版',

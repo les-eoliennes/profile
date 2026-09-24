@@ -10,8 +10,8 @@ pin the absolute path to v22.
 
 ## Structure
 
-- Copy lives in `src/consts.ts` (degree, coursework, open courses, fundamentals,
-  career) and `src/data/tech.ts` (the stack).
+- Copy lives in `src/consts.ts` (degree, coursework, open courses, career) and
+  `src/data/tech.ts` (the stack).
 - Reports are `src/content/work/*.mdx` with covers in the same directory; the
   schema is in `src/content.config.ts`.
 - Tokens and newspaper primitives are in `src/styles/global.css`. The site is

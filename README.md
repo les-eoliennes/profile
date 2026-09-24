@@ -29,7 +29,7 @@ absolute path to v22 for the dev and preview servers.
 | --- | --- |
 | `/` | Nameplate, lead story, figures, selected work, stack trailer |
 | `/zh/…` | Every one of the above, Chinese edition |
-| `/education` | Shenzhen University, coursework, open courseware, fundamentals |
+| `/education` | Shenzhen University, coursework, open courseware |
 | `/stack` | A ruled listing of every tool; open a row to zoom into a piece on it |
 | `/experience` | Biography, record of service, contact |
 | `/work/[slug]` | Full project reports |
@@ -62,7 +62,7 @@ Where the wording lives:
 - **Page furniture and prose** — `src/i18n/ui.ts`, one key per string, in both
   maps. `useTranslations(lang)` returns a `t()` that falls back to English, so a
   key you forget to translate renders in English rather than blank.
-- **Structured content** (degree, courses, fundamentals, career, the stack) —
+- **Structured content** (degree, courses, career, the stack) —
   alongside the English in `src/consts.ts` and `src/data/tech.ts`, in one of two
   shapes: `{ en, zh }` for a bare string, read as `value[lang]`; or a `zh` block
   of overrides merged by `localize(item, lang)`.
@@ -108,7 +108,7 @@ monogram badge in the school's colour.
 
 ## Editing
 
-- **Text** (degree, coursework, open courses, fundamentals, career): `src/consts.ts`
+- **Text** (degree, coursework, open courses, career): `src/consts.ts`
 - **The stack**: `src/data/tech.ts`. Adding a tool is one more record; set `slug`
   to its name in the Iconify [`logos`](https://icon-sets.iconify.design/logos/)
   set and the official artwork comes through automatically. A slug that resolves
