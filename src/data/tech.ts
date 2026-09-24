@@ -7,13 +7,11 @@ export interface Tech {
   slug: string;
   name: string;
   category: 'Languages' | 'Data' | 'Infrastructure' | 'Observability' | 'Web';
-  years: string;
   tagline: string;
   understanding: string[];
   points: string[];
   /** Chinese edition. Merged over the English fields by localize(). */
   zh: {
-    years: string;
     tagline: string;
     understanding: string[];
     points: string[];
@@ -25,7 +23,6 @@ export const TECH: Tech[] = [
     slug: 'go',
     name: 'Go',
     category: 'Languages',
-    years: '5 years',
     tagline: 'A language designed for writing services, where concurrency stops being the hard part.',
     understanding: [
       'The value of Go is not that goroutines are cheap. It is that "one goroutine per request" — the most obvious thing you could write — actually holds up in production. The runtime hides M:N scheduling, the network poller and preemption; you write synchronous code and get asynchronous throughput.',
@@ -37,7 +34,6 @@ export const TECH: Tech[] = [
       'Channels are not universal — shared state is often clearer with a mutex; channels are for transferring ownership',
     ],
     zh: {
-      years: '5 年',
       tagline: '专门为写服务设计的语言，并发在这儿不算难事。',
       understanding: [
         'Go 的价值不在于 goroutine 便宜，而在于「一个请求一个 goroutine」这种最直白的写法，在生产环境里真的撑得住。运行时把 M:N 调度、网络轮询器和抢占都藏了起来；你写同步的代码，拿到的是异步的吞吐。',
@@ -54,7 +50,6 @@ export const TECH: Tech[] = [
     slug: 'rust',
     name: 'Rust',
     category: 'Languages',
-    years: '2 years',
     tagline: 'Turns concurrency safety from a matter of discipline into something the compiler enforces.',
     understanding: [
       'What ownership really solves is not leaks, it is data races. `Send` and `Sync` make "can this type cross a thread boundary" a fact in the type system rather than a convention in a comment. Anyone who has written multithreaded C++ knows what that is worth.',
@@ -66,7 +61,6 @@ export const TECH: Tech[] = [
       '`unsafe` does not disable checking — it transfers the proof obligation to you, so document the invariant',
     ],
     zh: {
-      years: '2 年',
       tagline: '并发安全这事，从「靠自觉」变成了编译器帮你把关。',
       understanding: [
         '所有权真正解决的不是内存泄漏，而是数据竞争。`Send` 和 `Sync` 让「这个类型能不能跨线程」成为类型系统里的事实，而不是注释里的约定。写过多线程 C++ 的人知道这值多少钱。',
@@ -80,10 +74,36 @@ export const TECH: Tech[] = [
     },
   },
   {
+    slug: 'c',
+    name: 'C',
+    category: 'Languages',
+    tagline: 'The language the rest of the stack is written in, and the closest you get to what the machine actually does.',
+    understanding: [
+      'C is worth knowing less for writing new code than for reading it. The Linux kernel, Redis, SQLite, PostgreSQL and the runtimes of most other languages are written in it, so when a production problem bottoms out in a syscall, an allocator or a struct layout, the answer is written in C.',
+      'Its honesty is also its danger. Pointers are addresses, structs are byte layouts, and the compiler trusts you completely. Undefined behaviour is not a crash waiting to happen; it is permission for the optimiser to assume it never happens, which is why a bug can appear only at -O2.',
+    ],
+    points: [
+      'Signed overflow, out-of-bounds reads and use-after-free are undefined, not merely wrong — the compiler may delete the check you wrote; ASan and UBSan catch far more than review does',
+      "Padding and alignment decide a struct's footprint and how many fit in a cache line; order fields by size and confirm with sizeof and offsetof",
+      'malloc is a data structure, not magic: fragmentation, arenas and per-thread caches explain most "leaks" that are not leaks',
+    ],
+    zh: {
+      tagline: '整个技术栈底下的那门语言，也是离机器真实行为最近的一层。',
+      understanding: [
+        'C 值得学，与其说是为了用它写新代码，不如说是为了读懂别人的代码。Linux 内核、Redis、SQLite、PostgreSQL，还有大多数语言的运行时，都是用 C 写的。线上问题一旦追到系统调用、内存分配器或结构体布局，答案就写在 C 里。',
+        '它的坦诚也正是它的危险。指针就是地址，结构体就是字节布局，编译器对你完全信任。未定义行为不是一个等着发生的崩溃，而是允许优化器假设它永远不会发生 —— 所以有些 bug 只在 -O2 下才出现。',
+      ],
+      points: [
+        '有符号溢出、越界读和释放后使用都是未定义行为，而不只是写错了 —— 编译器可能直接删掉你写的检查；ASan 和 UBSan 能抓到的远比代码评审多',
+        '填充与对齐决定了一个结构体占多大、一条缓存行能放下几个；按大小排列字段，再用 sizeof 和 offsetof 确认',
+        'malloc 是一个数据结构，不是魔法：碎片、arena 和线程本地缓存，能解释大多数「其实不是泄漏」的内存泄漏',
+      ],
+    },
+  },
+  {
     slug: 'typescript',
     name: 'TypeScript',
     category: 'Languages',
-    years: '5 years',
     tagline: 'Documentation that the compiler is obliged to check.',
     understanding: [
       'The payoff is not while writing, it is while changing. Refactor an interface with thirty call sites and the compiler names every one of them — a kind of certainty that test coverage alone never buys you in plain JavaScript.',
@@ -95,7 +115,6 @@ export const TECH: Tech[] = [
       'Keep type-level cleverness in check: an unreadable type is as much a maintenance burden as unreadable code',
     ],
     zh: {
-      years: '5 年',
       tagline: '相当于一份编译器会帮你校对的文档。',
       understanding: [
         '收益不在写的时候，而在改的时候。重构一个有三十处调用的接口，编译器会把每一处都点出来 —— 这种确定性，在纯 JavaScript 里靠测试覆盖率是买不到的。',
@@ -112,7 +131,6 @@ export const TECH: Tech[] = [
     slug: 'python',
     name: 'Python',
     category: 'Languages',
-    years: '5 years',
     tagline: 'The shortest path from an idea to a result, provided you know where its limits are.',
     understanding: [
       'Its strength is ecosystem and iteration speed: data work, scripts, prototypes. I treat it as the language for the exploratory phase, then decide whether the result deserves a rewrite in Go or Rust.',
@@ -124,7 +142,6 @@ export const TECH: Tech[] = [
       'Production services need type annotations and mypy, or they become unmanageable at scale',
     ],
     zh: {
-      years: '5 年',
       tagline: '从想法到能跑起来最快的一条路，前提是你得清楚它的短板在哪。',
       understanding: [
         '它的强项是生态和迭代速度：数据处理、脚本、原型。我把它当作探索阶段的语言，等结果站得住了，再决定值不值得用 Go 或 Rust 重写。',
@@ -141,7 +158,6 @@ export const TECH: Tech[] = [
     slug: 'postgresql',
     name: 'PostgreSQL',
     category: 'Data',
-    years: '5 years',
     tagline: 'My default relational database, and the textbook I learned database internals from.',
     understanding: [
       "Postgres implements MVCC unusually: an update inserts a new row version and leaves the old one in place for VACUUM to reclaim. Understanding that one fact explains why heavily-updated tables bloat and why long transactions stall cleanup across the whole cluster — the two most common root causes I have seen in production.",
@@ -153,7 +169,6 @@ export const TECH: Tech[] = [
       'When estimated and actual row counts differ by an order of magnitude in `EXPLAIN ANALYZE`, go look at the statistics',
     ],
     zh: {
-      years: '5 年',
       tagline: '我默认的关系型数据库，也是我学数据库内核用的那本教材。',
       understanding: [
         'Postgres 的 MVCC 实现很特别：一次更新是插入一个新版本行，把旧的留在原地等 VACUUM 回收。理解了这一件事，就能解释为什么高频更新的表会膨胀，以及为什么长事务会拖住整个集群的清理 —— 这是我在生产环境里见过最多的两个根因。',
@@ -170,7 +185,6 @@ export const TECH: Tech[] = [
     slug: 'redis',
     name: 'Redis',
     category: 'Data',
-    years: '5 years',
     tagline: 'Not a cache — a data structure server that happens to be reachable over the network.',
     understanding: [
       'Using Redis purely as a key-value cache throws away half of it. Sorted sets for leaderboards and delay queues, HyperLogLog for cardinality estimation, Streams for lightweight messaging — implementing any of those with other components is considerably heavier.',
@@ -182,7 +196,6 @@ export const TECH: Tech[] = [
       'Design for all three failure modes together: penetration (cache the empty result), stampede (rebuild under a mutex), avalanche (jitter the TTLs)',
     ],
     zh: {
-      years: '5 年',
       tagline: '与其说是缓存，不如说是一台正好能联网访问的数据结构服务器。',
       understanding: [
         '只把 Redis 当键值缓存用，等于扔掉了它一半的能力。用有序集合做排行榜和延时队列、用 HyperLogLog 做基数估算、用 Stream 做轻量消息 —— 这些用别的组件实现都要重得多。',
@@ -199,7 +212,6 @@ export const TECH: Tech[] = [
     slug: 'mysql',
     name: 'MySQL',
     category: 'Data',
-    years: '4 years',
     tagline: "InnoDB's clustered index explains almost all of its performance behaviour.",
     understanding: [
       'The deepest difference from Postgres is physical layout: InnoDB tables are index-organised, with row data living in the leaves of the primary key B+ tree. That is why primary keys should be short and monotonically increasing — random keys cause page splits — and why secondary indexes need a lookback to the clustered index.',
@@ -211,7 +223,6 @@ export const TECH: Tech[] = [
       'Gap locks under RR cause a lot of deadlocks; dropping to read-committed is sometimes the right answer',
     ],
     zh: {
-      years: '4 年',
       tagline: 'InnoDB 的聚簇索引，几乎解释了它全部的性能表现。',
       understanding: [
         '和 Postgres 最本质的差别在物理布局：InnoDB 是索引组织表，行数据就住在主键 B+ 树的叶子里。这解释了为什么主键应该短而且单调递增 —— 随机主键会造成页分裂 —— 也解释了为什么二级索引需要回表。',
@@ -228,7 +239,6 @@ export const TECH: Tech[] = [
     slug: 'clickhouse',
     name: 'ClickHouse',
     category: 'Data',
-    years: '3 years',
     tagline: 'Columnar storage and vectorised execution, taking analytical queries from minutes to seconds.',
     understanding: [
       'Columnar wins twice: you read only the columns you asked for, and storing one type per column compresses extremely well. On a wide table with ten billion rows, scanning two columns can touch a hundredth of the data. That is the fundamental split between OLAP and OLTP.',
@@ -240,7 +250,6 @@ export const TECH: Tech[] = [
       'Joins are the weak spot; pre-aggregate or denormalise rather than joining at query time',
     ],
     zh: {
-      years: '3 年',
       tagline: '列式存储加向量化执行，把分析查询从几分钟压到几秒。',
       understanding: [
         '列式赢在两处：只读你要的列，以及一列一种类型带来的极高压缩比。一张百亿行的宽表，扫两列可能只碰到全部数据的百分之一。这就是 OLAP 和 OLTP 的根本分野。',
@@ -257,7 +266,6 @@ export const TECH: Tech[] = [
     slug: 'sqlite',
     name: 'SQLite',
     category: 'Data',
-    years: '4 years',
     tagline: 'An entire database in one file, and the most widely deployed engine in the world.',
     understanding: [
       'SQLite is not a smaller Postgres — it is a different shape entirely. There is no server and no socket; the library runs inside your process and reads a file. That removes a whole class of operational concern, and with it any ability to spread writes across machines.',
@@ -269,7 +277,6 @@ export const TECH: Tech[] = [
       'One writer at a time, full stop. `busy_timeout` turns "database is locked" from an error into a wait',
     ],
     zh: {
-      years: '4 年',
       tagline: '一整个数据库就是一个文件，也是这个世界上部署量最大的引擎。',
       understanding: [
         'SQLite 不是一个小号的 Postgres，它根本是另一种形态。没有服务端，也没有 socket；这个库就跑在你的进程里，读一个文件。这消掉了一整类运维上的顾虑，同时也消掉了把写入摊到多台机器上的可能。',
@@ -286,7 +293,6 @@ export const TECH: Tech[] = [
     slug: 'apachekafka',
     name: 'Apache Kafka',
     category: 'Infrastructure',
-    years: '4 years',
     tagline: 'Fundamentally a distributed, replayable commit log.',
     understanding: [
       'Treating Kafka as a message queue leads to using it wrong. It is a durable, re-readable log: consumers own their offsets, the same data can be read by several consumer groups at different positions, and any of them can rewind. Replayability is the dividing line between it and a traditional broker.',
@@ -298,7 +304,6 @@ export const TECH: Tech[] = [
       'At-least-once is the default; consumers must be idempotent, and exactly-once is never free',
     ],
     zh: {
-      years: '4 年',
       tagline: '本质上就是一份分布式、可重放的提交日志。',
       understanding: [
         '把 Kafka 当消息队列用，就会用错。它是一份持久化、可重复读的日志：消费者自己持有位点，同一份数据可以被多个消费组以不同进度读取，任何一个都能回退。可重放，是它和传统消息中间件的分水岭。',
@@ -315,7 +320,6 @@ export const TECH: Tech[] = [
     slug: 'docker',
     name: 'Docker',
     category: 'Infrastructure',
-    years: '5 years',
     tagline: 'Not a virtual machine — an ordinary process fenced off by namespaces and cgroups.',
     understanding: [
       "What runs in a container is a normal process on the host kernel; it just sees a different set of PIDs, network interfaces and mount points, with CPU and memory capped by cgroups. Once that lands, a lot of \"strange\" behaviour stops being strange — why `top` inside the container reports host memory, why kernel parameters are shared.",
@@ -327,7 +331,6 @@ export const TECH: Tech[] = [
       'Mind PID 1: a process that does not forward SIGTERM breaks graceful shutdown',
     ],
     zh: {
-      years: '5 年',
       tagline: '它不是虚拟机，而是一个被命名空间和 cgroup 圈起来的普通进程。',
       understanding: [
         '容器里跑的就是宿主机内核上的一个普通进程，只不过它看到的是另一套 PID、网络接口和挂载点，CPU 与内存被 cgroup 限住。想通这一点，很多「怪事」就不怪了 —— 为什么容器里 `top` 报的是宿主机内存，为什么内核参数是共享的。',
@@ -344,7 +347,6 @@ export const TECH: Tech[] = [
     slug: 'kubernetes',
     name: 'Kubernetes',
     category: 'Infrastructure',
-    years: '4 years',
     tagline: 'A set of control loops around etcd, continuously pushing actual state toward declared state.',
     understanding: [
       'The entire design reduces to one sentence: you declare the desired state, and controllers repeatedly compare it against reality and act. Once that clicks, the relationship between Deployment, ReplicaSet and Pod does not need memorising — they are the same idea at different levels of abstraction.',
@@ -356,7 +358,6 @@ export const TECH: Tech[] = [
       'All state lives in etcd, so etcd latency is control-plane latency',
     ],
     zh: {
-      years: '4 年',
       tagline: '一堆围着 etcd 转的控制循环，不停把现状往声明的目标状态上推。',
       understanding: [
         '它的全部设计可以归结成一句话：你声明期望状态，控制器反复把它和现实比对并采取行动。想通这一点，Deployment、ReplicaSet 和 Pod 之间的关系就不需要背了 —— 它们是同一个想法在不同抽象层上的表现。',
@@ -373,7 +374,6 @@ export const TECH: Tech[] = [
     slug: 'linux',
     name: 'Linux',
     category: 'Infrastructure',
-    years: '6 years',
     tagline: 'The last layer of the investigation, and where every abstraction above it leaks.',
     understanding: [
       'When something higher up misbehaves, the answer is usually at the syscall boundary. `strace` to see what a process is waiting on, `/proc/<pid>/` for its real state, `ss` to check whether a connection queue is overflowing — these are closer to the truth than any APM dashboard.',
@@ -385,7 +385,6 @@ export const TECH: Tech[] = [
       'The OOM killer picks by oom_score and logs to dmesg — check there first when a service "vanishes"',
     ],
     zh: {
-      years: '6 年',
       tagline: '排查的最后一层，也是上面每一层抽象漏水的地方。',
       understanding: [
         '上层出问题时，答案通常在系统调用这一层。用 `strace` 看进程在等什么，用 `/proc/<pid>/` 看它的真实状态，用 `ss` 看连接队列有没有溢出 —— 这些比任何 APM 面板都更接近真相。',
@@ -402,7 +401,6 @@ export const TECH: Tech[] = [
     slug: 'nginx',
     name: 'NGINX',
     category: 'Infrastructure',
-    years: '4 years',
     tagline: 'An event-driven reverse proxy holding enormous connection counts with a fixed number of processes.',
     understanding: [
       'It runs an epoll event loop rather than a thread per connection, which is why it won the C10K problem: memory use is close to independent of connection count, and worker processes only need to match core count.',
@@ -414,7 +412,6 @@ export const TECH: Tech[] = [
       'Enable upstream keepalive to reuse backend connections and cut handshake overhead',
     ],
     zh: {
-      years: '4 年',
       tagline: '事件驱动的反向代理，用固定数量的进程扛住巨大的连接数。',
       understanding: [
         '它跑的是 epoll 事件循环，而不是一个连接一个线程，这正是它赢下 C10K 的原因：内存占用几乎与连接数无关，worker 进程数只需要和核数对齐。',
@@ -431,7 +428,6 @@ export const TECH: Tech[] = [
     slug: 'prometheus',
     name: 'Prometheus',
     category: 'Observability',
-    years: '4 years',
     tagline: 'Pull-based collection with multidimensional labels — the de facto standard for metrics.',
     understanding: [
       'Pulling puts the collector in control: a target being down is itself the signal (`up == 0`), with no separate heartbeat mechanism required. That is the most important difference from push-based systems.',
@@ -443,7 +439,6 @@ export const TECH: Tech[] = [
       'Use rate() on counters, with a window at least four times the scrape interval',
     ],
     zh: {
-      years: '4 年',
       tagline: '拉取式采集加多维标签，指标这个领域事实上的标准打法。',
       understanding: [
         '拉取让采集方掌握主动权：目标挂掉这件事本身就是信号（`up == 0`），不需要另外一套心跳机制。这是它和推送式系统最重要的差别。',
@@ -460,7 +455,6 @@ export const TECH: Tech[] = [
     slug: 'grafana',
     name: 'Grafana',
     category: 'Observability',
-    years: '4 years',
     tagline: 'A dashboard earns its place by answering a question, not by displaying a metric.',
     understanding: [
       'I build dashboards under one rule: every panel must correspond to a specific decision. "Is the service healthy" is RED — rate, errors, duration. "Is it running out of room" is USE — utilisation, saturation, errors. Panels that fit neither are usually panels nobody looks at.',
@@ -472,7 +466,6 @@ export const TECH: Tech[] = [
       'Panels should link straight through to the matching logs and traces, or the investigation restarts from scratch',
     ],
     zh: {
-      years: '4 年',
       tagline: '一块面板的价值在于回答问题，而不在于展示指标。',
       understanding: [
         '我做面板只守一条规矩：每一格都必须对应一个具体的判断。「服务健康吗」看 RED —— 速率、错误、时延；「资源还够吗」看 USE —— 使用率、饱和度、错误。两类都装不进去的格子，通常就是没人看的格子。',
@@ -489,7 +482,6 @@ export const TECH: Tech[] = [
     slug: 'react',
     name: 'React',
     category: 'Web',
-    years: '4 years',
     tagline: 'UI as a function of state; the difficulty was always in organising the state.',
     understanding: [
       'Declarative rendering removes the drudgery of keeping the DOM in sync with state, but it relocates the complexity into state management. Deciding what is server state, what belongs in the URL and what is genuinely local is the decision that matters — get it wrong and no amount of good component design recovers it.',
@@ -501,7 +493,6 @@ export const TECH: Tech[] = [
       'Not every page needs React — static content is better served by a zero-JS approach',
     ],
     zh: {
-      years: '4 年',
       tagline: 'UI 是状态的函数，难的向来是怎么把状态组织好。',
       understanding: [
         '声明式渲染省掉了手工同步 DOM 的苦力活，但它把复杂度搬到了状态管理上。哪些是服务端状态、哪些该放进 URL、哪些才真正是组件本地的 —— 这个判断做错了，再好的组件设计也救不回来。',
@@ -518,7 +509,6 @@ export const TECH: Tech[] = [
     slug: 'astro',
     name: 'Astro',
     category: 'Web',
-    years: '2 years',
     tagline: 'Zero JavaScript by default; interactivity is opted into island by island.',
     understanding: [
       'On most content sites the interactivity is concentrated in a handful of components, yet the whole page pays the hydration cost anyway. The island architecture inverts that default: plain HTML unless you say otherwise.',
@@ -530,7 +520,6 @@ export const TECH: Tech[] = [
       'Reach for Next.js when you need SSR, API routes or a database; for a content site Astro is the better fit',
     ],
     zh: {
-      years: '2 年',
       tagline: '默认不带一行 JavaScript，交互功能按「岛屿」一个个自己挑着加。',
       understanding: [
         '大多数内容型站点的交互只集中在少数几个组件上，整页却还是要为水合付出代价。岛屿架构把这个默认值反了过来：不特别声明，就是纯 HTML。',

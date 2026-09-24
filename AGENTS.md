@@ -19,11 +19,13 @@ pin the absolute path to v22.
   That was removed deliberately; do not reintroduce it without asking.
 - The only client script is `src/components/Behaviors.astro` — the front-page
   typewriter and the tech dialogs; clicks are event-delegated.
-- Marks resolve through `src/lib/icons.ts`: the Iconify `logos` set (official
-  full-colour artwork) first, simple-icons as fallback. Returns `body` plus the
-  per-icon `width`/`height`, since that set has no single viewBox.
+- Marks resolve through `src/lib/icons.ts`: a sourced SVG in `src/assets/marks/`
+  first, then the Iconify `logos` set (official full-colour artwork), then
+  simple-icons as fallback. Returns `body` plus the per-icon `width`/`height`,
+  since that set has no single viewBox.
 - Do not redraw brand marks by hand. If one looks wrong, alias it to its
-  `-icon` variant in `ALIASES`.
+  `-icon` variant in `ALIASES`; if the set has no better variant, drop a
+  sourced file into `src/assets/marks/` and record it in that README.
 - The stack page is a ruled listing, not a scatter.
 
 ## Editions

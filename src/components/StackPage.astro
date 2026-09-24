@@ -38,14 +38,23 @@ const categories = ['Languages', 'Data', 'Infrastructure', 'Observability', 'Web
 
 <section class="px-5 sm:px-8">
   <!--
-    A printer's ornament: the full set of marks struck across the page.
+    A printer's ornament: the full set of marks running across the page.
     Decorative only — the listing underneath is the interface.
+
+    The set is struck twice so the track can slide by exactly one set and
+    loop without a seam. The duration scales with the number of marks, so
+    adding one lengthens the loop instead of speeding it up.
   -->
-  <div
-    class="rule-thin flex flex-wrap items-center justify-between gap-x-3 gap-y-4 py-6"
-    aria-hidden="true"
-  >
-    {TECH.map((tech) => <TechMark slug={tech.slug} class="h-6 w-auto max-w-full sm:h-7" />)}
+  <div class="rule-thin py-6" aria-hidden="true">
+    <div class="marquee" style={`--marquee-duration: ${TECH.length * 3}s`}>
+      <div class="marquee-track">
+        {[0, 1].map(() => (
+          <div class="marquee-set">
+            {TECH.map((tech) => <TechMark slug={tech.slug} class="h-6 w-auto sm:h-7" />)}
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -74,15 +83,13 @@ const categories = ['Languages', 'Data', 'Infrastructure', 'Observability', 'Web
                     type="button"
                     data-tech-open={tech.slug}
                     aria-haspopup="dialog"
-                    class="listing-row cursor-pointer grid-cols-[4rem_1fr] gap-x-4 gap-y-1.5 px-3 py-4 sm:grid-cols-[5rem_13rem_5rem_1fr_1rem]"
+                    class="listing-row cursor-pointer grid-cols-[4rem_1fr] gap-x-4 gap-y-1.5 px-3 py-4 sm:grid-cols-[5rem_13rem_1fr_1rem]"
                   >
                     <TechMark slug={tech.slug} class="h-7 w-auto max-w-full" />
 
                     <span class="deck-sm">{tech.name}</span>
 
-                    <span class="byline hidden sm:block">{tech.years}</span>
-
-                    <span class="col-start-2 text-sm leading-snug text-pretty sm:col-start-4">
+                    <span class="col-start-2 text-sm leading-snug text-pretty sm:col-start-3">
                       {tech.tagline}
                     </span>
 

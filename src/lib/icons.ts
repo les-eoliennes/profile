@@ -32,14 +32,42 @@ const ALIASES: Record<string, string> = {
 };
 
 /**
+ * Marks chosen deliberately over what the icon sets carry, one SVG per slug in
+ * src/assets/marks/. Sources and licences are in that directory's README.
+ */
+const LOCAL = import.meta.glob<string>('../assets/marks/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+function localIcon(slug: string): Icon | undefined {
+  const svg = Object.entries(LOCAL).find(([path]) => path.endsWith(`/${slug}.svg`))?.[1];
+  if (!svg) return undefined;
+
+  const viewBox = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+  if (!viewBox) throw new Error(`src/assets/marks/${slug}.svg needs a viewBox starting at 0 0`);
+
+  return {
+    body: svg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, ''),
+    width: Number(viewBox[1]),
+    height: Number(viewBox[2]),
+  };
+}
+
+/**
  * Resolve a mark by slug.
  *
- * Primary source is the Iconify `logos` set — the official, full-colour brand
- * artwork. Anything it does not carry (ClickHouse, currently) falls back to the
- * monochrome simple-icons path, tinted with that brand's colour so the two
- * sources sit together. Build-time only; none of this reaches the client.
+ * A file in src/assets/marks/ wins outright. Otherwise the source is the
+ * Iconify `logos` set — the official, full-colour brand artwork. Anything it
+ * does not carry (ClickHouse, currently) falls back to the monochrome
+ * simple-icons path, tinted with that brand's colour so the two sources sit
+ * together. Build-time only; none of this reaches the client.
  */
 export function getIcon(slug: string): Icon {
+  const local = localIcon(slug);
+  if (local) return local;
+
   const key = ALIASES[slug] ?? slug;
   const icon = (logos.icons as Record<string, { body: string; width?: number; height?: number }>)[key];
 

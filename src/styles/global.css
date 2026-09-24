@@ -457,6 +457,50 @@
   }
 }
 
+/* ---------- Ornament marquee ---------- */
+/*
+  Still by default, like everything else here: without motion the first set
+  simply wraps and centres, and the duplicate is dropped. The loop is layered
+  on only for readers who accept motion.
+*/
+.marquee-set {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 2.25rem;
+}
+
+.marquee-set + .marquee-set { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 60s) linear infinite;
+  }
+
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* Trailing padding equals the gap, so the join between sets is invisible. */
+  .marquee-set,
+  .marquee-set + .marquee-set {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    padding-right: 2.25rem;
+  }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
 /* ---------- Tech article dialog ---------- */
 dialog::backdrop {
   background-color: rgb(10 10 7 / 0.72);
