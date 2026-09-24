@@ -107,15 +107,15 @@ export const UI = {
 
     'experience.section': 'Section IV',
     'experience.title': 'Experience',
-    'experience.headline': "The measure of an engineer isn't what they know. It's what they refuse to fudge.",
+    'experience.headline': 'Depth is known by crossing.',
     'experience.body1':
-      'I am Ace, a software engineer. The domain has turned over more than once, and so have the languages and the platforms. What carries across all of them is knowing where to start reading when the system in front of me is one I have never seen.',
+      'The word comes from the Latin experiri, to try, and shares its root with periculum, danger. Where nothing was risked, nothing was learned. The Chinese 经验 says the same in two characters: one for passing through, one for putting to the test. Both ask you to go there yourself.',
     'experience.body2':
-      'So when something breaks I want the actual root cause, not a retry layered on top until the symptom goes quiet. A symptom disappearing and a problem being solved are different events, and the one that got papered over always comes back with interest.',
+      'You cannot step into the same river twice. Systems are like that: the code, the traffic and the people are never quite the same ones tomorrow. So experience is never an answer to copy out. It is a kind of judgement — recognising a familiar current in water you have never seen.',
     'experience.body3':
-      "When I don't know, I say so, and then I go and measure. A guess and a measurement read identically on the page; only one of them is safe to decide on. That is the standard I have never let slip.",
+      'We know more than we can tell. Most of what experience teaches settles into the hands: the log line that makes you stop, the graph that unsettles you before you can say why. The record below can give times and places. What it cannot tell is the part that matters.',
     'experience.body4':
-      "There is more worth talking about than job titles — why a system was shaped the way it was, whether a trade-off ever paid for itself, the bug you spent a week inside. I'll sit through all of it for as long as you will.",
+      "So I hold my own experience with a little doubt. It saves me wrong turns, and it can also hide new roads. If you like, write and tell me about a river you have crossed — someone else's experience is a road I have not walked yet.",
     'experience.record': 'Record of Service',
     'experience.contact': 'Write to the desk',
     'experience.email': 'Email',
@@ -227,15 +227,15 @@ export const UI = {
 
     'experience.section': '第四版',
     'experience.title': '职涯',
-    'experience.headline': '工程师的水准，不在他会什么，而在他不肯糊弄什么。',
+    'experience.headline': '涉过的水，才知深浅。',
     'experience.body1':
-      '我是 Ace，软件工程师。做过的领域换过好几轮，语言和平台也换过，真正一路带着走的只有一件事：面对一个从没见过的系统，我知道该从哪儿开始往里看。',
+      '英文的 experience 来自拉丁文 experiri，意思是「去试」，和 periculum——「危险」——同出一个词根。没有冒过险的地方，就谈不上经验。中文说的是同一件事：经，是走过；验，是证过。两个字，都要你亲自去一趟。',
     'experience.body2':
-      '所以出了故障，我一定要挖到真正的根因，而不是加一层重试把症状盖过去。症状消失和问题解决是两回事，糊过去的那一次，迟早连本带利再来一遍。',
+      '人不能两次踏进同一条河流。系统也是这样：今天的代码、流量和人，明天都已不是原来那一批。所以经验从来不是一份可以照抄的答案，而是一种判断——在没见过的水里，认出熟悉的暗流。',
     'experience.body3':
-      '不懂就说不懂，然后去量。猜出来的结论和量出来的结论写在纸上长得一样，但只有后者敢拿去下判断——这大概是这些年我唯一没松过口的标准。',
+      '我们知道的，总比我们说得出的多。经验大多沉在手上：读日志时让你停下的那一行，看监控时让你说不清缘由就不安的那条曲线。下面的履历写得出时间和地点，写不出的那部分，才是它真正的内容。',
     'experience.body4':
-      '愿意聊的东西比职位多得多：这个系统当初为什么设计成这样、那个取舍到底值不值、你陷进去一整周的那个坑是怎么回事。只要你坐得住，我随时奉陪。',
+      '所以我对自己的经验，始终留着一点怀疑：它让我少走弯路，也可能让我看不见新路。如果你愿意，写信告诉我你涉过的那条河——别人的经验，是我还没走过的路。',
     'experience.record': '履历',
     'experience.contact': '联系本报',
     'experience.email': '邮件',
