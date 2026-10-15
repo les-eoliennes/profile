@@ -394,6 +394,18 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'physics',
+    school: 'MIT',
+    crest: 'mit',
+    code: '8.286',
+    title: 'The Early Universe',
+    note: 'Taught by Alan Guth, who proposed cosmic inflation: from Hubble expansion and the cosmological principle, it derives the Friedmann equations from Newtonian mechanics and covers matter- and radiation-dominated expansion, the non-Euclidean geometry of open and closed universes, black-body radiation and the cosmic microwave background, the thermal history of the universe and Big Bang nucleosynthesis, and the observational evidence for dark matter and dark energy (the cosmological constant). The second half turns to the flatness, horizon and magnetic monopole problems of the standard Big Bang model, how inflation resolves them and seeds the primordial density perturbations, extending to eternal inflation and the multiverse, building an understanding of the origin and evolution of the universe from the observational data up.',
+    zh: {
+      title: '早期宇宙',
+      note: '由暴胀理论的提出者 Alan Guth 主讲：从哈勃膨胀与宇宙学原理出发，以牛顿力学推导 Friedmann 方程，讲授物质主导与辐射主导的宇宙演化、开放与封闭宇宙的非欧几何、黑体辐射与宇宙微波背景、宇宙热历史与太初核合成，以及暗物质与暗能量（宇宙学常数）的观测证据；后半程聚焦标准大爆炸模型的平坦性问题、视界问题与磁单极子问题，讲授暴胀理论如何解决它们并给出原初密度扰动的起源，最后延伸至永恒暴胀与多重宇宙，从观测数据出发理解宇宙的起源与演化。',
+    },
+  },
+  {
     category: 'econ',
     school: 'MIT',
     crest: 'mit',
