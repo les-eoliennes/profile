@@ -195,10 +195,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS221',
     title: "Artificial Intelligence: Principles and Techniques",
-    note: "Search, constraint satisfaction, Markov decision processes and probabilistic models: the foundations of reasoning and decision-making in AI.",
+    note: "Organised around the modelling–inference–learning paradigm, it climbs from reflex models through state-based and variable-based models to logic, covering search (UCS, A*), Markov decision processes and reinforcement learning, games (Minimax, Expectimax), constraint satisfaction and Bayesian networks. Python assignments such as a Pac-Man adversarial agent and car tracking with particle filters train the habit of formalising real problems as computable models.",
     zh: {
       title: "人工智能：原理与技术",
-      note: "搜索、约束满足、马尔可夫决策过程与概率模型，串起人工智能中推理与决策的基础。",
+      note: "以「建模—推断—学习」为主线，从反射模型、状态模型、变量模型到逻辑逐层推进，覆盖搜索（UCS、A*）、马尔可夫决策过程与强化学习、博弈（Minimax、Expectimax）、约束满足与贝叶斯网络等核心内容。作业用 Python 实现吃豆人对抗搜索、车辆追踪（粒子滤波）等项目，培养将现实问题形式化为可计算模型的能力。",
     },
   },
   {
@@ -207,10 +207,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS229',
     title: "Machine Learning",
-    note: "Supervised and unsupervised learning, statistical learning theory and optimisation, with an emphasis on the mathematics behind the algorithms.",
+    note: "Stanford's classic machine learning course, built on rigorous derivation: starting from linear regression, logistic regression and generalised linear models (GLMs), it covers generative learning algorithms (GDA, Naive Bayes), kernel methods and SVMs, the bias–variance trade-off and learning theory, and unsupervised methods such as k-means, EM and PCA, before extending into reinforcement learning. Problem sets pair derivations with NumPy implementations, turning machine learning from a library call back into mathematics you can derive and prove.",
     zh: {
       title: "机器学习",
-      note: "从监督学习与无监督学习，到统计学习理论和优化，理解算法背后的数学原理。",
+      note: "斯坦福经典的机器学习课程，以严格的数学推导为核心：从线性回归、逻辑回归与广义线性模型（GLM）出发，覆盖生成学习算法（GDA、朴素贝叶斯）、核方法与 SVM、偏差-方差权衡与学习理论，以及 K-means、EM、PCA 等无监督方法，并延伸至强化学习。习题集兼顾公式推导与 NumPy 实现，把机器学习从调包工具还原为可推导、可证明的数学对象。",
     },
   },
   {
@@ -219,10 +219,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS230',
     title: "Deep Learning",
-    note: "Neural network foundations, optimisation and practical strategies for building and evaluating deep learning systems.",
+    note: "Run as a flipped classroom alongside the deeplearning.ai modules, it starts by hand-writing forward and backward propagation in NumPy, then covers initialisation, regularisation (Dropout, BatchNorm), optimisers (Momentum, Adam), CNNs and RNNs/LSTMs, with dedicated teaching on engineering method: error analysis, train/dev/test splits and hyperparameter tuning. A full deep learning project closes the course, building a systematic path from prototype to deployment.",
     zh: {
       title: "深度学习",
-      note: "神经网络基础、优化方法，以及构建和评估深度学习系统的实践策略。",
+      note: "采用翻转课堂模式，配合 deeplearning.ai 系列模块，从用 NumPy 手写前向与反向传播起步，覆盖参数初始化、正则化（Dropout、BatchNorm）、优化算法（Momentum、Adam）、CNN 与 RNN/LSTM 等核心结构，并专门讲授误差分析、数据集划分与超参数调优等工程方法论，最后以完整的深度学习项目收尾，培养从原型到落地的系统化实践能力。",
     },
   },
   {
@@ -231,10 +231,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS231N',
     title: "Deep Learning for Computer Vision",
-    note: "Visual recognition through convolutional networks, attention and modern vision architectures, connecting model design with training and evaluation.",
+    note: "Using image classification as the way in, it hand-writes the forward and backward passes of kNN, Softmax, fully connected and convolutional networks in Python/NumPy, then moves to PyTorch for BatchNorm, Dropout, image captioning (RNN/Transformer), GANs and self-supervised learning, extending to object detection, semantic segmentation and Vision Transformers. It connects the design and training of deep vision models end to end, from pixels to semantics.",
     zh: {
       title: "计算机视觉中的深度学习",
-      note: "从卷积网络、注意力机制到现代视觉架构，将模型设计、训练与评估串联起来，理解视觉识别。",
+      note: "以图像分类为切入点，先在 Python/NumPy 中手写 kNN、Softmax、全连接网络与卷积网络的前向与反向传播，再过渡到 PyTorch，依次实现 BatchNorm、Dropout、图像描述（RNN/Transformer）、GAN 与自监督学习，并延伸至目标检测、语义分割与 Vision Transformer 等现代视觉架构，从像素到语义完整打通深度视觉模型的设计与训练。",
     },
   },
   {
@@ -243,10 +243,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS224N',
     title: "Natural Language Processing with Deep Learning",
-    note: "Word representations, sequence models and transformers, leading into language model pretraining and applications in natural language processing.",
+    note: "From word2vec embeddings and dependency parsing, through RNNs/LSTMs and sequence-to-sequence translation with attention, to Transformers, pretraining (BERT/GPT) and fine-tuning, it traces how modern NLP evolved. PyTorch assignments derive word vectors and implement a neural dependency parser, neural machine translation and Transformer pretraining, bringing the core mechanisms behind large language models down to runnable code.",
     zh: {
       title: "自然语言处理与深度学习",
-      note: "从词表示、序列模型到 Transformer，进一步理解语言模型预训练及其在自然语言处理中的应用。",
+      note: "从 word2vec 词向量与依存句法分析出发，经由 RNN/LSTM、带注意力机制的 Seq2Seq 机器翻译，到 Transformer、预训练（BERT/GPT）与微调，系统梳理现代 NLP 的演进脉络。作业用 PyTorch 推导词向量、实现神经依存句法分析器、神经机器翻译与 Transformer 预训练，让大语言模型背后的核心机制落到可运行的代码上。",
     },
   },
   {
@@ -255,10 +255,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS336',
     title: "Language Modeling from Scratch",
-    note: "The full language model pipeline: tokenisation, transformer implementation, training efficiency, data curation and evaluation.",
+    note: "Built on a from-scratch principle: hand-write a BPE tokeniser, a Transformer and the AdamW optimiser in PyTorch, then work through five assignments — the base model, systems optimisation (FlashAttention in Triton, distributed data parallelism), fitting scaling laws, filtering and deduplicating web-scale data, and alignment with SFT and reinforcement learning (GRPO). Together they span the full engineering of a large language model, from data through training to alignment.",
     zh: {
       title: "从零构建语言模型",
-      note: "从分词、Transformer 实现到训练效率、数据整理与评估，完整走过语言模型的构建流程。",
+      note: "以「从零构建」为原则，用 PyTorch 手写 BPE 分词器、Transformer 与 AdamW 优化器，并依次完成五大作业：基础模型、系统优化（用 Triton 实现 FlashAttention、分布式数据并行）、Scaling Laws 拟合、海量网页数据的清洗与去重，以及基于 SFT 与强化学习（GRPO）的对齐，完整贯穿大语言模型从数据、训练到对齐的全流程工程实践。",
     },
   },
   {
