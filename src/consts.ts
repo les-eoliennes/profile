@@ -267,10 +267,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.100B',
     title: 'Real Analysis',
-    note: 'Real numbers, sequences, continuity, differentiation and integration, developed through rigorous proofs and the language of metric spaces.',
+    note: "MIT's more abstract, more rigorous track of real analysis, following Rudin's Principles of Mathematical Analysis: from the least-upper-bound property and the construction of the reals, it develops open and closed sets, compactness and connectedness in the setting of metric spaces, then sequences and series, continuity and uniform continuity, differentiation, the Riemann integral and uniform convergence of sequences of functions (the Weierstrass approximation theorem among them). Proof-only problem sets build the discipline of reasoning rigorously from definitions.",
     zh: {
       title: '实分析',
-      note: '从实数、数列到连续性、微分与积分，通过严格证明和度量空间的语言建立分析学基础。',
+      note: 'MIT 实分析中更抽象、更严格的版本，以 Rudin《数学分析原理》为蓝本：从确界性质与实数构造出发，在度量空间的框架下系统讲授开集、闭集、紧性与连通性，再展开数列与级数、连续与一致连续、微分、Riemann 积分以及函数列的一致收敛（如 Weierstrass 逼近定理），以纯证明式习题训练从定义出发严密推理的数学功底。',
     },
   },
   {
@@ -279,10 +279,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.102',
     title: 'Introduction to Functional Analysis',
-    note: 'Normed spaces, Banach and Hilbert spaces, and linear operators: extending the ideas of linear algebra and analysis to infinite dimensions.',
+    note: 'Linear algebra and analysis carried into infinite dimensions: from normed and Banach spaces, through the construction of the Lebesgue integral and L² spaces, to Hilbert spaces, orthonormal bases and the Riesz representation theorem, alongside the pillars of functional analysis (the Baire category theorem, uniform boundedness, the open mapping and closed graph theorems, Hahn–Banach). It closes with the spectral theorem for compact self-adjoint operators and Fourier series, laying a rigorous foundation for the Hilbert-space and operator language of quantum mechanics.',
     zh: {
       title: '泛函分析导论',
-      note: '从赋范空间、巴拿赫空间和希尔伯特空间到线性算子，将线性代数与分析学的思想推广到无穷维。',
+      note: '将线性代数与分析推广到无穷维：从赋范空间与 Banach 空间出发，经由 Lebesgue 积分与 L² 空间的构造，到 Hilbert 空间、正交基与 Riesz 表示定理，并讲授 Baire 纲定理、一致有界原理、开映射与闭图像定理、Hahn–Banach 定理等泛函分析支柱，最后以紧自伴算子的谱定理与 Fourier 级数收尾，为量子力学中的 Hilbert 空间与算子语言打下严格的数学基础。',
     },
   },
   {
@@ -291,10 +291,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: 'RES.6-012',
     title: 'Introduction to Probability',
-    note: 'Probability models, conditioning, random variables, limit theorems and inference, building a mathematical framework for reasoning under uncertainty.',
+    note: "Taught by John Tsitsiklis alongside the classic Bertsekas and Tsitsiklis text: from the axioms of probability and conditioning (Bayes' rule), it covers discrete and continuous random variables, joint and derived distributions, conditional expectation, Bayesian inference (MAP, LMS) and classical statistics (maximum likelihood, confidence intervals), then limit theorems (the law of large numbers, the central limit theorem), Bernoulli and Poisson processes and Markov chains, building the probabilistic intuition and computational fluency that machine learning and reasoning under uncertainty rest on.",
     zh: {
       title: '概率论导论',
-      note: '概率模型、条件概率、随机变量、极限定理与统计推断，为不确定性下的推理建立数学框架。',
+      note: '由 John Tsitsiklis 主讲、配套 Bertsekas 与 Tsitsiklis 经典教材：从概率公理与条件概率（贝叶斯法则）出发，覆盖离散与连续随机变量、联合分布与导出分布、条件期望，以及贝叶斯推断（MAP、LMS）与经典统计（极大似然、置信区间），再到极限定理（大数定律、中心极限定理）、Bernoulli/Poisson 过程与马尔可夫链，为机器学习与不确定性推理打下概率直觉与计算功底。',
     },
   },
   {
@@ -303,10 +303,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.404J',
     title: 'Theory of Computation',
-    note: 'Automata, formal languages, computability and computational complexity: understanding what can be computed and the resources computation requires.',
+    note: "Taught by Michael Sipser from his own Introduction to the Theory of Computation: from finite automata, regular languages and the pumping lemma, through context-free grammars and pushdown automata, to Turing machines, the Church–Turing thesis, undecidability and reductions. The second half turns to complexity: P versus NP, the Cook–Levin theorem and NP-completeness, space complexity (Savitch's theorem, PSPACE-completeness), the hierarchy theorems and probabilistic computation, answering the field's founding question of what can be computed, and at what cost.",
     zh: {
       title: '计算理论',
-      note: '自动机、形式语言、可计算性与计算复杂性，理解哪些问题可以计算，以及计算所需的资源。',
+      note: '由 Michael Sipser 本人以其经典教材《计算理论导引》主讲：从有限自动机、正则语言与泵引理，到上下文无关文法与下推自动机，再到图灵机、Church–Turing 论题、不可判定性与归约；后半程转入复杂性理论，讲授 P 与 NP、Cook–Levin 定理与 NP 完全性、空间复杂性（Savitch 定理、PSPACE 完全性）、层级定理与概率计算，回答「什么能被计算、要付出多少代价」这一计算机科学的根本问题。',
     },
   },
   {
@@ -315,10 +315,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.200',
     title: 'Principles of Discrete Applied Mathematics',
-    note: 'Counting, generating functions, probability, linear optimisation, number theory and coding theory, connecting discrete structures with practical problems.',
+    note: 'Discrete mathematics as a tool for real problems: from counting and generating functions, probability and Chernoff bounds, it covers linear programming and duality, number theory and RSA, entropy and data compression (Huffman coding) and error-correcting codes (Hamming codes among them), showing how discrete structures underpin core techniques in algorithms, communication and cryptography.',
     zh: {
       title: '离散应用数学原理',
-      note: '从计数、生成函数、概率和线性优化，到数论与编码理论，将离散结构与实际问题联系起来。',
+      note: '以离散数学为工具解决实际问题：从计数与生成函数、概率与 Chernoff 界出发，覆盖线性规划与对偶理论、数论与 RSA 加密、信息熵与数据压缩（Huffman 编码）以及纠错码（如 Hamming 码），展示离散结构如何支撑算法、通信与密码学中的核心技术。',
     },
   },
   {
