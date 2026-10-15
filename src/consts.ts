@@ -123,10 +123,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.5840',
     title: 'Distributed Systems',
-    note: 'A rigorous, world-class course in distributed systems: read the classic papers (GFS, Spanner and others) and write four labs in Go — MapReduce, the Raft consensus protocol, and a fault-tolerant, sharded key-value store — to get at the design logic behind high concurrency, network fault tolerance and data consistency.',
+    note: 'Taught by Robert Morris around a close reading of the classic papers (MapReduce, GFS, Raft, ZooKeeper, Spanner and others), each examined for its trade-offs in replication, consistency and fault tolerance. The labs, in Go, build MapReduce, the Raft consensus protocol (leader election, log replication, persistence and snapshots), a fault-tolerant key-value service on top of Raft and finally a sharded key-value store, all verified under randomised tests of network partitions, crashes and reordered messages, building a working grasp of the fundamental trade-off between linearisability, fault tolerance and performance.',
     zh: {
       title: '分布式系统',
-      note: '全球顶尖的分布式系统硬核课程，通过研读经典论文（如 GFS、Spanner）与用 Go 语言写四大实验 —— MapReduce、Raft 共识协议及容错/分片 KV 数据库，深挖高并发、网络容错与数据一致性背后的核心设计逻辑。',
+      note: '由 Robert Morris 主讲，以研读经典论文为主线（MapReduce、GFS、Raft、ZooKeeper、Spanner 等），逐篇剖析复制、一致性与容错的工程取舍；实验用 Go 依次实现 MapReduce、Raft 共识协议（领导者选举、日志复制、持久化与快照）、构建于 Raft 之上的容错键值服务，以及分片键值存储，并在网络分区、节点崩溃与消息乱序的随机化测试下验证正确性，深入理解线性一致性、容错与性能之间的根本权衡。',
     },
   },
   {
@@ -135,10 +135,10 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-445',
     title: 'Database Systems',
-    note: 'Build BusTub, a relational database storage engine, in C++, covering every core low-level component: buffer pool management, B+ tree indexes, concurrency control and transaction locking (2PL/OCC), and the SQL executor. A standout example of theory meeting engineering practice.',
+    note: 'Taught by Andy Pavlo, it takes a relational database apart from the bottom up: from on-disk page layout and buffer pool management, it covers index structures (B+ trees, hash tables), sorting and join algorithms, query execution and optimisation, concurrency control (2PL, OCC, MVCC) and ARIES-style logging and recovery. The projects, in C++ on the BusTub teaching database, build a buffer pool manager (with an LRU-K replacement policy), an index, query executors and transactional concurrency control, showing how a SQL statement becomes disk I/O and how it stays correct under concurrency and crashes.',
     zh: {
       title: '数据库系统',
-      note: '用 C++ 搭建一个名为 BusTub 的关系型数据库存储引擎，全面覆盖 Buffer Pool 管理、B+Tree 索引、并发控制与事务锁（2PL/OCC）以及 SQL 执行器等底层核心组件，是理论与工程实践结合的顶尖代表。',
+      note: '由 Andy Pavlo 主讲，自底向上拆解关系型数据库的内部实现：从磁盘页布局与缓冲池管理出发，覆盖索引结构（B+ 树、哈希表）、排序与连接算法、查询执行与优化、并发控制（2PL、OCC、MVCC）以及基于 ARIES 的日志与故障恢复。项目用 C++ 在教学数据库 BusTub 中依次实现缓冲池管理器（LRU-K 替换策略）、索引、查询执行器与事务并发控制，理解一条 SQL 如何被翻译成磁盘 I/O，又如何在并发与崩溃之下保持正确。',
     },
   },
   {
@@ -147,10 +147,10 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-213',
     title: 'Introduction to Computer Systems',
-    note: 'Taught in C and x86-64 assembly, it dissects the boundary between hardware and software. At its core are seven demanding labs (Bomb Lab, Cache Lab, Malloc Lab and Proxy Lab among them) that take students from bit manipulation and reverse-engineering assembly through the memory hierarchy to concurrent network programming, until they truly understand how a program actually runs on the machine.',
+    note: "Built on Bryant and O'Hallaron's Computer Systems: A Programmer's Perspective (CS:APP), it examines the boundary between hardware and software from the programmer's side: from bit-level representations of integers and floating point, through x86-64 machine-level programs, the memory hierarchy and caches, and linking, to exceptional control flow (processes and signals), virtual memory, dynamic memory allocation, system-level I/O, and network and concurrent programming. The labs work through Data Lab (bit manipulation), Bomb Lab and Attack Lab (reverse-engineering assembly and buffer-overflow exploits), Cache Lab, Shell Lab, Malloc Lab and Proxy Lab, showing how a C program actually runs on a real machine, and why it slows down or crashes.",
     zh: {
       title: '计算机系统导论',
-      note: '以 C 语言和 x86-64 汇编为语言，直接剖析硬件与软件的交界面。其核心在于通过 7 个极具挑战性的实验（如 Bomb Lab、Cache Lab、Malloc Lab、Proxy Lab），让学生从位运算、汇编逆向、内存分级到并发网络编程，真正理解程序在计算机底层的实际运行机制。',
+      note: "以 Bryant 与 O'Hallaron 合著的《深入理解计算机系统》（CS:APP）为教材，从程序员视角剖析硬件与软件的交界面：从整数与浮点数的位级表示出发，经由 x86-64 机器级程序、存储器层次结构与缓存、链接，到异常控制流（进程与信号）、虚拟内存、动态内存分配、系统级 I/O、网络与并发编程。实验依次完成 Data Lab（位运算）、Bomb Lab 与 Attack Lab（汇编逆向与缓冲区溢出攻击）、Cache Lab、Shell Lab、Malloc Lab 与 Proxy Lab，理解一个 C 程序在真实机器上究竟如何运行，以及它为什么会变慢、会崩溃。",
     },
   },
   {
@@ -159,10 +159,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.1810',
     title: 'Operating System Engineering',
-    note: 'Build xv6, a Unix-like operating system, from scratch in C on RISC-V. Implementing process scheduling, virtual memory management, interrupt handling, the file system and system calls teaches the low-level mechanics and design choices of an operating system at the level of the code itself.',
+    note: 'Built around xv6, a teaching operating system modelled on Unix V6 and running on RISC-V, whose source is read line by line in lecture to explain system calls, page tables and virtual memory, traps and interrupts, scheduling and context switches, locking and concurrency, and file systems and crash recovery. The labs, in C, extend xv6 with new system calls, page-table inspection, copy-on-write fork, an E1000 network driver, a finer-grained memory allocator, large files and symbolic links, and mmap, teaching how an operating system works, and the design choices behind it, inside real kernel code.',
     zh: {
       title: '操作系统工程',
-      note: '基于 RISC-V 架构用 C 语言从零实现一个名为 xv6 的类 Unix 操作系统。通过实现进程调度、虚拟内存管理、中断处理、文件系统与系统调用等核心模块，让学生直接在代码层面掌握操作系统的底层运行机制与设计选择。',
+      note: '以 xv6（一个运行在 RISC-V 上、仿照 Unix V6 编写的教学操作系统）为蓝本，课上逐行研读其源码，讲授系统调用、页表与虚拟内存、陷阱与中断、进程调度与上下文切换、锁与并发、文件系统与崩溃恢复等核心机制。实验用 C 语言为 xv6 扩展新功能：新增系统调用、检查页表、写时复制 fork、E1000 网卡驱动、更细粒度加锁的内存分配器、大文件与符号链接、mmap 等，在真实的内核代码中掌握操作系统的运行机制与设计取舍。',
     },
   },
   {
@@ -171,10 +171,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS144',
     title: 'Computer Networking',
-    note: 'Centred on the TCP/IP stack: implement a complete TCP stack in C++ (Sponge/Minnow), covering the ByteStream, the Reassembler, the TCP receiver and sender, and IP router forwarding, turning abstract network- and transport-layer protocols into working code.',
+    note: 'Taught by Keith Winstein, it starts from layering and the end-to-end principle and covers the core mechanisms of the internet: packet switching, reliable delivery, flow and congestion control, IP addressing and routing, ARP, NAT and DNS. The labs, in C++, build a working TCP/IP stack from the bottom up (Sponge/Minnow): a byte stream and an out-of-order reassembler, a TCP receiver that handles sequence-number wraparound, a TCP sender with a retransmission timer and sliding window, an ARP-backed network interface and a longest-prefix-match IP router, turning textbook protocols into code that talks to real hosts.',
     zh: {
       title: '计算机网络',
-      note: '以 TCP/IP 协议栈为核心，用 C++ 实现一个完整的 TCP 协议栈（Sponge/Minnow），涵盖 ByteStream、Reassembler、TCP Receiver/Sender 及 IP 路由器转发等模块，将抽象的网络层与传输层协议转化为具体的代码实现。',
+      note: '由 Keith Winstein 主讲，从分层模型与端到端原则出发，讲授分组交换、可靠传输、流量控制与拥塞控制、IP 寻址与路由、ARP、NAT 与 DNS 等互联网核心机制。实验用 C++ 自底向上搭建一个能真正联网的 TCP/IP 协议栈（Sponge/Minnow）：字节流与乱序重组器、处理序号回绕的 TCP 接收端、带重传计时器与滑动窗口的 TCP 发送端、基于 ARP 的网络接口，以及最长前缀匹配的 IP 路由器，把教科书中的协议变成能与真实主机通信的代码。',
     },
   },
   {
@@ -183,10 +183,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.006',
     title: 'Introduction to Algorithms',
-    note: 'Built around the design and analysis of algorithms: data structures (binary search trees, hash tables), sorting and selection, graph algorithms (Dijkstra, BFS/DFS) and dynamic programming, with an emphasis on rigorous complexity analysis (Big-O) and reductions, training the computational thinking that turns real-world problems into efficient algorithms.',
+    note: "Taught by Erik Demaine, Jason Ku and Justin Solomon around the split between interface and implementation: from models of computation and asymptotic analysis, it covers data structures (hash tables, AVL trees, binary heaps), merge and radix sort, graph algorithms (BFS, DFS, topological sort, Bellman–Ford, Dijkstra, Johnson's all-pairs shortest paths) and dynamic programming through the SRTBOT framework, closing with reductions and NP-completeness. Problem sets pair proofs of correctness and complexity analysis with Python implementations, training the habit of modelling a real problem as a graph or a recurrence and then giving a provably efficient solution.",
     zh: {
       title: '算法导论',
-      note: '围绕算法设计与分析展开，重点讲授数据结构（如二叉搜索树、哈希表）、排序与选择、图算法（如 Dijkstra、BFS/DFS）以及动态规划等核心内容，强调严格的复杂度分析（Big-O）与问题归约（Reduction），培养将现实问题转化为高效率算法的计算思维。',
+      note: '由 Erik Demaine、Jason Ku 与 Justin Solomon 主讲，以「接口与实现」的区分为主线：从计算模型与渐近分析出发，覆盖数据结构（哈希表、AVL 平衡树、二叉堆）、归并排序与基数排序、图算法（BFS、DFS、拓扑排序、Bellman–Ford、Dijkstra、Johnson 全源最短路），并以 SRTBOT 框架系统讲授动态规划，最后引入归约与 NP 完全性。习题集兼顾正确性证明、复杂度分析与 Python 实现，训练把实际问题建模为图或递推、再给出可证明高效解法的能力。',
     },
   },
   {
