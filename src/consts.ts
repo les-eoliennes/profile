@@ -543,10 +543,10 @@ export const OPEN_COURSES = [
     crest: 'harvard',
     code: 'ER 22',
     title: 'Justice',
-    note: 'What is the right thing to do? Utilitarianism, libertarianism, Kant, Rawls and Aristotle, each tested against hard cases from markets, war, affirmative action and the law.',
+    note: "Taught by Michael Sandel through Socratic debate with a lecture hall of a thousand students: from hard cases (the runaway trolley, the shipwrecked crew driven to cannibalism), it sets out utilitarianism (Bentham and Mill), libertarianism (Nozick) and Locke on property and consent, then tests the limits of markets against military service and surrogacy, before turning to Kant's categorical imperative, Rawls's veil of ignorance and difference principle, and Aristotle's teleological justice, carrying each into affirmative action, patriotism and same-sex marriage. It trains the habit of naming the principle behind an intuition and following it through to its consequences.",
     zh: {
       title: '公正',
-      note: '什么才是正确的做法？功利主义、自由至上主义、康德、罗尔斯与亚里士多德，逐一放到市场、战争、平权法案与法律中的疑难案例里检验。',
+      note: '由 Michael Sandel 主讲，在千人大课堂上以苏格拉底式的辩论推进：从电车难题、海难求生等疑难案例出发，依次讲授边沁与密尔的功利主义、诺齐克的自由至上主义、洛克的财产权与同意理论，并以兵役制度与代孕检验市场的道德边界；再转向康德的绝对命令、罗尔斯的无知之幕与差异原则，以及亚里士多德的目的论正义观，把每种理论带入平权法案、爱国主义与同性婚姻等争议中，培养把直觉背后的原则说清楚、并推演其全部后果的能力。',
     },
   },
   {
@@ -555,10 +555,10 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'PHIL 176',
     title: 'Death',
-    note: 'What death is and whether it is bad: soul against physicalism, personal identity, whether immortality would be desirable, the fear of death, and the ethics of suicide.',
+    note: "Taught by Shelly Kagan, who argues a physicalist position openly rather than surveying views: from the case for and against an immaterial soul (Plato's Phaedo among the texts), it moves to personal identity (the body, soul and personality views, and the puzzles of duplication and fission) and what it is to be dead, then asks why death is bad, through the deprivation account and Epicurus' and Lucretius' arguments that it is not, whether immortality would be desirable, and whether fear of death is appropriate, closing with the rationality and morality of suicide. It shows how far careful argument can take a question most people answer by instinct alone.",
     zh: {
       title: '死亡',
-      note: '死亡是什么、它是否是坏事：灵魂与物理主义之争、人格同一性、永生是否值得向往、对死亡的恐惧，以及自杀的伦理。',
+      note: '由 Shelly Kagan 主讲，他不做观点罗列，而是明确为物理主义立场辩护：从支持与反对非物质灵魂的论证出发（包括柏拉图的《斐多篇》），讨论人格同一性（身体论、灵魂论与人格论，以及复制与分裂的思想实验）以及「死亡」究竟意味着什么；再追问死亡为何是坏事，审视剥夺论以及伊壁鸠鲁与卢克莱修认为死亡并不可怕的论证、永生是否值得向往、对死亡的恐惧是否恰当，最后以自杀的理性与道德问题收尾，展示严谨的论证能把一个多数人只凭本能回答的问题推进到多远。',
     },
   },
   {
@@ -568,10 +568,10 @@ export const OPEN_COURSES = [
     // Oxford's first-year course runs under its title alone, with no number.
     code: null,
     title: 'General Philosophy',
-    note: "Oxford's first-year introduction: knowledge and scepticism, induction, free will, personal identity, mind and body, and the existence of God, read through Descartes, Locke, Berkeley and Hume.",
+    note: "Oxford's first-year introduction, as taught by Peter Millican in lectures now freely available: from Descartes' Meditations and the sceptical arguments that open modern philosophy, it covers Locke and Berkeley on perception and the external world, Hume's problem of induction and his account of causation, then free will and determinism (and whether the two are compatible), personal identity, the mind–body problem from dualism to functionalism, and the arguments for the existence of God, especially the design argument and Hume's critique of it. Reading the primary texts closely, it trains the analytic habit of reconstructing an argument premise by premise and finding where it fails.",
     zh: {
       title: '哲学概论',
-      note: '牛津一年级的哲学入门：知识与怀疑论、归纳问题、自由意志、人格同一性、心身问题与上帝存在，围绕笛卡尔、洛克、贝克莱和休谟展开。',
+      note: '牛津哲学本科一年级的入门课，由 Peter Millican 主讲并公开了课程录音：从笛卡尔的《第一哲学沉思集》与开启近代哲学的怀疑论论证出发，讲授洛克与贝克莱关于知觉与外部世界的理论、休谟的归纳问题与因果理论，再到自由意志与决定论（以及二者能否相容）、人格同一性、从二元论到功能主义的心身问题，以及上帝存在的论证，尤其是设计论证与休谟对它的批判。课程紧扣原典精读，训练把一个论证逐条拆解为前提、并找出它在哪里失效的分析哲学功底。',
     },
   },
 ] as const;
