@@ -411,10 +411,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '14.01',
     title: 'Principles of Microeconomics',
-    note: 'How consumers and firms decide, how markets set prices, and where they fail: supply and demand, competition and monopoly, externalities, public goods and the case for intervention.',
+    note: 'Taught by Jonathan Gruber: from supply and demand, it derives consumer demand from utility maximisation under a budget constraint and models firm decisions through production functions and cost curves, then analyses perfect competition, monopoly and oligopoly and their welfare consequences (consumer and producer surplus). The second half turns to factor markets (labour and capital), choice under uncertainty and international trade, then externalities, public goods, taxation and redistribution, showing when markets work, when they fail, and what justifies government intervention and what it costs.',
     zh: {
       title: '微观经济学原理',
-      note: '消费者和企业如何决策、市场如何定价、又在哪里失灵：供需、竞争与垄断、外部性、公共物品，以及政府干预的理由。',
+      note: '由 Jonathan Gruber 主讲：从供需模型出发，以效用最大化与预算约束推导消费者需求，以生产函数与成本曲线刻画企业决策，再分析完全竞争、垄断与寡头的市场结构及其福利后果（消费者剩余与生产者剩余）；后半程转向要素市场（劳动与资本）、不确定性下的选择、国际贸易，以及外部性、公共物品、税收与收入再分配，理解市场何时有效、何时失灵，以及政府干预的依据与代价。',
     },
   },
   {
@@ -423,10 +423,22 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '14.02',
     title: 'Principles of Macroeconomics',
-    note: 'Output, unemployment and inflation across the short, medium and long run: IS-LM and AS-AD, monetary and fiscal policy, growth, and open economies with exchange rates.',
+    note: "Taught by Ricardo Caballero from Blanchard's Macroeconomics: from the goods and financial markets it builds the IS-LM model, adds the labour market and the Phillips curve to derive AS-AD, and traces how monetary and fiscal policy act differently in the short, medium and long run. It then covers the Solow growth model and technological progress, the role of expectations in consumption and investment, and exchange rates and the Mundell–Fleming model in the open economy, applying these tools to financial crises and the liquidity trap, building a complete framework for analysing macroeconomic fluctuations and policy.",
     zh: {
       title: '宏观经济学原理',
-      note: '从短期、中期到长期看产出、失业与通胀：IS-LM 与 AS-AD 模型、货币与财政政策、经济增长，以及汇率下的开放经济。',
+      note: '由 Ricardo Caballero 主讲，以 Blanchard《宏观经济学》为教材：从商品市场与金融市场出发构建 IS-LM 模型，结合劳动力市场与菲利普斯曲线推导 AS-AD 模型，分析货币政策与财政政策在短期、中期与长期的不同效果；再讲授 Solow 增长模型与技术进步、预期在消费与投资中的作用，以及开放经济中的汇率与 Mundell–Fleming 模型，并用这些工具解读金融危机与流动性陷阱，建立分析宏观经济波动与政策的完整框架。',
+    },
+  },
+  {
+    category: 'econ',
+    school: 'MIT',
+    crest: 'mit',
+    code: '14.771',
+    title: 'Development Economics: Microeconomic Issues and Policy Models',
+    note: "MIT's graduate course in development economics, in the J-PAL tradition of studying poverty through randomised controlled trials: from agricultural household models and market imperfections, it covers human capital (education and health), intrahousehold allocation, credit markets and microfinance, risk sharing and consumption smoothing, savings, land and labour markets and technology adoption, extending to governance, corruption and political economy. Built around close reading of current empirical papers, it stresses causal identification through randomised trials, instrumental variables and natural experiments, showing how households in developing countries actually behave and which policies genuinely improve the lives of the poor.",
+    zh: {
+      title: '发展经济学：微观问题与政策模型',
+      note: 'MIT 研究生阶段的发展经济学课程，延续 J-PAL 以随机对照实验研究贫困的传统：从农户模型与市场不完善出发，系统讲授人力资本（教育与健康）、家庭内部资源配置、信贷市场与小额信贷、风险分担与消费平滑、储蓄、土地与劳动力市场以及技术采纳，并延伸至治理、腐败与政治经济学。课程以研读前沿实证论文为主，强调随机对照实验、工具变量与自然实验等因果识别方法，理解发展中国家的家庭究竟如何决策，以及哪些政策真正改善了贫困人口的生活。',
     },
   },
   {
@@ -435,10 +447,10 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'ECON 251',
     title: 'Financial Theory',
-    note: 'Finance built up from general equilibrium: present value, bond pricing and the yield curve, uncertainty and hedging, CAPM, and how leverage and collateral drive boom and crash.',
+    note: "Taught by John Geanakoplos, it builds finance from the ground up on general equilibrium: from Irving Fisher's intertemporal model it derives interest rates and present value, applying them to bond pricing, the yield curve, mortgages and prepayment, and social security. Uncertainty follows, with risk aversion, portfolio choice, the capital asset pricing model (CAPM) and dynamic hedging, closing with the leverage cycle, Geanakoplos's own theory of how leverage and collateral amplify boom and crash, applied to the 2008 financial crisis, recasting Wall Street practice as rigorous economic models.",
     zh: {
       title: '金融理论',
-      note: '从一般均衡出发搭建金融学：现值、债券定价与收益率曲线、不确定性与对冲、资本资产定价模型，以及杠杆与抵押品如何推动繁荣与崩溃。',
+      note: '由 John Geanakoplos 主讲，以一般均衡为基础自底向上搭建金融学：从 Irving Fisher 的跨期模型推导利率与现值，讲授债券定价、收益率曲线、抵押贷款与提前还款、社会保障等应用；再引入不确定性，讲授风险厌恶、资产组合、资本资产定价模型（CAPM）与动态对冲；最后以主讲人本人提出的杠杆周期理论收尾，分析杠杆与抵押品如何放大繁荣与崩溃，并用于解读 2008 年金融危机，把华尔街的实践还原为严格的经济学模型。',
     },
   },
   {
@@ -447,10 +459,10 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'ECON 252',
     title: 'Financial Markets',
-    note: 'How the financial system manages risk: insurance, efficient markets and behavioural finance, banks and regulation, stocks, bonds, real estate and derivatives.',
+    note: 'Taught by Robert Shiller, 2013 Nobel laureate in economics, it examines the financial system as a machine for managing risk: from probability, diversification and the principles of insurance, it weighs the efficient-markets hypothesis against behavioural finance, then works through the markets for bonds, stocks, real estate, forwards and futures, and options, and the institutional design of banks, investment banks, central banks and monetary policy, and financial regulation, with guest lectures from practitioners, showing how finance serves society and why it produces bubbles and crises.',
     zh: {
       title: '金融市场',
-      note: '金融体系如何管理风险：保险、有效市场与行为金融、银行与监管，以及股票、债券、房地产和衍生品。',
+      note: '由 2013 年诺贝尔经济学奖得主 Robert Shiller 主讲，从风险管理的视角审视金融体系：从概率、风险分散与保险原理出发，讨论有效市场假说与行为金融的分歧，再逐一讲授债券、股票、房地产、远期与期货、期权等市场，以及银行、投资银行、中央银行与货币政策、金融监管的制度设计，辅以业界嘉宾讲座，理解金融如何服务于社会，以及它为何会出现泡沫与危机。',
     },
   },
   {
@@ -459,10 +471,10 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'ECON 159',
     title: 'Game Theory',
-    note: 'Strategic thinking made precise: dominance, Nash equilibrium, mixed strategies, backward induction and subgame perfection, repeated games, bargaining, auctions and asymmetric information.',
+    note: 'Taught by Ben Polak, who introduces each idea through games played in the lecture hall: from strict dominance and the iterated deletion of dominated strategies, it covers Nash equilibrium and its application to Cournot and Bertrand competition, mixed strategies and evolutionarily stable strategies, then sequential games, with backward induction, the Stackelberg model, information sets and subgame-perfect equilibrium, extending to cooperation in repeated games, bargaining, signalling and auctions under asymmetric information, training the ability to formalise and solve real strategic interaction.',
     zh: {
       title: '博弈论',
-      note: '把策略思维变得精确：占优策略、纳什均衡、混合策略、逆向归纳与子博弈精炼，以及重复博弈、议价、拍卖和信息不对称。',
+      note: '由 Ben Polak 主讲，以大量课堂博弈实验引入概念：从严格占优与重复剔除劣策略出发，讲授纳什均衡及其在 Cournot 与 Bertrand 竞争中的应用、混合策略与演化稳定策略；再转向序贯博弈，讲授逆向归纳、Stackelberg 模型、信息集与子博弈精炼纳什均衡，并延伸至重复博弈中的合作、议价、信号传递与拍卖等信息不对称问题，培养把现实中的策略互动形式化并求解的能力。',
     },
   },
   {
