@@ -339,10 +339,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.04',
     title: 'Quantum Physics I',
-    note: 'The experiments that broke classical physics, then wavefunctions, the Schrödinger equation, one-dimensional potentials, the harmonic oscillator and the hydrogen atom.',
+    note: 'Taught by Barton Zwiebach, it starts from the experiments that broke classical physics (the photoelectric effect, Compton scattering, electron diffraction), introduces wave–particle duality and the de Broglie relations, and builds the probabilistic interpretation of the wavefunction, Fourier analysis and the uncertainty principle. It then solves the Schrödinger equation in earnest: stationary states and one-dimensional potentials (infinite and finite wells, the delta function, barriers and tunnelling), the harmonic oscillator through ladder-operator algebra, and finally central potentials in three dimensions, angular momentum and the hydrogen atom, laying down both the computational backbone and the physical intuition of quantum mechanics.',
     zh: {
       title: '量子物理 I',
-      note: '从动摇经典物理的实验出发，到波函数、薛定谔方程、一维势、谐振子与氢原子。',
+      note: '由 Barton Zwiebach 主讲，从光电效应、康普顿散射与电子衍射等动摇经典物理的实验出发，引入波粒二象性与德布罗意关系，建立波函数的概率诠释、傅里叶分析与不确定性原理，再系统求解薛定谔方程：定态与一维势（无限深与有限深势阱、δ 势、势垒与隧穿）、用升降算符代数求解谐振子，最后推广到三维中心势、角动量与氢原子，搭起量子力学的计算骨架与物理直觉。',
     },
   },
   {
@@ -351,10 +351,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.05',
     title: 'Quantum Physics II',
-    note: 'Quantum mechanics rebuilt on linear algebra: Dirac notation, spin, operator methods, time evolution, and the addition of angular momentum.',
+    note: "The second part of Barton Zwiebach's quantum trilogy, rebuilding quantum mechanics on linear algebra: from the Stern–Gerlach experiment and spin one-half, it develops vector spaces, linear operators, inner products and the spectral theorem, introducing Dirac notation and the generalised uncertainty principle. It then applies them to coherent and squeezed states of the harmonic oscillator, two-state systems (nuclear magnetic resonance, the ammonia maser), time evolution in the Schrödinger and Heisenberg pictures, and finally the theory of angular momentum, central potentials and the addition of angular momentum (the fine structure of hydrogen), lifting wave mechanics into an abstract framework built on Hilbert space.",
     zh: {
       title: '量子物理 II',
-      note: '以线性代数重建量子力学：狄拉克符号、自旋、算符方法、时间演化与角动量耦合。',
+      note: 'Barton Zwiebach 量子力学三部曲的第二部，以线性代数重建量子力学：从 Stern–Gerlach 实验与自旋 1/2 出发，系统讲授向量空间、线性算符、内积与谱定理，引入狄拉克符号与广义不确定性原理；再以此处理谐振子的相干态与压缩态、二能级系统（核磁共振、氨分子微波激射器）、薛定谔绘景与海森堡绘景下的时间演化，最后讲授角动量理论、中心势与角动量耦合（氢原子精细结构），把波动力学提升为基于 Hilbert 空间的抽象框架。',
     },
   },
   {
@@ -363,10 +363,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.06',
     title: 'Quantum Physics III',
-    note: 'Approximation methods for problems with no exact solution — perturbation theory, WKB, the variational and adiabatic methods — and scattering.',
+    note: "The last part of the trilogy turns to realistic problems with no exact solution: from charged particles in electromagnetic fields and Landau levels, it develops non-degenerate and degenerate perturbation theory and applies it to the fine structure of hydrogen and the Zeeman and Stark effects, then covers the WKB approximation (tunnelling and connection formulas), time-dependent perturbation theory and Fermi's golden rule, and the adiabatic approximation and Berry's phase, closing with scattering theory (partial waves, the Born approximation), training the ability to extract physical conclusions from complicated systems by approximation.",
     zh: {
       title: '量子物理 III',
-      note: '处理没有精确解的问题的近似方法：微扰论、WKB、变分法与绝热近似，以及散射理论。',
+      note: '三部曲的最后一部，转向没有精确解的真实问题：从电磁场中的带电粒子与朗道能级出发，系统讲授非简并与简并微扰论，并用于计算氢原子精细结构、塞曼效应与斯塔克效应；再讲授 WKB 近似（隧穿与连接公式）、含时微扰论与费米黄金法则、绝热近似与 Berry 相位，最后以散射理论（分波法、Born 近似）收尾，培养用近似方法从复杂系统中提取物理结论的能力。',
     },
   },
   {
@@ -375,10 +375,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.323',
     title: 'Relativistic Quantum Field Theory I',
-    note: 'Where quantum mechanics meets special relativity: classical fields and symmetries, quantising free scalar, Dirac and gauge fields, then interactions, Feynman diagrams and tree-level QED.',
+    note: "MIT's first graduate semester of quantum field theory, on how quantum mechanics and special relativity fit together: from classical field theory, Lagrangians and Noether's theorem, it covers the Lorentz group and its representations, then canonically quantises the free scalar, Dirac and gauge fields, explaining antiparticles and the spin–statistics connection. Interactions follow, with Wick's theorem and perturbative expansion leading to the Feynman rules, cross sections and decay rates, closing with tree-level QED processes (e⁺e⁻ → μ⁺μ⁻, Compton scattering), laying the theoretical groundwork for the Standard Model of particle physics.",
     zh: {
       title: '相对论性量子场论 I',
-      note: '量子力学与狭义相对论的结合：经典场与对称性，标量场、狄拉克场与规范场的量子化，再到相互作用、费曼图与树图阶的量子电动力学。',
+      note: 'MIT 研究生阶段量子场论的第一学期，研究量子力学与狭义相对论如何结合：从经典场论、拉格朗日量与 Noether 定理出发，讲授洛伦兹群及其表示，依次对自由标量场、狄拉克场与规范场做正则量子化，理解反粒子与自旋—统计关系；再引入相互作用，借助 Wick 定理与微扰展开推导费曼规则，计算散射截面与衰变率，最后以树图阶的量子电动力学过程（如 e⁺e⁻ → μ⁺μ⁻、康普顿散射）收尾，为粒子物理标准模型打下理论基础。',
     },
   },
   {
@@ -387,10 +387,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.962',
     title: 'General Relativity',
-    note: 'Gravity as the curvature of spacetime: tensors and differential geometry, the Einstein field equations, black holes, gravitational waves and cosmology.',
+    note: "Taught by Scott Hughes with Carroll's text as reference: from special relativity restated in tensor language, it builds the tools of differential geometry (manifolds, the metric, covariant derivatives and parallel transport, geodesics, the Riemann curvature tensor) and derives the Einstein field equations, then covers the weak-field limit and linearised gravity, the generation and propagation of gravitational waves, the Schwarzschild solution and black holes, and FRW cosmology, turning gravity as the curvature of spacetime from a slogan into a geometric theory you can compute with.",
     zh: {
       title: '广义相对论',
-      note: '把引力理解为时空的弯曲：张量与微分几何、爱因斯坦场方程、黑洞、引力波与宇宙学。',
+      note: '由 Scott Hughes 主讲，参考 Carroll 教材：从用张量语言重述狭义相对论出发，系统建立微分几何工具（流形、度规、协变导数与平行移动、测地线、黎曼曲率张量），推导爱因斯坦场方程；再讲授弱场极限与线性化引力、引力波的产生与传播、Schwarzschild 解与黑洞，以及 FRW 宇宙学模型，把「引力即时空弯曲」从一句口号变成可以计算的几何理论。',
     },
   },
   {
