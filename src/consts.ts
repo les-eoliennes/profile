@@ -121,12 +121,12 @@ export const OPEN_COURSES = [
     category: 'cs',
     school: 'MIT',
     crest: 'mit',
-    code: '6.824',
+    code: '6.5840',
     title: 'Distributed Systems',
-    note: 'The lab series is the real content: build a MapReduce, then Raft, then a sharded fault-tolerant key-value store on top of it. Nothing else I have done taught me as much about what "consensus" actually costs.',
+    note: 'A rigorous, world-class course in distributed systems: read the classic papers (GFS, Spanner and others) and write four labs in Go — MapReduce, the Raft consensus protocol, and a fault-tolerant, sharded key-value store — to get at the design logic behind high concurrency, network fault tolerance and data consistency.',
     zh: {
       title: '分布式系统',
-      note: '真正的内容是那套实验：先写一个 MapReduce，再写 Raft，然后在它之上做一个分片的、可容错的键值存储。没有别的东西让我这么真切地明白「共识」到底要付出什么代价。',
+      note: '全球顶尖的分布式系统硬核课程，通过研读经典论文（如 GFS、Spanner）与用 Go 语言写四大实验 —— MapReduce、Raft 共识协议及容错/分片 KV 数据库，深挖高并发、网络容错与数据一致性背后的核心设计逻辑。',
     },
   },
   {
@@ -135,10 +135,10 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-445',
     title: 'Database Systems',
-    note: 'Writing a buffer pool manager, a B+ tree index and a query executor by hand is what turned EXPLAIN output from a wall of jargon into something I can read.',
+    note: 'Build BusTub, a relational database storage engine, in C++, covering every core low-level component: buffer pool management, B+ tree indexes, concurrency control and transaction locking (2PL/OCC), and the SQL executor. A standout example of theory meeting engineering practice.',
     zh: {
       title: '数据库系统',
-      note: '亲手写一遍缓冲池管理器、B+ 树索引和查询执行器之后，EXPLAIN 的输出才从一堵术语墙变成了我读得懂的东西。',
+      note: '用 C++ 搭建一个名为 BusTub 的关系型数据库存储引擎，全面覆盖 Buffer Pool 管理、B+Tree 索引、并发控制与事务锁（2PL/OCC）以及 SQL 执行器等底层核心组件，是理论与工程实践结合的顶尖代表。',
     },
   },
   {
@@ -147,22 +147,22 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-213',
     title: 'Introduction to Computer Systems',
-    note: 'The CSAPP labs. Bomb lab and malloc lab in particular changed how I read a stack trace and how I think about memory layout.',
+    note: 'Taught in C and x86-64 assembly, it dissects the boundary between hardware and software. At its core are seven demanding labs (Bomb Lab, Cache Lab, Malloc Lab and Proxy Lab among them) that take students from bit manipulation and reverse-engineering assembly through the memory hierarchy to concurrent network programming, until they truly understand how a program actually runs on the machine.',
     zh: {
       title: '计算机系统导论',
-      note: 'CSAPP 配套的实验。尤其是 bomb lab 和 malloc lab，改变了我读调用栈的方式，也改变了我思考内存布局的方式。',
+      note: '以 C 语言和 x86-64 汇编为语言，直接剖析硬件与软件的交界面。其核心在于通过 7 个极具挑战性的实验（如 Bomb Lab、Cache Lab、Malloc Lab、Proxy Lab），让学生从位运算、汇编逆向、内存分级到并发网络编程，真正理解程序在计算机底层的实际运行机制。',
     },
   },
   {
     category: 'cs',
     school: 'MIT',
     crest: 'mit',
-    code: '6.828',
+    code: '6.1810',
     title: 'Operating System Engineering',
-    note: 'Implementing xv6 pieces made system calls, page tables and context switches concrete rather than diagrams in a slide deck.',
+    note: 'Build xv6, a Unix-like operating system, from scratch in C on RISC-V. Implementing process scheduling, virtual memory management, interrupt handling, the file system and system calls teaches the low-level mechanics and design choices of an operating system at the level of the code itself.',
     zh: {
       title: '操作系统工程',
-      note: '动手实现 xv6 的各个部分之后，系统调用、页表和上下文切换才成了具体的东西，而不是幻灯片上的示意图。',
+      note: '基于 RISC-V 架构用 C 语言从零实现一个名为 xv6 的类 Unix 操作系统。通过实现进程调度、虚拟内存管理、中断处理、文件系统与系统调用等核心模块，让学生直接在代码层面掌握操作系统的底层运行机制与设计选择。',
     },
   },
   {
@@ -171,10 +171,10 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS144',
     title: 'Computer Networking',
-    note: 'Building a working TCP implementation from the socket layer down. Retransmission and flow control stop being trivia once you have had to make them correct.',
+    note: 'Centred on the TCP/IP stack: implement a complete TCP stack in C++ (Sponge/Minnow), covering the ByteStream, the Reassembler, the TCP receiver and sender, and IP router forwarding, turning abstract network- and transport-layer protocols into working code.',
     zh: {
       title: '计算机网络',
-      note: '从 socket 层往下，做出一个真正能跑的 TCP 实现。当你必须让重传和流量控制真的正确时，它们就不再是背下来的知识点了。',
+      note: '以 TCP/IP 协议栈为核心，用 C++ 实现一个完整的 TCP 协议栈（Sponge/Minnow），涵盖 ByteStream、Reassembler、TCP Receiver/Sender 及 IP 路由器转发等模块，将抽象的网络层与传输层协议转化为具体的代码实现。',
     },
   },
   {
@@ -183,22 +183,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.006',
     title: 'Introduction to Algorithms',
-    note: 'Went back through it properly rather than relying on interview-prep pattern matching. Amortised analysis finally clicked here.',
+    note: 'Built around the design and analysis of algorithms: data structures (binary search trees, hash tables), sorting and selection, graph algorithms (Dijkstra, BFS/DFS) and dynamic programming, with an emphasis on rigorous complexity analysis (Big-O) and reductions, training the computational thinking that turns real-world problems into efficient algorithms.',
     zh: {
       title: '算法导论',
-      note: '认真重走了一遍，而不是靠面试题的套路匹配。摊还分析是在这里才真正想通的。',
-    },
-  },
-  {
-    category: 'cs',
-    school: 'MIT',
-    crest: 'mit',
-    code: '6.064J',
-    title: 'Design and Analysis of Algorithms',
-    note: 'Went back through it properly rather than relying on interview-prep pattern matching. Amortised analysis finally clicked here.',
-    zh: {
-      title: '算法设计与分析',
-      note: '认真重走了一遍，而不是靠面试题的套路匹配。摊还分析是在这里才真正想通的。',
+      note: '围绕算法设计与分析展开，重点讲授数据结构（如二叉搜索树、哈希表）、排序与选择、图算法（如 Dijkstra、BFS/DFS）以及动态规划等核心内容，强调严格的复杂度分析（Big-O）与问题归约（Reduction），培养将现实问题转化为高效率算法的计算思维。',
     },
   },
   {
