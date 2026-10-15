@@ -301,6 +301,18 @@ export const OPEN_COURSES = [
     category: 'math',
     school: 'MIT',
     crest: 'mit',
+    code: '18.650',
+    title: 'Statistics for Applications',
+    note: 'Taught by Philippe Rigollet: starting from statistical modelling and parametric estimation, it develops maximum likelihood and the method of moments, M-estimation, Fisher information and asymptotic normality (the delta method), then hypothesis testing (Wald, likelihood-ratio, chi-squared goodness-of-fit and Kolmogorov–Smirnov tests) and Bayesian statistics (conjugate and Jeffreys priors), extending to linear regression, generalised linear models and principal component analysis. Rigorous derivations answer how to draw trustworthy conclusions from data, closing the loop from probability models to inference.',
+    zh: {
+      title: '应用统计学',
+      note: '由 Philippe Rigollet 主讲：从统计建模与参数估计出发，系统讲授极大似然与矩估计、M 估计、Fisher 信息与渐近正态性（Delta 方法），再到假设检验（Wald 检验、似然比检验、卡方拟合优度检验、Kolmogorov–Smirnov 检验）与贝叶斯统计（共轭先验、Jeffreys 先验），并延伸至线性回归、广义线性模型与主成分分析，以严格的数学推导回答「如何从数据中得出可信的结论」，与概率论形成从模型到推断的完整闭环。',
+    },
+  },
+  {
+    category: 'math',
+    school: 'MIT',
+    crest: 'mit',
     code: '18.404J',
     title: 'Theory of Computation',
     note: "Taught by Michael Sipser from his own Introduction to the Theory of Computation: from finite automata, regular languages and the pumping lemma, through context-free grammars and pushdown automata, to Turing machines, the Church–Turing thesis, undecidability and reductions. The second half turns to complexity: P versus NP, the Cook–Levin theorem and NP-completeness, space complexity (Savitch's theorem, PSPACE-completeness), the hierarchy theorems and probabilistic computation, answering the field's founding question of what can be computed, and at what cost.",
