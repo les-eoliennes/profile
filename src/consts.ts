@@ -526,6 +526,18 @@ export const OPEN_COURSES = [
     },
   },
   {
+    category: 'ling',
+    school: 'MIT',
+    crest: 'mit',
+    code: '24.900',
+    title: 'Introduction to Linguistics',
+    note: "Grounded in MIT's generative tradition, it studies language as a property of the human mind: from the distinctions between description and prescription and between competence and performance, it covers morphology (morphemes and the hierarchical structure of words), phonetics and phonology (the IPA, phonemes and allophones, distinctive features, syllable structure and phonological rules), syntax (constituency, phrase structure, movement and wh-questions, binding) and semantics (compositionality, quantification and entailment), extending to language acquisition and the poverty-of-the-stimulus argument, variation and change, and sign languages. Problem sets ask for rules induced from real data in unfamiliar languages, training the habit of analysing language like a scientist, and giving a linguist's view to set beside the formal grammars of 18.404J and the language models of CS224N.",
+    zh: {
+      title: '语言学导论',
+      note: '以 MIT 生成语言学的传统为底色，把语言当作人类心智的一种属性来研究：从描写与规定、语言能力与语言运用的区分出发，依次讲授形态学（语素与词的层级结构）、语音学与音系学（国际音标、音位与音位变体、区别特征、音节结构与音系规则）、句法学（成分结构、短语结构、移位与 wh 疑问句、约束理论）以及语义学（组合性、量化与蕴涵），并延伸至语言习得与刺激贫乏论证、语言变异与演变、手语。习题集要求从陌生语言的真实语料中归纳规则，培养像科学家一样分析语言数据的能力，也为对照 18.404J 的形式文法与 CS224N 的语言模型提供了语言学的视角。',
+    },
+  },
+  {
     category: 'philo',
     school: 'Harvard',
     crest: 'harvard',
