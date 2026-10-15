@@ -483,10 +483,10 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.13',
     title: 'The Human Brain',
-    note: 'How the brain divides its work into specialised regions for faces, places, language, music and other minds, and the methods — fMRI, lesions, recording — used to find them.',
+    note: "Taught by Nancy Kanwisher, who discovered the fusiform face area: starting from neuroanatomy and a real brain dissection, it lays out the methods of cognitive neuroscience (fMRI, EEG and MEG, TMS, studies of patients with brain damage, intracranial recording) and asks of each what it can and cannot show. It then works through the brain's functional specialisation, region by region: face recognition, scene perception and navigation, bodies and visual motion, number, music, language, and the network that represents other minds, extending to how plasticity and development shape that division of labour and to deep networks as models of visual cortex, building an understanding of how the mind is organised in the brain from the experimental evidence up.",
     zh: {
       title: '人类大脑',
-      note: '大脑如何分工出专门处理面孔、场景、语言、音乐和他人心智的区域，以及用来发现它们的方法：fMRI、脑损伤研究与神经记录。',
+      note: '由梭状回面孔区（FFA）的发现者 Nancy Kanwisher 主讲：从神经解剖与真实的大脑解剖演示出发，系统讲授认知神经科学的研究方法（fMRI、EEG 与 MEG、TMS、脑损伤患者研究、颅内记录），并追问每种方法能证明什么、不能证明什么；再逐个剖析大脑的功能特异化：面孔识别、场景知觉与空间导航、身体与视觉运动、数量、音乐、语言，以及理解他人心智的脑网络，并延伸至可塑性与发育如何塑造这种分工、深度神经网络作为视觉皮层模型的可能，从实验证据出发理解心智在大脑中如何组织。',
     },
   },
   {
@@ -495,10 +495,34 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.00SC',
     title: 'Introduction to Psychology',
-    note: 'Perception, learning, memory, emotion, development, personality and social behaviour, read against their biological basis and the experiments behind each claim.',
+    note: 'Taught by John Gabrieli: from the research methods of psychology and the biological basis of behaviour, it covers perception and attention, consciousness and sleep, learning (classical and operant conditioning), memory (the amnesic patient H.M. among the cases), language, thinking and intelligence, then emotion and motivation, development across the lifespan, personality, social psychology (conformity and obedience in the Asch and Milgram experiments), stress and health, and psychological disorders and their treatment, reading every claim against the experiments behind it and building a full map of the mind from neurons to society.',
     zh: {
       title: '心理学导论',
-      note: '知觉、学习、记忆、情绪、发展、人格与社会行为，结合其生物学基础和支撑每个结论的实验来理解。',
+      note: '由 John Gabrieli 主讲：从心理学的研究方法与行为的生物学基础出发，覆盖知觉与注意、意识与睡眠、学习（经典条件反射与操作性条件反射）、记忆（如失忆症患者 H.M. 的案例）、语言、思维与智力，再到情绪与动机、毕生发展、人格、社会心理学（Asch 从众实验与 Milgram 服从实验）、压力与健康，以及心理障碍及其治疗，结合支撑每个结论的经典实验，建立从神经元到社会的完整心智图景。',
+    },
+  },
+  {
+    category: 'psych',
+    school: 'MIT',
+    crest: 'mit',
+    code: '9.35',
+    title: 'Sensation and Perception',
+    note: "From psychophysics (thresholds, Weber's law, signal detection theory), it follows the visual pathway from the optics of the eye through the retina, lateral inhibition and receptive fields to the lateral geniculate nucleus and primary visual cortex, then covers colour vision (trichromacy and opponent processes), lightness constancy and illusions, spatial vision and contrast sensitivity, motion, depth and stereopsis, and object recognition and attention, extending to hearing (the cochlea, pitch and sound localisation), touch, taste and smell. It shows that perception is not a recording of the world but an inference the brain makes from incomplete signals, and sets human vision against computer vision.",
+    zh: {
+      title: '感觉与知觉',
+      note: '从心理物理学（感觉阈限、韦伯定律、信号检测论）出发，沿视觉通路从眼的光学成像、视网膜、侧抑制与感受野，经外侧膝状体到初级视觉皮层，再讲授颜色视觉（三色理论与拮抗过程）、明度恒常性与视错觉、空间视觉与对比敏感度、运动知觉、深度与立体视觉、物体识别与注意，并延伸至听觉（耳蜗、音高与声源定位）、触觉、味觉与嗅觉，理解知觉并非对世界的被动记录，而是大脑基于不完整信号做出的推断，也为对照人类视觉与计算机视觉提供了基础。',
+    },
+  },
+  {
+    category: 'psych',
+    school: 'MIT',
+    crest: 'mit',
+    code: '9.40',
+    title: 'Introduction to Neural Computation',
+    note: 'Taught by Michale Fee: from the biophysics of a single neuron, it builds the equivalent-circuit model of the membrane, the Hodgkin–Huxley model of the action potential, integrate-and-fire neurons, dendrites and cable theory, and synaptic transmission, then turns to the neural code, with spike trains and firing rates, receptive fields and the spike-triggered average. Along the way it teaches the mathematics of data analysis (convolution and filtering, Fourier and spectral analysis, matrices, eigenvectors and principal component analysis), closing with network models: rate models, feed-forward networks and the perceptron, recurrent networks, line attractors as neural integrators, and Hopfield networks for memory. MATLAB problem sets simulate and analyse each model, showing how computation emerges from biological neural circuits and how they compare with artificial ones.',
+    zh: {
+      title: '神经计算导论',
+      note: '由 Michale Fee 主讲：从单个神经元的生物物理出发，依次建立细胞膜的等效电路模型、动作电位的 Hodgkin–Huxley 模型、积分发放神经元、树突与电缆理论以及突触传递；再转向神经编码，讲授动作电位序列与发放率、感受野与脉冲触发平均。课程同时系统讲授数据分析的数学工具（卷积与滤波、傅里叶与频谱分析、矩阵、特征向量与主成分分析），最后以网络模型收尾：发放率模型、前馈网络与感知机、循环网络、作为神经积分器的线吸引子，以及用于记忆的 Hopfield 网络。习题用 MATLAB 模拟和分析每个模型，理解计算如何从生物神经回路中涌现，以及它与人工神经网络的异同。',
     },
   },
   {
