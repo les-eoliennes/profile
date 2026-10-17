@@ -140,28 +140,33 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych', 'ling'
               return (
                 <article class="course-card rule-thin pt-5" data-reveal>
                   {/*
-                    The crest heads the card on a row of its own, large enough
-                    to read as the school's name — which is why the kicker
-                    below no longer spells it out (the alt text still does,
-                    for screen readers). Kept on the card's left edge rather
-                    than in a side column, so the kicker, title and note all
-                    start on the same x whichever school it is.
+                    The crest stands at the card's right edge, level with the
+                    heading, so the empty space beside a short title carries
+                    the school's name — which is why the kicker no longer
+                    spells it out (the alt text still does, for screen
+                    readers). The kicker, title and note all start on the
+                    card's left edge whichever school it is.
 
-                    The row has a fixed height and the marks sit on its
-                    bottom edge: at one base height they still differ by
-                    their `scale` (CMU's three-line stack comes out 1.5x
-                    MIT's wordmark), and a fixed row keeps the titles across
-                    a grid row level with each other.
+                    The crest hangs from the top of the card, level with the
+                    kicker, so it keeps the same distance from the rule above
+                    however many lines the title takes. Bottom-aligning it to
+                    the title made it ride up and down from card to card. On a
+                    phone there is no room beside the title, so the crest
+                    goes back on top.
                   */}
-                  <div class="flex h-14 items-end">
-                    <Crest slug={course.crest} height={36} />
-                  </div>
+                  <header class="flex flex-col-reverse gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                    <div class="min-w-0">
+                      <p class="course-meta kicker">
+                        {[course.code, 'instructor' in course && course.instructor].filter(Boolean).join(' · ')}
+                      </p>
 
-                  <p class="course-meta kicker mt-4">
-                    {[course.code, 'instructor' in course && course.instructor].filter(Boolean).join(' · ')}
-                  </p>
+                      <h4 class="course-title mt-1.5">{course.title}</h4>
+                    </div>
 
-                  <h4 class="course-title mt-1.5">{course.title}</h4>
+                    <div class="shrink-0">
+                      <Crest slug={course.crest} height={36} />
+                    </div>
+                  </header>
 
                   {
                     'lectures' in course ? (
