@@ -133,31 +133,55 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych', 'ling'
     {courseCategories.map((category) => (
       <section id={`courses-${category}`} class="mt-6" data-tab-panel={category}>
         <h3 class="deck-sm mb-5" data-tab-heading>{t(`edu.category.${category}`)}</h3>
-        <div class="grid gap-x-10 gap-y-8 lg:grid-cols-2">
+        <div class="grid gap-x-10 gap-y-7 lg:grid-cols-2">
           {
             OPEN_COURSES.filter((course) => course.category === category).map((raw) => {
               const course = localize(raw, lang);
               return (
-                <article
-                  class="course-card rule-thin grid content-start gap-x-5 gap-y-3 pt-5 sm:grid-cols-[7rem_1fr]"
-                  data-reveal
-                >
+                <article class="course-card rule-thin pt-5" data-reveal>
                   {/*
-                    Fixed 7rem column rather than an inline flex row: the marks run
-                    from 69px to 106px wide, so a shrink-to-fit column would start
-                    every card's type at a different x and the grid would read as
-                    misaligned. 7rem clears the widest of them.
+                    The crest heads the card on a row of its own, large enough
+                    to read as the school's name — which is why the kicker
+                    below no longer spells it out (the alt text still does,
+                    for screen readers). Kept on the card's left edge rather
+                    than in a side column, so the kicker, title and note all
+                    start on the same x whichever school it is.
+
+                    The row has a fixed height and the marks sit on its
+                    bottom edge: at one base height they still differ by
+                    their `scale` (CMU's three-line stack comes out 1.5x
+                    MIT's wordmark), and a fixed row keeps the titles across
+                    a grid row level with each other.
                   */}
-                  <Crest slug={course.crest} height={30} class="course-crest self-start" />
-
-                  <div class="min-w-0">
-                    <p class="course-meta kicker">
-                      {course.code ? `${course.school} · ${course.code}` : course.school}
-                    </p>
-
-                    <h4 class="deck-sm mt-1.5">{course.title}</h4>
+                  <div class="flex h-14 items-end">
+                    <Crest slug={course.crest} height={36} />
                   </div>
-                  <p class="course-note text-sm leading-relaxed text-pretty sm:col-start-2">{course.note}</p>
+
+                  <p class="course-meta kicker mt-4">
+                    {[course.code, 'instructor' in course && course.instructor].filter(Boolean).join(' · ')}
+                  </p>
+
+                  <h4 class="course-title mt-1.5">{course.title}</h4>
+
+                  {
+                    'lectures' in course ? (
+                      <div class="mt-3 space-y-2.5 text-sm leading-relaxed text-pretty">
+                        <p>
+                          <span class="run-in">{t('edu.lectures')}</span>
+                          {course.lectures}
+                        </p>
+                        <p>
+                          <span class="run-in">
+                            {t('edu.labs')}
+                            {course.labsIn && <span class="run-in-aside"> · {course.labsIn}</span>}
+                          </span>
+                          {course.labs}
+                        </p>
+                      </div>
+                    ) : (
+                      <p class="mt-3 text-sm leading-relaxed text-pretty">{course.note}</p>
+                    )
+                  }
                 </article>
               );
             })
