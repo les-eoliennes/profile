@@ -40,7 +40,7 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
     <h2 class="deck-lg text-balance">{t('front.headline')}</h2>
 
     <div class="mt-6 flex flex-wrap gap-3">
-      <a href="#work" class="btn-oval">{t('front.cta.work')}</a>
+      {lead && <a href="#work" class="btn-oval">{t('front.cta.work')}</a>}
       <a href={localizePath('/stack', lang)} class="btn-oval">{t('front.cta.stack')}</a>
     </div>
   </div>
@@ -70,20 +70,22 @@ const trailer = ['go', 'rust', 'postgresql', 'kubernetes', 'redis', 'linux'];
   <div class="rule-thin"></div>
 </section>
 
-<!-- Work -->
+<!-- Work — left out entirely until there is a report to lead with -->
+{lead && (
 <section id="work" class="px-5 pt-10 sm:px-8">
   <div class="reversed px-4 py-2.5">
     <h2 class="deck-md">{t('work.heading')}</h2>
   </div>
 
   <div class="mt-8">
-    {lead && <ProjectCard report={lead} index={0} lead />}
+    <ProjectCard report={lead} index={0} lead />
   </div>
 
   <div class="rule-thin mt-9 grid gap-8 pt-8 sm:grid-cols-2 sm:gap-10">
     {rest.map((report, i) => <ProjectCard report={report} index={i + 1} />)}
   </div>
 </section>
+)}
 
 <!-- Stack trailer -->
 <section class="mt-12 px-5 sm:px-8">
