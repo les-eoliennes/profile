@@ -7,6 +7,8 @@
   - `{ en, zh }` for a plain string, read as `value[lang]`
   - a record with a `zh` block of overrides, merged with `localize(item, lang)`
 */
+import { TECH } from './data/tech';
+
 export const SITE = {
   name: 'Hello, I\'m Ace :D',
   /*
@@ -666,7 +668,8 @@ export const TIMELINE = [
 /** Figures for the front-page strip. Labels are translated; values are not. */
 export const STATS = [
   { key: 'stats.years', value: '3' },
-  { key: 'stats.languages', value: '4' },
+  // Counted from the stack page, so the two cannot disagree.
+  { key: 'stats.languages', value: String(TECH.filter((tech) => tech.category === 'Languages').length) },
   { key: 'stats.tokens', value: '1B' },
-  { key: 'stats.incidents', value: '40+' },
+  { key: 'stats.learning', value: '∞' },
 ] as const;
