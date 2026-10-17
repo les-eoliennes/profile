@@ -32,15 +32,15 @@ export const UI = {
     'lang.other': '中文',
 
     'front.kicker': 'Backend · Distributed Systems · Databases',
-    'front.headline': 'I write the layer underneath, and I can read the layer under that.',
+    'front.headline': 'From an idea to a product in users\' hands.',
     'front.cta.work': 'The Work',
     'front.cta.stack': 'The Stack',
     'front.standfirst':
-      'Software engineer working on backend systems and the infrastructure they sit on — distributed systems, database internals, and the runtimes in between.',
+      'Senior full-stack engineer. From scoping requirements and interaction design to web and app development and server deployment, I have built every layer of a product with my own hands. At my best building new products from scratch, and equally able to take over a legacy system that has grown unmanageable and rebuild it.',
     'front.body1':
-      'Most of the hard production problems I have worked on were never a matter of business logic being written incorrectly. They came from holding a wrong assumption about how the operating system, the network or the storage engine actually behaves.',
+      'Everything starts from the product. When a requirement comes in, I first work out what users actually need, then decide how the interface should work, how the API should be shaped and how the data should be stored — and only then start building. With both the front end and the back end in my hands, the design can start from the whole, instead of being dictated by the limits of any one layer.',
     'front.body2':
-      'So I spend my time on two things: keeping the fundamentals sharp, and genuinely understanding the root cause after an incident rather than adding a retry and moving on. That is the whole of my method, and the rest of this paper is evidence for it.',
+      'What comes out is one piece, interface and back end alike: interactions that feel natural, clean APIs, and data structures that hold up as the business changes. And once it is live, whichever layer a problem turns up in, I can pick it up.',
 
     'stats.years': 'Years shipping',
     'stats.languages': 'Languages in prod',
@@ -161,15 +161,15 @@ export const UI = {
     'lang.other': 'English',
 
     'front.kicker': '后端 · 分布式系统 · 数据库',
-    'front.headline': '那些杀不死我的难题，必使我更强大。',
+    'front.headline': '从一个想法，到用户手中的产品。',
     'front.cta.work': '看作品',
     'front.cta.stack': '看技术栈',
     'front.standfirst':
-      '我专注于高复杂度后端工程。不被特定的框架或方向绑定，我的核心优势在于对操作系统、网络、数据库与运行时行为的深刻理解，以及极强的跨领域攻坚能力。',
+      '资深全栈工程师。从需求梳理、交互设计，到 Web 与 App 开发、服务器部署，一个产品的每一层我都亲手做过。擅长从零搭建新产品，也能接手并重构积重难返的旧系统。',
     'front.body1':
-      '大部分复杂的系统故障，本质上都是对底层机制的认知偏差。拥有深刻的系统理解力，意味着能迅速跨越技术栈壁垒，直击复杂现象背后的底层病灶。',
+      '对我来说，一切从产品本身出发。一个需求进来，先想清楚用户要什么，再决定界面怎么做、接口怎么设计、数据怎么存，最后才动手实现。前后端都在自己手里，方案可以从整体出发，而不是被某一层的限制牵着走。',
     'front.body2':
-      '所以我把时间花在两件事上：把基础打牢，出问题时刨到根因，而不是随手加个重试就翻篇。说到底就是这套方法，后面的内容都是证据。',
+      '这样做出来的东西，界面和后台是一体的：交互顺手，接口简洁，数据结构经得起业务的变化。上线之后，无论问题出在哪一层，我都能接住。',
 
     'stats.years': '工作年资',
     'stats.languages': '偏好语言',
