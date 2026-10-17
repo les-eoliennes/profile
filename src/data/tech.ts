@@ -6,7 +6,7 @@
 export interface Tech {
   slug: string;
   name: string;
-  category: 'Languages' | 'Data' | 'Infrastructure' | 'Observability' | 'Web';
+  category: 'Languages' | 'Data' | 'Infrastructure' | 'Observability' | 'Web' | 'AI';
   tagline: string;
   understanding: string[];
   points: string[];
@@ -529,6 +529,87 @@ export const TECH: Tech[] = [
         '内容集合会按 schema 校验 frontmatter，写错字段是构建失败，而不是渲染成 undefined',
         '`client:*` 指令控制水合时机 —— `client:visible` 会把首屏之外的 JavaScript 推迟到滚动进视口时',
         '需要 SSR、API 路由或数据库时再用 Next.js；内容站点用 Astro 更合适',
+      ],
+    },
+  },
+  {
+    slug: 'claudecode',
+    name: 'Claude Code',
+    category: 'AI',
+    tagline: 'An agent that works in the repository, not a box that autocompletes the line.',
+    understanding: [
+      'The shift is from suggestion to delegation. Claude Code reads the codebase, runs the commands and edits across files, so the unit of work becomes a task rather than a line. That only pays off when the task is stated the way you would state it to a colleague: the goal, the constraints, and what done looks like.',
+      'The leverage comes from context the agent can rely on — a CLAUDE.md that records the things that will bite, tests it can run, a build that fails loudly. A repository that is pleasant for a new hire is pleasant for an agent; one that relies on tribal knowledge gets confident, wrong changes.',
+    ],
+    points: [
+      'Keep a CLAUDE.md of conventions and traps; it is read on every session and saves re-explaining the same constraint',
+      'Review the diff, not the narration — the summary describes intent, the diff is what actually changed',
+      'Small, verifiable tasks beat one sweeping request; a failing test is the best specification you can hand it',
+    ],
+    zh: {
+      tagline: '在仓库里干活的智能体，而不是只会补全一行的输入框。',
+      understanding: [
+        '变化在于从「建议」走向「委托」。Claude Code 会读代码库、跑命令、跨文件修改，于是工作单位从一行代码变成了一项任务。前提是把任务讲清楚，就像交代给同事那样：目标、约束，以及怎样算做完。',
+        '杠杆来自它能依赖的上下文 —— 一份记下各种坑的 CLAUDE.md、能跑的测试、出错就大声失败的构建。对新人友好的仓库对智能体也友好；靠口口相传的仓库，只会换来自信满满的错误改动。',
+      ],
+      points: [
+        '维护一份 CLAUDE.md 记录约定和坑，每次会话都会读到，省得反复解释同一条约束',
+        '审 diff，别审叙述 —— 总结说的是意图，diff 才是实际改了什么',
+        '小而可验证的任务胜过一个大而全的请求；一个失败的测试就是最好的需求说明',
+      ],
+    },
+  },
+  {
+    slug: 'codex',
+    name: 'Codex',
+    category: 'AI',
+    tagline: "OpenAI's coding agent — a second opinion with a different set of blind spots.",
+    understanding: [
+      'I use Codex alongside Claude Code rather than instead of it. Two models trained differently fail differently, so handing the same change to the other one for review catches mistakes that a single model would confidently repeat.',
+      'It also works well for tasks that can run unattended in a sandbox: a well-scoped issue goes in, a branch comes out, and the review happens afterwards. The quality of what comes back tracks the quality of the issue, not the cleverness of the prompt.',
+    ],
+    points: [
+      'Use a different model as reviewer — the one that wrote the code shares its own blind spots',
+      'Sandboxed, asynchronous runs suit well-specified chores; exploratory work still wants a human in the loop',
+      'An AGENTS.md with build and test commands makes its output far more likely to pass on the first try',
+    ],
+    zh: {
+      tagline: 'OpenAI 的编程智能体 —— 一个盲区不同的第二意见。',
+      understanding: [
+        '我把 Codex 和 Claude Code 搭配着用，而不是二选一。训练方式不同的两个模型，犯的错也不同；把同一份改动交给另一个来审，能抓出单个模型会理直气壮重复的错误。',
+        '它也适合在沙箱里无人值守地跑：丢进去一个范围清楚的 issue，出来一个分支，事后再审。拿回来的质量取决于 issue 写得好不好，而不是提示词有多巧。',
+      ],
+      points: [
+        '用另一个模型做审查 —— 写代码的那个和自己共享同样的盲区',
+        '沙箱里的异步任务适合需求明确的杂活；探索性的工作仍然需要人在回路里',
+        '在 AGENTS.md 里写清构建和测试命令，产出一次通过的概率会高得多',
+      ],
+    },
+  },
+  {
+    slug: 'ollama',
+    name: 'Ollama',
+    category: 'AI',
+    tagline: 'Open-weight models on your own machine, behind one command and a local API.',
+    understanding: [
+      'Ollama makes running a model locally as dull as pulling a container image: `ollama run` fetches quantised weights and serves them over an HTTP API. That dullness is the point — it turns local inference into ordinary infrastructure you can script against.',
+      'Local models are not a substitute for frontier ones on hard reasoning, but they win where data cannot leave the machine, where latency and cost per call matter more than peak quality, or where you simply want to work offline.',
+    ],
+    points: [
+      'Its OpenAI-compatible endpoint means most client code switches over by changing a base URL',
+      'Quantisation trades a little quality for a lot of memory; pick the level the hardware can hold entirely in VRAM or unified memory',
+      'Good for embeddings, classification and private data; leave long multi-step reasoning to the larger hosted models',
+    ],
+    zh: {
+      tagline: '一条命令、一个本地 API，把开源权重模型跑在自己机器上。',
+      understanding: [
+        'Ollama 让本地跑模型变得像拉一个容器镜像一样平淡：`ollama run` 拉下量化好的权重，再通过 HTTP API 提供服务。平淡正是重点 —— 本地推理因此变成了可以写脚本调用的普通基础设施。',
+        '在困难的推理任务上，本地模型替代不了前沿模型；但在数据不能离开本机、单次调用的延迟和成本比峰值质量更重要，或者只是想离线干活的场合，它更占优。',
+      ],
+      points: [
+        '它提供兼容 OpenAI 的接口，大多数客户端代码改个 base URL 就能切过去',
+        '量化用一点质量换大量内存；选硬件能整个放进显存或统一内存的那一档',
+        '适合做向量嵌入、分类和处理私有数据；冗长的多步推理留给更大的托管模型',
       ],
     },
   },

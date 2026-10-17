@@ -29,6 +29,7 @@ const ALIASES: Record<string, string> = {
   mysql: 'mysql-icon',
   docker: 'docker-icon',
   astro: 'astro-icon',
+  codex: 'openai-icon',
 };
 
 /**
