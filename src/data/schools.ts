@@ -98,4 +98,14 @@ export const SCHOOLS: Record<string, School> = {
     // block reads far heavier than open letterforms, so it is held back.
     scale: 1.4,
   },
+  af: {
+    slug: 'af',
+    name: 'Alliance Française',
+    nameZh: '法语联盟',
+    monogram: 'AF',
+    // The emblem's red, from the Fondation's own SVG.
+    color: '#CE132D',
+    // The bare "af" emblem, 0.86:1 — taller than wide, so it is held at its
+    // given height rather than area-matched against the wordmarks.
+  },
 };

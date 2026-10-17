@@ -5,7 +5,7 @@
 from `src/data/schools.ts`. If a file is missing, the component falls back to a
 monogram badge in the school's colour.
 
-All seven crests here are SVG.
+All eight crests here are SVG.
 
 ## What is here, and where it came from
 
@@ -17,6 +17,7 @@ All seven crests here are SVG.
 | `stanford.svg` | Stanford's own identity site + Wikimedia Commons | Stanford Trademark Licensing | composite: one native vector part, one traced part |
 | `yale.svg` | yale.edu — the site header's sprite, `sites/all/themes/yale_blue/images/icons.svg` | Yale trademark, not licensed | native vector |
 | `harvard.svg` | harvard.edu — the header logo, a data URI in the theme's `master.min.css` | Harvard trademark, not licensed | native vector |
+| `af.svg` | fondation-alliancefr.org — `wp-content/themes/af-2017/images/Logo_Fondation-des-alliances-francaises_2020.svg` | Alliance Française trademark, not licensed | native vector, one path extracted |
 | `oxford.svg` | ox.ac.uk — the header logo, `themes/custom/numiko/dist/oxford-logo-DzIWfeXH.svg` | Oxford trademark, not licensed | native vector |
 
 Everything is transparent except `oxford.svg`, whose mark *is* a filled
@@ -78,6 +79,17 @@ it, and the saved copy checked against that hash. The mark is the belted
 arms and UNIVERSITY OF OXFORD in white on an Oxford Blue (`#002147`) square;
 its viewBox is 81×80 with the square inset half a unit either side.
 
+**`af.svg` is the red "af" emblem shared by every Alliance Française**,
+lifted from the Fondation des Alliances Françaises' own 2020 logo (19,622
+bytes, SHA-256
+`0b729b4b5e9897c1178327dabc6590d5eac9eec81688fa018a21440085581d3b`). That
+file is the full Fondation lockup — "fondation", the emblem and "des
+Alliances Françaises" — and the emblem is its single `cls-4` path, fill
+`#ce132d`. Only that path is kept, copied unchanged; the viewBox is its
+bounding box (294.6, 0, 136.84 × 158.84), so nothing was redrawn or
+rescaled. The Fondation's wording was dropped because it names the
+foundation, not the school the course is taken at.
+
 ## Licensing
 
 **`szu.svg` is fair-use, not freely licensed** — normal for a Chinese
@@ -92,8 +104,8 @@ and wordmark here are unmodified in intent (same colours, same relative
 arrangement) but assembled into a file Stanford did not publish as such — check
 their trademark policy before this goes anywhere public, same as SZU.
 
-**`yale.svg`, `harvard.svg` and `oxford.svg` are trademarks**, each taken
-from the university's own home page, none of which publishes a licence for
+**`yale.svg`, `harvard.svg`, `oxford.svg` and `af.svg` are trademarks**, each
+taken from the institution's own site, none of which publishes a licence for
 the mark. Each school's identity guidelines govern its use; check them before
 this goes anywhere public, same as SZU and Stanford.
 
@@ -104,7 +116,7 @@ endorsement or affiliation.
 
 ## Shapes
 
-Ratios run 1.0:1 (Shenzhen, Oxford) to 3.98:1 (Harvard). Crests are
+Ratios run 0.86:1 (the Alliance Française emblem) to 3.98:1 (Harvard). Crests are
 normalised by **height**, never fitted into a square. A shared height alone is
 not enough either: Carnegie Mellon's three-line stack at MIT's height gives each
 line a third the size and stops being readable, so `scale` in `schools.ts`

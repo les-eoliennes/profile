@@ -1,6 +1,6 @@
 ---
 import Crest from './Crest.astro';
-import { EDUCATION, COURSEWORK, OPEN_COURSES } from '../consts';
+import { EDUCATION, COURSEWORK, OPEN_COURSES, LANGUAGES } from '../consts';
 import { getLangFromUrl, useTranslations, localizePath, localize } from '../i18n/utils';
 import { tabsPerRow } from '../lib/tabs';
 
@@ -166,6 +166,41 @@ const courseCategories = ['cs', 'ai', 'math', 'physics', 'econ', 'psych', 'ling'
       </section>
     ))}
   </div>
+</section>
+
+<!--
+  Languages — one full-width entry per language. Not the course card: the
+  emblem stands large in its own column, the language is set as a headline,
+  and the note runs beside it at reading width.
+-->
+<section class="px-5 pt-12 sm:px-8">
+  <div class="reversed px-4 py-2.5">
+    <h2 class="deck-md">{t('edu.language')}</h2>
+  </div>
+
+  {
+    LANGUAGES.map((raw) => {
+      const item = localize(raw, lang);
+      return (
+        <article
+          class="mt-7 grid gap-6 sm:grid-cols-[auto_1fr] sm:gap-x-8 lg:grid-cols-[auto_1fr_1.4fr] lg:gap-x-12"
+          data-reveal
+        >
+          <Crest slug={item.crest} height={96} class="self-start" />
+
+          <div class="self-start">
+            <p class="kicker">{item.period}</p>
+            <h3 class="deck-lg mt-2">{item.language}</h3>
+            <p class="standfirst mt-3">{item.school}</p>
+          </div>
+
+          <p class="dropcap text-sm leading-relaxed text-pretty sm:col-span-2 lg:col-span-1 lg:border-l lg:border-ink lg:pl-12">
+            {item.note}
+          </p>
+        </article>
+      );
+    })
+  }
 </section>
 
 <section class="px-5 pt-8 sm:px-8">

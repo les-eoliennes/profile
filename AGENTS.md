@@ -60,7 +60,7 @@ readable. Most marks are dark reds or blues on transparency, which sit
 directly on the paper now that there is no night edition; Oxford's is a solid
 blue square by design.
 
-All seven crests are SVG. Two of them (`cmu.svg`, the wordmark half of
+All eight crests are SVG. Two of them (`cmu.svg`, the wordmark half of
 `stanford.svg`) have no official vector source and were produced by tracing the
 official raster art with potrace, not by redrawing — see the sourcing table in
 `src/assets/crests/README.md` before touching either file.

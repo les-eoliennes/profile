@@ -88,6 +88,7 @@ export const UI = {
     'edu.category.ling': 'Linguistics',
     'edu.category.philo': 'Philosophy',
     'edu.openStandfirst': 'Best universities but free, what can I say?',
+    'edu.language': 'Language',
     'edu.cta': 'See where the theory lands',
 
     'stack.section': 'Section III',
@@ -212,6 +213,7 @@ export const UI = {
     'edu.category.ling': '语言学',
     'edu.category.philo': '哲学',
     'edu.openStandfirst': '好的大学没有围墙',
+    'edu.language': '语言',
     'edu.cta': '看这些理论落在哪儿',
 
     'stack.section': '第三版',

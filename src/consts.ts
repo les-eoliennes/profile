@@ -577,6 +577,26 @@ export const OPEN_COURSES = [
 ] as const;
 
 /**
+ * Languages studied in a classroom, shown below the open courseware. `crest`
+ * is a key in src/data/schools.ts like the courses above.
+ */
+export const LANGUAGES = [
+  {
+    crest: 'af',
+    school: 'Alliance Française',
+    language: 'French',
+    period: 'Sept 2026 — Present',
+    note: 'Studying French in the classroom at the Alliance Française, the network of French language and cultural centres founded in Paris in 1883: grammar, vocabulary and pronunciation built up alongside listening, speaking, reading and writing, structured around the Common European Framework of Reference for Languages (CEFR).',
+    zh: {
+      school: '法语联盟',
+      language: '法语',
+      period: '2026年9月 — 至今',
+      note: '在法语联盟（Alliance Française，1883 年创立于巴黎的法语与法国文化推广机构）系统学习法语：在语法、词汇与发音的基础上同步训练听、说、读、写，课程对标欧洲语言共同参考框架（CEFR）。',
+    },
+  },
+] as const;
+
+/**
  * Employment history, most recent first. `detail` is optional — the
  * internship entry has none, since there is nothing on record beyond the
  * fact of it, and a filler sentence would be worse than leaving it out.
