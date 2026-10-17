@@ -49,7 +49,7 @@ export const EDUCATION = [
     school: 'Shenzhen University',
     degree: 'B.Eng., Computer Science and Technology',
     detail:
-      'Four years of systematic training in the fundamentals. Data structures, operating systems, networking, database systems and compilers — the courses that felt abstract at the time and turned out to explain almost every hard production incident since.',
+      'A four-year engineering degree covering computer systems, software development and the mathematics underneath them, with programming assignments and lab work throughout. The main courses are listed below.',
     // World rankings only — domestic (ShanghaiRanking's Best Chinese
     // Universities Ranking) dropped at request. `short` is the label shown
     // under the number; QS/THE/ARWU are used as-is in Chinese higher-ed
@@ -92,7 +92,7 @@ export const EDUCATION = [
       school: '深圳大学',
       degree: '工学学士 · 计算机科学与技术',
       detail:
-        '四年系统的基础训练：数据结构、操作系统、计算机网络、数据库系统、编译原理。当时觉得这些课挺抽象，后来才发现，线上出的每次大问题基本都能从这几门课里找到解释。',
+        '四年制工科本科，课程覆盖计算机系统、软件开发和相关的数学基础，配套大量编程作业和实验。主要课程列在下方。',
     },
   },
 ] as const;

@@ -69,13 +69,13 @@ export const UI = {
     'edu.title': 'Education',
     'edu.description':
       'Shenzhen University and open courseware from MIT, Stanford, Harvard, Yale, Oxford and CMU.',
-    'edu.headline': 'Learning for life runs on curiosity, not on being handed a syllabus.',
+    'edu.headline': 'A computer science degree, and a habit of studying after it.',
     'edu.standfirst':
-      'A degree is where it starts. What actually determines how far you get is whether you keep teaching yourself things after it ends.',
+      'I studied Computer Science and Technology at Shenzhen University, and have kept studying since — filling the gaps the work exposes, and following whatever else interests me.',
     'edu.body1':
-      'A school hands you a framework, and a set of professors who make sure the homework gets done. What it cannot hand you is the willingness to open a course on a Saturday, ten years after graduating, and relearn something you already thought you knew.',
+      'There is no fixed syllabus. A course usually starts from something at work: a system I do not fully understand sends me to the course that teaches how it works, and I take it from the first lecture to the last, labs included.',
     'edu.body2':
-      'That kind of curiosity is not something you are born with, and nobody can install it for you. It gets built one incident at a time — a course picked up after a production failure, a textbook worked through because a paper made no sense on its own. Everything below is what that adds up to.',
+      'Since graduating, most of my studying has been open courseware. Computer science and AI are the day job; maths and physics shore up the foundations; economics, psychology, linguistics and philosophy are for interest. I am currently learning French at the Alliance Française.',
     'edu.degree': 'The Degree',
     'edu.coursework': 'Coursework',
     'edu.open': 'Open Courseware',
@@ -197,12 +197,12 @@ export const UI = {
     'edu.section': '第二版',
     'edu.title': '教育背景',
     'edu.description': '深圳大学的学位，以及 MIT、斯坦福、哈佛、耶鲁、牛津和 CMU 的公开课。',
-    'edu.headline': '终生学习驱动力来自于内部的好奇心与热情，而非被动的知识灌输。',
-    'edu.standfirst': '文凭只是个开始。真正决定你能走多远的，是毕业以后还愿不愿意自己找东西学。',
+    'edu.headline': '计算机科学主修，毕业后接着自学。',
+    'edu.standfirst': '在深圳大学读完计算机科学与技术，之后一直没停下：工作里缺什么就补什么，感兴趣的也会去学。',
     'edu.body1':
-      '学校能给你的，是一套完整的知识框架，和一群逼着你交作业的教授。学校给不了的，是毕业十年之后，你还愿不愿意在某个周末打开一门公开课，重新学一遍自己早就以为学过的东西。',
+      '选课没有固定计划，通常从工作里碰到的问题出发：某个系统没完全弄懂，就去找讲它原理的那门课，从第一讲听到最后一讲，实验也一起做。',
     'edu.body2':
-      '这份好奇心不是天生自带的，也不是谁能塞给你的。它是每次线上故障之后自己去补一门课、每次读不懂一篇论文之后自己去啃一本教材，一点一点攒出来的。下面这些，就是这么攒出来的。',
+      '毕业后的学习主要靠公开课。计算机和人工智能是本行，数学和物理用来补底子，经济学、心理学、语言学和哲学则是出于兴趣。目前在法语联盟学法语。',
     'edu.degree': '学历',
     'edu.coursework': '主修课程',
     'edu.open': '公开课程',
