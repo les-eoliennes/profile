@@ -35,6 +35,8 @@ export const UI = {
     'front.headline': 'From an idea to a product in users\' hands.',
     'front.cta.work': 'The Work',
     'front.cta.stack': 'The Stack',
+    'front.cta.education': 'Education',
+    'front.cta.experience': 'Experience',
     'front.standfirst':
       'Senior full-stack engineer. From scoping requirements and interaction design to web and app development and server deployment, I have built every layer of a product with my own hands. At my best building new products from scratch, and equally able to take over a legacy system that has grown unmanageable and rebuild it.',
     'front.body1':
@@ -165,6 +167,8 @@ export const UI = {
     'front.headline': '从一个想法，到用户手中的产品。',
     'front.cta.work': '看作品',
     'front.cta.stack': '看技术栈',
+    'front.cta.education': '看教育',
+    'front.cta.experience': '看职涯',
     'front.standfirst':
       '资深全栈工程师。从需求梳理、交互设计，到 Web 与 App 开发、服务器部署，一个产品的每一层我都亲手做过。擅长从零搭建新产品，也能接手并重构积重难返的旧系统。',
     'front.body1':
