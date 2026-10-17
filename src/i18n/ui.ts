@@ -44,7 +44,7 @@ export const UI = {
 
     'stats.years': 'Years shipping',
     'stats.languages': 'Languages in prod',
-    'stats.courses': 'Open courses',
+    'stats.tokens': 'tokens',
     'stats.incidents': 'Incidents owned',
 
     'work.heading': 'Selected Work',
@@ -173,7 +173,7 @@ export const UI = {
 
     'stats.years': '工作年资',
     'stats.languages': '偏好语言',
-    'stats.courses': '公开课程',
+    'stats.tokens': 'Tokens',
     'stats.incidents': '经手故障',
 
     'work.heading': '精选作品',

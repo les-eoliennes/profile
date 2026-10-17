@@ -667,6 +667,6 @@ export const TIMELINE = [
 export const STATS = [
   { key: 'stats.years', value: '3' },
   { key: 'stats.languages', value: '4' },
-  { key: 'stats.courses', value: String(OPEN_COURSES.length) },
+  { key: 'stats.tokens', value: '1B' },
   { key: 'stats.incidents', value: '40+' },
 ] as const;
