@@ -63,7 +63,9 @@ export default defineConfig({
       cssVariable: '--font-display',
       weights: ['400 900'],
       styles: ['normal', 'italic'],
-      subsets: ['latin'],
+      // `math` carries the ∞ in the front-page figures; without it the glyph
+      // falls through to Songti. unicode-range keeps it off pages that lack one.
+      subsets: ['latin', 'math'],
       optimizedFallbacks: false,
       fallbacks: ['Songti SC', 'STSong', 'Noto Serif CJK SC', 'Source Han Serif SC', 'serif'],
     },
