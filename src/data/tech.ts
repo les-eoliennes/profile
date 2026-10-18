@@ -6,7 +6,7 @@
 export interface Tech {
   slug: string;
   name: string;
-  category: 'Languages' | 'Data' | 'Infrastructure' | 'Observability' | 'Web' | 'AI';
+  category: 'Languages' | 'Data' | 'Infrastructure' | 'Observability' | 'Client' | 'AI';
   tagline: string;
   understanding: string[];
   points: string[];
@@ -481,7 +481,7 @@ export const TECH: Tech[] = [
   {
     slug: 'react',
     name: 'React',
-    category: 'Web',
+    category: 'Client',
     tagline: 'UI as a function of state; the difficulty was always in organising the state.',
     understanding: [
       'Declarative rendering removes the drudgery of keeping the DOM in sync with state, but it relocates the complexity into state management. Deciding what is server state, what belongs in the URL and what is genuinely local is the decision that matters — get it wrong and no amount of good component design recovers it.',
@@ -506,9 +506,36 @@ export const TECH: Tech[] = [
     },
   },
   {
+    slug: 'nextjs',
+    name: 'Next.js',
+    category: 'Client',
+    tagline: 'React with a server attached; the hard part is deciding where each piece of code runs.',
+    understanding: [
+      'Next.js earns its place when a page needs data that changes per request, routes that double as an API, or SEO on content that is not known at build time. Server Components move data fetching to the server and send down HTML plus only the JavaScript the interactive parts need.',
+      'The cost is a second mental model. Every component now has a location — server or client — and a caching policy, and most surprising bugs come from getting one of those wrong: a secret leaking into a client bundle, or a page served stale because the cache was more aggressive than expected.',
+    ],
+    points: [
+      "Mark the client boundary as low in the tree as possible; everything above `'use client'` can stay on the server",
+      'Be explicit about caching and revalidation for every fetch rather than relying on defaults that have changed between versions',
+      'For a site that is mostly static content, Astro ships less JavaScript; reach for Next.js when the pages are an application',
+    ],
+    zh: {
+      tagline: '带了服务端的 React；难的是决定每段代码在哪儿运行。',
+      understanding: [
+        '当页面需要按请求变化的数据、需要同时充当 API 的路由，或者要对构建时还不存在的内容做 SEO 时，Next.js 才真正值回票价。Server Components 把取数挪到服务端，发给浏览器的是 HTML，加上交互部分真正需要的那点 JavaScript。',
+        '代价是多了一套心智模型。每个组件都有了「位置」——服务端还是客户端——和一套缓存策略，最让人意外的 bug 大多出在这两者之一：密钥漏进了客户端包，或者缓存比预想的更激进，页面一直是旧的。',
+      ],
+      points: [
+        "客户端边界划得越靠近叶子越好；`'use client'` 之上的部分都可以留在服务端",
+        '每个请求的缓存和重新验证都显式写清楚，别依赖那些在版本之间改过的默认值',
+        '以静态内容为主的站点用 Astro 发出的 JavaScript 更少；页面本身是个应用时再用 Next.js',
+      ],
+    },
+  },
+  {
     slug: 'astro',
     name: 'Astro',
-    category: 'Web',
+    category: 'Client',
     tagline: 'Zero JavaScript by default; interactivity is opted into island by island.',
     understanding: [
       'On most content sites the interactivity is concentrated in a handful of components, yet the whole page pays the hydration cost anyway. The island architecture inverts that default: plain HTML unless you say otherwise.',
@@ -529,6 +556,114 @@ export const TECH: Tech[] = [
         '内容集合会按 schema 校验 frontmatter，写错字段是构建失败，而不是渲染成 undefined',
         '`client:*` 指令控制水合时机 —— `client:visible` 会把首屏之外的 JavaScript 推迟到滚动进视口时',
         '需要 SSR、API 路由或数据库时再用 Next.js；内容站点用 Astro 更合适',
+      ],
+    },
+  },
+  {
+    slug: 'tailwindcss',
+    name: 'Tailwind CSS',
+    category: 'Client',
+    tagline: 'Styles written where they are used, so deleting a component deletes its CSS.',
+    understanding: [
+      'The real problem with hand-written CSS at scale is not syntax, it is that nobody dares delete a rule because nobody knows what else depends on it. Utility classes remove that fear: the styling lives on the element, and when the element goes, so does its style.',
+      'The trade is long class lists and a design system expressed as configuration. That is a good trade when the tokens — spacing, colour, type scale — are decided up front; without them it degrades into inline styles with extra steps. This site keeps its tokens and newspaper primitives in one stylesheet and uses utilities for layout.',
+    ],
+    points: [
+      'Define the tokens first; the value of utilities comes from a constrained scale, not from avoiding a CSS file',
+      'In v4, `@apply` only accepts classes declared with `@utility`, not ones inside `@layer components`',
+      'Extract a component, not a class, when the same cluster of utilities repeats',
+    ],
+    zh: {
+      tagline: '样式写在用它的地方，删掉组件，它的 CSS 也跟着没了。',
+      understanding: [
+        '手写 CSS 在规模变大以后，真正的问题不是语法，而是没人敢删规则，因为没人知道还有什么依赖它。原子类消除了这层顾虑：样式长在元素身上，元素没了，样式也就没了。',
+        '代价是很长的 class 列表，以及一套写成配置的设计系统。如果间距、颜色、字号这些 token 事先定好了，这笔交易很划算；没有它们，就退化成了多绕几步的内联样式。这个网站把 token 和报纸版式的基础样式放在一个样式表里，布局用原子类。',
+      ],
+      points: [
+        '先定 token；原子类的价值来自受约束的尺度，而不是来自不用写 CSS 文件',
+        'v4 里 `@apply` 只认用 `@utility` 声明的类，不认 `@layer components` 里的',
+        '同一串原子类反复出现时，抽成组件，而不是抽成一个类',
+      ],
+    },
+  },
+  {
+    slug: 'vite',
+    name: 'Vite',
+    category: 'Client',
+    tagline: 'A dev server that serves modules as they are asked for, instead of bundling first.',
+    understanding: [
+      'Older bundlers built the whole application before the dev server could answer, so start-up time grew with the codebase. Vite serves source files to the browser as native ES modules and compiles each one on request, so starting it costs roughly the same whether the project has ten files or ten thousand.',
+      'For production it still bundles, because shipping hundreds of unbundled modules is slow over the network. That split is the one thing to keep in mind: development and production take different paths, so a bug can occasionally exist in only one of them.',
+    ],
+    points: [
+      'Dependencies are pre-bundled once with esbuild; source files are transformed on demand, which is where the speed comes from',
+      'Always test the production build before shipping — dev and build go through different pipelines',
+      'Astro, SvelteKit and many React setups sit on Vite, so its plugin API is worth knowing even when you never configure it directly',
+    ],
+    zh: {
+      tagline: '开发服务器按需提供模块，而不是先把整个项目打包。',
+      understanding: [
+        '老一代打包器要先把整个应用构建完，开发服务器才能响应，启动时间随代码量一起增长。Vite 把源文件当作原生 ES 模块直接交给浏览器，哪个文件被请求才编译哪个，所以项目有十个文件还是一万个文件，启动时间都差不多。',
+        '生产环境它还是会打包，因为通过网络加载几百个零散模块很慢。这个分叉是唯一需要记住的事：开发和生产走的是两条路，偶尔会有只在其中一边出现的 bug。',
+      ],
+      points: [
+        '依赖用 esbuild 预打包一次，源文件按需转换，速度就来自这里',
+        '上线前一定要测生产构建——开发和构建走的是不同的流水线',
+        'Astro、SvelteKit 和很多 React 项目都跑在 Vite 上，哪怕从不直接配置它，也值得了解它的插件 API',
+      ],
+    },
+  },
+  {
+    slug: 'nodedotjs',
+    name: 'Node.js',
+    category: 'Client',
+    tagline: 'The runtime underneath the client toolchain, and the server half of a JavaScript stack.',
+    understanding: [
+      "Node's model is one thread running an event loop, with I/O handed off and resumed through callbacks. That makes it very good at holding many slow connections open at once and very bad at anything that keeps the CPU busy, because a long computation blocks every other request on that process.",
+      'In practice I meet it in two places: running the build tooling — Vite, Astro, the TypeScript compiler — and running the server side of Next.js or a thin backend-for-frontend. In both, the rule is the same: keep the event loop free, and move heavy work to a worker or another service.',
+    ],
+    points: [
+      'Never block the event loop; synchronous file or crypto calls in a request handler stall every concurrent request',
+      'Offload CPU-heavy work to worker threads or a separate service',
+      'Pin the Node version per project (`.nvmrc` or `engines`) — tooling breaks across major versions more often than application code does',
+    ],
+    zh: {
+      tagline: '客户端工具链底下的运行时，也是 JavaScript 全栈的服务端那一半。',
+      understanding: [
+        'Node 的模型是一个线程跑事件循环，I/O 交出去，完成后通过回调接着执行。这让它非常擅长同时挂住大量慢连接，却很不擅长任何让 CPU 一直忙的事，因为一段长计算会卡住这个进程上的所有其他请求。',
+        '实际工作中我在两个地方碰到它：跑构建工具——Vite、Astro、TypeScript 编译器——以及跑 Next.js 的服务端或一层薄薄的 BFF。两种场景的规矩一样：别占住事件循环，重活交给 worker 或者别的服务。',
+      ],
+      points: [
+        '永远别阻塞事件循环；请求处理里的同步文件或加密调用，会让所有并发请求一起卡住',
+        'CPU 密集的工作交给 worker threads 或独立服务',
+        '每个项目都锁定 Node 版本（`.nvmrc` 或 `engines`）——工具链跨大版本出问题的频率比业务代码高得多',
+      ],
+    },
+  },
+  {
+    slug: 'swiftui',
+    name: 'SwiftUI',
+    category: 'Client',
+    tagline: "Apple's declarative UI: the same idea as React, with the type system doing more of the work.",
+    understanding: [
+      'SwiftUI describes the interface as a function of state, so the lessons from React carry over almost directly: most of the difficulty is deciding who owns each piece of state. The difference is that Swift checks much more of it at compile time — a view that reads a value it cannot have is a build error, not a blank screen.',
+      'Its weak spot is the edges. Layouts and behaviours that UIKit has handled for a decade sometimes have no SwiftUI equivalent, or one that only arrived in the latest OS. Knowing when to drop down to UIKit through a representable, instead of fighting the framework, saves days.',
+    ],
+    points: [
+      'Use @Observable models for shared state and keep @State for what is genuinely local to one view',
+      'Check the minimum OS version before relying on an API — many modifiers are newer than they look',
+      'Wrap a UIKit view in a representable when SwiftUI cannot do it cleanly; mixing the two is normal, not a failure',
+    ],
+    zh: {
+      tagline: 'Apple 的声明式 UI：和 React 同一个思路，只是类型系统替你多扛了一部分。',
+      understanding: [
+        'SwiftUI 把界面写成状态的函数，所以在 React 里学到的东西几乎能原样搬过来：难点大多在于决定每一份状态归谁管。不同之处在于 Swift 在编译期就检查了更多——视图读了一个它拿不到的值，是构建报错，而不是一块白屏。',
+        '它的短板在边缘。UIKit 处理了十年的布局和交互，有时在 SwiftUI 里没有对应，或者只在最新的系统版本里才有。知道什么时候通过 representable 退回 UIKit，而不是和框架硬拗，能省下好几天。',
+      ],
+      points: [
+        '共享状态用 @Observable 模型，@State 只留给真正属于单个视图的东西',
+        '用一个 API 之前先看最低系统版本——很多修饰符比看上去的要新',
+        'SwiftUI 做不干净的地方，就用 representable 包一个 UIKit 视图；两者混用很正常，不算失败',
       ],
     },
   },

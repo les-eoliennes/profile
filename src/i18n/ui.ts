@@ -65,7 +65,7 @@ export const UI = {
     'cat.Data': 'Data',
     'cat.Infrastructure': 'Infrastructure',
     'cat.Observability': 'Observability',
-    'cat.Web': 'Web',
+    'cat.Client': 'Client',
     'cat.AI': 'AI Tools',
 
     'edu.section': 'Section II',
@@ -197,7 +197,7 @@ export const UI = {
     'cat.Data': '数据',
     'cat.Infrastructure': '基础设施',
     'cat.Observability': '可观测性',
-    'cat.Web': '前端',
+    'cat.Client': '客户端',
     'cat.AI': 'AI 工具',
 
     'edu.section': '第二版',

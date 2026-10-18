@@ -24,12 +24,18 @@ export interface Icon {
 const ALIASES: Record<string, string> = {
   apachekafka: 'kafka-icon',
   linux: 'linux-tux',
-  nodedotjs: 'nodejs',
+  nodedotjs: 'nodejs-icon',
   typescript: 'typescript-icon',
   mysql: 'mysql-icon',
   docker: 'docker-icon',
   astro: 'astro-icon',
   codex: 'openai-icon',
+  nextjs: 'nextjs-icon',
+  tailwindcss: 'tailwindcss-icon',
+  // The classic triangle and bolt; 'vite-icon' is the 2025 rebrand, which few readers recognise yet.
+  vite: 'vitejs',
+  // Neither set carries a SwiftUI mark; it is Swift, so it takes the Swift bird.
+  swiftui: 'swift',
 };
 
 /**

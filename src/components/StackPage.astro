@@ -8,7 +8,7 @@ import { tabsPerRow } from '../lib/tabs';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const categories = (['Languages', 'Data', 'Infrastructure', 'Observability', 'Web', 'AI'] as const).filter(
+const categories = (['Languages', 'Data', 'Infrastructure', 'Observability', 'Client', 'AI'] as const).filter(
   (category) => TECH.some((tech) => tech.category === category),
 );
 ---
