@@ -9,6 +9,7 @@ file needs a `viewBox` starting at `0 0`; its contents are inlined as-is.
 | --- | --- | --- |
 | `c.svg` | Wikimedia Commons — *C Programming Language.svg*, by ElodinKaldwin | Public domain (below the threshold of originality) |
 | `react.svg` | react.dev — the site header's logo, light theme | React trademark (Meta), not licensed |
+| `rust.svg` | rustacean.net — *rustacean-flat-happy.svg* (Ferris), by Karen Rustad Tölva | CC0 / public domain, as stated on rustacean.net |
 | `googlegemini.svg` | Wikimedia Commons — *Google Gemini icon 2025.svg*, extracted from gemini.google/about | Public domain per Commons; Gemini trademark (Google) |
 
 ## `c.svg`
@@ -47,3 +48,19 @@ the Wayback Machine, 3 July 2025). Cleaned, not redrawn: every `id` and its
 `url(#…)` references were prefixed with `gemini-`, because the mark is inlined
 several times per page and generic ids like `maskme` would collide. Path data,
 gradients, filters and the viewBox are unchanged.
+
+## `rust.svg`
+
+Ferris the crab, the unofficial Rust mascot, in place of the gear-and-R logo:
+the community is known by the crab far more than by the mark. Neither icon
+set carries Ferris. rustacean.net publishes it under CC0.
+
+Cleaned, not redrawn: the XML declaration, doctype, Serif namespace and layer
+ids were dropped. The root `<svg>` carried `fill-rule:evenodd` and the other
+rendering hints in its `style`; since `getIcon()` keeps only the children,
+that style was moved onto the top-level group so the shapes still fill the
+same way. Path data and the viewBox are unchanged.
+
+The Go mark is the Gopher from the `logos` set (aliased in `icons.ts`), so it
+needs no file here. The Gopher was designed by Renée French and is licensed
+CC BY 4.0.

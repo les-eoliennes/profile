@@ -22,6 +22,8 @@ export interface Icon {
  * icon-only variant exists, it is used instead.
  */
 const ALIASES: Record<string, string> = {
+  // The Gopher rather than the GO wordmark: the language is known by its mascot.
+  go: 'gopher',
   apachekafka: 'kafka-icon',
   linux: 'linux-tux',
   nodedotjs: 'nodejs-icon',
