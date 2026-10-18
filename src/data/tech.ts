@@ -722,6 +722,33 @@ export const TECH: Tech[] = [
     },
   },
   {
+    slug: 'googlegemini',
+    name: 'Gemini',
+    category: 'AI',
+    tagline: 'Where I go to ask questions — a reference desk that reads faster than I do.',
+    understanding: [
+      'I use Gemini mostly for knowledge questions rather than code: getting oriented in an unfamiliar field, comparing approaches, or having a paper or a long document explained before I read it properly. Its long context window means I can hand it the whole source instead of an excerpt and ask about the parts that matter.',
+      'The discipline is treating the answer as a starting point, not a citation. A model is most convincing exactly where it is least reliable — specific numbers, version details, recent events — so anything I will act on gets checked against the primary source it should have come from.',
+    ],
+    points: [
+      'Give it the source document instead of asking from memory; answers grounded in the text are far more reliable',
+      'Ask for the reasoning and the counter-arguments, not just the conclusion — the weak step is usually visible there',
+      'Verify specifics against primary sources: numbers, API details and anything recent are where it fails quietly',
+    ],
+    zh: {
+      tagline: '我拿来提问的地方——一个读得比我快的资料台。',
+      understanding: [
+        '我用 Gemini 主要做知识问答，而不是写代码：快速摸清一个陌生领域、比较几种做法，或者在精读之前先让它把一篇论文、一份长文档讲一遍。它的长上下文让我可以把整份原文交给它，而不是只给一段摘录，再针对关键部分提问。',
+        '要守的规矩是把回答当作起点，而不是出处。模型最有说服力的地方，恰恰是它最不可靠的地方——具体数字、版本细节、近期事件——所以凡是要据此行动的内容，我都会回到它本该出自的原始资料去核对。',
+      ],
+      points: [
+        '把原文交给它，而不是让它凭记忆回答；基于文本的回答可靠得多',
+        '要它给出推理过程和反方观点，而不只是结论——薄弱的那一步通常就藏在那里',
+        '具体信息要回原始资料核对：数字、API 细节和近期的事，是它最容易悄悄出错的地方',
+      ],
+    },
+  },
+  {
     slug: 'ollama',
     name: 'Ollama',
     category: 'AI',
@@ -745,6 +772,33 @@ export const TECH: Tech[] = [
         '它提供兼容 OpenAI 的接口，大多数客户端代码改个 base URL 就能切过去',
         '量化用一点质量换大量内存；选硬件能整个放进显存或统一内存的那一档',
         '适合做向量嵌入、分类和处理私有数据；冗长的多步推理留给更大的托管模型',
+      ],
+    },
+  },
+  {
+    slug: 'huggingface',
+    name: 'Hugging Face',
+    category: 'AI',
+    tagline: 'The registry for open models and datasets — the npm of machine learning.',
+    understanding: [
+      'Hugging Face is where open-weight models are published, versioned and described. Before running anything locally I start there: the model card says what the model was trained on, what licence it carries and what it is bad at, which is usually more useful than any benchmark table.',
+      'It pairs naturally with Ollama. Hugging Face is where I find and compare models — including the quantised GGUF builds the community publishes — and Ollama is what runs them. The Transformers library covers the cases where I need more control than a local server gives.',
+    ],
+    points: [
+      'Read the model card and licence before the leaderboard; many open weights are not licensed for commercial use',
+      'Pin a model by revision hash, not just by name — repositories are updated in place',
+      'Check the quantisation and context length of community builds; the same name can hide very different trade-offs',
+    ],
+    zh: {
+      tagline: '开源模型和数据集的仓库——机器学习界的 npm。',
+      understanding: [
+        'Hugging Face 是开源权重模型发布、版本管理和说明的地方。在本地跑任何模型之前，我都先去那里看：模型卡会写清它用什么数据训练、用什么许可证、不擅长什么，这往往比任何跑分表都有用。',
+        '它和 Ollama 天然是一对。在 Hugging Face 上找模型、比较模型——包括社区发布的 GGUF 量化版本——再交给 Ollama 去跑。需要比本地服务更细的控制时，就用 Transformers 库。',
+      ],
+      points: [
+        '先看模型卡和许可证，再看排行榜；很多开源权重并不允许商用',
+        '用 revision 哈希锁定模型，而不只是用名字——仓库会被原地更新',
+        '社区构建要看清量化方式和上下文长度；同一个名字背后的取舍可能差别很大',
       ],
     },
   },

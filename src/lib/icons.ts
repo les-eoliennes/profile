@@ -30,6 +30,7 @@ const ALIASES: Record<string, string> = {
   docker: 'docker-icon',
   astro: 'astro-icon',
   codex: 'openai-icon',
+  huggingface: 'hugging-face-icon',
   nextjs: 'nextjs-icon',
   tailwindcss: 'tailwindcss-icon',
   // The classic triangle and bolt; 'vite-icon' is the 2025 rebrand, which few readers recognise yet.
