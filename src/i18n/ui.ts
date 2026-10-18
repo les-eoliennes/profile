@@ -110,7 +110,7 @@ export const UI = {
       'So choosing was never a matter of finding the best one. It is a matter of deciding which set of limits you are willing to live inside. Every instrument has already made part of the judgement on your behalf: whatever it renders easy, it also renders easy to stop questioning. What matters is not landing on the one that fits the hand, but keeping track of what you signed away — at what price, and for which kind of certainty.',
     'stack.entries': 'entries',
     'stack.close': 'Close',
-    'stack.learned': "What I've learned",
+    'stack.learned': 'Key points',
 
     'experience.section': 'Section IV',
     'experience.title': 'Experience',
@@ -237,7 +237,7 @@ export const UI = {
       '所以选器从来不是挑最好的那件，而是选自己愿意活在哪一重限制里。每一件工具都替你预先做掉了一部分判断：它让某些事变得顺手，也就让另一些事变得几乎想不起来。要紧的不是找到那件称手的家伙，而是始终知道自己让渡了什么——用多大的代价，换来了哪一种确定。',
     'stack.entries': '项',
     'stack.close': '关闭',
-    'stack.learned': '关键认识',
+    'stack.learned': '要点',
 
     'experience.section': '第四版',
     'experience.title': '职涯',
