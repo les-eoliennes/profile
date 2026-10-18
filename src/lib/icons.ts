@@ -32,6 +32,7 @@ const ALIASES: Record<string, string> = {
   docker: 'docker-icon',
   astro: 'astro-icon',
   codex: 'openai-icon',
+  kotlin: 'kotlin-icon',
   huggingface: 'hugging-face-icon',
   nextjs: 'nextjs-icon',
   tailwindcss: 'tailwindcss-icon',

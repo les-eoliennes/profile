@@ -155,6 +155,60 @@ export const TECH: Tech[] = [
     },
   },
   {
+    slug: 'swift',
+    name: 'Swift',
+    category: 'Languages',
+    tagline: "Apple's compiled language for iOS, macOS and the other Apple platforms.",
+    understanding: [
+      'Swift uses optionals to mark values that may be absent, value types (structs and enums) with copy semantics, and automatic reference counting for classes. Protocols with default implementations play the role that inheritance plays in many other languages.',
+      'Swift 5.5 added async/await and actors, and Swift 6 checks for data races at compile time under strict concurrency. Swift is open source and also runs on Linux and Windows, though most of its use is on Apple platforms with SwiftUI and UIKit.',
+    ],
+    points: [
+      'Structs and enums are copied on assignment; classes are shared by reference and counted with ARC',
+      '`guard let` and `if let` unwrap optionals safely; force-unwrapping with `!` traps at run time when the value is nil',
+      'Actors serialise access to their state, and `Sendable` marks types that can cross concurrency domains',
+    ],
+    zh: {
+      tagline: 'Apple 为 iOS、macOS 等自家平台推出的编译型语言。',
+      understanding: [
+        'Swift 用 Optional 标记可能缺失的值，struct 和 enum 等值类型采用复制语义，class 使用自动引用计数。带默认实现的协议，承担了许多其他语言中继承所承担的角色。',
+        'Swift 5.5 加入了 async/await 和 actor，Swift 6 在严格并发模式下于编译期检查数据竞争。Swift 是开源的，也能在 Linux 和 Windows 上运行，但主要用于 Apple 平台，配合 SwiftUI 和 UIKit。',
+      ],
+      points: [
+        'struct 和 enum 在赋值时复制；class 按引用共享，由 ARC 计数',
+        '`guard let` 和 `if let` 安全地解包 Optional；用 `!` 强制解包时，若值为 nil 会在运行时崩溃',
+        'actor 串行化对自身状态的访问，`Sendable` 标记可以跨并发域传递的类型',
+      ],
+    },
+  },
+  {
+    slug: 'kotlin',
+    name: 'Kotlin',
+    category: 'Languages',
+    tagline: 'A JVM language from JetBrains, the preferred language for Android development.',
+    understanding: [
+      'Kotlin runs on the JVM and interoperates fully with Java libraries. Its type system distinguishes nullable from non-null types, and it adds data classes, extension functions, smart casts and sealed classes. Google has listed it as the preferred language for Android since 2019.',
+      'Coroutines provide asynchronous code written in sequential style, with structured concurrency tying each coroutine to a scope. Kotlin also compiles to JavaScript and native code, and Kotlin Multiplatform shares code between Android, iOS, desktop and server.',
+    ],
+    points: [
+      'Values coming from Java have platform types (`String!`) whose nullability the compiler does not know',
+      'Coroutines launched in a lifecycle-bound scope, such as `viewModelScope`, are cancelled when that scope ends',
+      '`val` declares a read-only reference and `var` a mutable one; collections come in read-only and mutable interfaces',
+    ],
+    zh: {
+      tagline: 'JetBrains 推出的 JVM 语言，Android 开发的首选语言。',
+      understanding: [
+        'Kotlin 运行在 JVM 上，可以与 Java 类库完全互操作。它的类型系统区分可空类型和非空类型，并提供 data class、扩展函数、智能类型转换和 sealed class。自 2019 年起，Google 将它列为 Android 开发的首选语言。',
+        '协程让异步代码可以按顺序风格书写，结构化并发把每个协程绑定到一个 scope。Kotlin 也能编译为 JavaScript 和本地代码，Kotlin Multiplatform 可在 Android、iOS、桌面和服务端之间共享代码。',
+      ],
+      points: [
+        '来自 Java 的值带有平台类型（`String!`），编译器不知道它们是否可空',
+        '在绑定生命周期的 scope（如 `viewModelScope`）中启动的协程，会在该 scope 结束时被取消',
+        '`val` 声明只读引用，`var` 声明可变引用；集合分为只读接口和可变接口',
+      ],
+    },
+  },
+  {
     slug: 'postgresql',
     name: 'PostgreSQL',
     category: 'Data',
