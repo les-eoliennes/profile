@@ -9,6 +9,7 @@ file needs a `viewBox` starting at `0 0`; its contents are inlined as-is.
 | --- | --- | --- |
 | `c.svg` | Wikimedia Commons — *C Programming Language.svg*, by ElodinKaldwin | Public domain (below the threshold of originality) |
 | `react.svg` | react.dev — the site header's logo, light theme | React trademark (Meta), not licensed |
+| `googlegemini.svg` | Wikimedia Commons — *Google Gemini icon 2025.svg*, extracted from gemini.google/about | Public domain per Commons; Gemini trademark (Google) |
 
 ## `c.svg`
 
@@ -33,3 +34,16 @@ ellipses with `currentColor`, which is resolved here to `#087EA4`. The
 original viewBox is `-10.5 -9.45 21 18.9`; since `getIcon()` needs one that
 starts at `0 0`, the shapes are wrapped in `translate(10.5 9.45)` and the
 viewBox becomes `0 0 21 18.9` — the same drawing, moved into positive space.
+
+## `googlegemini.svg`
+
+The `logos` set carries only Gemini's 2023 lockup: the blue sparkle plus the
+wordmark, which at listing size shrinks the symbol to a few pixels.
+simple-icons has the sparkle on its own, but monochrome. This is the 2025
+sparkle in the four Google colours, as gemini.google draws it.
+
+Commons' copy was extracted from the inline SVG on gemini.google/about (via
+the Wayback Machine, 3 July 2025). Cleaned, not redrawn: every `id` and its
+`url(#…)` references were prefixed with `gemini-`, because the mark is inlined
+several times per page and generic ids like `maskme` would collide. Path data,
+gradients, filters and the viewBox are unchanged.
