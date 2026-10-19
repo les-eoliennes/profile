@@ -1,0 +1,58 @@
+---
+title: Sequoia, a Database from the Page Up
+summary: A disk-based relational database in Rust with zero dependencies — pages, a write-ahead log, three storage engines and a Volcano executor — written to be read, not to be fast.
+year: 2026
+role: Personal project
+stack: ['Rust', 'SQL', 'B+ Tree', 'LSM Tree', 'WAL']
+cover: ./sequoia.svg
+coverAlt: The layer stack beside the plan an EXPLAIN prints for a grouped query
+repo: https://github.com/les-eoliennes/sequoia
+order: 1
+---
+
+## Why
+
+Every layer of a database is described somewhere in a textbook, but the
+textbook rarely shows where one layer hands off to the next. Sequoia is the
+whole path in one small codebase: SQL text goes in at the top, 4 KB pages come
+out at the bottom, and each layer uses only the ones below it. There are no
+dependencies, so nothing is hidden behind a crate.
+
+## What is in it
+
+- **The language.** A hand-written lexer and recursive descent parser.
+  Joins (inner, left, cross), `GROUP BY`/`HAVING`, `DISTINCT`, `ORDER BY`,
+  `LIMIT`, and correlated, nested subqueries, with SQL's three-valued logic for
+  `NULL`.
+- **Planning.** `WHERE` and `ON` are split at their `AND`s and pushed down to
+  the scan that can use them, where they pick an index. Each join is an index
+  join, a hash join or a nested loop, in that order of preference. `EXPLAIN`
+  prints the tree.
+- **Execution.** Volcano style: every step is an iterator pulling rows from
+  the one below, so a `LIMIT` stops the scan once it has enough. Sorting spills
+  to an external merge sort past its memory budget, and becomes a top-N heap
+  under a `LIMIT`.
+- **Three storage engines.** A slotted-page heap, the default; an LSM tree with
+  a skip-list MemTable, Bloom filters and level or universal compaction; and a
+  PAX column store whose chunks pick their own encoding (run-length,
+  bit-packing, delta, dictionary, bitmap) and are filtered while still
+  compressed.
+- **Indexes.** B+ trees with splits, merges and linked leaves, over one column
+  of a heap or LSM table.
+- **Durability.** A buffer pool with ARC replacement (LRU-K and CLOCK too), and
+  a write-ahead log of checksummed page frames. Every statement is atomic,
+  transactions have savepoints, and recovery keeps exactly the frames up to the
+  last valid commit.
+
+## How it is checked
+
+Crash tests run every kind of statement on simulated files that stop at an
+arbitrary write, then check that every table and index shows the statement
+entirely or not at all. A differential test generates random schemas, rows,
+queries and transactions, runs them on both Sequoia and SQLite, and fails —
+printing the case as a script for the shell — the moment the two disagree.
+
+## Status
+
+Small and easy to read, not fast. One connection, so no concurrency control;
+no `RIGHT` or `FULL` joins, no multi-column indexes.

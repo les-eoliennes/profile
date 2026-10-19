@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 720" width="1680" height="720">
+  <!-- Typeset cover, drawn at 21:9 to match the lead plate: the layer stack on the left, a real EXPLAIN plan on the right. -->
+  <rect width="1680" height="720" fill="#e9e5d7"/>
+  <g fill="none" stroke="#16150f">
+    <rect x="28" y="28" width="1624" height="664" stroke-width="3"/>
+    <rect x="40" y="40" width="1600" height="640" stroke-width="1"/>
+    <line x1="840" y1="90" x2="840" y2="630" stroke-width="1"/>
+  </g>
+
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#16150f" text-anchor="middle">
+    <text x="440" y="118" font-size="24" letter-spacing="6">EACH LAYER USES ONLY THE ONES BELOW</text>
+    <text x="1240" y="118" font-size="24" letter-spacing="6">EXPLAIN</text>
+  </g>
+
+  <!-- Layer stack -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#16150f" text-anchor="middle">
+    <g stroke="#16150f" stroke-width="2">
+      <rect x="200" y="160" width="480" height="74" fill="#f3f0e6"/>
+      <rect x="200" y="252" width="480" height="74" fill="#f3f0e6"/>
+      <rect x="200" y="344" width="480" height="74" fill="#f3f0e6"/>
+      <rect x="200" y="436" width="480" height="74" fill="#f3f0e6"/>
+      <rect x="200" y="528" width="480" height="104" fill="#16150f"/>
+    </g>
+    <text x="440" y="208">sql</text>
+    <text x="440" y="300">executor</text>
+    <text x="440" y="392">plan</text>
+    <text x="440" y="484">catalog</text>
+    <text x="440" y="576" fill="#f3f0e6">storage</text>
+    <text x="440" y="612" font-size="19" letter-spacing="3" fill="#e9e5d7">HEAP · B+ TREE · LSM · COLUMN · WAL</text>
+  </g>
+
+  <!-- Plan tree -->
+  <g font-family="Menlo, 'Courier New', monospace" font-size="26" fill="#16150f">
+    <text x="930" y="200">PROJECT city, COUNT(*)</text>
+    <text x="960" y="268">SORT BY city (TOP 5)</text>
+    <text x="990" y="336">FILTER COUNT(*) &gt; 1</text>
+    <text x="1020" y="404">AGGREGATE COUNT(*) BY city</text>
+    <text x="1050" y="472">FILTER active</text>
+    <text x="1080" y="540">SCAN users</text>
+  </g>
+  <g fill="none" stroke="#7c7768" stroke-width="1.5">
+    <path d="M943 212 V260 H954"/>
+    <path d="M973 280 V328 H984"/>
+    <path d="M1003 348 V396 H1014"/>
+    <path d="M1033 416 V464 H1044"/>
+    <path d="M1063 484 V532 H1074"/>
+  </g>
+  <text x="1240" y="612" font-family="Georgia, serif" font-style="italic" font-size="26" text-anchor="middle" fill="#4a473c">rows pulled upward, one at a time</text>
+</svg>

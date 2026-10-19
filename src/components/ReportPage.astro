@@ -94,7 +94,8 @@ const number = String(index + 1).padStart(2, '0');
   </div>
 </article>
 
-<!-- Next report -->
+<!-- Next report — left out while this is the only one, or it would link to itself -->
+{next.entry.id !== entry.id && (
 <section class="mt-14 px-5 sm:px-8">
   <div class="rule-double"></div>
 
@@ -111,3 +112,4 @@ const number = String(index + 1).padStart(2, '0');
     <span class="btn-oval">{t('report.continue')}</span>
   </a>
 </section>
+)}
