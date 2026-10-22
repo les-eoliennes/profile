@@ -1,9 +1,9 @@
 ---
-title: Sequoia, a Database from the Page Up
-summary: A disk-based relational database in Rust with zero dependencies — pages, a write-ahead log, three storage engines and a Volcano executor — written to be read, not to be fast.
+title: Sequoia, a Database Built from the Page Up
+summary: A relational database written from scratch in Rust with no dependencies. It covers everything from 4 KB pages and a write-ahead log up through three storage engines, three execution models and parallel queries, and is tested and benchmarked against SQLite.
 year: 2026
 role: Personal project
-stack: ['Rust', 'SQL', 'B+ Tree', 'LSM Tree', 'WAL']
+stack: ['Rust', 'SQL', 'B+ Tree', 'LSM Tree', 'Column Store', 'WAL']
 cover: ./sequoia.svg
 coverAlt: The layer stack beside the plan an EXPLAIN prints for a grouped query
 repo: https://github.com/les-eoliennes/sequoia
@@ -12,47 +12,117 @@ order: 1
 
 ## Why
 
-Every layer of a database is described somewhere in a textbook, but the
-textbook rarely shows where one layer hands off to the next. Sequoia is the
-whole path in one small codebase: SQL text goes in at the top, 4 KB pages come
-out at the bottom, and each layer uses only the ones below it. There are no
-dependencies, so nothing is hidden behind a crate.
+Sequoia implements every layer of a relational database itself: the parser,
+planner, executor, catalog, storage engines, buffer pool and log. It uses no
+crates. SQL text goes in at the top and 4 KB pages come out at the bottom, and
+each layer calls only the ones below it.
 
-## What is in it
+Where database designs disagree, Sequoia implements more than one approach
+instead of picking one. It has three storage engines, three execution models,
+five join methods, two hashing schemes and three page replacement policies.
+Each of these can be selected on the same data and the same queries. A
+benchmark times each alternative against the others and, wherever a fair
+comparison exists, against SQLite.
 
-- **The language.** A hand-written lexer and recursive descent parser.
-  Joins (inner, left, cross), `GROUP BY`/`HAVING`, `DISTINCT`, `ORDER BY`,
-  `LIMIT`, and correlated, nested subqueries, with SQL's three-valued logic for
-  `NULL`.
-- **Planning.** `WHERE` and `ON` are split at their `AND`s and pushed down to
-  the scan that can use them, where they pick an index. Each join is an index
-  join, a hash join or a nested loop, in that order of preference. `EXPLAIN`
-  prints the tree.
-- **Execution.** Volcano style: every step is an iterator pulling rows from
-  the one below, so a `LIMIT` stops the scan once it has enough. Sorting spills
-  to an external merge sort past its memory budget, and becomes a top-N heap
-  under a `LIMIT`.
-- **Three storage engines.** A slotted-page heap, the default; an LSM tree with
-  a skip-list MemTable, Bloom filters and level or universal compaction; and a
-  PAX column store whose chunks pick their own encoding (run-length,
-  bit-packing, delta, dictionary, bitmap) and are filtered while still
-  compressed.
-- **Indexes.** B+ trees with splits, merges and linked leaves, over one column
-  of a heap or LSM table.
-- **Durability.** A buffer pool with ARC replacement (LRU-K and CLOCK too), and
-  a write-ahead log of checksummed page frames. Every statement is atomic,
-  transactions have savepoints, and recovery keeps exactly the frames up to the
-  last valid commit.
+## From SQL to a plan
+
+- **The language.** A hand-written lexer and recursive descent parser. It
+  supports inner, left and cross joins, subqueries in `FROM`, `GROUP BY` and
+  `HAVING`, `DISTINCT`, `UNION`, `CASE`, `LIKE`, `BETWEEN`, scalar functions,
+  `LIMIT … OFFSET`, correlated and nested subqueries, and `RETURNING` on every
+  write. `NULL` follows SQL's three-valued logic.
+- **Reading a table.** `WHERE` and `ON` are split at each `AND` and each part
+  is pushed down to the scan that can use it, where it picks an index or a
+  primary-key range. A partial index is used only when the query's `WHERE`
+  implies the index's own condition. A covering index answers the query
+  without reading the table at all.
+- **Joining.** Each join runs as an index join, a hash join, a sort-merge join
+  or a block nested loop. The planner chooses between index and hash joins
+  using cost constants measured by the project's own benchmarks. It uses a
+  merge join only when that join's sorted output means `ORDER BY` needs no
+  separate sort. `EXPLAIN` prints the plan, and `EXPLAIN ANALYZE` runs it and
+  reports the rows and time of each step.
+
+## Three ways to run a plan
+
+One plan can run in three execution models:
+
+- **Iterator (Volcano):** each step returns one row per call.
+- **Materialization:** each step returns all of its rows at once.
+- **Vectorized:** steps pass batches of 1024 rows, stored as typed column
+  vectors.
+
+The planner chooses a model for each query from its row estimates. Small
+lookups are materialized, large scans and aggregates without a join are
+vectorized, and every other query uses the iterator model. In the vectorized
+model, inner loops are written so the compiler can turn them into SIMD
+instructions, and overflow is checked once per column instead of once per
+row. On a column table, aggregates run 5 to 10 times faster vectorized than
+in the iterator model.
+
+Sorts, hash joins and aggregates each work within a memory budget and spill to
+disk beyond it. A sort becomes an external merge sort, merging through a
+tournament tree, or a top-N heap under a `LIMIT`. A hash join becomes a hybrid
+hash join, with some of its partitions written to disk.
+
+## Storage
+
+- **Three engines.**
+  - A slotted-page heap, the default.
+  - An LSM tree, with an adaptive radix tree (ART) as its MemTable, Bloom
+    filters, and level or universal compaction.
+  - A PAX column store. Each chunk picks its own encoding: run-length,
+    bit-packing, delta, dictionary or bitmap. Filters run on the compressed
+    data, and a row group is skipped entirely when its zone map shows that no
+    row can match.
+- **Indexes.** B+ tree indexes can be multi-column, expression-based,
+  partial, covering or unique. Hash indexes use extendible or linear hashing.
+- **Data structures.** A trie, a radix tree and an ART, each built from
+  scratch and benchmarked against `BTreeMap` and a skip list.
+- **Buffer pool.** Page replacement uses ARC, LRU-K or CLOCK. The policy can
+  be switched while the database is running, and each policy's hit rate is
+  shown, so the policies can be compared on the same workload.
+- **Durability.** A write-ahead log of checksummed page frames. Every
+  statement is atomic and transactions support savepoints. Recovery keeps
+  every frame up to the last valid commit and discards the rest.
+
+## Many threads
+
+Every thread gets its own session on one shared set of pages. As in SQLite,
+any number of sessions can read at once, but only one can write, and it keeps
+the database until it commits. `sequoia --serve` serves a database over TCP,
+with one thread per connection. Its protocol is plain text, simple enough to
+use from `nc`. Below the sessions, B+ trees handle concurrent access by latch
+crabbing, and the buffer pool is split into shards that each have their own
+lock.
+
+A single query can also run on several threads. Worker threads each take heap
+pages one at a time and scan, filter and project them. They can also build
+and probe a hash join, or look rows up through an index. For aggregates, each
+worker folds its rows into a partial aggregate, and the partial results are
+merged above the step that gathers the workers' output. With 8 workers,
+joining 200,000 rows to 50,000 and counting the result takes 15 ms instead of
+45.
 
 ## How it is checked
 
-Crash tests run every kind of statement on simulated files that stop at an
-arbitrary write, then check that every table and index shows the statement
-entirely or not at all. A differential test generates random schemas, rows,
-queries and transactions, runs them on both Sequoia and SQLite, and fails —
-printing the case as a script for the shell — the moment the two disagree.
+- **Crash tests.** Every kind of statement runs on simulated files that stop
+  at an arbitrary write. Afterwards, every table and index must contain either
+  all of the statement's changes or none of them.
+- **Differential tests.** Random schemas, rows, queries and transactions run
+  on both Sequoia and SQLite, and the test fails as soon as the two disagree.
+  A failing case is printed as a script that can be replayed in the shell.
+  Every case also runs in all three execution models, and each must return
+  exactly what the iterator model returns, errors included.
+- **Concurrency tests.** Threads insert, delete and scan the same B+ tree at
+  once through a deliberately small buffer pool.
+- **Platforms.** CI runs on Linux, macOS and Windows.
 
 ## Status
 
-Small and easy to read, not fast. One connection, so no concurrency control;
-no `RIGHT` or `FULL` joins, no multi-column indexes.
+Writers take turns rather than running under MVCC, so a long transaction
+blocks every other session. The planner keeps no statistics. To estimate how
+many rows a condition keeps, it uses the same defaults PostgreSQL falls back
+on when it has no statistics. Expressions are interpreted rather than
+compiled. `RIGHT` and `FULL` joins, `LATERAL` and `INSERT … SELECT` are not
+supported.
