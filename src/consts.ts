@@ -119,9 +119,10 @@ export const COURSEWORK = [
  * publishing, since MIT renumbered several of these in 2022.
  *
  * Two shapes, mid-migration: the newer entries split the old single `note`
- * into `lectures` and `labs` (with `labsIn` for the lab language and an
- * optional `instructor` on the kicker line), which the page sets as run-in
- * paragraphs. Entries still carrying `note` render it as one paragraph.
+ * into `lectures` and `labs` (with `labsIn` for the lab language), which the
+ * page sets as run-in paragraphs. Entries still carrying `note` render it as
+ * one paragraph. Either shape takes an `instructor`, set on the kicker line
+ * after the code; keep the name out of the prose so it is not said twice.
  */
 export const OPEN_COURSES = [
   {
@@ -162,6 +163,7 @@ export const OPEN_COURSES = [
     crest: 'cmu',
     code: '15-213',
     title: 'Introduction to Computer Systems',
+    instructor: "Randal Bryant, David O'Hallaron",
     lectures: "The hardware–software boundary from the programmer's side, following CS:APP: bit-level data, x86-64 machine code, caches, linking, processes and signals, virtual memory, allocation, I/O and concurrency.",
     labs: 'Data, Bomb and Attack Labs (bit manipulation, reverse-engineering assembly, buffer overflows), then Cache, Shell, Malloc and Proxy Labs.',
     labsIn: 'C',
@@ -177,6 +179,7 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.1810',
     title: 'Operating System Engineering',
+    instructor: 'Robert Morris',
     lectures: 'xv6, a Unix V6 descendant running on RISC-V, read line by line: system calls, page tables, traps and interrupts, scheduling, locking, file systems and crash recovery.',
     labs: 'Extending xv6 with new system calls, copy-on-write fork, an E1000 network driver, a finer-grained memory allocator, large files, symbolic links and mmap.',
     labsIn: 'C',
@@ -192,10 +195,11 @@ export const OPEN_COURSES = [
     crest: 'stanford',
     code: 'CS144',
     title: 'Computer Networking',
-    note: 'Taught by Keith Winstein, it starts from layering and the end-to-end principle and covers the core mechanisms of the internet: packet switching, reliable delivery, flow and congestion control, IP addressing and routing, ARP, NAT and DNS. The labs, in C++, build a working TCP/IP stack from the bottom up (Sponge/Minnow): a byte stream and an out-of-order reassembler, a TCP receiver that handles sequence-number wraparound, a TCP sender with a retransmission timer and sliding window, an ARP-backed network interface and a longest-prefix-match IP router, turning textbook protocols into code that talks to real hosts.',
+    instructor: 'Keith Winstein',
+    note: 'Starting from layering and the end-to-end principle, it covers the core mechanisms of the internet: packet switching, reliable delivery, flow and congestion control, IP addressing and routing, ARP, NAT and DNS. The labs, in C++, build a working TCP/IP stack from the bottom up (Sponge/Minnow): a byte stream and an out-of-order reassembler, a TCP receiver that handles sequence-number wraparound, a TCP sender with a retransmission timer and sliding window, an ARP-backed network interface and a longest-prefix-match IP router, turning textbook protocols into code that talks to real hosts.',
     zh: {
       title: '计算机网络',
-      note: '由 Keith Winstein 主讲，从分层模型与端到端原则出发，讲授分组交换、可靠传输、流量控制与拥塞控制、IP 寻址与路由、ARP、NAT 与 DNS 等互联网核心机制。实验用 C++ 自底向上搭建一个能真正联网的 TCP/IP 协议栈（Sponge/Minnow）：字节流与乱序重组器、处理序号回绕的 TCP 接收端、带重传计时器与滑动窗口的 TCP 发送端、基于 ARP 的网络接口，以及最长前缀匹配的 IP 路由器，把教科书中的协议变成能与真实主机通信的代码。',
+      note: '从分层模型与端到端原则出发，讲授分组交换、可靠传输、流量控制与拥塞控制、IP 寻址与路由、ARP、NAT 与 DNS 等互联网核心机制。实验用 C++ 自底向上搭建一个能真正联网的 TCP/IP 协议栈（Sponge/Minnow）：字节流与乱序重组器、处理序号回绕的 TCP 接收端、带重传计时器与滑动窗口的 TCP 发送端、基于 ARP 的网络接口，以及最长前缀匹配的 IP 路由器，把教科书中的协议变成能与真实主机通信的代码。',
     },
   },
   {
@@ -204,10 +208,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '6.006',
     title: 'Introduction to Algorithms',
-    note: "Taught by Erik Demaine, Jason Ku and Justin Solomon around the split between interface and implementation: from models of computation and asymptotic analysis, it covers data structures (hash tables, AVL trees, binary heaps), merge and radix sort, graph algorithms (BFS, DFS, topological sort, Bellman–Ford, Dijkstra, Johnson's all-pairs shortest paths) and dynamic programming through the SRTBOT framework, closing with reductions and NP-completeness. Problem sets pair proofs of correctness and complexity analysis with Python implementations, training the habit of modelling a real problem as a graph or a recurrence and then giving a provably efficient solution.",
+    instructor: 'Erik Demaine, Jason Ku, Justin Solomon',
+    note: "Organised around the split between interface and implementation: from models of computation and asymptotic analysis, it covers data structures (hash tables, AVL trees, binary heaps), merge and radix sort, graph algorithms (BFS, DFS, topological sort, Bellman–Ford, Dijkstra, Johnson's all-pairs shortest paths) and dynamic programming through the SRTBOT framework, closing with reductions and NP-completeness. Problem sets pair proofs of correctness and complexity analysis with Python implementations, training the habit of modelling a real problem as a graph or a recurrence and then giving a provably efficient solution.",
     zh: {
       title: '算法导论',
-      note: '由 Erik Demaine、Jason Ku 与 Justin Solomon 主讲，以「接口与实现」的区分为主线：从计算模型与渐近分析出发，覆盖数据结构（哈希表、AVL 平衡树、二叉堆）、归并排序与基数排序、图算法（BFS、DFS、拓扑排序、Bellman–Ford、Dijkstra、Johnson 全源最短路），并以 SRTBOT 框架系统讲授动态规划，最后引入归约与 NP 完全性。习题集兼顾正确性证明、复杂度分析与 Python 实现，训练把实际问题建模为图或递推、再给出可证明高效解法的能力。',
+      note: '以「接口与实现」的区分为主线：从计算模型与渐近分析出发，覆盖数据结构（哈希表、AVL 平衡树、二叉堆）、归并排序与基数排序、图算法（BFS、DFS、拓扑排序、Bellman–Ford、Dijkstra、Johnson 全源最短路），并以 SRTBOT 框架系统讲授动态规划，最后引入归约与 NP 完全性。习题集兼顾正确性证明、复杂度分析与 Python 实现，训练把实际问题建模为图或递推、再给出可证明高效解法的能力。',
     },
   },
   {
@@ -312,10 +317,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: 'RES.6-012',
     title: 'Introduction to Probability',
-    note: "Taught by John Tsitsiklis alongside the classic Bertsekas and Tsitsiklis text: from the axioms of probability and conditioning (Bayes' rule), it covers discrete and continuous random variables, joint and derived distributions, conditional expectation, Bayesian inference (MAP, LMS) and classical statistics (maximum likelihood, confidence intervals), then limit theorems (the law of large numbers, the central limit theorem), Bernoulli and Poisson processes and Markov chains, building the probabilistic intuition and computational fluency that machine learning and reasoning under uncertainty rest on.",
+    instructor: 'John Tsitsiklis',
+    note: "Following the classic Bertsekas and Tsitsiklis text: from the axioms of probability and conditioning (Bayes' rule), it covers discrete and continuous random variables, joint and derived distributions, conditional expectation, Bayesian inference (MAP, LMS) and classical statistics (maximum likelihood, confidence intervals), then limit theorems (the law of large numbers, the central limit theorem), Bernoulli and Poisson processes and Markov chains, building the probabilistic intuition and computational fluency that machine learning and reasoning under uncertainty rest on.",
     zh: {
       title: '概率论导论',
-      note: '由 John Tsitsiklis 主讲、配套 Bertsekas 与 Tsitsiklis 经典教材：从概率公理与条件概率（贝叶斯法则）出发，覆盖离散与连续随机变量、联合分布与导出分布、条件期望，以及贝叶斯推断（MAP、LMS）与经典统计（极大似然、置信区间），再到极限定理（大数定律、中心极限定理）、Bernoulli/Poisson 过程与马尔可夫链，为机器学习与不确定性推理打下概率直觉与计算功底。',
+      note: '配套 Bertsekas 与 Tsitsiklis 经典教材：从概率公理与条件概率（贝叶斯法则）出发，覆盖离散与连续随机变量、联合分布与导出分布、条件期望，以及贝叶斯推断（MAP、LMS）与经典统计（极大似然、置信区间），再到极限定理（大数定律、中心极限定理）、Bernoulli/Poisson 过程与马尔可夫链，为机器学习与不确定性推理打下概率直觉与计算功底。',
     },
   },
   {
@@ -324,10 +330,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.650',
     title: 'Statistics for Applications',
-    note: 'Taught by Philippe Rigollet: starting from statistical modelling and parametric estimation, it develops maximum likelihood and the method of moments, M-estimation, Fisher information and asymptotic normality (the delta method), then hypothesis testing (Wald, likelihood-ratio, chi-squared goodness-of-fit and Kolmogorov–Smirnov tests) and Bayesian statistics (conjugate and Jeffreys priors), extending to linear regression, generalised linear models and principal component analysis. Rigorous derivations answer how to draw trustworthy conclusions from data, closing the loop from probability models to inference.',
+    instructor: 'Philippe Rigollet',
+    note: 'Starting from statistical modelling and parametric estimation, it develops maximum likelihood and the method of moments, M-estimation, Fisher information and asymptotic normality (the delta method), then hypothesis testing (Wald, likelihood-ratio, chi-squared goodness-of-fit and Kolmogorov–Smirnov tests) and Bayesian statistics (conjugate and Jeffreys priors), extending to linear regression, generalised linear models and principal component analysis. Rigorous derivations answer how to draw trustworthy conclusions from data, closing the loop from probability models to inference.',
     zh: {
       title: '应用统计学',
-      note: '由 Philippe Rigollet 主讲：从统计建模与参数估计出发，系统讲授极大似然与矩估计、M 估计、Fisher 信息与渐近正态性（Delta 方法），再到假设检验（Wald 检验、似然比检验、卡方拟合优度检验、Kolmogorov–Smirnov 检验）与贝叶斯统计（共轭先验、Jeffreys 先验），并延伸至线性回归、广义线性模型与主成分分析，以严格的数学推导回答「如何从数据中得出可信的结论」，与概率论形成从模型到推断的完整闭环。',
+      note: '从统计建模与参数估计出发，系统讲授极大似然与矩估计、M 估计、Fisher 信息与渐近正态性（Delta 方法），再到假设检验（Wald 检验、似然比检验、卡方拟合优度检验、Kolmogorov–Smirnov 检验）与贝叶斯统计（共轭先验、Jeffreys 先验），并延伸至线性回归、广义线性模型与主成分分析，以严格的数学推导回答「如何从数据中得出可信的结论」，与概率论形成从模型到推断的完整闭环。',
     },
   },
   {
@@ -336,10 +343,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '18.404J',
     title: 'Theory of Computation',
-    note: "Taught by Michael Sipser from his own Introduction to the Theory of Computation: from finite automata, regular languages and the pumping lemma, through context-free grammars and pushdown automata, to Turing machines, the Church–Turing thesis, undecidability and reductions. The second half turns to complexity: P versus NP, the Cook–Levin theorem and NP-completeness, space complexity (Savitch's theorem, PSPACE-completeness), the hierarchy theorems and probabilistic computation, answering the field's founding question of what can be computed, and at what cost.",
+    instructor: 'Michael Sipser',
+    note: "Taught from Sipser's own Introduction to the Theory of Computation: from finite automata, regular languages and the pumping lemma, through context-free grammars and pushdown automata, to Turing machines, the Church–Turing thesis, undecidability and reductions. The second half turns to complexity: P versus NP, the Cook–Levin theorem and NP-completeness, space complexity (Savitch's theorem, PSPACE-completeness), the hierarchy theorems and probabilistic computation, answering the field's founding question of what can be computed, and at what cost.",
     zh: {
       title: '计算理论',
-      note: '由 Michael Sipser 本人以其经典教材《计算理论导引》主讲：从有限自动机、正则语言与泵引理，到上下文无关文法与下推自动机，再到图灵机、Church–Turing 论题、不可判定性与归约；后半程转入复杂性理论，讲授 P 与 NP、Cook–Levin 定理与 NP 完全性、空间复杂性（Savitch 定理、PSPACE 完全性）、层级定理与概率计算，回答「什么能被计算、要付出多少代价」这一计算机科学的根本问题。',
+      note: '以 Sipser 本人的经典教材《计算理论导引》讲授：从有限自动机、正则语言与泵引理，到上下文无关文法与下推自动机，再到图灵机、Church–Turing 论题、不可判定性与归约；后半程转入复杂性理论，讲授 P 与 NP、Cook–Levin 定理与 NP 完全性、空间复杂性（Savitch 定理、PSPACE 完全性）、层级定理与概率计算，回答「什么能被计算、要付出多少代价」这一计算机科学的根本问题。',
     },
   },
   {
@@ -360,10 +368,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.04',
     title: 'Quantum Physics I',
-    note: 'Taught by Barton Zwiebach, it starts from the experiments that broke classical physics (the photoelectric effect, Compton scattering, electron diffraction), introduces wave–particle duality and the de Broglie relations, and builds the probabilistic interpretation of the wavefunction, Fourier analysis and the uncertainty principle. It then solves the Schrödinger equation in earnest: stationary states and one-dimensional potentials (infinite and finite wells, the delta function, barriers and tunnelling), the harmonic oscillator through ladder-operator algebra, and finally central potentials in three dimensions, angular momentum and the hydrogen atom, laying down both the computational backbone and the physical intuition of quantum mechanics.',
+    instructor: 'Barton Zwiebach',
+    note: 'It starts from the experiments that broke classical physics (the photoelectric effect, Compton scattering, electron diffraction), introduces wave–particle duality and the de Broglie relations, and builds the probabilistic interpretation of the wavefunction, Fourier analysis and the uncertainty principle. It then solves the Schrödinger equation in earnest: stationary states and one-dimensional potentials (infinite and finite wells, the delta function, barriers and tunnelling), the harmonic oscillator through ladder-operator algebra, and finally central potentials in three dimensions, angular momentum and the hydrogen atom, laying down both the computational backbone and the physical intuition of quantum mechanics.',
     zh: {
       title: '量子物理 I',
-      note: '由 Barton Zwiebach 主讲，从光电效应、康普顿散射与电子衍射等动摇经典物理的实验出发，引入波粒二象性与德布罗意关系，建立波函数的概率诠释、傅里叶分析与不确定性原理，再系统求解薛定谔方程：定态与一维势（无限深与有限深势阱、δ 势、势垒与隧穿）、用升降算符代数求解谐振子，最后推广到三维中心势、角动量与氢原子，搭起量子力学的计算骨架与物理直觉。',
+      note: '从光电效应、康普顿散射与电子衍射等动摇经典物理的实验出发，引入波粒二象性与德布罗意关系，建立波函数的概率诠释、傅里叶分析与不确定性原理，再系统求解薛定谔方程：定态与一维势（无限深与有限深势阱、δ 势、势垒与隧穿）、用升降算符代数求解谐振子，最后推广到三维中心势、角动量与氢原子，搭起量子力学的计算骨架与物理直觉。',
     },
   },
   {
@@ -372,10 +381,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.05',
     title: 'Quantum Physics II',
-    note: "The second part of Barton Zwiebach's quantum trilogy, rebuilding quantum mechanics on linear algebra: from the Stern–Gerlach experiment and spin one-half, it develops vector spaces, linear operators, inner products and the spectral theorem, introducing Dirac notation and the generalised uncertainty principle. It then applies them to coherent and squeezed states of the harmonic oscillator, two-state systems (nuclear magnetic resonance, the ammonia maser), time evolution in the Schrödinger and Heisenberg pictures, and finally the theory of angular momentum, central potentials and the addition of angular momentum (the fine structure of hydrogen), lifting wave mechanics into an abstract framework built on Hilbert space.",
+    instructor: 'Barton Zwiebach',
+    note: "The second part of a quantum trilogy, rebuilding quantum mechanics on linear algebra: from the Stern–Gerlach experiment and spin one-half, it develops vector spaces, linear operators, inner products and the spectral theorem, introducing Dirac notation and the generalised uncertainty principle. It then applies them to coherent and squeezed states of the harmonic oscillator, two-state systems (nuclear magnetic resonance, the ammonia maser), time evolution in the Schrödinger and Heisenberg pictures, and finally the theory of angular momentum, central potentials and the addition of angular momentum (the fine structure of hydrogen), lifting wave mechanics into an abstract framework built on Hilbert space.",
     zh: {
       title: '量子物理 II',
-      note: 'Barton Zwiebach 量子力学三部曲的第二部，以线性代数重建量子力学：从 Stern–Gerlach 实验与自旋 1/2 出发，系统讲授向量空间、线性算符、内积与谱定理，引入狄拉克符号与广义不确定性原理；再以此处理谐振子的相干态与压缩态、二能级系统（核磁共振、氨分子微波激射器）、薛定谔绘景与海森堡绘景下的时间演化，最后讲授角动量理论、中心势与角动量耦合（氢原子精细结构），把波动力学提升为基于 Hilbert 空间的抽象框架。',
+      note: '量子力学三部曲的第二部，以线性代数重建量子力学：从 Stern–Gerlach 实验与自旋 1/2 出发，系统讲授向量空间、线性算符、内积与谱定理，引入狄拉克符号与广义不确定性原理；再以此处理谐振子的相干态与压缩态、二能级系统（核磁共振、氨分子微波激射器）、薛定谔绘景与海森堡绘景下的时间演化，最后讲授角动量理论、中心势与角动量耦合（氢原子精细结构），把波动力学提升为基于 Hilbert 空间的抽象框架。',
     },
   },
   {
@@ -408,10 +418,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.962',
     title: 'General Relativity',
-    note: "Taught by Scott Hughes with Carroll's text as reference: from special relativity restated in tensor language, it builds the tools of differential geometry (manifolds, the metric, covariant derivatives and parallel transport, geodesics, the Riemann curvature tensor) and derives the Einstein field equations, then covers the weak-field limit and linearised gravity, the generation and propagation of gravitational waves, the Schwarzschild solution and black holes, and FRW cosmology, turning gravity as the curvature of spacetime from a slogan into a geometric theory you can compute with.",
+    instructor: 'Scott Hughes',
+    note: "With Carroll's text as reference: from special relativity restated in tensor language, it builds the tools of differential geometry (manifolds, the metric, covariant derivatives and parallel transport, geodesics, the Riemann curvature tensor) and derives the Einstein field equations, then covers the weak-field limit and linearised gravity, the generation and propagation of gravitational waves, the Schwarzschild solution and black holes, and FRW cosmology, turning gravity as the curvature of spacetime from a slogan into a geometric theory you can compute with.",
     zh: {
       title: '广义相对论',
-      note: '由 Scott Hughes 主讲，参考 Carroll 教材：从用张量语言重述狭义相对论出发，系统建立微分几何工具（流形、度规、协变导数与平行移动、测地线、黎曼曲率张量），推导爱因斯坦场方程；再讲授弱场极限与线性化引力、引力波的产生与传播、Schwarzschild 解与黑洞，以及 FRW 宇宙学模型，把「引力即时空弯曲」从一句口号变成可以计算的几何理论。',
+      note: '参考 Carroll 教材：从用张量语言重述狭义相对论出发，系统建立微分几何工具（流形、度规、协变导数与平行移动、测地线、黎曼曲率张量），推导爱因斯坦场方程；再讲授弱场极限与线性化引力、引力波的产生与传播、Schwarzschild 解与黑洞，以及 FRW 宇宙学模型，把「引力即时空弯曲」从一句口号变成可以计算的几何理论。',
     },
   },
   {
@@ -420,10 +431,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '8.286',
     title: 'The Early Universe',
-    note: 'Taught by Alan Guth, who proposed cosmic inflation: from Hubble expansion and the cosmological principle, it derives the Friedmann equations from Newtonian mechanics and covers matter- and radiation-dominated expansion, the non-Euclidean geometry of open and closed universes, black-body radiation and the cosmic microwave background, the thermal history of the universe and Big Bang nucleosynthesis, and the observational evidence for dark matter and dark energy (the cosmological constant). The second half turns to the flatness, horizon and magnetic monopole problems of the standard Big Bang model, how inflation resolves them and seeds the primordial density perturbations, extending to eternal inflation and the multiverse, building an understanding of the origin and evolution of the universe from the observational data up.',
+    instructor: 'Alan Guth',
+    note: 'Taught by the physicist who proposed cosmic inflation: from Hubble expansion and the cosmological principle, it derives the Friedmann equations from Newtonian mechanics and covers matter- and radiation-dominated expansion, the non-Euclidean geometry of open and closed universes, black-body radiation and the cosmic microwave background, the thermal history of the universe and Big Bang nucleosynthesis, and the observational evidence for dark matter and dark energy (the cosmological constant). The second half turns to the flatness, horizon and magnetic monopole problems of the standard Big Bang model, how inflation resolves them and seeds the primordial density perturbations, extending to eternal inflation and the multiverse, building an understanding of the origin and evolution of the universe from the observational data up.',
     zh: {
       title: '早期宇宙',
-      note: '由暴胀理论的提出者 Alan Guth 主讲：从哈勃膨胀与宇宙学原理出发，以牛顿力学推导 Friedmann 方程，讲授物质主导与辐射主导的宇宙演化、开放与封闭宇宙的非欧几何、黑体辐射与宇宙微波背景、宇宙热历史与太初核合成，以及暗物质与暗能量（宇宙学常数）的观测证据；后半程聚焦标准大爆炸模型的平坦性问题、视界问题与磁单极子问题，讲授暴胀理论如何解决它们并给出原初密度扰动的起源，最后延伸至永恒暴胀与多重宇宙，从观测数据出发理解宇宙的起源与演化。',
+      note: '由暴胀理论的提出者本人主讲：从哈勃膨胀与宇宙学原理出发，以牛顿力学推导 Friedmann 方程，讲授物质主导与辐射主导的宇宙演化、开放与封闭宇宙的非欧几何、黑体辐射与宇宙微波背景、宇宙热历史与太初核合成，以及暗物质与暗能量（宇宙学常数）的观测证据；后半程聚焦标准大爆炸模型的平坦性问题、视界问题与磁单极子问题，讲授暴胀理论如何解决它们并给出原初密度扰动的起源，最后延伸至永恒暴胀与多重宇宙，从观测数据出发理解宇宙的起源与演化。',
     },
   },
   {
@@ -432,10 +444,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '14.01',
     title: 'Principles of Microeconomics',
-    note: 'Taught by Jonathan Gruber: from supply and demand, it derives consumer demand from utility maximisation under a budget constraint and models firm decisions through production functions and cost curves, then analyses perfect competition, monopoly and oligopoly and their welfare consequences (consumer and producer surplus). The second half turns to factor markets (labour and capital), choice under uncertainty and international trade, then externalities, public goods, taxation and redistribution, showing when markets work, when they fail, and what justifies government intervention and what it costs.',
+    instructor: 'Jonathan Gruber',
+    note: 'From supply and demand, it derives consumer demand from utility maximisation under a budget constraint and models firm decisions through production functions and cost curves, then analyses perfect competition, monopoly and oligopoly and their welfare consequences (consumer and producer surplus). The second half turns to factor markets (labour and capital), choice under uncertainty and international trade, then externalities, public goods, taxation and redistribution, showing when markets work, when they fail, and what justifies government intervention and what it costs.',
     zh: {
       title: '微观经济学原理',
-      note: '由 Jonathan Gruber 主讲：从供需模型出发，以效用最大化与预算约束推导消费者需求，以生产函数与成本曲线刻画企业决策，再分析完全竞争、垄断与寡头的市场结构及其福利后果（消费者剩余与生产者剩余）；后半程转向要素市场（劳动与资本）、不确定性下的选择、国际贸易，以及外部性、公共物品、税收与收入再分配，理解市场何时有效、何时失灵，以及政府干预的依据与代价。',
+      note: '从供需模型出发，以效用最大化与预算约束推导消费者需求，以生产函数与成本曲线刻画企业决策，再分析完全竞争、垄断与寡头的市场结构及其福利后果（消费者剩余与生产者剩余）；后半程转向要素市场（劳动与资本）、不确定性下的选择、国际贸易，以及外部性、公共物品、税收与收入再分配，理解市场何时有效、何时失灵，以及政府干预的依据与代价。',
     },
   },
   {
@@ -444,10 +457,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '14.02',
     title: 'Principles of Macroeconomics',
-    note: "Taught by Ricardo Caballero from Blanchard's Macroeconomics: from the goods and financial markets it builds the IS-LM model, adds the labour market and the Phillips curve to derive AS-AD, and traces how monetary and fiscal policy act differently in the short, medium and long run. It then covers the Solow growth model and technological progress, the role of expectations in consumption and investment, and exchange rates and the Mundell–Fleming model in the open economy, applying these tools to financial crises and the liquidity trap, building a complete framework for analysing macroeconomic fluctuations and policy.",
+    instructor: 'Ricardo Caballero',
+    note: "Following Blanchard's Macroeconomics: from the goods and financial markets it builds the IS-LM model, adds the labour market and the Phillips curve to derive AS-AD, and traces how monetary and fiscal policy act differently in the short, medium and long run. It then covers the Solow growth model and technological progress, the role of expectations in consumption and investment, and exchange rates and the Mundell–Fleming model in the open economy, applying these tools to financial crises and the liquidity trap, building a complete framework for analysing macroeconomic fluctuations and policy.",
     zh: {
       title: '宏观经济学原理',
-      note: '由 Ricardo Caballero 主讲，以 Blanchard《宏观经济学》为教材：从商品市场与金融市场出发构建 IS-LM 模型，结合劳动力市场与菲利普斯曲线推导 AS-AD 模型，分析货币政策与财政政策在短期、中期与长期的不同效果；再讲授 Solow 增长模型与技术进步、预期在消费与投资中的作用，以及开放经济中的汇率与 Mundell–Fleming 模型，并用这些工具解读金融危机与流动性陷阱，建立分析宏观经济波动与政策的完整框架。',
+      note: '以 Blanchard《宏观经济学》为教材：从商品市场与金融市场出发构建 IS-LM 模型，结合劳动力市场与菲利普斯曲线推导 AS-AD 模型，分析货币政策与财政政策在短期、中期与长期的不同效果；再讲授 Solow 增长模型与技术进步、预期在消费与投资中的作用，以及开放经济中的汇率与 Mundell–Fleming 模型，并用这些工具解读金融危机与流动性陷阱，建立分析宏观经济波动与政策的完整框架。',
     },
   },
   {
@@ -468,10 +482,11 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'ECON 251',
     title: 'Financial Theory',
-    note: "Taught by John Geanakoplos, it builds finance from the ground up on general equilibrium: from Irving Fisher's intertemporal model it derives interest rates and present value, applying them to bond pricing, the yield curve, mortgages and prepayment, and social security. Uncertainty follows, with risk aversion, portfolio choice, the capital asset pricing model (CAPM) and dynamic hedging, closing with the leverage cycle, Geanakoplos's own theory of how leverage and collateral amplify boom and crash, applied to the 2008 financial crisis, recasting Wall Street practice as rigorous economic models.",
+    instructor: 'John Geanakoplos',
+    note: "It builds finance from the ground up on general equilibrium: from Irving Fisher's intertemporal model it derives interest rates and present value, applying them to bond pricing, the yield curve, mortgages and prepayment, and social security. Uncertainty follows, with risk aversion, portfolio choice, the capital asset pricing model (CAPM) and dynamic hedging, closing with the leverage cycle, Geanakoplos's own theory of how leverage and collateral amplify boom and crash, applied to the 2008 financial crisis, recasting Wall Street practice as rigorous economic models.",
     zh: {
       title: '金融理论',
-      note: '由 John Geanakoplos 主讲，以一般均衡为基础自底向上搭建金融学：从 Irving Fisher 的跨期模型推导利率与现值，讲授债券定价、收益率曲线、抵押贷款与提前还款、社会保障等应用；再引入不确定性，讲授风险厌恶、资产组合、资本资产定价模型（CAPM）与动态对冲；最后以主讲人本人提出的杠杆周期理论收尾，分析杠杆与抵押品如何放大繁荣与崩溃，并用于解读 2008 年金融危机，把华尔街的实践还原为严格的经济学模型。',
+      note: '以一般均衡为基础自底向上搭建金融学：从 Irving Fisher 的跨期模型推导利率与现值，讲授债券定价、收益率曲线、抵押贷款与提前还款、社会保障等应用；再引入不确定性，讲授风险厌恶、资产组合、资本资产定价模型（CAPM）与动态对冲；最后以主讲人本人提出的杠杆周期理论收尾，分析杠杆与抵押品如何放大繁荣与崩溃，并用于解读 2008 年金融危机，把华尔街的实践还原为严格的经济学模型。',
     },
   },
   {
@@ -480,10 +495,11 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'ECON 252',
     title: 'Financial Markets',
-    note: 'Taught by Robert Shiller, 2013 Nobel laureate in economics, it examines the financial system as a machine for managing risk: from probability, diversification and the principles of insurance, it weighs the efficient-markets hypothesis against behavioural finance, then works through the markets for bonds, stocks, real estate, forwards and futures, and options, and the institutional design of banks, investment banks, central banks and monetary policy, and financial regulation, with guest lectures from practitioners, showing how finance serves society and why it produces bubbles and crises.',
+    instructor: 'Robert Shiller',
+    note: 'Taught by a 2013 Nobel laureate in economics, it examines the financial system as a machine for managing risk: from probability, diversification and the principles of insurance, it weighs the efficient-markets hypothesis against behavioural finance, then works through the markets for bonds, stocks, real estate, forwards and futures, and options, and the institutional design of banks, investment banks, central banks and monetary policy, and financial regulation, with guest lectures from practitioners, showing how finance serves society and why it produces bubbles and crises.',
     zh: {
       title: '金融市场',
-      note: '由 2013 年诺贝尔经济学奖得主 Robert Shiller 主讲，从风险管理的视角审视金融体系：从概率、风险分散与保险原理出发，讨论有效市场假说与行为金融的分歧，再逐一讲授债券、股票、房地产、远期与期货、期权等市场，以及银行、投资银行、中央银行与货币政策、金融监管的制度设计，辅以业界嘉宾讲座，理解金融如何服务于社会，以及它为何会出现泡沫与危机。',
+      note: '由 2013 年诺贝尔经济学奖得主主讲，从风险管理的视角审视金融体系：从概率、风险分散与保险原理出发，讨论有效市场假说与行为金融的分歧，再逐一讲授债券、股票、房地产、远期与期货、期权等市场，以及银行、投资银行、中央银行与货币政策、金融监管的制度设计，辅以业界嘉宾讲座，理解金融如何服务于社会，以及它为何会出现泡沫与危机。',
     },
   },
   {
@@ -492,10 +508,11 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'ECON 159',
     title: 'Game Theory',
-    note: 'Taught by Ben Polak, who introduces each idea through games played in the lecture hall: from strict dominance and the iterated deletion of dominated strategies, it covers Nash equilibrium and its application to Cournot and Bertrand competition, mixed strategies and evolutionarily stable strategies, then sequential games, with backward induction, the Stackelberg model, information sets and subgame-perfect equilibrium, extending to cooperation in repeated games, bargaining, signalling and auctions under asymmetric information, training the ability to formalise and solve real strategic interaction.',
+    instructor: 'Ben Polak',
+    note: 'Each idea is introduced through games played in the lecture hall: from strict dominance and the iterated deletion of dominated strategies, it covers Nash equilibrium and its application to Cournot and Bertrand competition, mixed strategies and evolutionarily stable strategies, then sequential games, with backward induction, the Stackelberg model, information sets and subgame-perfect equilibrium, extending to cooperation in repeated games, bargaining, signalling and auctions under asymmetric information, training the ability to formalise and solve real strategic interaction.',
     zh: {
       title: '博弈论',
-      note: '由 Ben Polak 主讲，以大量课堂博弈实验引入概念：从严格占优与重复剔除劣策略出发，讲授纳什均衡及其在 Cournot 与 Bertrand 竞争中的应用、混合策略与演化稳定策略；再转向序贯博弈，讲授逆向归纳、Stackelberg 模型、信息集与子博弈精炼纳什均衡，并延伸至重复博弈中的合作、议价、信号传递与拍卖等信息不对称问题，培养把现实中的策略互动形式化并求解的能力。',
+      note: '以大量课堂博弈实验引入概念：从严格占优与重复剔除劣策略出发，讲授纳什均衡及其在 Cournot 与 Bertrand 竞争中的应用、混合策略与演化稳定策略；再转向序贯博弈，讲授逆向归纳、Stackelberg 模型、信息集与子博弈精炼纳什均衡，并延伸至重复博弈中的合作、议价、信号传递与拍卖等信息不对称问题，培养把现实中的策略互动形式化并求解的能力。',
     },
   },
   {
@@ -504,10 +521,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.13',
     title: 'The Human Brain',
-    note: "Taught by Nancy Kanwisher, who discovered the fusiform face area: starting from neuroanatomy and a real brain dissection, it lays out the methods of cognitive neuroscience (fMRI, EEG and MEG, TMS, studies of patients with brain damage, intracranial recording) and asks of each what it can and cannot show. It then works through the brain's functional specialisation, region by region: face recognition, scene perception and navigation, bodies and visual motion, number, music, language, and the network that represents other minds, extending to how plasticity and development shape that division of labour and to deep networks as models of visual cortex, building an understanding of how the mind is organised in the brain from the experimental evidence up.",
+    instructor: 'Nancy Kanwisher',
+    note: "Taught by the discoverer of the fusiform face area: starting from neuroanatomy and a real brain dissection, it lays out the methods of cognitive neuroscience (fMRI, EEG and MEG, TMS, studies of patients with brain damage, intracranial recording) and asks of each what it can and cannot show. It then works through the brain's functional specialisation, region by region: face recognition, scene perception and navigation, bodies and visual motion, number, music, language, and the network that represents other minds, extending to how plasticity and development shape that division of labour and to deep networks as models of visual cortex, building an understanding of how the mind is organised in the brain from the experimental evidence up.",
     zh: {
       title: '人类大脑',
-      note: '由梭状回面孔区（FFA）的发现者 Nancy Kanwisher 主讲：从神经解剖与真实的大脑解剖演示出发，系统讲授认知神经科学的研究方法（fMRI、EEG 与 MEG、TMS、脑损伤患者研究、颅内记录），并追问每种方法能证明什么、不能证明什么；再逐个剖析大脑的功能特异化：面孔识别、场景知觉与空间导航、身体与视觉运动、数量、音乐、语言，以及理解他人心智的脑网络，并延伸至可塑性与发育如何塑造这种分工、深度神经网络作为视觉皮层模型的可能，从实验证据出发理解心智在大脑中如何组织。',
+      note: '由梭状回面孔区（FFA）的发现者本人主讲：从神经解剖与真实的大脑解剖演示出发，系统讲授认知神经科学的研究方法（fMRI、EEG 与 MEG、TMS、脑损伤患者研究、颅内记录），并追问每种方法能证明什么、不能证明什么；再逐个剖析大脑的功能特异化：面孔识别、场景知觉与空间导航、身体与视觉运动、数量、音乐、语言，以及理解他人心智的脑网络，并延伸至可塑性与发育如何塑造这种分工、深度神经网络作为视觉皮层模型的可能，从实验证据出发理解心智在大脑中如何组织。',
     },
   },
   {
@@ -516,10 +534,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.00SC',
     title: 'Introduction to Psychology',
-    note: 'Taught by John Gabrieli: from the research methods of psychology and the biological basis of behaviour, it covers perception and attention, consciousness and sleep, learning (classical and operant conditioning), memory (the amnesic patient H.M. among the cases), language, thinking and intelligence, then emotion and motivation, development across the lifespan, personality, social psychology (conformity and obedience in the Asch and Milgram experiments), stress and health, and psychological disorders and their treatment, reading every claim against the experiments behind it and building a full map of the mind from neurons to society.',
+    instructor: 'John Gabrieli',
+    note: 'From the research methods of psychology and the biological basis of behaviour, it covers perception and attention, consciousness and sleep, learning (classical and operant conditioning), memory (the amnesic patient H.M. among the cases), language, thinking and intelligence, then emotion and motivation, development across the lifespan, personality, social psychology (conformity and obedience in the Asch and Milgram experiments), stress and health, and psychological disorders and their treatment, reading every claim against the experiments behind it and building a full map of the mind from neurons to society.',
     zh: {
       title: '心理学导论',
-      note: '由 John Gabrieli 主讲：从心理学的研究方法与行为的生物学基础出发，覆盖知觉与注意、意识与睡眠、学习（经典条件反射与操作性条件反射）、记忆（如失忆症患者 H.M. 的案例）、语言、思维与智力，再到情绪与动机、毕生发展、人格、社会心理学（Asch 从众实验与 Milgram 服从实验）、压力与健康，以及心理障碍及其治疗，结合支撑每个结论的经典实验，建立从神经元到社会的完整心智图景。',
+      note: '从心理学的研究方法与行为的生物学基础出发，覆盖知觉与注意、意识与睡眠、学习（经典条件反射与操作性条件反射）、记忆（如失忆症患者 H.M. 的案例）、语言、思维与智力，再到情绪与动机、毕生发展、人格、社会心理学（Asch 从众实验与 Milgram 服从实验）、压力与健康，以及心理障碍及其治疗，结合支撑每个结论的经典实验，建立从神经元到社会的完整心智图景。',
     },
   },
   {
@@ -540,10 +559,11 @@ export const OPEN_COURSES = [
     crest: 'mit',
     code: '9.40',
     title: 'Introduction to Neural Computation',
-    note: 'Taught by Michale Fee: from the biophysics of a single neuron, it builds the equivalent-circuit model of the membrane, the Hodgkin–Huxley model of the action potential, integrate-and-fire neurons, dendrites and cable theory, and synaptic transmission, then turns to the neural code, with spike trains and firing rates, receptive fields and the spike-triggered average. Along the way it teaches the mathematics of data analysis (convolution and filtering, Fourier and spectral analysis, matrices, eigenvectors and principal component analysis), closing with network models: rate models, feed-forward networks and the perceptron, recurrent networks, line attractors as neural integrators, and Hopfield networks for memory. MATLAB problem sets simulate and analyse each model, showing how computation emerges from biological neural circuits and how they compare with artificial ones.',
+    instructor: 'Michael Fee',
+    note: 'From the biophysics of a single neuron, it builds the equivalent-circuit model of the membrane, the Hodgkin–Huxley model of the action potential, integrate-and-fire neurons, dendrites and cable theory, and synaptic transmission, then turns to the neural code, with spike trains and firing rates, receptive fields and the spike-triggered average. Along the way it teaches the mathematics of data analysis (convolution and filtering, Fourier and spectral analysis, matrices, eigenvectors and principal component analysis), closing with network models: rate models, feed-forward networks and the perceptron, recurrent networks, line attractors as neural integrators, and Hopfield networks for memory. MATLAB problem sets simulate and analyse each model, showing how computation emerges from biological neural circuits and how they compare with artificial ones.',
     zh: {
       title: '神经计算导论',
-      note: '由 Michale Fee 主讲：从单个神经元的生物物理出发，依次建立细胞膜的等效电路模型、动作电位的 Hodgkin–Huxley 模型、积分发放神经元、树突与电缆理论以及突触传递；再转向神经编码，讲授动作电位序列与发放率、感受野与脉冲触发平均。课程同时系统讲授数据分析的数学工具（卷积与滤波、傅里叶与频谱分析、矩阵、特征向量与主成分分析），最后以网络模型收尾：发放率模型、前馈网络与感知机、循环网络、作为神经积分器的线吸引子，以及用于记忆的 Hopfield 网络。习题用 MATLAB 模拟和分析每个模型，理解计算如何从生物神经回路中涌现，以及它与人工神经网络的异同。',
+      note: '从单个神经元的生物物理出发，依次建立细胞膜的等效电路模型、动作电位的 Hodgkin–Huxley 模型、积分发放神经元、树突与电缆理论以及突触传递；再转向神经编码，讲授动作电位序列与发放率、感受野与脉冲触发平均。课程同时系统讲授数据分析的数学工具（卷积与滤波、傅里叶与频谱分析、矩阵、特征向量与主成分分析），最后以网络模型收尾：发放率模型、前馈网络与感知机、循环网络、作为神经积分器的线吸引子，以及用于记忆的 Hopfield 网络。习题用 MATLAB 模拟和分析每个模型，理解计算如何从生物神经回路中涌现，以及它与人工神经网络的异同。',
     },
   },
   {
@@ -564,10 +584,11 @@ export const OPEN_COURSES = [
     crest: 'harvard',
     code: 'ER 22',
     title: 'Justice',
-    note: "Taught by Michael Sandel through Socratic debate with a lecture hall of a thousand students: from hard cases (the runaway trolley, the shipwrecked crew driven to cannibalism), it sets out utilitarianism (Bentham and Mill), libertarianism (Nozick) and Locke on property and consent, then tests the limits of markets against military service and surrogacy, before turning to Kant's categorical imperative, Rawls's veil of ignorance and difference principle, and Aristotle's teleological justice, carrying each into affirmative action, patriotism and same-sex marriage. It trains the habit of naming the principle behind an intuition and following it through to its consequences.",
+    instructor: 'Michael Sandel',
+    note: "Taught through Socratic debate with a lecture hall of a thousand students: from hard cases (the runaway trolley, the shipwrecked crew driven to cannibalism), it sets out utilitarianism (Bentham and Mill), libertarianism (Nozick) and Locke on property and consent, then tests the limits of markets against military service and surrogacy, before turning to Kant's categorical imperative, Rawls's veil of ignorance and difference principle, and Aristotle's teleological justice, carrying each into affirmative action, patriotism and same-sex marriage. It trains the habit of naming the principle behind an intuition and following it through to its consequences.",
     zh: {
       title: '公正',
-      note: '由 Michael Sandel 主讲，在千人大课堂上以苏格拉底式的辩论推进：从电车难题、海难求生等疑难案例出发，依次讲授边沁与密尔的功利主义、诺齐克的自由至上主义、洛克的财产权与同意理论，并以兵役制度与代孕检验市场的道德边界；再转向康德的绝对命令、罗尔斯的无知之幕与差异原则，以及亚里士多德的目的论正义观，把每种理论带入平权法案、爱国主义与同性婚姻等争议中，培养把直觉背后的原则说清楚、并推演其全部后果的能力。',
+      note: '在千人大课堂上以苏格拉底式的辩论推进：从电车难题、海难求生等疑难案例出发，依次讲授边沁与密尔的功利主义、诺齐克的自由至上主义、洛克的财产权与同意理论，并以兵役制度与代孕检验市场的道德边界；再转向康德的绝对命令、罗尔斯的无知之幕与差异原则，以及亚里士多德的目的论正义观，把每种理论带入平权法案、爱国主义与同性婚姻等争议中，培养把直觉背后的原则说清楚、并推演其全部后果的能力。',
     },
   },
   {
@@ -576,10 +597,11 @@ export const OPEN_COURSES = [
     crest: 'yale',
     code: 'PHIL 176',
     title: 'Death',
-    note: "Taught by Shelly Kagan, who argues a physicalist position openly rather than surveying views: from the case for and against an immaterial soul (Plato's Phaedo among the texts), it moves to personal identity (the body, soul and personality views, and the puzzles of duplication and fission) and what it is to be dead, then asks why death is bad, through the deprivation account and Epicurus' and Lucretius' arguments that it is not, whether immortality would be desirable, and whether fear of death is appropriate, closing with the rationality and morality of suicide. It shows how far careful argument can take a question most people answer by instinct alone.",
+    instructor: 'Shelly Kagan',
+    note: "Rather than surveying views, it openly argues a physicalist position: from the case for and against an immaterial soul (Plato's Phaedo among the texts), it moves to personal identity (the body, soul and personality views, and the puzzles of duplication and fission) and what it is to be dead, then asks why death is bad, through the deprivation account and Epicurus' and Lucretius' arguments that it is not, whether immortality would be desirable, and whether fear of death is appropriate, closing with the rationality and morality of suicide. It shows how far careful argument can take a question most people answer by instinct alone.",
     zh: {
       title: '死亡',
-      note: '由 Shelly Kagan 主讲，他不做观点罗列，而是明确为物理主义立场辩护：从支持与反对非物质灵魂的论证出发（包括柏拉图的《斐多篇》），讨论人格同一性（身体论、灵魂论与人格论，以及复制与分裂的思想实验）以及「死亡」究竟意味着什么；再追问死亡为何是坏事，审视剥夺论以及伊壁鸠鲁与卢克莱修认为死亡并不可怕的论证、永生是否值得向往、对死亡的恐惧是否恰当，最后以自杀的理性与道德问题收尾，展示严谨的论证能把一个多数人只凭本能回答的问题推进到多远。',
+      note: '课程不做观点罗列，而是明确为物理主义立场辩护：从支持与反对非物质灵魂的论证出发（包括柏拉图的《斐多篇》），讨论人格同一性（身体论、灵魂论与人格论，以及复制与分裂的思想实验）以及「死亡」究竟意味着什么；再追问死亡为何是坏事，审视剥夺论以及伊壁鸠鲁与卢克莱修认为死亡并不可怕的论证、永生是否值得向往、对死亡的恐惧是否恰当，最后以自杀的理性与道德问题收尾，展示严谨的论证能把一个多数人只凭本能回答的问题推进到多远。',
     },
   },
   {
@@ -589,10 +611,11 @@ export const OPEN_COURSES = [
     // Oxford's first-year course runs under its title alone, with no number.
     code: null,
     title: 'General Philosophy',
-    note: "Oxford's first-year introduction, as taught by Peter Millican in lectures now freely available: from Descartes' Meditations and the sceptical arguments that open modern philosophy, it covers Locke and Berkeley on perception and the external world, Hume's problem of induction and his account of causation, then free will and determinism (and whether the two are compatible), personal identity, the mind–body problem from dualism to functionalism, and the arguments for the existence of God, especially the design argument and Hume's critique of it. Reading the primary texts closely, it trains the analytic habit of reconstructing an argument premise by premise and finding where it fails.",
+    instructor: 'Peter Millican',
+    note: "Oxford's first-year introduction, in lectures now freely available: from Descartes' Meditations and the sceptical arguments that open modern philosophy, it covers Locke and Berkeley on perception and the external world, Hume's problem of induction and his account of causation, then free will and determinism (and whether the two are compatible), personal identity, the mind–body problem from dualism to functionalism, and the arguments for the existence of God, especially the design argument and Hume's critique of it. Reading the primary texts closely, it trains the analytic habit of reconstructing an argument premise by premise and finding where it fails.",
     zh: {
       title: '哲学概论',
-      note: '牛津哲学本科一年级的入门课，由 Peter Millican 主讲并公开了课程录音：从笛卡尔的《第一哲学沉思集》与开启近代哲学的怀疑论论证出发，讲授洛克与贝克莱关于知觉与外部世界的理论、休谟的归纳问题与因果理论，再到自由意志与决定论（以及二者能否相容）、人格同一性、从二元论到功能主义的心身问题，以及上帝存在的论证，尤其是设计论证与休谟对它的批判。课程紧扣原典精读，训练把一个论证逐条拆解为前提、并找出它在哪里失效的分析哲学功底。',
+      note: '牛津哲学本科一年级的入门课，课程录音已公开：从笛卡尔的《第一哲学沉思集》与开启近代哲学的怀疑论论证出发，讲授洛克与贝克莱关于知觉与外部世界的理论、休谟的归纳问题与因果理论，再到自由意志与决定论（以及二者能否相容）、人格同一性、从二元论到功能主义的心身问题，以及上帝存在的论证，尤其是设计论证与休谟对它的批判。课程紧扣原典精读，训练把一个论证逐条拆解为前提、并找出它在哪里失效的分析哲学功底。',
     },
   },
 ] as const;
